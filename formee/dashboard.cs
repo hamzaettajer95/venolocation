@@ -64,7 +64,7 @@ namespace venolocation.formee
 
         private void btncontrat_Click(object sender, EventArgs e)
         {
-            formee.contrats con = new contrats();
+          formee.contrats con = new contrats();
             con.ShowDialog();
         }
     }

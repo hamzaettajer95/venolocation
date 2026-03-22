@@ -28,1149 +28,980 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.components = new System.ComponentModel.Container();
-            this.borderlessForm = new Guna.UI2.WinForms.Guna2BorderlessForm(this.components);
-            this.elipseForm = new Guna.UI2.WinForms.Guna2Elipse(this.components);
-            this.dragControl = new Guna.UI2.WinForms.Guna2DragControl(this.components);
-            this.headerPanel = new Guna.UI2.WinForms.Guna2Panel();
-            this.btnMinimize = new Guna.UI2.WinForms.Guna2Button();
-            this.btnClose = new Guna.UI2.WinForms.Guna2Button();
-            this.lblSubTitle = new System.Windows.Forms.Label();
-            this.lblTitle = new System.Windows.Forms.Label();
-            this.clientPanel = new Guna.UI2.WinForms.Guna2Panel();
-            this.txtAdresse = new Guna.UI2.WinForms.Guna2TextBox();
-            this.txtPermis = new Guna.UI2.WinForms.Guna2TextBox();
-            this.txtTelephone = new Guna.UI2.WinForms.Guna2TextBox();
-            this.txtPrenomClient = new Guna.UI2.WinForms.Guna2TextBox();
-            this.txtNomClient = new Guna.UI2.WinForms.Guna2TextBox();
-            this.cmbCinClient = new Guna.UI2.WinForms.Guna2ComboBox();
-            this.lblAdresse = new System.Windows.Forms.Label();
-            this.lblPermis = new System.Windows.Forms.Label();
-            this.lblTelephone = new System.Windows.Forms.Label();
-            this.lblPrenom = new System.Windows.Forms.Label();
-            this.lblNom = new System.Windows.Forms.Label();
-            this.lblCin = new System.Windows.Forms.Label();
-            this.lblClientTitle = new System.Windows.Forms.Label();
-            this.voiturePanel = new Guna.UI2.WinForms.Guna2Panel();
-            this.txtPrixJour = new Guna.UI2.WinForms.Guna2TextBox();
-            this.txtKilometrage = new Guna.UI2.WinForms.Guna2TextBox();
-            this.cmbCategorie = new Guna.UI2.WinForms.Guna2ComboBox();
-            this.cmbPuissance = new Guna.UI2.WinForms.Guna2ComboBox();
-            this.cmbTypeCarburant = new Guna.UI2.WinForms.Guna2ComboBox();
-            this.txtModele = new Guna.UI2.WinForms.Guna2TextBox();
-            this.txtMarque = new Guna.UI2.WinForms.Guna2TextBox();
-            this.cmbImmatriculation = new Guna.UI2.WinForms.Guna2ComboBox();
-            this.lblPrixJour = new System.Windows.Forms.Label();
-            this.lblKilometrage = new System.Windows.Forms.Label();
-            this.lblCategorie = new System.Windows.Forms.Label();
-            this.lblPuissance = new System.Windows.Forms.Label();
-            this.lblCarburant = new System.Windows.Forms.Label();
-            this.lblModele = new System.Windows.Forms.Label();
-            this.lblMarque = new System.Windows.Forms.Label();
-            this.lblImmat = new System.Windows.Forms.Label();
-            this.lblVoitureTitle = new System.Windows.Forms.Label();
-            this.locationPanel = new Guna.UI2.WinForms.Guna2Panel();
-            this.txtNombreJours = new Guna.UI2.WinForms.Guna2TextBox();
-            this.dtDateFin = new Guna.UI2.WinForms.Guna2DateTimePicker();
-            this.dtDateDebut = new Guna.UI2.WinForms.Guna2DateTimePicker();
-            this.lblNombreJours = new System.Windows.Forms.Label();
-            this.lblDateFin = new System.Windows.Forms.Label();
-            this.lblDateDebut = new System.Windows.Forms.Label();
-            this.lblLocationTitle = new System.Windows.Forms.Label();
-            this.paiementPanel = new Guna.UI2.WinForms.Guna2Panel();
-            this.cmbModePaiement = new Guna.UI2.WinForms.Guna2ComboBox();
-            this.txtRestePayer = new Guna.UI2.WinForms.Guna2TextBox();
-            this.txtAvance = new Guna.UI2.WinForms.Guna2TextBox();
-            this.txtPrixTotal = new Guna.UI2.WinForms.Guna2TextBox();
-            this.lblModePaiement = new System.Windows.Forms.Label();
-            this.lblReste = new System.Windows.Forms.Label();
-            this.lblAvance = new System.Windows.Forms.Label();
-            this.lblPrixTotal = new System.Windows.Forms.Label();
-            this.lblPaiementTitle = new System.Windows.Forms.Label();
-            this.notesPanel = new Guna.UI2.WinForms.Guna2Panel();
-            this.txtNotes = new Guna.UI2.WinForms.Guna2TextBox();
-            this.actionPanel = new Guna.UI2.WinForms.Guna2Panel();
-            this.btnAnnuler = new Guna.UI2.WinForms.Guna2Button();
-            this.btnImprimer = new Guna.UI2.WinForms.Guna2Button();
-            this.btnEnregistrer = new Guna.UI2.WinForms.Guna2Button();
-            this.btnCalculerPrix = new Guna.UI2.WinForms.Guna2Button();
-            this.btnNouveau = new Guna.UI2.WinForms.Guna2Button();
-            this.headerPanel.SuspendLayout();
-            this.clientPanel.SuspendLayout();
-            this.voiturePanel.SuspendLayout();
-            this.locationPanel.SuspendLayout();
-            this.paiementPanel.SuspendLayout();
-            this.notesPanel.SuspendLayout();
-            this.actionPanel.SuspendLayout();
-            this.SuspendLayout();
-            // 
-            // borderlessForm
-            // 
-            this.borderlessForm.BorderRadius = 18;
-            this.borderlessForm.ContainerControl = this;
-            this.borderlessForm.DockIndicatorTransparencyValue = 0.6D;
-            this.borderlessForm.TransparentWhileDrag = true;
-            // 
-            // elipseForm
-            // 
-            this.elipseForm.BorderRadius = 18;
-            this.elipseForm.TargetControl = this;
-            // 
-            // dragControl
-            // 
-            this.dragControl.DockIndicatorTransparencyValue = 0.6D;
-            this.dragControl.TargetControl = this.headerPanel;
-            this.dragControl.UseTransparentDrag = true;
-            // 
-            // headerPanel
-            // 
-            this.headerPanel.BackColor = System.Drawing.Color.Transparent;
-            this.headerPanel.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(220)))), ((int)(((byte)(226)))), ((int)(((byte)(236)))));
-            this.headerPanel.BorderRadius = 18;
-            this.headerPanel.BorderThickness = 1;
-            this.headerPanel.Controls.Add(this.btnMinimize);
-            this.headerPanel.Controls.Add(this.btnClose);
-            this.headerPanel.Controls.Add(this.lblSubTitle);
-            this.headerPanel.Controls.Add(this.lblTitle);
-            this.headerPanel.FillColor = System.Drawing.Color.White;
-            this.headerPanel.Location = new System.Drawing.Point(27, 19);
-            this.headerPanel.Name = "headerPanel";
-            this.headerPanel.ShadowDecoration.Depth = 8;
-            this.headerPanel.ShadowDecoration.Enabled = true;
-            this.headerPanel.Size = new System.Drawing.Size(1411, 100);
-            this.headerPanel.TabIndex = 0;
-            // 
-            // btnMinimize
-            // 
-            this.btnMinimize.BorderRadius = 10;
-            this.btnMinimize.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(245)))), ((int)(((byte)(247)))), ((int)(((byte)(251)))));
-            this.btnMinimize.Font = new System.Drawing.Font("Segoe UI", 14F, System.Drawing.FontStyle.Bold);
-            this.btnMinimize.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(51)))), ((int)(((byte)(65)))), ((int)(((byte)(85)))));
-            this.btnMinimize.Location = new System.Drawing.Point(1266, 23);
-            this.btnMinimize.Name = "btnMinimize";
-            this.btnMinimize.Size = new System.Drawing.Size(55, 43);
-            this.btnMinimize.TabIndex = 3;
-            this.btnMinimize.Text = "-";
-            this.btnMinimize.Click += new System.EventHandler(this.btnMinimize_Click);
-            // 
-            // btnClose
-            // 
-            this.btnClose.BorderRadius = 10;
-            this.btnClose.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(254)))), ((int)(((byte)(242)))), ((int)(((byte)(242)))));
-            this.btnClose.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Bold);
-            this.btnClose.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(239)))), ((int)(((byte)(68)))), ((int)(((byte)(68)))));
-            this.btnClose.Location = new System.Drawing.Point(1337, 23);
-            this.btnClose.Name = "btnClose";
-            this.btnClose.Size = new System.Drawing.Size(55, 43);
-            this.btnClose.TabIndex = 2;
-            this.btnClose.Text = "X";
-            this.btnClose.Click += new System.EventHandler(this.btnClose_Click);
-            // 
-            // lblSubTitle
-            // 
-            this.lblSubTitle.AutoSize = true;
-            this.lblSubTitle.Font = new System.Drawing.Font("Segoe UI", 13F);
-            this.lblSubTitle.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(100)))), ((int)(((byte)(116)))), ((int)(((byte)(139)))));
-            this.lblSubTitle.Location = new System.Drawing.Point(39, 54);
-            this.lblSubTitle.Name = "lblSubTitle";
-            this.lblSubTitle.Size = new System.Drawing.Size(277, 30);
-            this.lblSubTitle.TabIndex = 1;
-            this.lblSubTitle.Text = "Ajouter un nouveau contrat";
-            // 
-            // lblTitle
-            // 
-            this.lblTitle.AutoSize = true;
-            this.lblTitle.Font = new System.Drawing.Font("Segoe UI", 24F, System.Drawing.FontStyle.Bold);
-            this.lblTitle.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(30)))), ((int)(((byte)(41)))), ((int)(((byte)(59)))));
-            this.lblTitle.Location = new System.Drawing.Point(32, 5);
-            this.lblTitle.Name = "lblTitle";
-            this.lblTitle.Size = new System.Drawing.Size(414, 54);
-            this.lblTitle.TabIndex = 0;
-            this.lblTitle.Text = "Gestion des Contrats";
-            // 
-            // clientPanel
-            // 
-            this.clientPanel.BackColor = System.Drawing.Color.Transparent;
-            this.clientPanel.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(220)))), ((int)(((byte)(226)))), ((int)(((byte)(236)))));
-            this.clientPanel.BorderRadius = 18;
-            this.clientPanel.BorderThickness = 1;
-            this.clientPanel.Controls.Add(this.txtAdresse);
-            this.clientPanel.Controls.Add(this.txtPermis);
-            this.clientPanel.Controls.Add(this.txtTelephone);
-            this.clientPanel.Controls.Add(this.txtPrenomClient);
-            this.clientPanel.Controls.Add(this.txtNomClient);
-            this.clientPanel.Controls.Add(this.cmbCinClient);
-            this.clientPanel.Controls.Add(this.lblAdresse);
-            this.clientPanel.Controls.Add(this.lblPermis);
-            this.clientPanel.Controls.Add(this.lblTelephone);
-            this.clientPanel.Controls.Add(this.lblPrenom);
-            this.clientPanel.Controls.Add(this.lblNom);
-            this.clientPanel.Controls.Add(this.lblCin);
-            this.clientPanel.Controls.Add(this.lblClientTitle);
-            this.clientPanel.FillColor = System.Drawing.Color.White;
-            this.clientPanel.Location = new System.Drawing.Point(27, 139);
-            this.clientPanel.Name = "clientPanel";
-            this.clientPanel.ShadowDecoration.Depth = 8;
-            this.clientPanel.ShadowDecoration.Enabled = true;
-            this.clientPanel.Size = new System.Drawing.Size(693, 354);
-            this.clientPanel.TabIndex = 1;
-            // 
-            // txtAdresse
-            // 
-            this.txtAdresse.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(203)))), ((int)(((byte)(213)))), ((int)(((byte)(225)))));
-            this.txtAdresse.BorderRadius = 10;
-            this.txtAdresse.Cursor = System.Windows.Forms.Cursors.IBeam;
-            this.txtAdresse.DefaultText = "";
-            this.txtAdresse.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(248)))), ((int)(((byte)(250)))), ((int)(((byte)(252)))));
-            this.txtAdresse.Font = new System.Drawing.Font("Segoe UI", 11F);
-            this.txtAdresse.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(30)))), ((int)(((byte)(41)))), ((int)(((byte)(59)))));
-            this.txtAdresse.Location = new System.Drawing.Point(221, 261);
-            this.txtAdresse.Margin = new System.Windows.Forms.Padding(5, 4, 5, 4);
-            this.txtAdresse.Multiline = true;
-            this.txtAdresse.Name = "txtAdresse";
-            this.txtAdresse.PlaceholderText = "Adresse du client";
-            this.txtAdresse.SelectedText = "";
-            this.txtAdresse.Size = new System.Drawing.Size(434, 68);
-            this.txtAdresse.TabIndex = 12;
-            // 
-            // txtPermis
-            // 
-            this.txtPermis.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(203)))), ((int)(((byte)(213)))), ((int)(((byte)(225)))));
-            this.txtPermis.BorderRadius = 10;
-            this.txtPermis.Cursor = System.Windows.Forms.Cursors.IBeam;
-            this.txtPermis.DefaultText = "";
-            this.txtPermis.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(248)))), ((int)(((byte)(250)))), ((int)(((byte)(252)))));
-            this.txtPermis.Font = new System.Drawing.Font("Segoe UI", 11F);
-            this.txtPermis.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(30)))), ((int)(((byte)(41)))), ((int)(((byte)(59)))));
-            this.txtPermis.Location = new System.Drawing.Point(221, 212);
-            this.txtPermis.Margin = new System.Windows.Forms.Padding(5, 4, 5, 4);
-            this.txtPermis.Name = "txtPermis";
-            this.txtPermis.PlaceholderText = "Numéro de permis";
-            this.txtPermis.SelectedText = "";
-            this.txtPermis.Size = new System.Drawing.Size(434, 38);
-            this.txtPermis.TabIndex = 11;
-            // 
-            // txtTelephone
-            // 
-            this.txtTelephone.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(203)))), ((int)(((byte)(213)))), ((int)(((byte)(225)))));
-            this.txtTelephone.BorderRadius = 10;
-            this.txtTelephone.Cursor = System.Windows.Forms.Cursors.IBeam;
-            this.txtTelephone.DefaultText = "";
-            this.txtTelephone.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(248)))), ((int)(((byte)(250)))), ((int)(((byte)(252)))));
-            this.txtTelephone.Font = new System.Drawing.Font("Segoe UI", 11F);
-            this.txtTelephone.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(30)))), ((int)(((byte)(41)))), ((int)(((byte)(59)))));
-            this.txtTelephone.Location = new System.Drawing.Point(221, 167);
-            this.txtTelephone.Margin = new System.Windows.Forms.Padding(5, 4, 5, 4);
-            this.txtTelephone.Name = "txtTelephone";
-            this.txtTelephone.PlaceholderText = "Téléphone";
-            this.txtTelephone.SelectedText = "";
-            this.txtTelephone.Size = new System.Drawing.Size(434, 38);
-            this.txtTelephone.TabIndex = 10;
-            // 
-            // txtPrenomClient
-            // 
-            this.txtPrenomClient.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(203)))), ((int)(((byte)(213)))), ((int)(((byte)(225)))));
-            this.txtPrenomClient.BorderRadius = 10;
-            this.txtPrenomClient.Cursor = System.Windows.Forms.Cursors.IBeam;
-            this.txtPrenomClient.DefaultText = "";
-            this.txtPrenomClient.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(248)))), ((int)(((byte)(250)))), ((int)(((byte)(252)))));
-            this.txtPrenomClient.Font = new System.Drawing.Font("Segoe UI", 11F);
-            this.txtPrenomClient.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(30)))), ((int)(((byte)(41)))), ((int)(((byte)(59)))));
-            this.txtPrenomClient.Location = new System.Drawing.Point(221, 123);
-            this.txtPrenomClient.Margin = new System.Windows.Forms.Padding(5, 4, 5, 4);
-            this.txtPrenomClient.Name = "txtPrenomClient";
-            this.txtPrenomClient.PlaceholderText = "Prénom client";
-            this.txtPrenomClient.SelectedText = "";
-            this.txtPrenomClient.Size = new System.Drawing.Size(434, 38);
-            this.txtPrenomClient.TabIndex = 9;
-            // 
-            // txtNomClient
-            // 
-            this.txtNomClient.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(203)))), ((int)(((byte)(213)))), ((int)(((byte)(225)))));
-            this.txtNomClient.BorderRadius = 10;
-            this.txtNomClient.Cursor = System.Windows.Forms.Cursors.IBeam;
-            this.txtNomClient.DefaultText = "";
-            this.txtNomClient.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(248)))), ((int)(((byte)(250)))), ((int)(((byte)(252)))));
-            this.txtNomClient.Font = new System.Drawing.Font("Segoe UI", 11F);
-            this.txtNomClient.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(30)))), ((int)(((byte)(41)))), ((int)(((byte)(59)))));
-            this.txtNomClient.Location = new System.Drawing.Point(221, 78);
-            this.txtNomClient.Margin = new System.Windows.Forms.Padding(5, 4, 5, 4);
-            this.txtNomClient.Name = "txtNomClient";
-            this.txtNomClient.PlaceholderText = "Nom client";
-            this.txtNomClient.SelectedText = "";
-            this.txtNomClient.Size = new System.Drawing.Size(434, 38);
-            this.txtNomClient.TabIndex = 8;
-            // 
-            // cmbCinClient
-            // 
-            this.cmbCinClient.BackColor = System.Drawing.Color.Transparent;
-            this.cmbCinClient.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(203)))), ((int)(((byte)(213)))), ((int)(((byte)(225)))));
-            this.cmbCinClient.BorderRadius = 10;
-            this.cmbCinClient.DrawMode = System.Windows.Forms.DrawMode.OwnerDrawFixed;
-            this.cmbCinClient.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this.cmbCinClient.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(248)))), ((int)(((byte)(250)))), ((int)(((byte)(252)))));
-            this.cmbCinClient.FocusedColor = System.Drawing.Color.FromArgb(((int)(((byte)(59)))), ((int)(((byte)(130)))), ((int)(((byte)(246)))));
-            this.cmbCinClient.FocusedState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(59)))), ((int)(((byte)(130)))), ((int)(((byte)(246)))));
-            this.cmbCinClient.Font = new System.Drawing.Font("Segoe UI", 11F);
-            this.cmbCinClient.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(30)))), ((int)(((byte)(41)))), ((int)(((byte)(59)))));
-            this.cmbCinClient.ItemHeight = 30;
-            this.cmbCinClient.Location = new System.Drawing.Point(221, 33);
-            this.cmbCinClient.Name = "cmbCinClient";
-            this.cmbCinClient.Size = new System.Drawing.Size(434, 36);
-            this.cmbCinClient.TabIndex = 7;
-            // 
-            // lblAdresse
-            // 
-            this.lblAdresse.AutoSize = true;
-            this.lblAdresse.Font = new System.Drawing.Font("Segoe UI Semibold", 12F, System.Drawing.FontStyle.Bold);
-            this.lblAdresse.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(30)))), ((int)(((byte)(41)))), ((int)(((byte)(59)))));
-            this.lblAdresse.Location = new System.Drawing.Point(26, 261);
-            this.lblAdresse.Name = "lblAdresse";
-            this.lblAdresse.Size = new System.Drawing.Size(84, 28);
-            this.lblAdresse.TabIndex = 6;
-            this.lblAdresse.Text = "Adresse";
-            // 
-            // lblPermis
-            // 
-            this.lblPermis.AutoSize = true;
-            this.lblPermis.Font = new System.Drawing.Font("Segoe UI Semibold", 12F, System.Drawing.FontStyle.Bold);
-            this.lblPermis.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(30)))), ((int)(((byte)(41)))), ((int)(((byte)(59)))));
-            this.lblPermis.Location = new System.Drawing.Point(26, 218);
-            this.lblPermis.Name = "lblPermis";
-            this.lblPermis.Size = new System.Drawing.Size(73, 28);
-            this.lblPermis.TabIndex = 5;
-            this.lblPermis.Text = "Permis";
-            // 
-            // lblTelephone
-            // 
-            this.lblTelephone.AutoSize = true;
-            this.lblTelephone.Font = new System.Drawing.Font("Segoe UI Semibold", 12F, System.Drawing.FontStyle.Bold);
-            this.lblTelephone.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(30)))), ((int)(((byte)(41)))), ((int)(((byte)(59)))));
-            this.lblTelephone.Location = new System.Drawing.Point(26, 174);
-            this.lblTelephone.Name = "lblTelephone";
-            this.lblTelephone.Size = new System.Drawing.Size(107, 28);
-            this.lblTelephone.TabIndex = 4;
-            this.lblTelephone.Text = "Téléphone";
-            // 
-            // lblPrenom
-            // 
-            this.lblPrenom.AutoSize = true;
-            this.lblPrenom.Font = new System.Drawing.Font("Segoe UI Semibold", 12F, System.Drawing.FontStyle.Bold);
-            this.lblPrenom.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(30)))), ((int)(((byte)(41)))), ((int)(((byte)(59)))));
-            this.lblPrenom.Location = new System.Drawing.Point(26, 130);
-            this.lblPrenom.Name = "lblPrenom";
-            this.lblPrenom.Size = new System.Drawing.Size(84, 28);
-            this.lblPrenom.TabIndex = 3;
-            this.lblPrenom.Text = "Prénom";
-            // 
-            // lblNom
-            // 
-            this.lblNom.AutoSize = true;
-            this.lblNom.Font = new System.Drawing.Font("Segoe UI Semibold", 12F, System.Drawing.FontStyle.Bold);
-            this.lblNom.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(30)))), ((int)(((byte)(41)))), ((int)(((byte)(59)))));
-            this.lblNom.Location = new System.Drawing.Point(26, 86);
-            this.lblNom.Name = "lblNom";
-            this.lblNom.Size = new System.Drawing.Size(57, 28);
-            this.lblNom.TabIndex = 2;
-            this.lblNom.Text = "Nom";
-            // 
-            // lblCin
-            // 
-            this.lblCin.AutoSize = true;
-            this.lblCin.Font = new System.Drawing.Font("Segoe UI Semibold", 12F, System.Drawing.FontStyle.Bold);
-            this.lblCin.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(30)))), ((int)(((byte)(41)))), ((int)(((byte)(59)))));
-            this.lblCin.Location = new System.Drawing.Point(26, 43);
-            this.lblCin.Name = "lblCin";
-            this.lblCin.Size = new System.Drawing.Size(103, 28);
-            this.lblCin.TabIndex = 1;
-            this.lblCin.Text = "CIN Client";
-            // 
-            // lblClientTitle
-            // 
-            this.lblClientTitle.AutoSize = true;
-            this.lblClientTitle.Font = new System.Drawing.Font("Segoe UI", 15F, System.Drawing.FontStyle.Bold);
-            this.lblClientTitle.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(37)))), ((int)(((byte)(99)))), ((int)(((byte)(235)))));
-            this.lblClientTitle.Location = new System.Drawing.Point(24, 1);
-            this.lblClientTitle.Name = "lblClientTitle";
-            this.lblClientTitle.Size = new System.Drawing.Size(150, 35);
-            this.lblClientTitle.TabIndex = 0;
-            this.lblClientTitle.Text = "Infos Client";
-            // 
-            // voiturePanel
-            // 
-            this.voiturePanel.BackColor = System.Drawing.Color.Transparent;
-            this.voiturePanel.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(220)))), ((int)(((byte)(226)))), ((int)(((byte)(236)))));
-            this.voiturePanel.BorderRadius = 18;
-            this.voiturePanel.BorderThickness = 1;
-            this.voiturePanel.Controls.Add(this.txtPrixJour);
-            this.voiturePanel.Controls.Add(this.txtKilometrage);
-            this.voiturePanel.Controls.Add(this.cmbCategorie);
-            this.voiturePanel.Controls.Add(this.cmbPuissance);
-            this.voiturePanel.Controls.Add(this.cmbTypeCarburant);
-            this.voiturePanel.Controls.Add(this.txtModele);
-            this.voiturePanel.Controls.Add(this.txtMarque);
-            this.voiturePanel.Controls.Add(this.cmbImmatriculation);
-            this.voiturePanel.Controls.Add(this.lblPrixJour);
-            this.voiturePanel.Controls.Add(this.lblKilometrage);
-            this.voiturePanel.Controls.Add(this.lblCategorie);
-            this.voiturePanel.Controls.Add(this.lblPuissance);
-            this.voiturePanel.Controls.Add(this.lblCarburant);
-            this.voiturePanel.Controls.Add(this.lblModele);
-            this.voiturePanel.Controls.Add(this.lblMarque);
-            this.voiturePanel.Controls.Add(this.lblImmat);
-            this.voiturePanel.Controls.Add(this.lblVoitureTitle);
-            this.voiturePanel.FillColor = System.Drawing.Color.White;
-            this.voiturePanel.Location = new System.Drawing.Point(746, 139);
-            this.voiturePanel.Name = "voiturePanel";
-            this.voiturePanel.ShadowDecoration.Depth = 8;
-            this.voiturePanel.ShadowDecoration.Enabled = true;
-            this.voiturePanel.Size = new System.Drawing.Size(693, 354);
-            this.voiturePanel.TabIndex = 2;
-            // 
-            // txtPrixJour
-            // 
-            this.txtPrixJour.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(203)))), ((int)(((byte)(213)))), ((int)(((byte)(225)))));
-            this.txtPrixJour.BorderRadius = 10;
-            this.txtPrixJour.Cursor = System.Windows.Forms.Cursors.IBeam;
-            this.txtPrixJour.DefaultText = "";
-            this.txtPrixJour.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(248)))), ((int)(((byte)(250)))), ((int)(((byte)(252)))));
-            this.txtPrixJour.Font = new System.Drawing.Font("Segoe UI", 11F);
-            this.txtPrixJour.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(30)))), ((int)(((byte)(41)))), ((int)(((byte)(59)))));
-            this.txtPrixJour.Location = new System.Drawing.Point(221, 302);
-            this.txtPrixJour.Margin = new System.Windows.Forms.Padding(5, 4, 5, 4);
-            this.txtPrixJour.Name = "txtPrixJour";
-            this.txtPrixJour.PlaceholderText = "Prix par jour";
-            this.txtPrixJour.SelectedText = "";
-            this.txtPrixJour.Size = new System.Drawing.Size(434, 38);
-            this.txtPrixJour.TabIndex = 16;
-            this.txtPrixJour.TextChanged += new System.EventHandler(this.txtPrixJour_TextChanged);
-            // 
-            // txtKilometrage
-            // 
-            this.txtKilometrage.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(203)))), ((int)(((byte)(213)))), ((int)(((byte)(225)))));
-            this.txtKilometrage.BorderRadius = 10;
-            this.txtKilometrage.Cursor = System.Windows.Forms.Cursors.IBeam;
-            this.txtKilometrage.DefaultText = "";
-            this.txtKilometrage.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(248)))), ((int)(((byte)(250)))), ((int)(((byte)(252)))));
-            this.txtKilometrage.Font = new System.Drawing.Font("Segoe UI", 11F);
-            this.txtKilometrage.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(30)))), ((int)(((byte)(41)))), ((int)(((byte)(59)))));
-            this.txtKilometrage.Location = new System.Drawing.Point(221, 257);
-            this.txtKilometrage.Margin = new System.Windows.Forms.Padding(5, 4, 5, 4);
-            this.txtKilometrage.Name = "txtKilometrage";
-            this.txtKilometrage.PlaceholderText = "Kilométrage";
-            this.txtKilometrage.SelectedText = "";
-            this.txtKilometrage.Size = new System.Drawing.Size(434, 38);
-            this.txtKilometrage.TabIndex = 15;
-            // 
-            // cmbCategorie
-            // 
-            this.cmbCategorie.BackColor = System.Drawing.Color.Transparent;
-            this.cmbCategorie.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(203)))), ((int)(((byte)(213)))), ((int)(((byte)(225)))));
-            this.cmbCategorie.BorderRadius = 10;
-            this.cmbCategorie.DrawMode = System.Windows.Forms.DrawMode.OwnerDrawFixed;
-            this.cmbCategorie.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this.cmbCategorie.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(248)))), ((int)(((byte)(250)))), ((int)(((byte)(252)))));
-            this.cmbCategorie.FocusedColor = System.Drawing.Color.FromArgb(((int)(((byte)(59)))), ((int)(((byte)(130)))), ((int)(((byte)(246)))));
-            this.cmbCategorie.FocusedState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(59)))), ((int)(((byte)(130)))), ((int)(((byte)(246)))));
-            this.cmbCategorie.Font = new System.Drawing.Font("Segoe UI", 11F);
-            this.cmbCategorie.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(30)))), ((int)(((byte)(41)))), ((int)(((byte)(59)))));
-            this.cmbCategorie.ItemHeight = 30;
-            this.cmbCategorie.Location = new System.Drawing.Point(221, 212);
-            this.cmbCategorie.Name = "cmbCategorie";
-            this.cmbCategorie.Size = new System.Drawing.Size(434, 36);
-            this.cmbCategorie.TabIndex = 14;
-            // 
-            // cmbPuissance
-            // 
-            this.cmbPuissance.BackColor = System.Drawing.Color.Transparent;
-            this.cmbPuissance.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(203)))), ((int)(((byte)(213)))), ((int)(((byte)(225)))));
-            this.cmbPuissance.BorderRadius = 10;
-            this.cmbPuissance.DrawMode = System.Windows.Forms.DrawMode.OwnerDrawFixed;
-            this.cmbPuissance.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this.cmbPuissance.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(248)))), ((int)(((byte)(250)))), ((int)(((byte)(252)))));
-            this.cmbPuissance.FocusedColor = System.Drawing.Color.FromArgb(((int)(((byte)(59)))), ((int)(((byte)(130)))), ((int)(((byte)(246)))));
-            this.cmbPuissance.FocusedState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(59)))), ((int)(((byte)(130)))), ((int)(((byte)(246)))));
-            this.cmbPuissance.Font = new System.Drawing.Font("Segoe UI", 11F);
-            this.cmbPuissance.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(30)))), ((int)(((byte)(41)))), ((int)(((byte)(59)))));
-            this.cmbPuissance.ItemHeight = 30;
-            this.cmbPuissance.Items.AddRange(new object[] {
-            "4 CV",
-            "5 CV",
-            "6 CV",
-            "7 CV",
-            "8 CV",
-            "9 CV",
-            "10 CV",
-            "11 CV",
-            "12 CV"});
-            this.cmbPuissance.Location = new System.Drawing.Point(221, 167);
-            this.cmbPuissance.Name = "cmbPuissance";
-            this.cmbPuissance.Size = new System.Drawing.Size(434, 36);
-            this.cmbPuissance.TabIndex = 13;
-            // 
-            // cmbTypeCarburant
-            // 
-            this.cmbTypeCarburant.BackColor = System.Drawing.Color.Transparent;
-            this.cmbTypeCarburant.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(203)))), ((int)(((byte)(213)))), ((int)(((byte)(225)))));
-            this.cmbTypeCarburant.BorderRadius = 10;
-            this.cmbTypeCarburant.DrawMode = System.Windows.Forms.DrawMode.OwnerDrawFixed;
-            this.cmbTypeCarburant.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this.cmbTypeCarburant.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(248)))), ((int)(((byte)(250)))), ((int)(((byte)(252)))));
-            this.cmbTypeCarburant.FocusedColor = System.Drawing.Color.FromArgb(((int)(((byte)(59)))), ((int)(((byte)(130)))), ((int)(((byte)(246)))));
-            this.cmbTypeCarburant.FocusedState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(59)))), ((int)(((byte)(130)))), ((int)(((byte)(246)))));
-            this.cmbTypeCarburant.Font = new System.Drawing.Font("Segoe UI", 11F);
-            this.cmbTypeCarburant.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(30)))), ((int)(((byte)(41)))), ((int)(((byte)(59)))));
-            this.cmbTypeCarburant.ItemHeight = 30;
-            this.cmbTypeCarburant.Items.AddRange(new object[] {
-            "Diesel",
-            "Essence",
-            "Hybride",
-            "Électrique"});
-            this.cmbTypeCarburant.Location = new System.Drawing.Point(221, 123);
-            this.cmbTypeCarburant.Name = "cmbTypeCarburant";
-            this.cmbTypeCarburant.Size = new System.Drawing.Size(434, 36);
-            this.cmbTypeCarburant.TabIndex = 12;
-            // 
-            // txtModele
-            // 
-            this.txtModele.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(203)))), ((int)(((byte)(213)))), ((int)(((byte)(225)))));
-            this.txtModele.BorderRadius = 10;
-            this.txtModele.Cursor = System.Windows.Forms.Cursors.IBeam;
-            this.txtModele.DefaultText = "";
-            this.txtModele.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(248)))), ((int)(((byte)(250)))), ((int)(((byte)(252)))));
-            this.txtModele.Font = new System.Drawing.Font("Segoe UI", 11F);
-            this.txtModele.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(30)))), ((int)(((byte)(41)))), ((int)(((byte)(59)))));
-            this.txtModele.Location = new System.Drawing.Point(221, 78);
-            this.txtModele.Margin = new System.Windows.Forms.Padding(5, 4, 5, 4);
-            this.txtModele.Name = "txtModele";
-            this.txtModele.PlaceholderText = "Modèle";
-            this.txtModele.SelectedText = "";
-            this.txtModele.Size = new System.Drawing.Size(434, 38);
-            this.txtModele.TabIndex = 11;
-            // 
-            // txtMarque
-            // 
-            this.txtMarque.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(203)))), ((int)(((byte)(213)))), ((int)(((byte)(225)))));
-            this.txtMarque.BorderRadius = 10;
-            this.txtMarque.Cursor = System.Windows.Forms.Cursors.IBeam;
-            this.txtMarque.DefaultText = "";
-            this.txtMarque.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(248)))), ((int)(((byte)(250)))), ((int)(((byte)(252)))));
-            this.txtMarque.Font = new System.Drawing.Font("Segoe UI", 11F);
-            this.txtMarque.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(30)))), ((int)(((byte)(41)))), ((int)(((byte)(59)))));
-            this.txtMarque.Location = new System.Drawing.Point(221, 33);
-            this.txtMarque.Margin = new System.Windows.Forms.Padding(5, 4, 5, 4);
-            this.txtMarque.Name = "txtMarque";
-            this.txtMarque.PlaceholderText = "Marque";
-            this.txtMarque.SelectedText = "";
-            this.txtMarque.Size = new System.Drawing.Size(206, 38);
-            this.txtMarque.TabIndex = 10;
-            // 
-            // cmbImmatriculation
-            // 
-            this.cmbImmatriculation.BackColor = System.Drawing.Color.Transparent;
-            this.cmbImmatriculation.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(203)))), ((int)(((byte)(213)))), ((int)(((byte)(225)))));
-            this.cmbImmatriculation.BorderRadius = 10;
-            this.cmbImmatriculation.DrawMode = System.Windows.Forms.DrawMode.OwnerDrawFixed;
-            this.cmbImmatriculation.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this.cmbImmatriculation.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(248)))), ((int)(((byte)(250)))), ((int)(((byte)(252)))));
-            this.cmbImmatriculation.FocusedColor = System.Drawing.Color.FromArgb(((int)(((byte)(59)))), ((int)(((byte)(130)))), ((int)(((byte)(246)))));
-            this.cmbImmatriculation.FocusedState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(59)))), ((int)(((byte)(130)))), ((int)(((byte)(246)))));
-            this.cmbImmatriculation.Font = new System.Drawing.Font("Segoe UI", 11F);
-            this.cmbImmatriculation.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(30)))), ((int)(((byte)(41)))), ((int)(((byte)(59)))));
-            this.cmbImmatriculation.ItemHeight = 30;
-            this.cmbImmatriculation.Location = new System.Drawing.Point(449, 33);
-            this.cmbImmatriculation.Name = "cmbImmatriculation";
-            this.cmbImmatriculation.Size = new System.Drawing.Size(205, 36);
-            this.cmbImmatriculation.TabIndex = 9;
-            // 
-            // lblPrixJour
-            // 
-            this.lblPrixJour.AutoSize = true;
-            this.lblPrixJour.Font = new System.Drawing.Font("Segoe UI Semibold", 12F, System.Drawing.FontStyle.Bold);
-            this.lblPrixJour.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(30)))), ((int)(((byte)(41)))), ((int)(((byte)(59)))));
-            this.lblPrixJour.Location = new System.Drawing.Point(25, 309);
-            this.lblPrixJour.Name = "lblPrixJour";
-            this.lblPrixJour.Size = new System.Drawing.Size(93, 28);
-            this.lblPrixJour.TabIndex = 8;
-            this.lblPrixJour.Text = "Prix/Jour";
-            // 
-            // lblKilometrage
-            // 
-            this.lblKilometrage.AutoSize = true;
-            this.lblKilometrage.Font = new System.Drawing.Font("Segoe UI Semibold", 12F, System.Drawing.FontStyle.Bold);
-            this.lblKilometrage.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(30)))), ((int)(((byte)(41)))), ((int)(((byte)(59)))));
-            this.lblKilometrage.Location = new System.Drawing.Point(25, 265);
-            this.lblKilometrage.Name = "lblKilometrage";
-            this.lblKilometrage.Size = new System.Drawing.Size(122, 28);
-            this.lblKilometrage.TabIndex = 7;
-            this.lblKilometrage.Text = "Kilométrage";
-            // 
-            // lblCategorie
-            // 
-            this.lblCategorie.AutoSize = true;
-            this.lblCategorie.Font = new System.Drawing.Font("Segoe UI Semibold", 12F, System.Drawing.FontStyle.Bold);
-            this.lblCategorie.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(30)))), ((int)(((byte)(41)))), ((int)(((byte)(59)))));
-            this.lblCategorie.Location = new System.Drawing.Point(25, 221);
-            this.lblCategorie.Name = "lblCategorie";
-            this.lblCategorie.Size = new System.Drawing.Size(99, 28);
-            this.lblCategorie.TabIndex = 6;
-            this.lblCategorie.Text = "Catégorie";
-            // 
-            // lblPuissance
-            // 
-            this.lblPuissance.AutoSize = true;
-            this.lblPuissance.Font = new System.Drawing.Font("Segoe UI Semibold", 12F, System.Drawing.FontStyle.Bold);
-            this.lblPuissance.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(30)))), ((int)(((byte)(41)))), ((int)(((byte)(59)))));
-            this.lblPuissance.Location = new System.Drawing.Point(25, 176);
-            this.lblPuissance.Name = "lblPuissance";
-            this.lblPuissance.Size = new System.Drawing.Size(101, 28);
-            this.lblPuissance.TabIndex = 5;
-            this.lblPuissance.Text = "Puissance";
-            // 
-            // lblCarburant
-            // 
-            this.lblCarburant.AutoSize = true;
-            this.lblCarburant.Font = new System.Drawing.Font("Segoe UI Semibold", 12F, System.Drawing.FontStyle.Bold);
-            this.lblCarburant.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(30)))), ((int)(((byte)(41)))), ((int)(((byte)(59)))));
-            this.lblCarburant.Location = new System.Drawing.Point(25, 131);
-            this.lblCarburant.Name = "lblCarburant";
-            this.lblCarburant.Size = new System.Drawing.Size(150, 28);
-            this.lblCarburant.TabIndex = 4;
-            this.lblCarburant.Text = "Type Carburant";
-            // 
-            // lblModele
-            // 
-            this.lblModele.AutoSize = true;
-            this.lblModele.Font = new System.Drawing.Font("Segoe UI Semibold", 12F, System.Drawing.FontStyle.Bold);
-            this.lblModele.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(30)))), ((int)(((byte)(41)))), ((int)(((byte)(59)))));
-            this.lblModele.Location = new System.Drawing.Point(25, 86);
-            this.lblModele.Name = "lblModele";
-            this.lblModele.Size = new System.Drawing.Size(81, 28);
-            this.lblModele.TabIndex = 3;
-            this.lblModele.Text = "Modèle";
-            // 
-            // lblMarque
-            // 
-            this.lblMarque.AutoSize = true;
-            this.lblMarque.Font = new System.Drawing.Font("Segoe UI Semibold", 12F, System.Drawing.FontStyle.Bold);
-            this.lblMarque.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(30)))), ((int)(((byte)(41)))), ((int)(((byte)(59)))));
-            this.lblMarque.Location = new System.Drawing.Point(25, 42);
-            this.lblMarque.Name = "lblMarque";
-            this.lblMarque.Size = new System.Drawing.Size(82, 28);
-            this.lblMarque.TabIndex = 2;
-            this.lblMarque.Text = "Marque";
-            // 
-            // lblImmat
-            // 
-            this.lblImmat.AutoSize = true;
-            this.lblImmat.Font = new System.Drawing.Font("Segoe UI Semibold", 12F, System.Drawing.FontStyle.Bold);
-            this.lblImmat.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(30)))), ((int)(((byte)(41)))), ((int)(((byte)(59)))));
-            this.lblImmat.Location = new System.Drawing.Point(445, 7);
-            this.lblImmat.Name = "lblImmat";
-            this.lblImmat.Size = new System.Drawing.Size(155, 28);
-            this.lblImmat.TabIndex = 1;
-            this.lblImmat.Text = "Immatriculation";
-            // 
-            // lblVoitureTitle
-            // 
-            this.lblVoitureTitle.AutoSize = true;
-            this.lblVoitureTitle.Font = new System.Drawing.Font("Segoe UI", 15F, System.Drawing.FontStyle.Bold);
-            this.lblVoitureTitle.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(37)))), ((int)(((byte)(99)))), ((int)(((byte)(235)))));
-            this.lblVoitureTitle.Location = new System.Drawing.Point(24, 1);
-            this.lblVoitureTitle.Name = "lblVoitureTitle";
-            this.lblVoitureTitle.Size = new System.Drawing.Size(167, 35);
-            this.lblVoitureTitle.TabIndex = 0;
-            this.lblVoitureTitle.Text = "Infos Voiture";
-            // 
-            // locationPanel
-            // 
-            this.locationPanel.BackColor = System.Drawing.Color.Transparent;
-            this.locationPanel.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(220)))), ((int)(((byte)(226)))), ((int)(((byte)(236)))));
-            this.locationPanel.BorderRadius = 18;
-            this.locationPanel.BorderThickness = 1;
-            this.locationPanel.Controls.Add(this.txtNombreJours);
-            this.locationPanel.Controls.Add(this.dtDateFin);
-            this.locationPanel.Controls.Add(this.dtDateDebut);
-            this.locationPanel.Controls.Add(this.lblNombreJours);
-            this.locationPanel.Controls.Add(this.lblDateFin);
-            this.locationPanel.Controls.Add(this.lblDateDebut);
-            this.locationPanel.Controls.Add(this.lblLocationTitle);
-            this.locationPanel.FillColor = System.Drawing.Color.White;
-            this.locationPanel.Location = new System.Drawing.Point(27, 514);
-            this.locationPanel.Name = "locationPanel";
-            this.locationPanel.ShadowDecoration.Depth = 8;
-            this.locationPanel.ShadowDecoration.Enabled = true;
-            this.locationPanel.Size = new System.Drawing.Size(693, 192);
-            this.locationPanel.TabIndex = 3;
-            // 
-            // txtNombreJours
-            // 
-            this.txtNombreJours.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(203)))), ((int)(((byte)(213)))), ((int)(((byte)(225)))));
-            this.txtNombreJours.BorderRadius = 10;
-            this.txtNombreJours.Cursor = System.Windows.Forms.Cursors.IBeam;
-            this.txtNombreJours.DefaultText = "0";
-            this.txtNombreJours.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(248)))), ((int)(((byte)(250)))), ((int)(((byte)(252)))));
-            this.txtNombreJours.Font = new System.Drawing.Font("Segoe UI", 11F);
-            this.txtNombreJours.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(30)))), ((int)(((byte)(41)))), ((int)(((byte)(59)))));
-            this.txtNombreJours.Location = new System.Drawing.Point(221, 126);
-            this.txtNombreJours.Margin = new System.Windows.Forms.Padding(5, 4, 5, 4);
-            this.txtNombreJours.Name = "txtNombreJours";
-            this.txtNombreJours.PlaceholderText = "";
-            this.txtNombreJours.ReadOnly = true;
-            this.txtNombreJours.SelectedText = "";
-            this.txtNombreJours.Size = new System.Drawing.Size(434, 38);
-            this.txtNombreJours.TabIndex = 6;
-            // 
-            // dtDateFin
-            // 
-            this.dtDateFin.BorderRadius = 10;
-            this.dtDateFin.Checked = true;
-            this.dtDateFin.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(248)))), ((int)(((byte)(250)))), ((int)(((byte)(252)))));
-            this.dtDateFin.Font = new System.Drawing.Font("Segoe UI", 10F);
-            this.dtDateFin.Format = System.Windows.Forms.DateTimePickerFormat.Long;
-            this.dtDateFin.Location = new System.Drawing.Point(221, 81);
-            this.dtDateFin.MaxDate = new System.DateTime(9998, 12, 31, 0, 0, 0, 0);
-            this.dtDateFin.MinDate = new System.DateTime(1753, 1, 1, 0, 0, 0, 0);
-            this.dtDateFin.Name = "dtDateFin";
-            this.dtDateFin.Size = new System.Drawing.Size(434, 38);
-            this.dtDateFin.TabIndex = 5;
-            this.dtDateFin.Value = new System.DateTime(2026, 3, 21, 0, 0, 0, 0);
-            this.dtDateFin.ValueChanged += new System.EventHandler(this.dtDateFin_ValueChanged);
-            // 
-            // dtDateDebut
-            // 
-            this.dtDateDebut.BorderRadius = 10;
-            this.dtDateDebut.Checked = true;
-            this.dtDateDebut.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(248)))), ((int)(((byte)(250)))), ((int)(((byte)(252)))));
-            this.dtDateDebut.Font = new System.Drawing.Font("Segoe UI", 10F);
-            this.dtDateDebut.Format = System.Windows.Forms.DateTimePickerFormat.Long;
-            this.dtDateDebut.Location = new System.Drawing.Point(221, 36);
-            this.dtDateDebut.MaxDate = new System.DateTime(9998, 12, 31, 0, 0, 0, 0);
-            this.dtDateDebut.MinDate = new System.DateTime(1753, 1, 1, 0, 0, 0, 0);
-            this.dtDateDebut.Name = "dtDateDebut";
-            this.dtDateDebut.Size = new System.Drawing.Size(434, 38);
-            this.dtDateDebut.TabIndex = 4;
-            this.dtDateDebut.Value = new System.DateTime(2026, 3, 21, 0, 0, 0, 0);
-            this.dtDateDebut.ValueChanged += new System.EventHandler(this.dtDateDebut_ValueChanged);
-            // 
-            // lblNombreJours
-            // 
-            this.lblNombreJours.AutoSize = true;
-            this.lblNombreJours.Font = new System.Drawing.Font("Segoe UI Semibold", 12F, System.Drawing.FontStyle.Bold);
-            this.lblNombreJours.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(30)))), ((int)(((byte)(41)))), ((int)(((byte)(59)))));
-            this.lblNombreJours.Location = new System.Drawing.Point(25, 133);
-            this.lblNombreJours.Name = "lblNombreJours";
-            this.lblNombreJours.Size = new System.Drawing.Size(167, 28);
-            this.lblNombreJours.TabIndex = 3;
-            this.lblNombreJours.Text = "Nombre de jours";
-            // 
-            // lblDateFin
-            // 
-            this.lblDateFin.AutoSize = true;
-            this.lblDateFin.Font = new System.Drawing.Font("Segoe UI Semibold", 12F, System.Drawing.FontStyle.Bold);
-            this.lblDateFin.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(30)))), ((int)(((byte)(41)))), ((int)(((byte)(59)))));
-            this.lblDateFin.Location = new System.Drawing.Point(25, 89);
-            this.lblDateFin.Name = "lblDateFin";
-            this.lblDateFin.Size = new System.Drawing.Size(87, 28);
-            this.lblDateFin.TabIndex = 2;
-            this.lblDateFin.Text = "Date Fin";
-            // 
-            // lblDateDebut
-            // 
-            this.lblDateDebut.AutoSize = true;
-            this.lblDateDebut.Font = new System.Drawing.Font("Segoe UI Semibold", 12F, System.Drawing.FontStyle.Bold);
-            this.lblDateDebut.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(30)))), ((int)(((byte)(41)))), ((int)(((byte)(59)))));
-            this.lblDateDebut.Location = new System.Drawing.Point(25, 45);
-            this.lblDateDebut.Name = "lblDateDebut";
-            this.lblDateDebut.Size = new System.Drawing.Size(116, 28);
-            this.lblDateDebut.TabIndex = 1;
-            this.lblDateDebut.Text = "Date Début";
-            // 
-            // lblLocationTitle
-            // 
-            this.lblLocationTitle.AutoSize = true;
-            this.lblLocationTitle.Font = new System.Drawing.Font("Segoe UI", 15F, System.Drawing.FontStyle.Bold);
-            this.lblLocationTitle.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(37)))), ((int)(((byte)(99)))), ((int)(((byte)(235)))));
-            this.lblLocationTitle.Location = new System.Drawing.Point(24, 1);
-            this.lblLocationTitle.Name = "lblLocationTitle";
-            this.lblLocationTitle.Size = new System.Drawing.Size(241, 35);
-            this.lblLocationTitle.TabIndex = 0;
-            this.lblLocationTitle.Text = "Période de location";
-            // 
-            // paiementPanel
-            // 
-            this.paiementPanel.BackColor = System.Drawing.Color.Transparent;
-            this.paiementPanel.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(220)))), ((int)(((byte)(226)))), ((int)(((byte)(236)))));
-            this.paiementPanel.BorderRadius = 18;
-            this.paiementPanel.BorderThickness = 1;
-            this.paiementPanel.Controls.Add(this.cmbModePaiement);
-            this.paiementPanel.Controls.Add(this.txtRestePayer);
-            this.paiementPanel.Controls.Add(this.txtAvance);
-            this.paiementPanel.Controls.Add(this.txtPrixTotal);
-            this.paiementPanel.Controls.Add(this.lblModePaiement);
-            this.paiementPanel.Controls.Add(this.lblReste);
-            this.paiementPanel.Controls.Add(this.lblAvance);
-            this.paiementPanel.Controls.Add(this.lblPrixTotal);
-            this.paiementPanel.Controls.Add(this.lblPaiementTitle);
-            this.paiementPanel.FillColor = System.Drawing.Color.White;
-            this.paiementPanel.Location = new System.Drawing.Point(746, 514);
-            this.paiementPanel.Name = "paiementPanel";
-            this.paiementPanel.ShadowDecoration.Depth = 8;
-            this.paiementPanel.ShadowDecoration.Enabled = true;
-            this.paiementPanel.Size = new System.Drawing.Size(693, 192);
-            this.paiementPanel.TabIndex = 4;
-            // 
-            // cmbModePaiement
-            // 
-            this.cmbModePaiement.BackColor = System.Drawing.Color.Transparent;
-            this.cmbModePaiement.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(203)))), ((int)(((byte)(213)))), ((int)(((byte)(225)))));
-            this.cmbModePaiement.BorderRadius = 10;
-            this.cmbModePaiement.DrawMode = System.Windows.Forms.DrawMode.OwnerDrawFixed;
-            this.cmbModePaiement.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this.cmbModePaiement.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(248)))), ((int)(((byte)(250)))), ((int)(((byte)(252)))));
-            this.cmbModePaiement.FocusedColor = System.Drawing.Color.FromArgb(((int)(((byte)(59)))), ((int)(((byte)(130)))), ((int)(((byte)(246)))));
-            this.cmbModePaiement.FocusedState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(59)))), ((int)(((byte)(130)))), ((int)(((byte)(246)))));
-            this.cmbModePaiement.Font = new System.Drawing.Font("Segoe UI", 11F);
-            this.cmbModePaiement.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(30)))), ((int)(((byte)(41)))), ((int)(((byte)(59)))));
-            this.cmbModePaiement.ItemHeight = 30;
-            this.cmbModePaiement.Items.AddRange(new object[] {
-            "Espèce",
-            "Carte",
-            "Chèque"});
-            this.cmbModePaiement.Location = new System.Drawing.Point(221, 126);
-            this.cmbModePaiement.Name = "cmbModePaiement";
-            this.cmbModePaiement.Size = new System.Drawing.Size(434, 36);
-            this.cmbModePaiement.TabIndex = 8;
-            // 
-            // txtRestePayer
-            // 
-            this.txtRestePayer.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(203)))), ((int)(((byte)(213)))), ((int)(((byte)(225)))));
-            this.txtRestePayer.BorderRadius = 10;
-            this.txtRestePayer.Cursor = System.Windows.Forms.Cursors.IBeam;
-            this.txtRestePayer.DefaultText = "0";
-            this.txtRestePayer.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(248)))), ((int)(((byte)(250)))), ((int)(((byte)(252)))));
-            this.txtRestePayer.Font = new System.Drawing.Font("Segoe UI", 11F);
-            this.txtRestePayer.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(30)))), ((int)(((byte)(41)))), ((int)(((byte)(59)))));
-            this.txtRestePayer.Location = new System.Drawing.Point(518, 81);
-            this.txtRestePayer.Margin = new System.Windows.Forms.Padding(5, 4, 5, 4);
-            this.txtRestePayer.Name = "txtRestePayer";
-            this.txtRestePayer.PlaceholderText = "";
-            this.txtRestePayer.ReadOnly = true;
-            this.txtRestePayer.SelectedText = "";
-            this.txtRestePayer.Size = new System.Drawing.Size(137, 38);
-            this.txtRestePayer.TabIndex = 7;
-            // 
-            // txtAvance
-            // 
-            this.txtAvance.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(203)))), ((int)(((byte)(213)))), ((int)(((byte)(225)))));
-            this.txtAvance.BorderRadius = 10;
-            this.txtAvance.Cursor = System.Windows.Forms.Cursors.IBeam;
-            this.txtAvance.DefaultText = "0";
-            this.txtAvance.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(248)))), ((int)(((byte)(250)))), ((int)(((byte)(252)))));
-            this.txtAvance.Font = new System.Drawing.Font("Segoe UI", 11F);
-            this.txtAvance.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(30)))), ((int)(((byte)(41)))), ((int)(((byte)(59)))));
-            this.txtAvance.Location = new System.Drawing.Point(221, 81);
-            this.txtAvance.Margin = new System.Windows.Forms.Padding(5, 4, 5, 4);
-            this.txtAvance.Name = "txtAvance";
-            this.txtAvance.PlaceholderText = "";
-            this.txtAvance.SelectedText = "";
-            this.txtAvance.Size = new System.Drawing.Size(137, 38);
-            this.txtAvance.TabIndex = 6;
-            this.txtAvance.TextChanged += new System.EventHandler(this.txtAvance_TextChanged);
-            // 
-            // txtPrixTotal
-            // 
-            this.txtPrixTotal.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(203)))), ((int)(((byte)(213)))), ((int)(((byte)(225)))));
-            this.txtPrixTotal.BorderRadius = 10;
-            this.txtPrixTotal.Cursor = System.Windows.Forms.Cursors.IBeam;
-            this.txtPrixTotal.DefaultText = "0";
-            this.txtPrixTotal.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(248)))), ((int)(((byte)(250)))), ((int)(((byte)(252)))));
-            this.txtPrixTotal.Font = new System.Drawing.Font("Segoe UI", 11F);
-            this.txtPrixTotal.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(30)))), ((int)(((byte)(41)))), ((int)(((byte)(59)))));
-            this.txtPrixTotal.Location = new System.Drawing.Point(221, 36);
-            this.txtPrixTotal.Margin = new System.Windows.Forms.Padding(5, 4, 5, 4);
-            this.txtPrixTotal.Name = "txtPrixTotal";
-            this.txtPrixTotal.PlaceholderText = "";
-            this.txtPrixTotal.ReadOnly = true;
-            this.txtPrixTotal.SelectedText = "";
-            this.txtPrixTotal.Size = new System.Drawing.Size(434, 38);
-            this.txtPrixTotal.TabIndex = 5;
-            // 
-            // lblModePaiement
-            // 
-            this.lblModePaiement.AutoSize = true;
-            this.lblModePaiement.Font = new System.Drawing.Font("Segoe UI Semibold", 12F, System.Drawing.FontStyle.Bold);
-            this.lblModePaiement.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(30)))), ((int)(((byte)(41)))), ((int)(((byte)(59)))));
-            this.lblModePaiement.Location = new System.Drawing.Point(25, 133);
-            this.lblModePaiement.Name = "lblModePaiement";
-            this.lblModePaiement.Size = new System.Drawing.Size(156, 28);
-            this.lblModePaiement.TabIndex = 4;
-            this.lblModePaiement.Text = "Mode Paiement";
-            // 
-            // lblReste
-            // 
-            this.lblReste.AutoSize = true;
-            this.lblReste.Font = new System.Drawing.Font("Segoe UI Semibold", 12F, System.Drawing.FontStyle.Bold);
-            this.lblReste.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(30)))), ((int)(((byte)(41)))), ((int)(((byte)(59)))));
-            this.lblReste.Location = new System.Drawing.Point(384, 89);
-            this.lblReste.Name = "lblReste";
-            this.lblReste.Size = new System.Drawing.Size(133, 28);
-            this.lblReste.TabIndex = 3;
-            this.lblReste.Text = "Reste à payer";
-            // 
-            // lblAvance
-            // 
-            this.lblAvance.AutoSize = true;
-            this.lblAvance.Font = new System.Drawing.Font("Segoe UI Semibold", 12F, System.Drawing.FontStyle.Bold);
-            this.lblAvance.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(30)))), ((int)(((byte)(41)))), ((int)(((byte)(59)))));
-            this.lblAvance.Location = new System.Drawing.Point(25, 89);
-            this.lblAvance.Name = "lblAvance";
-            this.lblAvance.Size = new System.Drawing.Size(77, 28);
-            this.lblAvance.TabIndex = 2;
-            this.lblAvance.Text = "Avance";
-            // 
-            // lblPrixTotal
-            // 
-            this.lblPrixTotal.AutoSize = true;
-            this.lblPrixTotal.Font = new System.Drawing.Font("Segoe UI Semibold", 12F, System.Drawing.FontStyle.Bold);
-            this.lblPrixTotal.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(30)))), ((int)(((byte)(41)))), ((int)(((byte)(59)))));
-            this.lblPrixTotal.Location = new System.Drawing.Point(25, 45);
-            this.lblPrixTotal.Name = "lblPrixTotal";
-            this.lblPrixTotal.Size = new System.Drawing.Size(95, 28);
-            this.lblPrixTotal.TabIndex = 1;
-            this.lblPrixTotal.Text = "Prix Total";
-            // 
-            // lblPaiementTitle
-            // 
-            this.lblPaiementTitle.AutoSize = true;
-            this.lblPaiementTitle.Font = new System.Drawing.Font("Segoe UI", 15F, System.Drawing.FontStyle.Bold);
-            this.lblPaiementTitle.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(37)))), ((int)(((byte)(99)))), ((int)(((byte)(235)))));
-            this.lblPaiementTitle.Location = new System.Drawing.Point(24, 1);
-            this.lblPaiementTitle.Name = "lblPaiementTitle";
-            this.lblPaiementTitle.Size = new System.Drawing.Size(125, 35);
-            this.lblPaiementTitle.TabIndex = 0;
-            this.lblPaiementTitle.Text = "Paiement";
-            // 
-            // notesPanel
-            // 
-            this.notesPanel.BackColor = System.Drawing.Color.Transparent;
-            this.notesPanel.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(220)))), ((int)(((byte)(226)))), ((int)(((byte)(236)))));
-            this.notesPanel.BorderRadius = 18;
-            this.notesPanel.BorderThickness = 1;
-            this.notesPanel.Controls.Add(this.txtNotes);
-            this.notesPanel.FillColor = System.Drawing.Color.White;
-            this.notesPanel.Location = new System.Drawing.Point(27, 725);
-            this.notesPanel.Name = "notesPanel";
-            this.notesPanel.ShadowDecoration.Depth = 8;
-            this.notesPanel.ShadowDecoration.Enabled = true;
-            this.notesPanel.Size = new System.Drawing.Size(911, 100);
-            this.notesPanel.TabIndex = 5;
-            // 
-            // txtNotes
-            // 
-            this.txtNotes.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(203)))), ((int)(((byte)(213)))), ((int)(((byte)(225)))));
-            this.txtNotes.BorderRadius = 10;
-            this.txtNotes.Cursor = System.Windows.Forms.Cursors.IBeam;
-            this.txtNotes.DefaultText = "";
-            this.txtNotes.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(248)))), ((int)(((byte)(250)))), ((int)(((byte)(252)))));
-            this.txtNotes.Font = new System.Drawing.Font("Segoe UI", 11F);
-            this.txtNotes.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(30)))), ((int)(((byte)(41)))), ((int)(((byte)(59)))));
-            this.txtNotes.Location = new System.Drawing.Point(23, 19);
-            this.txtNotes.Margin = new System.Windows.Forms.Padding(5, 4, 5, 4);
-            this.txtNotes.Multiline = true;
-            this.txtNotes.Name = "txtNotes";
-            this.txtNotes.PlaceholderText = "Remarques / Notes";
-            this.txtNotes.SelectedText = "";
-            this.txtNotes.Size = new System.Drawing.Size(864, 62);
-            this.txtNotes.TabIndex = 0;
-            // 
-            // actionPanel
-            // 
-            this.actionPanel.BackColor = System.Drawing.Color.Transparent;
-            this.actionPanel.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(220)))), ((int)(((byte)(226)))), ((int)(((byte)(236)))));
-            this.actionPanel.BorderRadius = 18;
-            this.actionPanel.BorderThickness = 1;
-            this.actionPanel.Controls.Add(this.btnAnnuler);
-            this.actionPanel.Controls.Add(this.btnImprimer);
-            this.actionPanel.Controls.Add(this.btnEnregistrer);
-            this.actionPanel.Controls.Add(this.btnCalculerPrix);
-            this.actionPanel.Controls.Add(this.btnNouveau);
-            this.actionPanel.FillColor = System.Drawing.Color.White;
-            this.actionPanel.Location = new System.Drawing.Point(961, 725);
-            this.actionPanel.Name = "actionPanel";
-            this.actionPanel.ShadowDecoration.Depth = 8;
-            this.actionPanel.ShadowDecoration.Enabled = true;
-            this.actionPanel.Size = new System.Drawing.Size(478, 100);
-            this.actionPanel.TabIndex = 6;
-            // 
-            // btnAnnuler
-            // 
-            this.btnAnnuler.BorderRadius = 10;
-            this.btnAnnuler.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(239)))), ((int)(((byte)(68)))), ((int)(((byte)(68)))));
-            this.btnAnnuler.Font = new System.Drawing.Font("Segoe UI", 10F, System.Drawing.FontStyle.Bold);
-            this.btnAnnuler.ForeColor = System.Drawing.Color.White;
-            this.btnAnnuler.Location = new System.Drawing.Point(328, 52);
-            this.btnAnnuler.Name = "btnAnnuler";
-            this.btnAnnuler.Size = new System.Drawing.Size(127, 35);
-            this.btnAnnuler.TabIndex = 4;
-            this.btnAnnuler.Text = "Annuler";
-            this.btnAnnuler.Click += new System.EventHandler(this.btnAnnuler_Click);
-            // 
-            // btnImprimer
-            // 
-            this.btnImprimer.BorderRadius = 10;
-            this.btnImprimer.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(59)))), ((int)(((byte)(130)))), ((int)(((byte)(246)))));
-            this.btnImprimer.Font = new System.Drawing.Font("Segoe UI", 10F, System.Drawing.FontStyle.Bold);
-            this.btnImprimer.ForeColor = System.Drawing.Color.White;
-            this.btnImprimer.Location = new System.Drawing.Point(169, 52);
-            this.btnImprimer.Name = "btnImprimer";
-            this.btnImprimer.Size = new System.Drawing.Size(150, 35);
-            this.btnImprimer.TabIndex = 3;
-            this.btnImprimer.Text = "Imprimer";
-            this.btnImprimer.Click += new System.EventHandler(this.btnImprimer_Click);
-            // 
-            // btnEnregistrer
-            // 
-            this.btnEnregistrer.BorderRadius = 10;
-            this.btnEnregistrer.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(34)))), ((int)(((byte)(197)))), ((int)(((byte)(94)))));
-            this.btnEnregistrer.Font = new System.Drawing.Font("Segoe UI", 10F, System.Drawing.FontStyle.Bold);
-            this.btnEnregistrer.ForeColor = System.Drawing.Color.White;
-            this.btnEnregistrer.Location = new System.Drawing.Point(13, 52);
-            this.btnEnregistrer.Name = "btnEnregistrer";
-            this.btnEnregistrer.Size = new System.Drawing.Size(150, 35);
-            this.btnEnregistrer.TabIndex = 2;
-            this.btnEnregistrer.Text = "Enregistrer";
-            this.btnEnregistrer.Click += new System.EventHandler(this.btnEnregistrer_Click);
-            // 
-            // btnCalculerPrix
-            // 
-            this.btnCalculerPrix.BorderRadius = 10;
-            this.btnCalculerPrix.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(245)))), ((int)(((byte)(158)))), ((int)(((byte)(11)))));
-            this.btnCalculerPrix.Font = new System.Drawing.Font("Segoe UI", 10F, System.Drawing.FontStyle.Bold);
-            this.btnCalculerPrix.ForeColor = System.Drawing.Color.White;
-            this.btnCalculerPrix.Location = new System.Drawing.Point(169, 12);
-            this.btnCalculerPrix.Name = "btnCalculerPrix";
-            this.btnCalculerPrix.Size = new System.Drawing.Size(171, 35);
-            this.btnCalculerPrix.TabIndex = 1;
-            this.btnCalculerPrix.Text = "Calculer Prix";
-            this.btnCalculerPrix.Click += new System.EventHandler(this.btnCalculerPrix_Click);
-            // 
-            // btnNouveau
-            // 
-            this.btnNouveau.BorderRadius = 10;
-            this.btnNouveau.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(59)))), ((int)(((byte)(130)))), ((int)(((byte)(246)))));
-            this.btnNouveau.Font = new System.Drawing.Font("Segoe UI", 10F, System.Drawing.FontStyle.Bold);
-            this.btnNouveau.ForeColor = System.Drawing.Color.White;
-            this.btnNouveau.Location = new System.Drawing.Point(13, 12);
-            this.btnNouveau.Name = "btnNouveau";
-            this.btnNouveau.Size = new System.Drawing.Size(150, 35);
-            this.btnNouveau.TabIndex = 0;
-            this.btnNouveau.Text = "Nouveau";
-            this.btnNouveau.Click += new System.EventHandler(this.btnNouveau_Click);
-            // 
-            // contrats
-            // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
-            this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(245)))), ((int)(((byte)(247)))), ((int)(((byte)(251)))));
-            this.ClientSize = new System.Drawing.Size(1467, 849);
-            this.Controls.Add(this.actionPanel);
-            this.Controls.Add(this.notesPanel);
-            this.Controls.Add(this.paiementPanel);
-            this.Controls.Add(this.locationPanel);
-            this.Controls.Add(this.voiturePanel);
-            this.Controls.Add(this.clientPanel);
-            this.Controls.Add(this.headerPanel);
-            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
-            this.Name = "contrats";
-            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
-            this.Text = "Contrats";
-            this.headerPanel.ResumeLayout(false);
-            this.headerPanel.PerformLayout();
-            this.clientPanel.ResumeLayout(false);
-            this.clientPanel.PerformLayout();
-            this.voiturePanel.ResumeLayout(false);
-            this.voiturePanel.PerformLayout();
-            this.locationPanel.ResumeLayout(false);
-            this.locationPanel.PerformLayout();
-            this.paiementPanel.ResumeLayout(false);
-            this.paiementPanel.PerformLayout();
-            this.notesPanel.ResumeLayout(false);
-            this.actionPanel.ResumeLayout(false);
-            this.ResumeLayout(false);
-
+          
+                this.pnlHeader = new System.Windows.Forms.Panel();
+                this.btnCloseTop = new System.Windows.Forms.Button();
+                this.btnMinTop = new System.Windows.Forms.Button();
+                this.lblSubTitle = new System.Windows.Forms.Label();
+                this.lblTitle = new System.Windows.Forms.Label();
+                this.pnlClient = new System.Windows.Forms.Panel();
+                this.txtAdresse = new System.Windows.Forms.TextBox();
+                this.label5 = new System.Windows.Forms.Label();
+                this.txtPermis = new System.Windows.Forms.TextBox();
+                this.label4 = new System.Windows.Forms.Label();
+                this.txtTelephone = new System.Windows.Forms.TextBox();
+                this.label3 = new System.Windows.Forms.Label();
+                this.txtNom = new System.Windows.Forms.TextBox();
+                this.label2 = new System.Windows.Forms.Label();
+                this.cboClient = new System.Windows.Forms.ComboBox();
+                this.label1 = new System.Windows.Forms.Label();
+                this.lblClientSection = new System.Windows.Forms.Label();
+                this.pnlVoiture = new System.Windows.Forms.Panel();
+                this.txtPrixJour = new System.Windows.Forms.TextBox();
+                this.label13 = new System.Windows.Forms.Label();
+                this.txtKilometrage = new System.Windows.Forms.TextBox();
+                this.label12 = new System.Windows.Forms.Label();
+                this.cboCategorie = new System.Windows.Forms.ComboBox();
+                this.label11 = new System.Windows.Forms.Label();
+                this.cboPuissance = new System.Windows.Forms.ComboBox();
+                this.label10 = new System.Windows.Forms.Label();
+                this.cboCarburant = new System.Windows.Forms.ComboBox();
+                this.label9 = new System.Windows.Forms.Label();
+                this.cboModele = new System.Windows.Forms.ComboBox();
+                this.label8 = new System.Windows.Forms.Label();
+                this.cboMarque = new System.Windows.Forms.ComboBox();
+                this.label7 = new System.Windows.Forms.Label();
+                this.cboImmatriculation = new System.Windows.Forms.ComboBox();
+                this.label6 = new System.Windows.Forms.Label();
+                this.lblVoitureSection = new System.Windows.Forms.Label();
+                this.pnlPeriode = new System.Windows.Forms.Panel();
+                this.txtNombreJours = new System.Windows.Forms.TextBox();
+                this.label16 = new System.Windows.Forms.Label();
+                this.dtpDateFin = new System.Windows.Forms.DateTimePicker();
+                this.label15 = new System.Windows.Forms.Label();
+                this.dtpDateDebut = new System.Windows.Forms.DateTimePicker();
+                this.label14 = new System.Windows.Forms.Label();
+                this.lblPeriodeSection = new System.Windows.Forms.Label();
+                this.pnlPaiement = new System.Windows.Forms.Panel();
+                this.cboModePaiement = new System.Windows.Forms.ComboBox();
+                this.label20 = new System.Windows.Forms.Label();
+                this.txtResteAPayer = new System.Windows.Forms.TextBox();
+                this.label19 = new System.Windows.Forms.Label();
+                this.nudAvance = new System.Windows.Forms.NumericUpDown();
+                this.label18 = new System.Windows.Forms.Label();
+                this.txtPrixTotal = new System.Windows.Forms.TextBox();
+                this.label17 = new System.Windows.Forms.Label();
+                this.lblPaiementSection = new System.Windows.Forms.Label();
+                this.pnlRemarques = new System.Windows.Forms.Panel();
+                this.txtRemarques = new System.Windows.Forms.TextBox();
+                this.pnlActions = new System.Windows.Forms.Panel();
+                this.btnImprimer = new System.Windows.Forms.Button();
+                this.btnEnregistrer = new System.Windows.Forms.Button();
+                this.btnAnnuler = new System.Windows.Forms.Button();
+                this.btnCalculer = new System.Windows.Forms.Button();
+                this.btnNouveau = new System.Windows.Forms.Button();
+                this.pnlFooter = new System.Windows.Forms.Panel();
+                this.lblTotalValue = new System.Windows.Forms.Label();
+                this.lblFooterTotal = new System.Windows.Forms.Label();
+                this.lblDureeValue = new System.Windows.Forms.Label();
+                this.lblFooterDuree = new System.Windows.Forms.Label();
+                this.lblContratValue = new System.Windows.Forms.Label();
+                this.lblFooterContrat = new System.Windows.Forms.Label();
+                this.pnlHeader.SuspendLayout();
+                this.pnlClient.SuspendLayout();
+                this.pnlVoiture.SuspendLayout();
+                this.pnlPeriode.SuspendLayout();
+                this.pnlPaiement.SuspendLayout();
+                ((System.ComponentModel.ISupportInitialize)(this.nudAvance)).BeginInit();
+                this.pnlRemarques.SuspendLayout();
+                this.pnlActions.SuspendLayout();
+                this.pnlFooter.SuspendLayout();
+                this.SuspendLayout();
+                // 
+                // pnlHeader
+                // 
+                this.pnlHeader.BackColor = System.Drawing.Color.White;
+                this.pnlHeader.Controls.Add(this.btnCloseTop);
+                this.pnlHeader.Controls.Add(this.btnMinTop);
+                this.pnlHeader.Controls.Add(this.lblSubTitle);
+                this.pnlHeader.Controls.Add(this.lblTitle);
+                this.pnlHeader.Location = new System.Drawing.Point(12, 12);
+                this.pnlHeader.Name = "pnlHeader";
+                this.pnlHeader.Size = new System.Drawing.Size(1260, 110);
+                this.pnlHeader.TabIndex = 0;
+                // 
+                // btnCloseTop
+                // 
+                this.btnCloseTop.BackColor = System.Drawing.Color.MistyRose;
+                this.btnCloseTop.FlatAppearance.BorderSize = 0;
+                this.btnCloseTop.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+                this.btnCloseTop.Font = new System.Drawing.Font("Segoe UI", 14F, System.Drawing.FontStyle.Bold);
+                this.btnCloseTop.ForeColor = System.Drawing.Color.Red;
+                this.btnCloseTop.Location = new System.Drawing.Point(1188, 20);
+                this.btnCloseTop.Name = "btnCloseTop";
+                this.btnCloseTop.Size = new System.Drawing.Size(52, 48);
+                this.btnCloseTop.TabIndex = 3;
+                this.btnCloseTop.Text = "×";
+                this.btnCloseTop.UseVisualStyleBackColor = false;
+                this.btnCloseTop.Click += new System.EventHandler(this.btnAnnuler_Click);
+                // 
+                // btnMinTop
+                // 
+                this.btnMinTop.BackColor = System.Drawing.Color.WhiteSmoke;
+                this.btnMinTop.FlatAppearance.BorderSize = 0;
+                this.btnMinTop.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+                this.btnMinTop.Font = new System.Drawing.Font("Segoe UI", 14F, System.Drawing.FontStyle.Bold);
+                this.btnMinTop.ForeColor = System.Drawing.Color.MidnightBlue;
+                this.btnMinTop.Location = new System.Drawing.Point(1128, 20);
+                this.btnMinTop.Name = "btnMinTop";
+                this.btnMinTop.Size = new System.Drawing.Size(52, 48);
+                this.btnMinTop.TabIndex = 2;
+                this.btnMinTop.Text = "-";
+                this.btnMinTop.UseVisualStyleBackColor = false;
+                // 
+                // lblSubTitle
+                // 
+                this.lblSubTitle.AutoSize = true;
+                this.lblSubTitle.Font = new System.Drawing.Font("Segoe UI", 18F);
+                this.lblSubTitle.ForeColor = System.Drawing.Color.SlateGray;
+                this.lblSubTitle.Location = new System.Drawing.Point(42, 58);
+                this.lblSubTitle.Name = "lblSubTitle";
+                this.lblSubTitle.Size = new System.Drawing.Size(400, 41);
+                this.lblSubTitle.TabIndex = 1;
+                this.lblSubTitle.Text = "Ajouter un nouveau contrat";
+                // 
+                // lblTitle
+                // 
+                this.lblTitle.AutoSize = true;
+                this.lblTitle.Font = new System.Drawing.Font("Segoe UI", 24F, System.Drawing.FontStyle.Bold);
+                this.lblTitle.ForeColor = System.Drawing.Color.MidnightBlue;
+                this.lblTitle.Location = new System.Drawing.Point(38, 10);
+                this.lblTitle.Name = "lblTitle";
+                this.lblTitle.Size = new System.Drawing.Size(421, 54);
+                this.lblTitle.TabIndex = 0;
+                this.lblTitle.Text = "Gestion des Contrats";
+                // 
+                // pnlClient
+                // 
+                this.pnlClient.BackColor = System.Drawing.Color.White;
+                this.pnlClient.Controls.Add(this.txtAdresse);
+                this.pnlClient.Controls.Add(this.label5);
+                this.pnlClient.Controls.Add(this.txtPermis);
+                this.pnlClient.Controls.Add(this.label4);
+                this.pnlClient.Controls.Add(this.txtTelephone);
+                this.pnlClient.Controls.Add(this.label3);
+                this.pnlClient.Controls.Add(this.txtNom);
+                this.pnlClient.Controls.Add(this.label2);
+                this.pnlClient.Controls.Add(this.cboClient);
+                this.pnlClient.Controls.Add(this.label1);
+                this.pnlClient.Controls.Add(this.lblClientSection);
+                this.pnlClient.Location = new System.Drawing.Point(12, 138);
+                this.pnlClient.Name = "pnlClient";
+                this.pnlClient.Size = new System.Drawing.Size(610, 290);
+                this.pnlClient.TabIndex = 1;
+                // 
+                // txtAdresse
+                // 
+                this.txtAdresse.Font = new System.Drawing.Font("Segoe UI", 12F);
+                this.txtAdresse.Location = new System.Drawing.Point(178, 214);
+                this.txtAdresse.Multiline = true;
+                this.txtAdresse.Name = "txtAdresse";
+                this.txtAdresse.Size = new System.Drawing.Size(325, 44);
+                this.txtAdresse.TabIndex = 10;
+                // 
+                // label5
+                // 
+                this.label5.AutoSize = true;
+                this.label5.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Bold);
+                this.label5.ForeColor = System.Drawing.Color.MidnightBlue;
+                this.label5.Location = new System.Drawing.Point(34, 217);
+                this.label5.Name = "label5";
+                this.label5.Size = new System.Drawing.Size(90, 28);
+                this.label5.TabIndex = 9;
+                this.label5.Text = "Adresse";
+                // 
+                // txtPermis
+                // 
+                this.txtPermis.Font = new System.Drawing.Font("Segoe UI", 12F);
+                this.txtPermis.Location = new System.Drawing.Point(178, 170);
+                this.txtPermis.Name = "txtPermis";
+                this.txtPermis.Size = new System.Drawing.Size(325, 34);
+                this.txtPermis.TabIndex = 8;
+                // 
+                // label4
+                // 
+                this.label4.AutoSize = true;
+                this.label4.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Bold);
+                this.label4.ForeColor = System.Drawing.Color.MidnightBlue;
+                this.label4.Location = new System.Drawing.Point(34, 173);
+                this.label4.Name = "label4";
+                this.label4.Size = new System.Drawing.Size(76, 28);
+                this.label4.TabIndex = 7;
+                this.label4.Text = "Permis";
+                // 
+                // txtTelephone
+                // 
+                this.txtTelephone.Font = new System.Drawing.Font("Segoe UI", 12F);
+                this.txtTelephone.Location = new System.Drawing.Point(178, 126);
+                this.txtTelephone.Name = "txtTelephone";
+                this.txtTelephone.Size = new System.Drawing.Size(325, 34);
+                this.txtTelephone.TabIndex = 6;
+                // 
+                // label3
+                // 
+                this.label3.AutoSize = true;
+                this.label3.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Bold);
+                this.label3.ForeColor = System.Drawing.Color.MidnightBlue;
+                this.label3.Location = new System.Drawing.Point(34, 129);
+                this.label3.Name = "label3";
+                this.label3.Size = new System.Drawing.Size(111, 28);
+                this.label3.TabIndex = 5;
+                this.label3.Text = "Téléphone";
+                // 
+                // txtNom
+                // 
+                this.txtNom.Font = new System.Drawing.Font("Segoe UI", 12F);
+                this.txtNom.Location = new System.Drawing.Point(178, 82);
+                this.txtNom.Name = "txtNom";
+                this.txtNom.Size = new System.Drawing.Size(325, 34);
+                this.txtNom.TabIndex = 4;
+                // 
+                // label2
+                // 
+                this.label2.AutoSize = true;
+                this.label2.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Bold);
+                this.label2.ForeColor = System.Drawing.Color.MidnightBlue;
+                this.label2.Location = new System.Drawing.Point(34, 85);
+                this.label2.Name = "label2";
+                this.label2.Size = new System.Drawing.Size(58, 28);
+                this.label2.TabIndex = 3;
+                this.label2.Text = "Nom";
+                // 
+                // cboClient
+                // 
+                this.cboClient.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+                this.cboClient.Font = new System.Drawing.Font("Segoe UI", 12F);
+                this.cboClient.FormattingEnabled = true;
+                this.cboClient.Location = new System.Drawing.Point(178, 38);
+                this.cboClient.Name = "cboClient";
+                this.cboClient.Size = new System.Drawing.Size(325, 36);
+                this.cboClient.TabIndex = 2;
+                this.cboClient.SelectedIndexChanged += new System.EventHandler(this.cboClient_SelectedIndexChanged);
+                // 
+                // label1
+                // 
+                this.label1.AutoSize = true;
+                this.label1.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Bold);
+                this.label1.ForeColor = System.Drawing.Color.MidnightBlue;
+                this.label1.Location = new System.Drawing.Point(34, 41);
+                this.label1.Name = "label1";
+                this.label1.Size = new System.Drawing.Size(68, 28);
+                this.label1.TabIndex = 1;
+                this.label1.Text = "Client";
+                // 
+                // lblClientSection
+                // 
+                this.lblClientSection.AutoSize = true;
+                this.lblClientSection.Font = new System.Drawing.Font("Segoe UI", 16F, System.Drawing.FontStyle.Bold);
+                this.lblClientSection.ForeColor = System.Drawing.Color.RoyalBlue;
+                this.lblClientSection.Location = new System.Drawing.Point(20, 0);
+                this.lblClientSection.Name = "lblClientSection";
+                this.lblClientSection.Size = new System.Drawing.Size(158, 37);
+                this.lblClientSection.TabIndex = 0;
+                this.lblClientSection.Text = "Infos Client";
+                // 
+                // pnlVoiture
+                // 
+                this.pnlVoiture.BackColor = System.Drawing.Color.White;
+                this.pnlVoiture.Controls.Add(this.txtPrixJour);
+                this.pnlVoiture.Controls.Add(this.label13);
+                this.pnlVoiture.Controls.Add(this.txtKilometrage);
+                this.pnlVoiture.Controls.Add(this.label12);
+                this.pnlVoiture.Controls.Add(this.cboCategorie);
+                this.pnlVoiture.Controls.Add(this.label11);
+                this.pnlVoiture.Controls.Add(this.cboPuissance);
+                this.pnlVoiture.Controls.Add(this.label10);
+                this.pnlVoiture.Controls.Add(this.cboCarburant);
+                this.pnlVoiture.Controls.Add(this.label9);
+                this.pnlVoiture.Controls.Add(this.cboModele);
+                this.pnlVoiture.Controls.Add(this.label8);
+                this.pnlVoiture.Controls.Add(this.cboMarque);
+                this.pnlVoiture.Controls.Add(this.label7);
+                this.pnlVoiture.Controls.Add(this.cboImmatriculation);
+                this.pnlVoiture.Controls.Add(this.label6);
+                this.pnlVoiture.Controls.Add(this.lblVoitureSection);
+                this.pnlVoiture.Location = new System.Drawing.Point(662, 138);
+                this.pnlVoiture.Name = "pnlVoiture";
+                this.pnlVoiture.Size = new System.Drawing.Size(610, 290);
+                this.pnlVoiture.TabIndex = 2;
+                // 
+                // txtPrixJour
+                // 
+                this.txtPrixJour.Font = new System.Drawing.Font("Segoe UI", 12F);
+                this.txtPrixJour.Location = new System.Drawing.Point(434, 214);
+                this.txtPrixJour.Name = "txtPrixJour";
+                this.txtPrixJour.Size = new System.Drawing.Size(138, 34);
+                this.txtPrixJour.TabIndex = 16;
+                this.txtPrixJour.TextChanged += new System.EventHandler(this.txtPrixJour_TextChanged);
+                // 
+                // label13
+                // 
+                this.label13.AutoSize = true;
+                this.label13.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Bold);
+                this.label13.ForeColor = System.Drawing.Color.MidnightBlue;
+                this.label13.Location = new System.Drawing.Point(323, 217);
+                this.label13.Name = "label13";
+                this.label13.Size = new System.Drawing.Size(102, 28);
+                this.label13.TabIndex = 15;
+                this.label13.Text = "Prix /Jour";
+                // 
+                // txtKilometrage
+                // 
+                this.txtKilometrage.Font = new System.Drawing.Font("Segoe UI", 12F);
+                this.txtKilometrage.Location = new System.Drawing.Point(434, 170);
+                this.txtKilometrage.Name = "txtKilometrage";
+                this.txtKilometrage.Size = new System.Drawing.Size(138, 34);
+                this.txtKilometrage.TabIndex = 14;
+                // 
+                // label12
+                // 
+                this.label12.AutoSize = true;
+                this.label12.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Bold);
+                this.label12.ForeColor = System.Drawing.Color.MidnightBlue;
+                this.label12.Location = new System.Drawing.Point(294, 173);
+                this.label12.Name = "label12";
+                this.label12.Size = new System.Drawing.Size(131, 28);
+                this.label12.TabIndex = 13;
+                this.label12.Text = "Kilométrage";
+                // 
+                // cboCategorie
+                // 
+                this.cboCategorie.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+                this.cboCategorie.Font = new System.Drawing.Font("Segoe UI", 12F);
+                this.cboCategorie.FormattingEnabled = true;
+                this.cboCategorie.Location = new System.Drawing.Point(141, 214);
+                this.cboCategorie.Name = "cboCategorie";
+                this.cboCategorie.Size = new System.Drawing.Size(133, 36);
+                this.cboCategorie.TabIndex = 12;
+                // 
+                // label11
+                // 
+                this.label11.AutoSize = true;
+                this.label11.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Bold);
+                this.label11.ForeColor = System.Drawing.Color.MidnightBlue;
+                this.label11.Location = new System.Drawing.Point(23, 217);
+                this.label11.Name = "label11";
+                this.label11.Size = new System.Drawing.Size(105, 28);
+                this.label11.TabIndex = 11;
+                this.label11.Text = "Catégorie";
+                // 
+                // cboPuissance
+                // 
+                this.cboPuissance.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+                this.cboPuissance.Font = new System.Drawing.Font("Segoe UI", 12F);
+                this.cboPuissance.FormattingEnabled = true;
+                this.cboPuissance.Location = new System.Drawing.Point(141, 170);
+                this.cboPuissance.Name = "cboPuissance";
+                this.cboPuissance.Size = new System.Drawing.Size(133, 36);
+                this.cboPuissance.TabIndex = 10;
+                // 
+                // label10
+                // 
+                this.label10.AutoSize = true;
+                this.label10.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Bold);
+                this.label10.ForeColor = System.Drawing.Color.MidnightBlue;
+                this.label10.Location = new System.Drawing.Point(23, 173);
+                this.label10.Name = "label10";
+                this.label10.Size = new System.Drawing.Size(104, 28);
+                this.label10.TabIndex = 9;
+                this.label10.Text = "Puissance";
+                // 
+                // cboCarburant
+                // 
+                this.cboCarburant.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+                this.cboCarburant.Font = new System.Drawing.Font("Segoe UI", 12F);
+                this.cboCarburant.FormattingEnabled = true;
+                this.cboCarburant.Location = new System.Drawing.Point(141, 126);
+                this.cboCarburant.Name = "cboCarburant";
+                this.cboCarburant.Size = new System.Drawing.Size(431, 36);
+                this.cboCarburant.TabIndex = 8;
+                // 
+                // label9
+                // 
+                this.label9.AutoSize = true;
+                this.label9.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Bold);
+                this.label9.ForeColor = System.Drawing.Color.MidnightBlue;
+                this.label9.Location = new System.Drawing.Point(23, 129);
+                this.label9.Name = "label9";
+                this.label9.Size = new System.Drawing.Size(109, 28);
+                this.label9.TabIndex = 7;
+                this.label9.Text = "Carburant";
+                // 
+                // cboModele
+                // 
+                this.cboModele.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+                this.cboModele.Font = new System.Drawing.Font("Segoe UI", 12F);
+                this.cboModele.FormattingEnabled = true;
+                this.cboModele.Location = new System.Drawing.Point(434, 82);
+                this.cboModele.Name = "cboModele";
+                this.cboModele.Size = new System.Drawing.Size(138, 36);
+                this.cboModele.TabIndex = 6;
+                // 
+                // label8
+                // 
+                this.label8.AutoSize = true;
+                this.label8.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Bold);
+                this.label8.ForeColor = System.Drawing.Color.MidnightBlue;
+                this.label8.Location = new System.Drawing.Point(339, 85);
+                this.label8.Name = "label8";
+                this.label8.Size = new System.Drawing.Size(86, 28);
+                this.label8.TabIndex = 5;
+                this.label8.Text = "Modèle";
+                // 
+                // cboMarque
+                // 
+                this.cboMarque.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+                this.cboMarque.Font = new System.Drawing.Font("Segoe UI", 12F);
+                this.cboMarque.FormattingEnabled = true;
+                this.cboMarque.Location = new System.Drawing.Point(141, 82);
+                this.cboMarque.Name = "cboMarque";
+                this.cboMarque.Size = new System.Drawing.Size(133, 36);
+                this.cboMarque.TabIndex = 4;
+                // 
+                // label7
+                // 
+                this.label7.AutoSize = true;
+                this.label7.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Bold);
+                this.label7.ForeColor = System.Drawing.Color.MidnightBlue;
+                this.label7.Location = new System.Drawing.Point(23, 85);
+                this.label7.Name = "label7";
+                this.label7.Size = new System.Drawing.Size(84, 28);
+                this.label7.TabIndex = 3;
+                this.label7.Text = "Marque";
+                // 
+                // cboImmatriculation
+                // 
+                this.cboImmatriculation.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+                this.cboImmatriculation.Font = new System.Drawing.Font("Segoe UI", 12F);
+                this.cboImmatriculation.FormattingEnabled = true;
+                this.cboImmatriculation.Location = new System.Drawing.Point(220, 38);
+                this.cboImmatriculation.Name = "cboImmatriculation";
+                this.cboImmatriculation.Size = new System.Drawing.Size(352, 36);
+                this.cboImmatriculation.TabIndex = 2;
+                this.cboImmatriculation.SelectedIndexChanged += new System.EventHandler(this.cboImmatriculation_SelectedIndexChanged);
+                // 
+                // label6
+                // 
+                this.label6.AutoSize = true;
+                this.label6.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Bold);
+                this.label6.ForeColor = System.Drawing.Color.MidnightBlue;
+                this.label6.Location = new System.Drawing.Point(23, 41);
+                this.label6.Name = "label6";
+                this.label6.Size = new System.Drawing.Size(165, 28);
+                this.label6.TabIndex = 1;
+                this.label6.Text = "Immatriculation";
+                // 
+                // lblVoitureSection
+                // 
+                this.lblVoitureSection.AutoSize = true;
+                this.lblVoitureSection.Font = new System.Drawing.Font("Segoe UI", 16F, System.Drawing.FontStyle.Bold);
+                this.lblVoitureSection.ForeColor = System.Drawing.Color.RoyalBlue;
+                this.lblVoitureSection.Location = new System.Drawing.Point(20, 0);
+                this.lblVoitureSection.Name = "lblVoitureSection";
+                this.lblVoitureSection.Size = new System.Drawing.Size(174, 37);
+                this.lblVoitureSection.TabIndex = 0;
+                this.lblVoitureSection.Text = "Infos Voiture";
+                // 
+                // pnlPeriode
+                // 
+                this.pnlPeriode.BackColor = System.Drawing.Color.White;
+                this.pnlPeriode.Controls.Add(this.txtNombreJours);
+                this.pnlPeriode.Controls.Add(this.label16);
+                this.pnlPeriode.Controls.Add(this.dtpDateFin);
+                this.pnlPeriode.Controls.Add(this.label15);
+                this.pnlPeriode.Controls.Add(this.dtpDateDebut);
+                this.pnlPeriode.Controls.Add(this.label14);
+                this.pnlPeriode.Controls.Add(this.lblPeriodeSection);
+                this.pnlPeriode.Location = new System.Drawing.Point(12, 444);
+                this.pnlPeriode.Name = "pnlPeriode";
+                this.pnlPeriode.Size = new System.Drawing.Size(610, 210);
+                this.pnlPeriode.TabIndex = 3;
+                // 
+                // txtNombreJours
+                // 
+                this.txtNombreJours.Font = new System.Drawing.Font("Segoe UI", 12F);
+                this.txtNombreJours.Location = new System.Drawing.Point(200, 145);
+                this.txtNombreJours.Name = "txtNombreJours";
+                this.txtNombreJours.ReadOnly = true;
+                this.txtNombreJours.Size = new System.Drawing.Size(303, 34);
+                this.txtNombreJours.TabIndex = 6;
+                // 
+                // label16
+                // 
+                this.label16.AutoSize = true;
+                this.label16.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Bold);
+                this.label16.ForeColor = System.Drawing.Color.MidnightBlue;
+                this.label16.Location = new System.Drawing.Point(32, 148);
+                this.label16.Name = "label16";
+                this.label16.Size = new System.Drawing.Size(161, 28);
+                this.label16.TabIndex = 5;
+                this.label16.Text = "Nombre de jours";
+                // 
+                // dtpDateFin
+                // 
+                this.dtpDateFin.Font = new System.Drawing.Font("Segoe UI", 12F);
+                this.dtpDateFin.Location = new System.Drawing.Point(200, 95);
+                this.dtpDateFin.Name = "dtpDateFin";
+                this.dtpDateFin.Size = new System.Drawing.Size(303, 34);
+                this.dtpDateFin.TabIndex = 4;
+                this.dtpDateFin.ValueChanged += new System.EventHandler(this.dtpDateFin_ValueChanged);
+                // 
+                // label15
+                // 
+                this.label15.AutoSize = true;
+                this.label15.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Bold);
+                this.label15.ForeColor = System.Drawing.Color.MidnightBlue;
+                this.label15.Location = new System.Drawing.Point(32, 98);
+                this.label15.Name = "label15";
+                this.label15.Size = new System.Drawing.Size(91, 28);
+                this.label15.TabIndex = 3;
+                this.label15.Text = "Date Fin";
+                // 
+                // dtpDateDebut
+                // 
+                this.dtpDateDebut.Font = new System.Drawing.Font("Segoe UI", 12F);
+                this.dtpDateDebut.Location = new System.Drawing.Point(200, 45);
+                this.dtpDateDebut.Name = "dtpDateDebut";
+                this.dtpDateDebut.Size = new System.Drawing.Size(303, 34);
+                this.dtpDateDebut.TabIndex = 2;
+                this.dtpDateDebut.ValueChanged += new System.EventHandler(this.dtpDateDebut_ValueChanged);
+                // 
+                // label14
+                // 
+                this.label14.AutoSize = true;
+                this.label14.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Bold);
+                this.label14.ForeColor = System.Drawing.Color.MidnightBlue;
+                this.label14.Location = new System.Drawing.Point(32, 48);
+                this.label14.Name = "label14";
+                this.label14.Size = new System.Drawing.Size(113, 28);
+                this.label14.TabIndex = 1;
+                this.label14.Text = "Date Début";
+                // 
+                // lblPeriodeSection
+                // 
+                this.lblPeriodeSection.AutoSize = true;
+                this.lblPeriodeSection.Font = new System.Drawing.Font("Segoe UI", 16F, System.Drawing.FontStyle.Bold);
+                this.lblPeriodeSection.ForeColor = System.Drawing.Color.RoyalBlue;
+                this.lblPeriodeSection.Location = new System.Drawing.Point(20, 0);
+                this.lblPeriodeSection.Name = "lblPeriodeSection";
+                this.lblPeriodeSection.Size = new System.Drawing.Size(229, 37);
+                this.lblPeriodeSection.TabIndex = 0;
+                this.lblPeriodeSection.Text = "Période de location";
+                // 
+                // pnlPaiement
+                // 
+                this.pnlPaiement.BackColor = System.Drawing.Color.White;
+                this.pnlPaiement.Controls.Add(this.cboModePaiement);
+                this.pnlPaiement.Controls.Add(this.label20);
+                this.pnlPaiement.Controls.Add(this.txtResteAPayer);
+                this.pnlPaiement.Controls.Add(this.label19);
+                this.pnlPaiement.Controls.Add(this.nudAvance);
+                this.pnlPaiement.Controls.Add(this.label18);
+                this.pnlPaiement.Controls.Add(this.txtPrixTotal);
+                this.pnlPaiement.Controls.Add(this.label17);
+                this.pnlPaiement.Controls.Add(this.lblPaiementSection);
+                this.pnlPaiement.Location = new System.Drawing.Point(662, 444);
+                this.pnlPaiement.Name = "pnlPaiement";
+                this.pnlPaiement.Size = new System.Drawing.Size(610, 210);
+                this.pnlPaiement.TabIndex = 4;
+                // 
+                // cboModePaiement
+                // 
+                this.cboModePaiement.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+                this.cboModePaiement.Font = new System.Drawing.Font("Segoe UI", 12F);
+                this.cboModePaiement.FormattingEnabled = true;
+                this.cboModePaiement.Location = new System.Drawing.Point(217, 145);
+                this.cboModePaiement.Name = "cboModePaiement";
+                this.cboModePaiement.Size = new System.Drawing.Size(303, 36);
+                this.cboModePaiement.TabIndex = 8;
+                // 
+                // label20
+                // 
+                this.label20.AutoSize = true;
+                this.label20.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Bold);
+                this.label20.ForeColor = System.Drawing.Color.MidnightBlue;
+                this.label20.Location = new System.Drawing.Point(30, 148);
+                this.label20.Name = "label20";
+                this.label20.Size = new System.Drawing.Size(176, 28);
+                this.label20.TabIndex = 7;
+                this.label20.Text = "Mode paiement";
+                // 
+                // txtResteAPayer
+                // 
+                this.txtResteAPayer.Font = new System.Drawing.Font("Segoe UI", 12F);
+                this.txtResteAPayer.Location = new System.Drawing.Point(217, 95);
+                this.txtResteAPayer.Name = "txtResteAPayer";
+                this.txtResteAPayer.ReadOnly = true;
+                this.txtResteAPayer.Size = new System.Drawing.Size(303, 34);
+                this.txtResteAPayer.TabIndex = 6;
+                // 
+                // label19
+                // 
+                this.label19.AutoSize = true;
+                this.label19.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Bold);
+                this.label19.ForeColor = System.Drawing.Color.MidnightBlue;
+                this.label19.Location = new System.Drawing.Point(30, 98);
+                this.label19.Name = "label19";
+                this.label19.Size = new System.Drawing.Size(146, 28);
+                this.label19.TabIndex = 5;
+                this.label19.Text = "Reste à payer";
+                // 
+                // nudAvance
+                // 
+                this.nudAvance.Font = new System.Drawing.Font("Segoe UI", 12F);
+                this.nudAvance.Location = new System.Drawing.Point(217, 45);
+                this.nudAvance.Name = "nudAvance";
+                this.nudAvance.Size = new System.Drawing.Size(140, 34);
+                this.nudAvance.TabIndex = 4;
+                this.nudAvance.ValueChanged += new System.EventHandler(this.nudAvance_ValueChanged);
+                // 
+                // label18
+                // 
+                this.label18.AutoSize = true;
+                this.label18.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Bold);
+                this.label18.ForeColor = System.Drawing.Color.MidnightBlue;
+                this.label18.Location = new System.Drawing.Point(30, 48);
+                this.label18.Name = "label18";
+                this.label18.Size = new System.Drawing.Size(79, 28);
+                this.label18.TabIndex = 3;
+                this.label18.Text = "Avance";
+                // 
+                // txtPrixTotal
+                // 
+                this.txtPrixTotal.Font = new System.Drawing.Font("Segoe UI", 12F);
+                this.txtPrixTotal.Location = new System.Drawing.Point(417, 45);
+                this.txtPrixTotal.Name = "txtPrixTotal";
+                this.txtPrixTotal.ReadOnly = true;
+                this.txtPrixTotal.Size = new System.Drawing.Size(103, 34);
+                this.txtPrixTotal.TabIndex = 2;
+                // 
+                // label17
+                // 
+                this.label17.AutoSize = true;
+                this.label17.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Bold);
+                this.label17.ForeColor = System.Drawing.Color.MidnightBlue;
+                this.label17.Location = new System.Drawing.Point(372, 48);
+                this.label17.Name = "label17";
+                this.label17.Size = new System.Drawing.Size(39, 28);
+                this.label17.TabIndex = 1;
+                this.label17.Text = "Ttl";
+                // 
+                // lblPaiementSection
+                // 
+                this.lblPaiementSection.AutoSize = true;
+                this.lblPaiementSection.Font = new System.Drawing.Font("Segoe UI", 16F, System.Drawing.FontStyle.Bold);
+                this.lblPaiementSection.ForeColor = System.Drawing.Color.RoyalBlue;
+                this.lblPaiementSection.Location = new System.Drawing.Point(20, 0);
+                this.lblPaiementSection.Name = "lblPaiementSection";
+                this.lblPaiementSection.Size = new System.Drawing.Size(144, 37);
+                this.lblPaiementSection.TabIndex = 0;
+                this.lblPaiementSection.Text = "Paiement";
+                // 
+                // pnlRemarques
+                // 
+                this.pnlRemarques.BackColor = System.Drawing.Color.White;
+                this.pnlRemarques.Controls.Add(this.txtRemarques);
+                this.pnlRemarques.Location = new System.Drawing.Point(12, 670);
+                this.pnlRemarques.Name = "pnlRemarques";
+                this.pnlRemarques.Size = new System.Drawing.Size(760, 120);
+                this.pnlRemarques.TabIndex = 5;
+                // 
+                // txtRemarques
+                // 
+                this.txtRemarques.Font = new System.Drawing.Font("Segoe UI", 12F);
+                this.txtRemarques.Location = new System.Drawing.Point(27, 23);
+                this.txtRemarques.Multiline = true;
+                this.txtRemarques.Name = "txtRemarques";
+                this.txtRemarques.Size = new System.Drawing.Size(704, 73);
+                this.txtRemarques.TabIndex = 0;
+                this.txtRemarques.Text = "Remarques / Notes (optionnel)";
+                // 
+                // pnlActions
+                // 
+                this.pnlActions.BackColor = System.Drawing.Color.White;
+                this.pnlActions.Controls.Add(this.btnImprimer);
+                this.pnlActions.Controls.Add(this.btnEnregistrer);
+                this.pnlActions.Controls.Add(this.btnAnnuler);
+                this.pnlActions.Controls.Add(this.btnCalculer);
+                this.pnlActions.Controls.Add(this.btnNouveau);
+                this.pnlActions.Location = new System.Drawing.Point(792, 670);
+                this.pnlActions.Name = "pnlActions";
+                this.pnlActions.Size = new System.Drawing.Size(480, 120);
+                this.pnlActions.TabIndex = 6;
+                // 
+                // btnImprimer
+                // 
+                this.btnImprimer.BackColor = System.Drawing.Color.RoyalBlue;
+                this.btnImprimer.FlatAppearance.BorderSize = 0;
+                this.btnImprimer.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+                this.btnImprimer.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Bold);
+                this.btnImprimer.ForeColor = System.Drawing.Color.White;
+                this.btnImprimer.Location = new System.Drawing.Point(265, 63);
+                this.btnImprimer.Name = "btnImprimer";
+                this.btnImprimer.Size = new System.Drawing.Size(145, 42);
+                this.btnImprimer.TabIndex = 4;
+                this.btnImprimer.Text = "Imprimer";
+                this.btnImprimer.UseVisualStyleBackColor = false;
+                this.btnImprimer.Click += new System.EventHandler(this.btnImprimer_Click);
+                // 
+                // btnEnregistrer
+                // 
+                this.btnEnregistrer.BackColor = System.Drawing.Color.MediumSeaGreen;
+                this.btnEnregistrer.FlatAppearance.BorderSize = 0;
+                this.btnEnregistrer.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+                this.btnEnregistrer.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Bold);
+                this.btnEnregistrer.ForeColor = System.Drawing.Color.White;
+                this.btnEnregistrer.Location = new System.Drawing.Point(114, 63);
+                this.btnEnregistrer.Name = "btnEnregistrer";
+                this.btnEnregistrer.Size = new System.Drawing.Size(145, 42);
+                this.btnEnregistrer.TabIndex = 3;
+                this.btnEnregistrer.Text = "Enregistrer";
+                this.btnEnregistrer.UseVisualStyleBackColor = false;
+                this.btnEnregistrer.Click += new System.EventHandler(this.btnEnregistrer_Click);
+                // 
+                // btnAnnuler
+                // 
+                this.btnAnnuler.BackColor = System.Drawing.Color.Tomato;
+                this.btnAnnuler.FlatAppearance.BorderSize = 0;
+                this.btnAnnuler.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+                this.btnAnnuler.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Bold);
+                this.btnAnnuler.ForeColor = System.Drawing.Color.White;
+                this.btnAnnuler.Location = new System.Drawing.Point(308, 16);
+                this.btnAnnuler.Name = "btnAnnuler";
+                this.btnAnnuler.Size = new System.Drawing.Size(145, 42);
+                this.btnAnnuler.TabIndex = 2;
+                this.btnAnnuler.Text = "Annuler";
+                this.btnAnnuler.UseVisualStyleBackColor = false;
+                this.btnAnnuler.Click += new System.EventHandler(this.btnAnnuler_Click);
+                // 
+                // btnCalculer
+                // 
+                this.btnCalculer.BackColor = System.Drawing.Color.Orange;
+                this.btnCalculer.FlatAppearance.BorderSize = 0;
+                this.btnCalculer.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+                this.btnCalculer.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Bold);
+                this.btnCalculer.ForeColor = System.Drawing.Color.White;
+                this.btnCalculer.Location = new System.Drawing.Point(157, 16);
+                this.btnCalculer.Name = "btnCalculer";
+                this.btnCalculer.Size = new System.Drawing.Size(145, 42);
+                this.btnCalculer.TabIndex = 1;
+                this.btnCalculer.Text = "Calculer";
+                this.btnCalculer.UseVisualStyleBackColor = false;
+                this.btnCalculer.Click += new System.EventHandler(this.btnCalculer_Click);
+                // 
+                // btnNouveau
+                // 
+                this.btnNouveau.BackColor = System.Drawing.Color.RoyalBlue;
+                this.btnNouveau.FlatAppearance.BorderSize = 0;
+                this.btnNouveau.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+                this.btnNouveau.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Bold);
+                this.btnNouveau.ForeColor = System.Drawing.Color.White;
+                this.btnNouveau.Location = new System.Drawing.Point(6, 16);
+                this.btnNouveau.Name = "btnNouveau";
+                this.btnNouveau.Size = new System.Drawing.Size(145, 42);
+                this.btnNouveau.TabIndex = 0;
+                this.btnNouveau.Text = "Nouveau";
+                this.btnNouveau.UseVisualStyleBackColor = false;
+                this.btnNouveau.Click += new System.EventHandler(this.btnNouveau_Click);
+                // 
+                // pnlFooter
+                // 
+                this.pnlFooter.BackColor = System.Drawing.Color.AliceBlue;
+                this.pnlFooter.Controls.Add(this.lblTotalValue);
+                this.pnlFooter.Controls.Add(this.lblFooterTotal);
+                this.pnlFooter.Controls.Add(this.lblDureeValue);
+                this.pnlFooter.Controls.Add(this.lblFooterDuree);
+                this.pnlFooter.Controls.Add(this.lblContratValue);
+                this.pnlFooter.Controls.Add(this.lblFooterContrat);
+                this.pnlFooter.Location = new System.Drawing.Point(12, 806);
+                this.pnlFooter.Name = "pnlFooter";
+                this.pnlFooter.Size = new System.Drawing.Size(1260, 60);
+                this.pnlFooter.TabIndex = 7;
+                // 
+                // lblTotalValue
+                // 
+                this.lblTotalValue.AutoSize = true;
+                this.lblTotalValue.Font = new System.Drawing.Font("Segoe UI", 11F);
+                this.lblTotalValue.ForeColor = System.Drawing.Color.MidnightBlue;
+                this.lblTotalValue.Location = new System.Drawing.Point(1047, 17);
+                this.lblTotalValue.Name = "lblTotalValue";
+                this.lblTotalValue.Size = new System.Drawing.Size(70, 25);
+                this.lblTotalValue.TabIndex = 5;
+                this.lblTotalValue.Text = "0,00 DH";
+                // 
+                // lblFooterTotal
+                // 
+                this.lblFooterTotal.AutoSize = true;
+                this.lblFooterTotal.Font = new System.Drawing.Font("Segoe UI", 11F, System.Drawing.FontStyle.Bold);
+                this.lblFooterTotal.ForeColor = System.Drawing.Color.RoyalBlue;
+                this.lblFooterTotal.Location = new System.Drawing.Point(978, 17);
+                this.lblFooterTotal.Name = "lblFooterTotal";
+                this.lblFooterTotal.Size = new System.Drawing.Size(57, 25);
+                this.lblFooterTotal.TabIndex = 4;
+                this.lblFooterTotal.Text = "Total:";
+                // 
+                // lblDureeValue
+                // 
+                this.lblDureeValue.AutoSize = true;
+                this.lblDureeValue.Font = new System.Drawing.Font("Segoe UI", 11F);
+                this.lblDureeValue.ForeColor = System.Drawing.Color.MidnightBlue;
+                this.lblDureeValue.Location = new System.Drawing.Point(688, 17);
+                this.lblDureeValue.Name = "lblDureeValue";
+                this.lblDureeValue.Size = new System.Drawing.Size(52, 25);
+                this.lblDureeValue.TabIndex = 3;
+                this.lblDureeValue.Text = "1 jour";
+                // 
+                // lblFooterDuree
+                // 
+                this.lblFooterDuree.AutoSize = true;
+                this.lblFooterDuree.Font = new System.Drawing.Font("Segoe UI", 11F, System.Drawing.FontStyle.Bold);
+                this.lblFooterDuree.ForeColor = System.Drawing.Color.RoyalBlue;
+                this.lblFooterDuree.Location = new System.Drawing.Point(611, 17);
+                this.lblFooterDuree.Name = "lblFooterDuree";
+                this.lblFooterDuree.Size = new System.Drawing.Size(67, 25);
+                this.lblFooterDuree.TabIndex = 2;
+                this.lblFooterDuree.Text = "Durée:";
+                // 
+                // lblContratValue
+                // 
+                this.lblContratValue.AutoSize = true;
+                this.lblContratValue.Font = new System.Drawing.Font("Segoe UI", 11F);
+                this.lblContratValue.ForeColor = System.Drawing.Color.MidnightBlue;
+                this.lblContratValue.Location = new System.Drawing.Point(164, 17);
+                this.lblContratValue.Name = "lblContratValue";
+                this.lblContratValue.Size = new System.Drawing.Size(84, 25);
+                this.lblContratValue.TabIndex = 1;
+                this.lblContratValue.Text = "CTR-0001";
+                // 
+                // lblFooterContrat
+                // 
+                this.lblFooterContrat.AutoSize = true;
+                this.lblFooterContrat.Font = new System.Drawing.Font("Segoe UI", 11F, System.Drawing.FontStyle.Bold);
+                this.lblFooterContrat.ForeColor = System.Drawing.Color.RoyalBlue;
+                this.lblFooterContrat.Location = new System.Drawing.Point(34, 17);
+                this.lblFooterContrat.Name = "lblFooterContrat";
+                this.lblFooterContrat.Size = new System.Drawing.Size(124, 25);
+                this.lblFooterContrat.TabIndex = 0;
+                this.lblFooterContrat.Text = "Contrat N° :";
+                // 
+                // contrats
+                // 
+                this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 20F);
+                this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+                this.BackColor = System.Drawing.Color.Gainsboro;
+                this.ClientSize = new System.Drawing.Size(1284, 881);
+                this.Controls.Add(this.pnlFooter);
+                this.Controls.Add(this.pnlActions);
+                this.Controls.Add(this.pnlRemarques);
+                this.Controls.Add(this.pnlPaiement);
+                this.Controls.Add(this.pnlPeriode);
+                this.Controls.Add(this.pnlVoiture);
+                this.Controls.Add(this.pnlClient);
+                this.Controls.Add(this.pnlHeader);
+                this.Font = new System.Drawing.Font("Segoe UI", 9F);
+                this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
+                this.MaximizeBox = false;
+                this.Name = "contrats";
+                this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
+                this.Text = "contrats";
+                this.pnlHeader.ResumeLayout(false);
+                this.pnlHeader.PerformLayout();
+                this.pnlClient.ResumeLayout(false);
+                this.pnlClient.PerformLayout();
+                this.pnlVoiture.ResumeLayout(false);
+                this.pnlVoiture.PerformLayout();
+                this.pnlPeriode.ResumeLayout(false);
+                this.pnlPeriode.PerformLayout();
+                this.pnlPaiement.ResumeLayout(false);
+                this.pnlPaiement.PerformLayout();
+                ((System.ComponentModel.ISupportInitialize)(this.nudAvance)).EndInit();
+                this.pnlRemarques.ResumeLayout(false);
+                this.pnlRemarques.PerformLayout();
+                this.pnlActions.ResumeLayout(false);
+                this.pnlFooter.ResumeLayout(false);
+                this.pnlFooter.PerformLayout();
+                this.ResumeLayout(false);
             }
 
             #endregion
 
-            private Guna.UI2.WinForms.Guna2BorderlessForm borderlessForm;
-            private Guna.UI2.WinForms.Guna2Elipse elipseForm;
-            private Guna.UI2.WinForms.Guna2DragControl dragControl;
-            private Guna.UI2.WinForms.Guna2Panel headerPanel;
-            private Guna.UI2.WinForms.Guna2Button btnMinimize;
-            private Guna.UI2.WinForms.Guna2Button btnClose;
+            private System.Windows.Forms.Panel pnlHeader;
+            private System.Windows.Forms.Button btnCloseTop;
+            private System.Windows.Forms.Button btnMinTop;
             private System.Windows.Forms.Label lblSubTitle;
             private System.Windows.Forms.Label lblTitle;
-            private Guna.UI2.WinForms.Guna2Panel clientPanel;
-            private Guna.UI2.WinForms.Guna2TextBox txtAdresse;
-            private Guna.UI2.WinForms.Guna2TextBox txtPermis;
-            private Guna.UI2.WinForms.Guna2TextBox txtTelephone;
-            private Guna.UI2.WinForms.Guna2TextBox txtPrenomClient;
-            private Guna.UI2.WinForms.Guna2TextBox txtNomClient;
-            private Guna.UI2.WinForms.Guna2ComboBox cmbCinClient;
-            private System.Windows.Forms.Label lblAdresse;
-            private System.Windows.Forms.Label lblPermis;
-            private System.Windows.Forms.Label lblTelephone;
-            private System.Windows.Forms.Label lblPrenom;
-            private System.Windows.Forms.Label lblNom;
-            private System.Windows.Forms.Label lblCin;
-            private System.Windows.Forms.Label lblClientTitle;
-            private Guna.UI2.WinForms.Guna2Panel voiturePanel;
-            private Guna.UI2.WinForms.Guna2TextBox txtPrixJour;
-            private Guna.UI2.WinForms.Guna2TextBox txtKilometrage;
-            private Guna.UI2.WinForms.Guna2ComboBox cmbCategorie;
-            private Guna.UI2.WinForms.Guna2ComboBox cmbPuissance;
-            private Guna.UI2.WinForms.Guna2ComboBox cmbTypeCarburant;
-            private Guna.UI2.WinForms.Guna2TextBox txtModele;
-            private Guna.UI2.WinForms.Guna2TextBox txtMarque;
-            private Guna.UI2.WinForms.Guna2ComboBox cmbImmatriculation;
-            private System.Windows.Forms.Label lblPrixJour;
-            private System.Windows.Forms.Label lblKilometrage;
-            private System.Windows.Forms.Label lblCategorie;
-            private System.Windows.Forms.Label lblPuissance;
-            private System.Windows.Forms.Label lblCarburant;
-            private System.Windows.Forms.Label lblModele;
-            private System.Windows.Forms.Label lblMarque;
-            private System.Windows.Forms.Label lblImmat;
-            private System.Windows.Forms.Label lblVoitureTitle;
-            private Guna.UI2.WinForms.Guna2Panel locationPanel;
-            private Guna.UI2.WinForms.Guna2TextBox txtNombreJours;
-            private Guna.UI2.WinForms.Guna2DateTimePicker dtDateFin;
-            private Guna.UI2.WinForms.Guna2DateTimePicker dtDateDebut;
-            private System.Windows.Forms.Label lblNombreJours;
-            private System.Windows.Forms.Label lblDateFin;
-            private System.Windows.Forms.Label lblDateDebut;
-            private System.Windows.Forms.Label lblLocationTitle;
-            private Guna.UI2.WinForms.Guna2Panel paiementPanel;
-            private Guna.UI2.WinForms.Guna2ComboBox cmbModePaiement;
-            private Guna.UI2.WinForms.Guna2TextBox txtRestePayer;
-            private Guna.UI2.WinForms.Guna2TextBox txtAvance;
-            private Guna.UI2.WinForms.Guna2TextBox txtPrixTotal;
-            private System.Windows.Forms.Label lblModePaiement;
-            private System.Windows.Forms.Label lblReste;
-            private System.Windows.Forms.Label lblAvance;
-            private System.Windows.Forms.Label lblPrixTotal;
-            private System.Windows.Forms.Label lblPaiementTitle;
-            private Guna.UI2.WinForms.Guna2Panel notesPanel;
-            private Guna.UI2.WinForms.Guna2TextBox txtNotes;
-            private Guna.UI2.WinForms.Guna2Panel actionPanel;
-            private Guna.UI2.WinForms.Guna2Button btnAnnuler;
-            private Guna.UI2.WinForms.Guna2Button btnImprimer;
-            private Guna.UI2.WinForms.Guna2Button btnEnregistrer;
-            private Guna.UI2.WinForms.Guna2Button btnCalculerPrix;
-            private Guna.UI2.WinForms.Guna2Button btnNouveau;
- 
+
+            private System.Windows.Forms.Panel pnlClient;
+            private System.Windows.Forms.Label lblClientSection;
+            private System.Windows.Forms.Label label1;
+            private System.Windows.Forms.ComboBox cboClient;
+            private System.Windows.Forms.Label label2;
+            private System.Windows.Forms.TextBox txtNom;
+            private System.Windows.Forms.Label label3;
+            private System.Windows.Forms.TextBox txtTelephone;
+            private System.Windows.Forms.Label label4;
+            private System.Windows.Forms.TextBox txtPermis;
+            private System.Windows.Forms.Label label5;
+            private System.Windows.Forms.TextBox txtAdresse;
+
+            private System.Windows.Forms.Panel pnlVoiture;
+            private System.Windows.Forms.Label lblVoitureSection;
+            private System.Windows.Forms.Label label6;
+            private System.Windows.Forms.ComboBox cboImmatriculation;
+            private System.Windows.Forms.Label label7;
+            private System.Windows.Forms.ComboBox cboMarque;
+            private System.Windows.Forms.Label label8;
+            private System.Windows.Forms.ComboBox cboModele;
+            private System.Windows.Forms.Label label9;
+            private System.Windows.Forms.ComboBox cboCarburant;
+            private System.Windows.Forms.Label label10;
+            private System.Windows.Forms.ComboBox cboPuissance;
+            private System.Windows.Forms.Label label11;
+            private System.Windows.Forms.ComboBox cboCategorie;
+            private System.Windows.Forms.Label label12;
+            private System.Windows.Forms.TextBox txtKilometrage;
+            private System.Windows.Forms.Label label13;
+            private System.Windows.Forms.TextBox txtPrixJour;
+
+            private System.Windows.Forms.Panel pnlPeriode;
+            private System.Windows.Forms.Label lblPeriodeSection;
+            private System.Windows.Forms.Label label14;
+            private System.Windows.Forms.DateTimePicker dtpDateDebut;
+            private System.Windows.Forms.Label label15;
+            private System.Windows.Forms.DateTimePicker dtpDateFin;
+            private System.Windows.Forms.Label label16;
+            private System.Windows.Forms.TextBox txtNombreJours;
+
+            private System.Windows.Forms.Panel pnlPaiement;
+            private System.Windows.Forms.Label lblPaiementSection;
+            private System.Windows.Forms.Label label17;
+            private System.Windows.Forms.TextBox txtPrixTotal;
+            private System.Windows.Forms.Label label18;
+            private System.Windows.Forms.NumericUpDown nudAvance;
+            private System.Windows.Forms.Label label19;
+            private System.Windows.Forms.TextBox txtResteAPayer;
+            private System.Windows.Forms.Label label20;
+            private System.Windows.Forms.ComboBox cboModePaiement;
+
+            private System.Windows.Forms.Panel pnlRemarques;
+            private System.Windows.Forms.TextBox txtRemarques;
+
+            private System.Windows.Forms.Panel pnlActions;
+            private System.Windows.Forms.Button btnNouveau;
+            private System.Windows.Forms.Button btnCalculer;
+            private System.Windows.Forms.Button btnAnnuler;
+            private System.Windows.Forms.Button btnEnregistrer;
+            private System.Windows.Forms.Button btnImprimer;
+
+            private System.Windows.Forms.Panel pnlFooter;
+            private System.Windows.Forms.Label lblFooterContrat;
+            private System.Windows.Forms.Label lblContratValue;
+            private System.Windows.Forms.Label lblFooterDuree;
+            private System.Windows.Forms.Label lblDureeValue;
+            private System.Windows.Forms.Label lblFooterTotal;
+            private System.Windows.Forms.Label lblTotalValue;
+        
+    
        
     }
 }
-
