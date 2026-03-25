@@ -106,6 +106,9 @@
     <EmbeddedResource Include="Form1.resx">
       <DependentUpon>Form1.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="formee\contrats.resx">
+      <DependentUpon>contrats.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="formee\dashboard.resx">
       <DependentUpon>dashboard.cs</DependentUpon>
     </EmbeddedResource>

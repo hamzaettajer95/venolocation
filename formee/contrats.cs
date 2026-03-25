@@ -60,77 +60,7 @@ namespace venolocation.formee
             lblTotalValue.Text = total.ToString("N2") + " DH";
         }
 
-        private void btnCalculer_Click(object sender, EventArgs e)
-        {
-            CalculerMontants();
-        }
-
-        private void btnNouveau_Click(object sender, EventArgs e)
-        {
-            cboClient.SelectedIndex = -1;
-            txtNom.Clear();
-            txtTelephone.Clear();
-            txtPermis.Clear();
-            txtAdresse.Clear();
-
-            cboImmatriculation.SelectedIndex = -1;
-            cboMarque.SelectedIndex = -1;
-            cboModele.SelectedIndex = -1;
-            cboCarburant.SelectedIndex = -1;
-            cboPuissance.SelectedIndex = -1;
-            cboCategorie.SelectedIndex = -1;
-            txtKilometrage.Clear();
-            txtPrixJour.Text = "0";
-
-            dtpDateDebut.Value = DateTime.Today;
-            dtpDateFin.Value = DateTime.Today.AddDays(1);
-
-            nudAvance.Value = 0;
-            cboModePaiement.SelectedIndex = -1;
-            txtRemarques.Clear();
-
-            txtPrixTotal.Text = "0,00 DH";
-            txtResteAPayer.Text = "0,00 DH";
-            txtNombreJours.Text = "1";
-            lblDureeValue.Text = "1 jour";
-            lblTotalValue.Text = "0,00 DH";
-
-            AutoGenerateContractNumber();
-        }
-
-        private void btnEnregistrer_Click(object sender, EventArgs e)
-        {
-            CalculerMontants();
-
-            MessageBox.Show(
-                "Contrat enregistré avec succès.",
-                "Enregistrement",
-                MessageBoxButtons.OK,
-                MessageBoxIcon.Information);
-        }
-
-        private void btnAnnuler_Click(object sender, EventArgs e)
-        {
-            DialogResult result = MessageBox.Show(
-                "Voulez-vous vraiment annuler ?",
-                "Confirmation",
-                MessageBoxButtons.YesNo,
-                MessageBoxIcon.Question);
-
-            if (result == DialogResult.Yes)
-            {
-                Close();
-            }
-        }
-
-        private void btnImprimer_Click(object sender, EventArgs e)
-        {
-            MessageBox.Show(
-                "Fonction d'impression prête à être liée.",
-                "Impression",
-                MessageBoxButtons.OK,
-                MessageBoxIcon.Information);
-        }
+      
 
         private void dtpDateDebut_ValueChanged(object sender, EventArgs e)
         {
@@ -221,6 +151,70 @@ namespace venolocation.formee
             }
 
             CalculerMontants();
+        }
+
+        private void btnNouveau_Click_1(object sender, EventArgs e)
+        {
+
+            cboClient.SelectedIndex = -1;
+            txtNom.Clear();
+            txtTelephone.Clear();
+            txtPermis.Clear();
+            txtAdresse.Clear();
+
+            cboImmatriculation.SelectedIndex = -1;
+            cboMarque.SelectedIndex = -1;
+            cboModele.SelectedIndex = -1;
+            cboCarburant.SelectedIndex = -1;
+            cboPuissance.SelectedIndex = -1;
+            cboCategorie.SelectedIndex = -1;
+            txtKilometrage.Clear();
+            txtPrixJour.Text = "0";
+
+            dtpDateDebut.Value = DateTime.Today;
+            dtpDateFin.Value = DateTime.Today.AddDays(1);
+
+            nudAvance.Value = 0;
+            cboModePaiement.SelectedIndex = -1;
+            txtRemarques.Clear();
+
+            txtPrixTotal.Text = "0,00 DH";
+            txtResteAPayer.Text = "0,00 DH";
+            txtNombreJours.Text = "1";
+            lblDureeValue.Text = "1 jour";
+            lblTotalValue.Text = "0,00 DH";
+
+            AutoGenerateContractNumber();
+        }
+
+        private void btncalculer_Click_1(object sender, EventArgs e)
+        {
+            CalculerMontants();
+        }
+
+        private void btnannuller_Click(object sender, EventArgs e)
+        {
+            DialogResult result = MessageBox.Show(
+               "Voulez-vous vraiment annuler ?",
+               "Confirmation",
+               MessageBoxButtons.YesNo,
+               MessageBoxIcon.Question);
+
+            if (result == DialogResult.Yes)
+            {
+                Close();
+            }
+        }
+
+        private void btnEnregistrer_Click_1(object sender, EventArgs e)
+        {
+            CalculerMontants();
+
+            MessageBox.Show(
+                "Contrat enregistré avec succès.",
+                "Enregistrement",
+                MessageBoxButtons.OK,
+                MessageBoxIcon.Information);
         }
     }
 }

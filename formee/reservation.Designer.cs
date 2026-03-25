@@ -28,409 +28,567 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.lblTitre = new System.Windows.Forms.Label();
-            this.lblListeReservation = new System.Windows.Forms.Label();
-            this.lblListeClients = new System.Windows.Forms.Label();
-            this.lblListeVoiture = new System.Windows.Forms.Label();
-            this.dgvReservation = new System.Windows.Forms.DataGridView();
-            this.dgvClients = new System.Windows.Forms.DataGridView();
-            this.dgvVoitures = new System.Windows.Forms.DataGridView();
-            this.lblClient = new System.Windows.Forms.Label();
-            this.cmbClient = new System.Windows.Forms.ComboBox();
-            this.lblMatricule = new System.Windows.Forms.Label();
-            this.txtMatricule = new System.Windows.Forms.TextBox();
-            this.lblDateDebut = new System.Windows.Forms.Label();
-            this.dtpDateDebut = new System.Windows.Forms.DateTimePicker();
-            this.lblHeureDebut = new System.Windows.Forms.Label();
-            this.dtpHeureDebut = new System.Windows.Forms.DateTimePicker();
-            this.lblDateFin = new System.Windows.Forms.Label();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle5 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle6 = new System.Windows.Forms.DataGridViewCellStyle();
+            this.lblDateSection = new System.Windows.Forms.Label();
+            this.label2 = new System.Windows.Forms.Label();
+            this.label1 = new System.Windows.Forms.Label();
             this.dtpDateFin = new System.Windows.Forms.DateTimePicker();
-            this.lblHeureFin = new System.Windows.Forms.Label();
-            this.dtpHeureFin = new System.Windows.Forms.DateTimePicker();
-            this.btnAfficherPeriode = new System.Windows.Forms.Button();
-            this.btnTesterReservation = new System.Windows.Forms.Button();
-            this.btnReserver = new System.Windows.Forms.Button();
-            this.btnAnnuler = new System.Windows.Forms.Button();
-            this.btnConfirmer = new System.Windows.Forms.Button();
-            this.pnlTop = new System.Windows.Forms.Panel();
-            this.pnlMain = new System.Windows.Forms.Panel();
-            ((System.ComponentModel.ISupportInitialize)(this.dgvReservation)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.dgvClients)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.dgvVoitures)).BeginInit();
-            this.pnlTop.SuspendLayout();
-            this.pnlMain.SuspendLayout();
+            this.lblDateFin = new System.Windows.Forms.Label();
+            this.dtpDateDebut = new System.Windows.Forms.DateTimePicker();
+            this.lblDateDebut = new System.Windows.Forms.Label();
+            this.btnVerifierDate = new FontAwesome.Sharp.IconButton();
+            this.comboBox1 = new System.Windows.Forms.ComboBox();
+            this.comboBox2 = new System.Windows.Forms.ComboBox();
+            this.panel1 = new System.Windows.Forms.Panel();
+            this.panel3 = new System.Windows.Forms.Panel();
+            this.cmbClient = new System.Windows.Forms.ComboBox();
+            this.lblClient = new System.Windows.Forms.Label();
+            this.cmbVoiture = new System.Windows.Forms.ComboBox();
+            this.lblVoiture = new System.Windows.Forms.Label();
+            this.label3 = new System.Windows.Forms.Label();
+            this.label4 = new System.Windows.Forms.Label();
+            this.iconButton1 = new FontAwesome.Sharp.IconButton();
+            this.dgvReservations = new System.Windows.Forms.DataGridView();
+            this.colID = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.colVoiture = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.colClient = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.colDateDebut = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.colDateFin = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.colStatut = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.panel2 = new System.Windows.Forms.Panel();
+            this.btnAnnuler = new FontAwesome.Sharp.IconButton();
+            this.btnNouvelleReservation = new FontAwesome.Sharp.IconButton();
+            this.btnReserver = new FontAwesome.Sharp.IconButton();
+            this.btnConfirmer = new FontAwesome.Sharp.IconButton();
+            this.panel1.SuspendLayout();
+            this.panel3.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.dgvReservations)).BeginInit();
+            this.panel2.SuspendLayout();
             this.SuspendLayout();
             // 
-            // lblTitre
+            // lblDateSection
             // 
-            this.lblTitre.AutoSize = true;
-            this.lblTitre.BackColor = System.Drawing.Color.Transparent;
-            this.lblTitre.Font = new System.Drawing.Font("Segoe UI", 22F, System.Drawing.FontStyle.Bold);
-            this.lblTitre.ForeColor = System.Drawing.Color.White;
-            this.lblTitre.Location = new System.Drawing.Point(26, 22);
-            this.lblTitre.Name = "lblTitre";
-            this.lblTitre.Size = new System.Drawing.Size(218, 50);
-            this.lblTitre.TabIndex = 0;
-            this.lblTitre.Text = "reservation";
+            this.lblDateSection.BackColor = System.Drawing.Color.Transparent;
+            this.lblDateSection.Font = new System.Drawing.Font("Segoe UI", 17F, System.Drawing.FontStyle.Bold);
+            this.lblDateSection.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(65)))), ((int)(((byte)(110)))), ((int)(((byte)(130)))));
+            this.lblDateSection.Location = new System.Drawing.Point(3, 14);
+            this.lblDateSection.Name = "lblDateSection";
+            this.lblDateSection.Padding = new System.Windows.Forms.Padding(0, 0, 8, 0);
+            this.lblDateSection.Size = new System.Drawing.Size(316, 40);
+            this.lblDateSection.TabIndex = 35;
+            this.lblDateSection.Text = "Sélectionner la Date :";
             // 
-            // lblListeReservation
+            // label2
             // 
-            this.lblListeReservation.AutoSize = true;
-            this.lblListeReservation.Font = new System.Drawing.Font("Segoe UI", 14F, System.Drawing.FontStyle.Bold);
-            this.lblListeReservation.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(45)))), ((int)(((byte)(55)))), ((int)(((byte)(72)))));
-            this.lblListeReservation.Location = new System.Drawing.Point(32, 22);
-            this.lblListeReservation.Name = "lblListeReservation";
-            this.lblListeReservation.Size = new System.Drawing.Size(198, 32);
-            this.lblListeReservation.TabIndex = 1;
-            this.lblListeReservation.Text = "liste réservation";
+            this.label2.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Bold);
+            this.label2.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(54)))), ((int)(((byte)(94)))), ((int)(((byte)(118)))));
+            this.label2.Location = new System.Drawing.Point(1084, 87);
+            this.label2.Name = "label2";
+            this.label2.Size = new System.Drawing.Size(103, 28);
+            this.label2.TabIndex = 33;
+            this.label2.Text = "Heur Fin :";
             // 
-            // lblListeClients
+            // label1
             // 
-            this.lblListeClients.AutoSize = true;
-            this.lblListeClients.Font = new System.Drawing.Font("Segoe UI", 14F, System.Drawing.FontStyle.Bold);
-            this.lblListeClients.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(45)))), ((int)(((byte)(55)))), ((int)(((byte)(72)))));
-            this.lblListeClients.Location = new System.Drawing.Point(778, 22);
-            this.lblListeClients.Name = "lblListeClients";
-            this.lblListeClients.Size = new System.Drawing.Size(142, 32);
-            this.lblListeClients.TabIndex = 2;
-            this.lblListeClients.Text = "liste clients";
-            // 
-            // lblListeVoiture
-            // 
-            this.lblListeVoiture.AutoSize = true;
-            this.lblListeVoiture.Font = new System.Drawing.Font("Segoe UI", 14F, System.Drawing.FontStyle.Bold);
-            this.lblListeVoiture.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(45)))), ((int)(((byte)(55)))), ((int)(((byte)(72)))));
-            this.lblListeVoiture.Location = new System.Drawing.Point(778, 356);
-            this.lblListeVoiture.Name = "lblListeVoiture";
-            this.lblListeVoiture.Size = new System.Drawing.Size(150, 32);
-            this.lblListeVoiture.TabIndex = 3;
-            this.lblListeVoiture.Text = "liste voiture";
-            // 
-            // dgvReservation
-            // 
-            this.dgvReservation.AllowUserToAddRows = false;
-            this.dgvReservation.AllowUserToDeleteRows = false;
-            this.dgvReservation.BackgroundColor = System.Drawing.Color.White;
-            this.dgvReservation.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dgvReservation.Location = new System.Drawing.Point(38, 64);
-            this.dgvReservation.Name = "dgvReservation";
-            this.dgvReservation.ReadOnly = true;
-            this.dgvReservation.RowHeadersVisible = false;
-            this.dgvReservation.RowHeadersWidth = 51;
-            this.dgvReservation.RowTemplate.Height = 24;
-            this.dgvReservation.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.dgvReservation.Size = new System.Drawing.Size(690, 230);
-            this.dgvReservation.TabIndex = 4;
-            // 
-            // dgvClients
-            // 
-            this.dgvClients.AllowUserToAddRows = false;
-            this.dgvClients.AllowUserToDeleteRows = false;
-            this.dgvClients.BackgroundColor = System.Drawing.Color.White;
-            this.dgvClients.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dgvClients.Location = new System.Drawing.Point(784, 64);
-            this.dgvClients.Name = "dgvClients";
-            this.dgvClients.ReadOnly = true;
-            this.dgvClients.RowHeadersVisible = false;
-            this.dgvClients.RowHeadersWidth = 51;
-            this.dgvClients.RowTemplate.Height = 24;
-            this.dgvClients.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.dgvClients.Size = new System.Drawing.Size(520, 230);
-            this.dgvClients.TabIndex = 5;
-            // 
-            // dgvVoitures
-            // 
-            this.dgvVoitures.AllowUserToAddRows = false;
-            this.dgvVoitures.AllowUserToDeleteRows = false;
-            this.dgvVoitures.BackgroundColor = System.Drawing.Color.White;
-            this.dgvVoitures.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dgvVoitures.Location = new System.Drawing.Point(784, 398);
-            this.dgvVoitures.Name = "dgvVoitures";
-            this.dgvVoitures.ReadOnly = true;
-            this.dgvVoitures.RowHeadersVisible = false;
-            this.dgvVoitures.RowHeadersWidth = 51;
-            this.dgvVoitures.RowTemplate.Height = 24;
-            this.dgvVoitures.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.dgvVoitures.Size = new System.Drawing.Size(520, 205);
-            this.dgvVoitures.TabIndex = 6;
-            // 
-            // lblClient
-            // 
-            this.lblClient.AutoSize = true;
-            this.lblClient.Font = new System.Drawing.Font("Segoe UI", 14F, System.Drawing.FontStyle.Bold);
-            this.lblClient.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(45)))), ((int)(((byte)(55)))), ((int)(((byte)(72)))));
-            this.lblClient.Location = new System.Drawing.Point(38, 330);
-            this.lblClient.Name = "lblClient";
-            this.lblClient.Size = new System.Drawing.Size(80, 32);
-            this.lblClient.TabIndex = 7;
-            this.lblClient.Text = "Client";
-            // 
-            // cmbClient
-            // 
-            this.cmbClient.Font = new System.Drawing.Font("Segoe UI", 12F);
-            this.cmbClient.FormattingEnabled = true;
-            this.cmbClient.Location = new System.Drawing.Point(170, 326);
-            this.cmbClient.Name = "cmbClient";
-            this.cmbClient.Size = new System.Drawing.Size(350, 36);
-            this.cmbClient.TabIndex = 8;
-            // 
-            // lblMatricule
-            // 
-            this.lblMatricule.AutoSize = true;
-            this.lblMatricule.Font = new System.Drawing.Font("Segoe UI", 14F, System.Drawing.FontStyle.Bold);
-            this.lblMatricule.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(45)))), ((int)(((byte)(55)))), ((int)(((byte)(72)))));
-            this.lblMatricule.Location = new System.Drawing.Point(38, 388);
-            this.lblMatricule.Name = "lblMatricule";
-            this.lblMatricule.Size = new System.Drawing.Size(123, 32);
-            this.lblMatricule.TabIndex = 9;
-            this.lblMatricule.Text = "Matricule";
-            // 
-            // txtMatricule
-            // 
-            this.txtMatricule.Font = new System.Drawing.Font("Segoe UI", 12F);
-            this.txtMatricule.Location = new System.Drawing.Point(170, 384);
-            this.txtMatricule.Name = "txtMatricule";
-            this.txtMatricule.Size = new System.Drawing.Size(350, 34);
-            this.txtMatricule.TabIndex = 10;
-            // 
-            // lblDateDebut
-            // 
-            this.lblDateDebut.Font = new System.Drawing.Font("Segoe UI", 16F, System.Drawing.FontStyle.Bold);
-            this.lblDateDebut.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(45)))), ((int)(((byte)(55)))), ((int)(((byte)(72)))));
-            this.lblDateDebut.Location = new System.Drawing.Point(38, 478);
-            this.lblDateDebut.Name = "lblDateDebut";
-            this.lblDateDebut.Size = new System.Drawing.Size(161, 37);
-            this.lblDateDebut.TabIndex = 11;
-            this.lblDateDebut.Text = "Date début";
-            // 
-            // dtpDateDebut
-            // 
-            this.dtpDateDebut.Font = new System.Drawing.Font("Segoe UI", 12F);
-            this.dtpDateDebut.Format = System.Windows.Forms.DateTimePickerFormat.Short;
-            this.dtpDateDebut.Location = new System.Drawing.Point(286, 480);
-            this.dtpDateDebut.Name = "dtpDateDebut";
-            this.dtpDateDebut.Size = new System.Drawing.Size(210, 34);
-            this.dtpDateDebut.TabIndex = 12;
-            // 
-            // lblHeureDebut
-            // 
-            this.lblHeureDebut.Font = new System.Drawing.Font("Segoe UI", 16F, System.Drawing.FontStyle.Bold);
-            this.lblHeureDebut.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(45)))), ((int)(((byte)(55)))), ((int)(((byte)(72)))));
-            this.lblHeureDebut.Location = new System.Drawing.Point(38, 538);
-            this.lblHeureDebut.Name = "lblHeureDebut";
-            this.lblHeureDebut.Size = new System.Drawing.Size(178, 37);
-            this.lblHeureDebut.TabIndex = 13;
-            this.lblHeureDebut.Text = "Heure début";
-            // 
-            // dtpHeureDebut
-            // 
-            this.dtpHeureDebut.Font = new System.Drawing.Font("Segoe UI", 12F);
-            this.dtpHeureDebut.Format = System.Windows.Forms.DateTimePickerFormat.Time;
-            this.dtpHeureDebut.Location = new System.Drawing.Point(286, 540);
-            this.dtpHeureDebut.Name = "dtpHeureDebut";
-            this.dtpHeureDebut.ShowUpDown = true;
-            this.dtpHeureDebut.Size = new System.Drawing.Size(116, 34);
-            this.dtpHeureDebut.TabIndex = 14;
-            // 
-            // lblDateFin
-            // 
-            this.lblDateFin.Font = new System.Drawing.Font("Segoe UI", 16F, System.Drawing.FontStyle.Bold);
-            this.lblDateFin.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(45)))), ((int)(((byte)(55)))), ((int)(((byte)(72)))));
-            this.lblDateFin.Location = new System.Drawing.Point(38, 628);
-            this.lblDateFin.Name = "lblDateFin";
-            this.lblDateFin.Size = new System.Drawing.Size(119, 37);
-            this.lblDateFin.TabIndex = 15;
-            this.lblDateFin.Text = "Date fin";
+            this.label1.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Bold);
+            this.label1.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(54)))), ((int)(((byte)(94)))), ((int)(((byte)(118)))));
+            this.label1.Location = new System.Drawing.Point(429, 87);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(133, 28);
+            this.label1.TabIndex = 31;
+            this.label1.Text = "Heur Début :";
             // 
             // dtpDateFin
             // 
             this.dtpDateFin.Font = new System.Drawing.Font("Segoe UI", 12F);
             this.dtpDateFin.Format = System.Windows.Forms.DateTimePickerFormat.Short;
-            this.dtpDateFin.Location = new System.Drawing.Point(286, 628);
+            this.dtpDateFin.Location = new System.Drawing.Point(838, 81);
+            this.dtpDateFin.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.dtpDateFin.Name = "dtpDateFin";
-            this.dtpDateFin.Size = new System.Drawing.Size(210, 34);
-            this.dtpDateFin.TabIndex = 16;
+            this.dtpDateFin.Size = new System.Drawing.Size(230, 34);
+            this.dtpDateFin.TabIndex = 30;
             // 
-            // lblHeureFin
+            // lblDateFin
             // 
-            this.lblHeureFin.Font = new System.Drawing.Font("Segoe UI", 16F, System.Drawing.FontStyle.Bold);
-            this.lblHeureFin.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(45)))), ((int)(((byte)(55)))), ((int)(((byte)(72)))));
-            this.lblHeureFin.Location = new System.Drawing.Point(38, 714);
-            this.lblHeureFin.Name = "lblHeureFin";
-            this.lblHeureFin.Size = new System.Drawing.Size(136, 37);
-            this.lblHeureFin.TabIndex = 17;
-            this.lblHeureFin.Text = "Heure fin";
+            this.lblDateFin.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Bold);
+            this.lblDateFin.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(54)))), ((int)(((byte)(94)))), ((int)(((byte)(118)))));
+            this.lblDateFin.Location = new System.Drawing.Point(720, 87);
+            this.lblDateFin.Name = "lblDateFin";
+            this.lblDateFin.Size = new System.Drawing.Size(102, 28);
+            this.lblDateFin.TabIndex = 29;
+            this.lblDateFin.Text = "Date Fin :";
             // 
-            // dtpHeureFin
+            // dtpDateDebut
             // 
-            this.dtpHeureFin.Font = new System.Drawing.Font("Segoe UI", 12F);
-            this.dtpHeureFin.Format = System.Windows.Forms.DateTimePickerFormat.Time;
-            this.dtpHeureFin.Location = new System.Drawing.Point(286, 722);
-            this.dtpHeureFin.Name = "dtpHeureFin";
-            this.dtpHeureFin.ShowUpDown = true;
-            this.dtpHeureFin.Size = new System.Drawing.Size(116, 34);
-            this.dtpHeureFin.TabIndex = 18;
+            this.dtpDateDebut.Font = new System.Drawing.Font("Segoe UI", 12F);
+            this.dtpDateDebut.Format = System.Windows.Forms.DateTimePickerFormat.Short;
+            this.dtpDateDebut.Location = new System.Drawing.Point(183, 81);
+            this.dtpDateDebut.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.dtpDateDebut.Name = "dtpDateDebut";
+            this.dtpDateDebut.Size = new System.Drawing.Size(230, 34);
+            this.dtpDateDebut.TabIndex = 28;
             // 
-            // btnAfficherPeriode
+            // lblDateDebut
             // 
-            this.btnAfficherPeriode.BackColor = System.Drawing.Color.White;
-            this.btnAfficherPeriode.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnAfficherPeriode.Font = new System.Drawing.Font("Segoe UI", 13F, System.Drawing.FontStyle.Bold);
-            this.btnAfficherPeriode.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(45)))), ((int)(((byte)(55)))), ((int)(((byte)(72)))));
-            this.btnAfficherPeriode.Location = new System.Drawing.Point(569, 794);
-            this.btnAfficherPeriode.Name = "btnAfficherPeriode";
-            this.btnAfficherPeriode.Size = new System.Drawing.Size(240, 54);
-            this.btnAfficherPeriode.TabIndex = 19;
-            this.btnAfficherPeriode.Text = "Afficher période";
-            this.btnAfficherPeriode.UseVisualStyleBackColor = false;
+            this.lblDateDebut.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Bold);
+            this.lblDateDebut.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(54)))), ((int)(((byte)(94)))), ((int)(((byte)(118)))));
+            this.lblDateDebut.Location = new System.Drawing.Point(35, 87);
+            this.lblDateDebut.Name = "lblDateDebut";
+            this.lblDateDebut.Size = new System.Drawing.Size(132, 28);
+            this.lblDateDebut.TabIndex = 27;
+            this.lblDateDebut.Text = "Date Début :";
             // 
-            // btnTesterReservation
+            // btnVerifierDate
             // 
-            this.btnTesterReservation.BackColor = System.Drawing.Color.White;
-            this.btnTesterReservation.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnTesterReservation.Font = new System.Drawing.Font("Segoe UI", 13F, System.Drawing.FontStyle.Bold);
-            this.btnTesterReservation.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(45)))), ((int)(((byte)(55)))), ((int)(((byte)(72)))));
-            this.btnTesterReservation.Location = new System.Drawing.Point(1050, 640);
-            this.btnTesterReservation.Name = "btnTesterReservation";
-            this.btnTesterReservation.Size = new System.Drawing.Size(254, 54);
-            this.btnTesterReservation.TabIndex = 20;
-            this.btnTesterReservation.Text = "Tester la réservation";
-            this.btnTesterReservation.UseVisualStyleBackColor = false;
+            this.btnVerifierDate.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(217)))), ((int)(((byte)(226)))), ((int)(((byte)(232)))));
+            this.btnVerifierDate.FlatAppearance.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(180)))), ((int)(((byte)(194)))), ((int)(((byte)(202)))));
+            this.btnVerifierDate.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnVerifierDate.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Bold);
+            this.btnVerifierDate.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(67)))), ((int)(((byte)(102)))), ((int)(((byte)(120)))));
+            this.btnVerifierDate.IconChar = FontAwesome.Sharp.IconChar.CalendarCheck;
+            this.btnVerifierDate.IconColor = System.Drawing.Color.FromArgb(((int)(((byte)(67)))), ((int)(((byte)(102)))), ((int)(((byte)(120)))));
+            this.btnVerifierDate.IconFont = FontAwesome.Sharp.IconFont.Auto;
+            this.btnVerifierDate.IconSize = 24;
+            this.btnVerifierDate.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.btnVerifierDate.Location = new System.Drawing.Point(591, 158);
+            this.btnVerifierDate.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.btnVerifierDate.Name = "btnVerifierDate";
+            this.btnVerifierDate.Padding = new System.Windows.Forms.Padding(10, 0, 0, 0);
+            this.btnVerifierDate.Size = new System.Drawing.Size(255, 35);
+            this.btnVerifierDate.TabIndex = 26;
+            this.btnVerifierDate.Text = "Vérifier la Date";
+            this.btnVerifierDate.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
+            this.btnVerifierDate.UseVisualStyleBackColor = false;
             // 
-            // btnReserver
+            // comboBox1
             // 
-            this.btnReserver.BackColor = System.Drawing.Color.White;
-            this.btnReserver.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnReserver.Font = new System.Drawing.Font("Segoe UI", 13F, System.Drawing.FontStyle.Bold);
-            this.btnReserver.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(45)))), ((int)(((byte)(55)))), ((int)(((byte)(72)))));
-            this.btnReserver.Location = new System.Drawing.Point(784, 714);
-            this.btnReserver.Name = "btnReserver";
-            this.btnReserver.Size = new System.Drawing.Size(180, 54);
-            this.btnReserver.TabIndex = 21;
-            this.btnReserver.Text = "Réserver";
-            this.btnReserver.UseVisualStyleBackColor = false;
+            this.comboBox1.FlatStyle = System.Windows.Forms.FlatStyle.System;
+            this.comboBox1.Font = new System.Drawing.Font("Segoe UI", 10.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.comboBox1.FormattingEnabled = true;
+            this.comboBox1.Items.AddRange(new object[] {
+            "00:00",
+            "01:00",
+            "02:00",
+            "03:00",
+            "04:00",
+            "05:00",
+            "06:00",
+            "07:00",
+            "08:00",
+            "09:00",
+            "10:00",
+            "11:00",
+            "12:00",
+            "13:00",
+            "14:00",
+            "15:00",
+            "16:00",
+            "17:00",
+            "18:00",
+            "19:00",
+            "20:00",
+            "21:00",
+            "22:00",
+            "23:00"});
+            this.comboBox1.Location = new System.Drawing.Point(578, 82);
+            this.comboBox1.Name = "comboBox1";
+            this.comboBox1.Size = new System.Drawing.Size(107, 33);
+            this.comboBox1.TabIndex = 36;
+            // 
+            // comboBox2
+            // 
+            this.comboBox2.FlatStyle = System.Windows.Forms.FlatStyle.System;
+            this.comboBox2.Font = new System.Drawing.Font("Segoe UI", 10.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.comboBox2.FormattingEnabled = true;
+            this.comboBox2.Items.AddRange(new object[] {
+            "00:00",
+            "01:00",
+            "02:00",
+            "03:00",
+            "04:00",
+            "05:00",
+            "06:00",
+            "07:00",
+            "08:00",
+            "09:00",
+            "10:00",
+            "11:00",
+            "12:00",
+            "13:00",
+            "14:00",
+            "15:00",
+            "16:00",
+            "17:00",
+            "18:00",
+            "19:00",
+            "20:00",
+            "21:00",
+            "22:00",
+            "23:00"});
+            this.comboBox2.Location = new System.Drawing.Point(1203, 82);
+            this.comboBox2.Name = "comboBox2";
+            this.comboBox2.Size = new System.Drawing.Size(107, 33);
+            this.comboBox2.TabIndex = 37;
+            // 
+            // panel1
+            // 
+            this.panel1.Controls.Add(this.lblDateSection);
+            this.panel1.Controls.Add(this.btnVerifierDate);
+            this.panel1.Controls.Add(this.comboBox2);
+            this.panel1.Controls.Add(this.comboBox1);
+            this.panel1.Controls.Add(this.lblDateDebut);
+            this.panel1.Controls.Add(this.label2);
+            this.panel1.Controls.Add(this.dtpDateDebut);
+            this.panel1.Controls.Add(this.label1);
+            this.panel1.Controls.Add(this.lblDateFin);
+            this.panel1.Controls.Add(this.dtpDateFin);
+            this.panel1.Location = new System.Drawing.Point(12, 649);
+            this.panel1.Name = "panel1";
+            this.panel1.Size = new System.Drawing.Size(1358, 201);
+            this.panel1.TabIndex = 38;
+            // 
+            // panel3
+            // 
+            this.panel3.Controls.Add(this.iconButton1);
+            this.panel3.Controls.Add(this.label4);
+            this.panel3.Controls.Add(this.label3);
+            this.panel3.Controls.Add(this.cmbClient);
+            this.panel3.Controls.Add(this.lblClient);
+            this.panel3.Controls.Add(this.cmbVoiture);
+            this.panel3.Controls.Add(this.lblVoiture);
+            this.panel3.Location = new System.Drawing.Point(12, 475);
+            this.panel3.Name = "panel3";
+            this.panel3.Size = new System.Drawing.Size(1358, 168);
+            this.panel3.TabIndex = 40;
+            // 
+            // cmbClient
+            // 
+            this.cmbClient.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.cmbClient.FlatStyle = System.Windows.Forms.FlatStyle.System;
+            this.cmbClient.Font = new System.Drawing.Font("Segoe UI", 12F);
+            this.cmbClient.FormattingEnabled = true;
+            this.cmbClient.Location = new System.Drawing.Point(800, 58);
+            this.cmbClient.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.cmbClient.Name = "cmbClient";
+            this.cmbClient.Size = new System.Drawing.Size(510, 36);
+            this.cmbClient.TabIndex = 7;
+            // 
+            // lblClient
+            // 
+            this.lblClient.AutoSize = true;
+            this.lblClient.Font = new System.Drawing.Font("Segoe UI", 13F, System.Drawing.FontStyle.Bold);
+            this.lblClient.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(54)))), ((int)(((byte)(94)))), ((int)(((byte)(118)))));
+            this.lblClient.Location = new System.Drawing.Point(680, 60);
+            this.lblClient.Name = "lblClient";
+            this.lblClient.Size = new System.Drawing.Size(85, 30);
+            this.lblClient.TabIndex = 6;
+            this.lblClient.Text = "Client :";
+            // 
+            // cmbVoiture
+            // 
+            this.cmbVoiture.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.cmbVoiture.FlatStyle = System.Windows.Forms.FlatStyle.System;
+            this.cmbVoiture.Font = new System.Drawing.Font("Segoe UI", 12F);
+            this.cmbVoiture.FormattingEnabled = true;
+            this.cmbVoiture.Location = new System.Drawing.Point(125, 58);
+            this.cmbVoiture.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.cmbVoiture.Name = "cmbVoiture";
+            this.cmbVoiture.Size = new System.Drawing.Size(470, 36);
+            this.cmbVoiture.TabIndex = 5;
+            // 
+            // lblVoiture
+            // 
+            this.lblVoiture.AutoSize = true;
+            this.lblVoiture.Font = new System.Drawing.Font("Segoe UI", 13F, System.Drawing.FontStyle.Bold);
+            this.lblVoiture.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(54)))), ((int)(((byte)(94)))), ((int)(((byte)(118)))));
+            this.lblVoiture.Location = new System.Drawing.Point(10, 60);
+            this.lblVoiture.Name = "lblVoiture";
+            this.lblVoiture.Size = new System.Drawing.Size(101, 30);
+            this.lblVoiture.TabIndex = 4;
+            this.lblVoiture.Text = "Voiture :";
+            // 
+            // label3
+            // 
+            this.label3.AutoSize = true;
+            this.label3.Font = new System.Drawing.Font("Segoe UI", 13F, System.Drawing.FontStyle.Bold);
+            this.label3.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(54)))), ((int)(((byte)(94)))), ((int)(((byte)(118)))));
+            this.label3.Location = new System.Drawing.Point(263, 13);
+            this.label3.Name = "label3";
+            this.label3.Size = new System.Drawing.Size(190, 30);
+            this.label3.TabIndex = 8;
+            this.label3.Text = "Choisir la Voiture";
+            // 
+            // label4
+            // 
+            this.label4.AutoSize = true;
+            this.label4.Font = new System.Drawing.Font("Segoe UI", 13F, System.Drawing.FontStyle.Bold);
+            this.label4.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(54)))), ((int)(((byte)(94)))), ((int)(((byte)(118)))));
+            this.label4.Location = new System.Drawing.Point(949, 13);
+            this.label4.Name = "label4";
+            this.label4.Size = new System.Drawing.Size(174, 30);
+            this.label4.TabIndex = 9;
+            this.label4.Text = "Choisir la Client";
+            // 
+            // iconButton1
+            // 
+            this.iconButton1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(217)))), ((int)(((byte)(226)))), ((int)(((byte)(232)))));
+            this.iconButton1.FlatAppearance.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(180)))), ((int)(((byte)(194)))), ((int)(((byte)(202)))));
+            this.iconButton1.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.iconButton1.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Bold);
+            this.iconButton1.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(67)))), ((int)(((byte)(102)))), ((int)(((byte)(120)))));
+            this.iconButton1.IconChar = FontAwesome.Sharp.IconChar.CalendarCheck;
+            this.iconButton1.IconColor = System.Drawing.Color.FromArgb(((int)(((byte)(67)))), ((int)(((byte)(102)))), ((int)(((byte)(120)))));
+            this.iconButton1.IconFont = FontAwesome.Sharp.IconFont.Auto;
+            this.iconButton1.IconSize = 24;
+            this.iconButton1.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.iconButton1.Location = new System.Drawing.Point(642, 120);
+            this.iconButton1.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.iconButton1.Name = "iconButton1";
+            this.iconButton1.Padding = new System.Windows.Forms.Padding(10, 0, 0, 0);
+            this.iconButton1.Size = new System.Drawing.Size(153, 35);
+            this.iconButton1.TabIndex = 38;
+            this.iconButton1.Text = "    Validé";
+            this.iconButton1.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
+            this.iconButton1.UseVisualStyleBackColor = false;
+            // 
+            // dgvReservations
+            // 
+            this.dgvReservations.AllowUserToAddRows = false;
+            this.dgvReservations.AllowUserToDeleteRows = false;
+            this.dgvReservations.AllowUserToResizeColumns = false;
+            this.dgvReservations.AllowUserToResizeRows = false;
+            this.dgvReservations.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
+            this.dgvReservations.BackgroundColor = System.Drawing.Color.White;
+            this.dgvReservations.BorderStyle = System.Windows.Forms.BorderStyle.None;
+            this.dgvReservations.ColumnHeadersBorderStyle = System.Windows.Forms.DataGridViewHeaderBorderStyle.Single;
+            dataGridViewCellStyle5.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            dataGridViewCellStyle5.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(51)))), ((int)(((byte)(140)))), ((int)(((byte)(170)))));
+            dataGridViewCellStyle5.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Bold);
+            dataGridViewCellStyle5.ForeColor = System.Drawing.Color.White;
+            dataGridViewCellStyle5.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(51)))), ((int)(((byte)(140)))), ((int)(((byte)(170)))));
+            dataGridViewCellStyle5.SelectionForeColor = System.Drawing.Color.White;
+            dataGridViewCellStyle5.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.dgvReservations.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle5;
+            this.dgvReservations.ColumnHeadersHeight = 48;
+            this.dgvReservations.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
+            this.colID,
+            this.colVoiture,
+            this.colClient,
+            this.colDateDebut,
+            this.colDateFin,
+            this.colStatut});
+            dataGridViewCellStyle6.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            dataGridViewCellStyle6.BackColor = System.Drawing.Color.White;
+            dataGridViewCellStyle6.Font = new System.Drawing.Font("Segoe UI", 11F);
+            dataGridViewCellStyle6.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(40)))), ((int)(((byte)(40)))), ((int)(((byte)(40)))));
+            dataGridViewCellStyle6.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(233)))), ((int)(((byte)(241)))), ((int)(((byte)(246)))));
+            dataGridViewCellStyle6.SelectionForeColor = System.Drawing.Color.Black;
+            dataGridViewCellStyle6.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
+            this.dgvReservations.DefaultCellStyle = dataGridViewCellStyle6;
+            this.dgvReservations.EnableHeadersVisualStyles = false;
+            this.dgvReservations.GridColor = System.Drawing.Color.FromArgb(((int)(((byte)(205)))), ((int)(((byte)(221)))), ((int)(((byte)(229)))));
+            this.dgvReservations.Location = new System.Drawing.Point(12, 11);
+            this.dgvReservations.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.dgvReservations.MultiSelect = false;
+            this.dgvReservations.Name = "dgvReservations";
+            this.dgvReservations.ReadOnly = true;
+            this.dgvReservations.RowHeadersVisible = false;
+            this.dgvReservations.RowHeadersWidth = 51;
+            this.dgvReservations.RowTemplate.Height = 42;
+            this.dgvReservations.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
+            this.dgvReservations.Size = new System.Drawing.Size(1358, 344);
+            this.dgvReservations.TabIndex = 41;
+            // 
+            // colID
+            // 
+            this.colID.FillWeight = 55F;
+            this.colID.HeaderText = "ID";
+            this.colID.MinimumWidth = 6;
+            this.colID.Name = "colID";
+            this.colID.ReadOnly = true;
+            // 
+            // colVoiture
+            // 
+            this.colVoiture.HeaderText = "Voiture";
+            this.colVoiture.MinimumWidth = 6;
+            this.colVoiture.Name = "colVoiture";
+            this.colVoiture.ReadOnly = true;
+            // 
+            // colClient
+            // 
+            this.colClient.HeaderText = "Client";
+            this.colClient.MinimumWidth = 6;
+            this.colClient.Name = "colClient";
+            this.colClient.ReadOnly = true;
+            // 
+            // colDateDebut
+            // 
+            this.colDateDebut.HeaderText = "Date Début";
+            this.colDateDebut.MinimumWidth = 6;
+            this.colDateDebut.Name = "colDateDebut";
+            this.colDateDebut.ReadOnly = true;
+            // 
+            // colDateFin
+            // 
+            this.colDateFin.HeaderText = "Date Fin";
+            this.colDateFin.MinimumWidth = 6;
+            this.colDateFin.Name = "colDateFin";
+            this.colDateFin.ReadOnly = true;
+            // 
+            // colStatut
+            // 
+            this.colStatut.HeaderText = "Statut";
+            this.colStatut.MinimumWidth = 6;
+            this.colStatut.Name = "colStatut";
+            this.colStatut.ReadOnly = true;
+            // 
+            // panel2
+            // 
+            this.panel2.Controls.Add(this.btnAnnuler);
+            this.panel2.Controls.Add(this.btnNouvelleReservation);
+            this.panel2.Controls.Add(this.btnReserver);
+            this.panel2.Controls.Add(this.btnConfirmer);
+            this.panel2.Location = new System.Drawing.Point(12, 369);
+            this.panel2.Name = "panel2";
+            this.panel2.Size = new System.Drawing.Size(1358, 100);
+            this.panel2.TabIndex = 42;
             // 
             // btnAnnuler
             // 
-            this.btnAnnuler.BackColor = System.Drawing.Color.White;
-            this.btnAnnuler.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnAnnuler.Font = new System.Drawing.Font("Segoe UI", 13F, System.Drawing.FontStyle.Bold);
-            this.btnAnnuler.ForeColor = System.Drawing.Color.Firebrick;
-            this.btnAnnuler.Location = new System.Drawing.Point(980, 714);
+            this.btnAnnuler.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(223)))), ((int)(((byte)(33)))), ((int)(((byte)(33)))));
+            this.btnAnnuler.FlatAppearance.BorderSize = 0;
+            this.btnAnnuler.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
+            this.btnAnnuler.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Bold);
+            this.btnAnnuler.ForeColor = System.Drawing.Color.White;
+            this.btnAnnuler.IconChar = FontAwesome.Sharp.IconChar.Ban;
+            this.btnAnnuler.IconColor = System.Drawing.Color.White;
+            this.btnAnnuler.IconFont = FontAwesome.Sharp.IconFont.Auto;
+            this.btnAnnuler.IconSize = 32;
+            this.btnAnnuler.Location = new System.Drawing.Point(1045, 27);
+            this.btnAnnuler.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.btnAnnuler.Name = "btnAnnuler";
-            this.btnAnnuler.Size = new System.Drawing.Size(150, 54);
-            this.btnAnnuler.TabIndex = 22;
-            this.btnAnnuler.Text = "Annuler";
+            this.btnAnnuler.Size = new System.Drawing.Size(190, 50);
+            this.btnAnnuler.TabIndex = 25;
+            this.btnAnnuler.Text = "   Annuler";
+            this.btnAnnuler.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
             this.btnAnnuler.UseVisualStyleBackColor = false;
+            // 
+            // btnNouvelleReservation
+            // 
+            this.btnNouvelleReservation.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(18)))), ((int)(((byte)(150)))), ((int)(((byte)(85)))));
+            this.btnNouvelleReservation.FlatAppearance.BorderSize = 0;
+            this.btnNouvelleReservation.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnNouvelleReservation.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Bold);
+            this.btnNouvelleReservation.ForeColor = System.Drawing.Color.White;
+            this.btnNouvelleReservation.IconChar = FontAwesome.Sharp.IconChar.PlusSquare;
+            this.btnNouvelleReservation.IconColor = System.Drawing.Color.White;
+            this.btnNouvelleReservation.IconFont = FontAwesome.Sharp.IconFont.Auto;
+            this.btnNouvelleReservation.IconSize = 32;
+            this.btnNouvelleReservation.Location = new System.Drawing.Point(136, 27);
+            this.btnNouvelleReservation.Margin = new System.Windows.Forms.Padding(3, 2, 28, 2);
+            this.btnNouvelleReservation.Name = "btnNouvelleReservation";
+            this.btnNouvelleReservation.Size = new System.Drawing.Size(190, 50);
+            this.btnNouvelleReservation.TabIndex = 22;
+            this.btnNouvelleReservation.Text = "    Nouvelle";
+            this.btnNouvelleReservation.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
+            this.btnNouvelleReservation.UseVisualStyleBackColor = false;
+            // 
+            // btnReserver
+            // 
+            this.btnReserver.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(122)))), ((int)(((byte)(204)))));
+            this.btnReserver.FlatAppearance.BorderSize = 0;
+            this.btnReserver.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnReserver.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Bold);
+            this.btnReserver.ForeColor = System.Drawing.Color.White;
+            this.btnReserver.IconChar = FontAwesome.Sharp.IconChar.CalendarPlus;
+            this.btnReserver.IconColor = System.Drawing.Color.White;
+            this.btnReserver.IconFont = FontAwesome.Sharp.IconFont.Auto;
+            this.btnReserver.IconSize = 32;
+            this.btnReserver.Location = new System.Drawing.Point(436, 27);
+            this.btnReserver.Margin = new System.Windows.Forms.Padding(3, 2, 28, 2);
+            this.btnReserver.Name = "btnReserver";
+            this.btnReserver.Size = new System.Drawing.Size(190, 50);
+            this.btnReserver.TabIndex = 23;
+            this.btnReserver.Text = "   Réserver";
+            this.btnReserver.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
+            this.btnReserver.UseVisualStyleBackColor = false;
             // 
             // btnConfirmer
             // 
-            this.btnConfirmer.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(59)))), ((int)(((byte)(184)))), ((int)(((byte)(210)))));
+            this.btnConfirmer.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(243)))), ((int)(((byte)(144)))), ((int)(((byte)(25)))));
             this.btnConfirmer.FlatAppearance.BorderSize = 0;
             this.btnConfirmer.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnConfirmer.Font = new System.Drawing.Font("Segoe UI", 13F, System.Drawing.FontStyle.Bold);
+            this.btnConfirmer.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Bold);
             this.btnConfirmer.ForeColor = System.Drawing.Color.White;
-            this.btnConfirmer.Location = new System.Drawing.Point(1144, 714);
+            this.btnConfirmer.IconChar = FontAwesome.Sharp.IconChar.CircleCheck;
+            this.btnConfirmer.IconColor = System.Drawing.Color.White;
+            this.btnConfirmer.IconFont = FontAwesome.Sharp.IconFont.Auto;
+            this.btnConfirmer.IconSize = 32;
+            this.btnConfirmer.Location = new System.Drawing.Point(766, 27);
+            this.btnConfirmer.Margin = new System.Windows.Forms.Padding(3, 2, 28, 2);
             this.btnConfirmer.Name = "btnConfirmer";
-            this.btnConfirmer.Size = new System.Drawing.Size(160, 54);
-            this.btnConfirmer.TabIndex = 23;
-            this.btnConfirmer.Text = "Confirmer";
+            this.btnConfirmer.Size = new System.Drawing.Size(190, 50);
+            this.btnConfirmer.TabIndex = 24;
+            this.btnConfirmer.Text = "    Confirmer";
+            this.btnConfirmer.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
             this.btnConfirmer.UseVisualStyleBackColor = false;
-            // 
-            // pnlTop
-            // 
-            this.pnlTop.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(95)))), ((int)(((byte)(150)))), ((int)(((byte)(220)))));
-            this.pnlTop.Controls.Add(this.lblTitre);
-            this.pnlTop.Location = new System.Drawing.Point(0, 0);
-            this.pnlTop.Name = "pnlTop";
-            this.pnlTop.Size = new System.Drawing.Size(1360, 100);
-            this.pnlTop.TabIndex = 24;
-            // 
-            // pnlMain
-            // 
-            this.pnlMain.BackColor = System.Drawing.Color.WhiteSmoke;
-            this.pnlMain.Controls.Add(this.lblListeReservation);
-            this.pnlMain.Controls.Add(this.lblListeClients);
-            this.pnlMain.Controls.Add(this.lblListeVoiture);
-            this.pnlMain.Controls.Add(this.dgvReservation);
-            this.pnlMain.Controls.Add(this.dgvClients);
-            this.pnlMain.Controls.Add(this.dgvVoitures);
-            this.pnlMain.Controls.Add(this.lblClient);
-            this.pnlMain.Controls.Add(this.cmbClient);
-            this.pnlMain.Controls.Add(this.lblMatricule);
-            this.pnlMain.Controls.Add(this.txtMatricule);
-            this.pnlMain.Controls.Add(this.lblDateDebut);
-            this.pnlMain.Controls.Add(this.dtpDateDebut);
-            this.pnlMain.Controls.Add(this.lblHeureDebut);
-            this.pnlMain.Controls.Add(this.dtpHeureDebut);
-            this.pnlMain.Controls.Add(this.lblDateFin);
-            this.pnlMain.Controls.Add(this.dtpDateFin);
-            this.pnlMain.Controls.Add(this.lblHeureFin);
-            this.pnlMain.Controls.Add(this.dtpHeureFin);
-            this.pnlMain.Controls.Add(this.btnAfficherPeriode);
-            this.pnlMain.Controls.Add(this.btnTesterReservation);
-            this.pnlMain.Controls.Add(this.btnReserver);
-            this.pnlMain.Controls.Add(this.btnAnnuler);
-            this.pnlMain.Controls.Add(this.btnConfirmer);
-            this.pnlMain.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.pnlMain.Location = new System.Drawing.Point(0, 0);
-            this.pnlMain.Name = "pnlMain";
-            this.pnlMain.Size = new System.Drawing.Size(1580, 914);
-            this.pnlMain.TabIndex = 25;
-            this.pnlMain.Paint += new System.Windows.Forms.PaintEventHandler(this.pnlMain_Paint);
             // 
             // reservation
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
-            this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(232)))), ((int)(((byte)(240)))), ((int)(((byte)(252)))));
-            this.ClientSize = new System.Drawing.Size(1580, 914);
-            this.Controls.Add(this.pnlMain);
-            this.Controls.Add(this.pnlTop);
-            this.MaximizeBox = false;
+            this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.None;
+            this.BackColor = System.Drawing.Color.White;
+            this.ClientSize = new System.Drawing.Size(1382, 853);
+            this.Controls.Add(this.panel2);
+            this.Controls.Add(this.dgvReservations);
+            this.Controls.Add(this.panel3);
+            this.Controls.Add(this.panel1);
+            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedDialog;
             this.Name = "reservation";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "reservation";
-            ((System.ComponentModel.ISupportInitialize)(this.dgvReservation)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.dgvClients)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.dgvVoitures)).EndInit();
-            this.pnlTop.ResumeLayout(false);
-            this.pnlTop.PerformLayout();
-            this.pnlMain.ResumeLayout(false);
-            this.pnlMain.PerformLayout();
+            this.Load += new System.EventHandler(this.reservation_Load);
+            this.panel1.ResumeLayout(false);
+            this.panel3.ResumeLayout(false);
+            this.panel3.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.dgvReservations)).EndInit();
+            this.panel2.ResumeLayout(false);
             this.ResumeLayout(false);
 
-            }
+        }
 
-            #endregion
+        #endregion
 
-            private System.Windows.Forms.Label lblTitre;
-            private System.Windows.Forms.Label lblListeReservation;
-            private System.Windows.Forms.Label lblListeClients;
-            private System.Windows.Forms.Label lblListeVoiture;
-            private System.Windows.Forms.DataGridView dgvReservation;
-            private System.Windows.Forms.DataGridView dgvClients;
-            private System.Windows.Forms.DataGridView dgvVoitures;
-            private System.Windows.Forms.Label lblClient;
-            private System.Windows.Forms.ComboBox cmbClient;
-            private System.Windows.Forms.Label lblMatricule;
-            private System.Windows.Forms.TextBox txtMatricule;
-            private System.Windows.Forms.Label lblDateDebut;
-            private System.Windows.Forms.DateTimePicker dtpDateDebut;
-            private System.Windows.Forms.Label lblHeureDebut;
-            private System.Windows.Forms.DateTimePicker dtpHeureDebut;
-            private System.Windows.Forms.Label lblDateFin;
-            private System.Windows.Forms.DateTimePicker dtpDateFin;
-            private System.Windows.Forms.Label lblHeureFin;
-            private System.Windows.Forms.DateTimePicker dtpHeureFin;
-            private System.Windows.Forms.Button btnAfficherPeriode;
-            private System.Windows.Forms.Button btnTesterReservation;
-            private System.Windows.Forms.Button btnReserver;
-            private System.Windows.Forms.Button btnAnnuler;
-            private System.Windows.Forms.Button btnConfirmer;
-            private System.Windows.Forms.Panel pnlTop;
-            private System.Windows.Forms.Panel pnlMain;
-        
+        private System.Windows.Forms.Label lblDateSection;
+        private System.Windows.Forms.Label label2;
+        private System.Windows.Forms.Label label1;
+        private System.Windows.Forms.DateTimePicker dtpDateFin;
+        private System.Windows.Forms.Label lblDateFin;
+        private System.Windows.Forms.DateTimePicker dtpDateDebut;
+        private System.Windows.Forms.Label lblDateDebut;
+        private FontAwesome.Sharp.IconButton btnVerifierDate;
+        private System.Windows.Forms.ComboBox comboBox1;
+        private System.Windows.Forms.ComboBox comboBox2;
+        private System.Windows.Forms.Panel panel1;
+        private System.Windows.Forms.Panel panel3;
+        private FontAwesome.Sharp.IconButton iconButton1;
+        private System.Windows.Forms.Label label4;
+        private System.Windows.Forms.Label label3;
+        private System.Windows.Forms.ComboBox cmbClient;
+        private System.Windows.Forms.Label lblClient;
+        private System.Windows.Forms.ComboBox cmbVoiture;
+        private System.Windows.Forms.Label lblVoiture;
+        private System.Windows.Forms.DataGridView dgvReservations;
+        private System.Windows.Forms.DataGridViewTextBoxColumn colID;
+        private System.Windows.Forms.DataGridViewTextBoxColumn colVoiture;
+        private System.Windows.Forms.DataGridViewTextBoxColumn colClient;
+        private System.Windows.Forms.DataGridViewTextBoxColumn colDateDebut;
+        private System.Windows.Forms.DataGridViewTextBoxColumn colDateFin;
+        private System.Windows.Forms.DataGridViewTextBoxColumn colStatut;
+        private System.Windows.Forms.Panel panel2;
+        private FontAwesome.Sharp.IconButton btnAnnuler;
+        private FontAwesome.Sharp.IconButton btnNouvelleReservation;
+        private FontAwesome.Sharp.IconButton btnReserver;
+        private FontAwesome.Sharp.IconButton btnConfirmer;
     }
 }
-

@@ -14,13 +14,25 @@ namespace venolocation.formee
     {
         public reservation()
         {
-            
             InitializeComponent();
+            this.AutoScaleMode = AutoScaleMode.None;
+            
         }
 
-        private void pnlMain_Paint(object sender, PaintEventArgs e)
+        private void pnlDateTitle_Paint(object sender, PaintEventArgs e)
         {
 
+        }
+
+        private void pnlDateFields_Paint(object sender, PaintEventArgs e)
+        {
+
+        }
+
+        private void reservation_Load(object sender, EventArgs e)
+        {
+           
+            
         }
     }
 }
