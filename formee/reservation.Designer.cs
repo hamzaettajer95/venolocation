@@ -28,8 +28,9 @@
         /// </summary>
         private void InitializeComponent()
         {
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle5 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle6 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(reservation));
             this.lblDateSection = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
             this.label1 = new System.Windows.Forms.Label();
@@ -37,18 +38,18 @@
             this.lblDateFin = new System.Windows.Forms.Label();
             this.dtpDateDebut = new System.Windows.Forms.DateTimePicker();
             this.lblDateDebut = new System.Windows.Forms.Label();
-            this.btnVerifierDate = new FontAwesome.Sharp.IconButton();
             this.comboBox1 = new System.Windows.Forms.ComboBox();
             this.comboBox2 = new System.Windows.Forms.ComboBox();
             this.panel1 = new System.Windows.Forms.Panel();
+            this.btnVerifierDate = new FontAwesome.Sharp.IconButton();
             this.panel3 = new System.Windows.Forms.Panel();
+            this.iconButton1 = new FontAwesome.Sharp.IconButton();
+            this.label4 = new System.Windows.Forms.Label();
+            this.label3 = new System.Windows.Forms.Label();
             this.cmbClient = new System.Windows.Forms.ComboBox();
             this.lblClient = new System.Windows.Forms.Label();
             this.cmbVoiture = new System.Windows.Forms.ComboBox();
             this.lblVoiture = new System.Windows.Forms.Label();
-            this.label3 = new System.Windows.Forms.Label();
-            this.label4 = new System.Windows.Forms.Label();
-            this.iconButton1 = new FontAwesome.Sharp.IconButton();
             this.dgvReservations = new System.Windows.Forms.DataGridView();
             this.colID = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.colVoiture = new System.Windows.Forms.DataGridViewTextBoxColumn();
@@ -139,28 +140,6 @@
             this.lblDateDebut.TabIndex = 27;
             this.lblDateDebut.Text = "Date Début :";
             // 
-            // btnVerifierDate
-            // 
-            this.btnVerifierDate.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(217)))), ((int)(((byte)(226)))), ((int)(((byte)(232)))));
-            this.btnVerifierDate.FlatAppearance.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(180)))), ((int)(((byte)(194)))), ((int)(((byte)(202)))));
-            this.btnVerifierDate.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnVerifierDate.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Bold);
-            this.btnVerifierDate.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(67)))), ((int)(((byte)(102)))), ((int)(((byte)(120)))));
-            this.btnVerifierDate.IconChar = FontAwesome.Sharp.IconChar.CalendarCheck;
-            this.btnVerifierDate.IconColor = System.Drawing.Color.FromArgb(((int)(((byte)(67)))), ((int)(((byte)(102)))), ((int)(((byte)(120)))));
-            this.btnVerifierDate.IconFont = FontAwesome.Sharp.IconFont.Auto;
-            this.btnVerifierDate.IconSize = 24;
-            this.btnVerifierDate.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btnVerifierDate.Location = new System.Drawing.Point(591, 158);
-            this.btnVerifierDate.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
-            this.btnVerifierDate.Name = "btnVerifierDate";
-            this.btnVerifierDate.Padding = new System.Windows.Forms.Padding(10, 0, 0, 0);
-            this.btnVerifierDate.Size = new System.Drawing.Size(255, 35);
-            this.btnVerifierDate.TabIndex = 26;
-            this.btnVerifierDate.Text = "Vérifier la Date";
-            this.btnVerifierDate.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
-            this.btnVerifierDate.UseVisualStyleBackColor = false;
-            // 
             // comboBox1
             // 
             this.comboBox1.FlatStyle = System.Windows.Forms.FlatStyle.System;
@@ -233,6 +212,7 @@
             // 
             // panel1
             // 
+            this.panel1.BackColor = System.Drawing.Color.White;
             this.panel1.Controls.Add(this.lblDateSection);
             this.panel1.Controls.Add(this.btnVerifierDate);
             this.panel1.Controls.Add(this.comboBox2);
@@ -248,8 +228,31 @@
             this.panel1.Size = new System.Drawing.Size(1358, 201);
             this.panel1.TabIndex = 38;
             // 
+            // btnVerifierDate
+            // 
+            this.btnVerifierDate.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(217)))), ((int)(((byte)(226)))), ((int)(((byte)(232)))));
+            this.btnVerifierDate.FlatAppearance.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(180)))), ((int)(((byte)(194)))), ((int)(((byte)(202)))));
+            this.btnVerifierDate.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnVerifierDate.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Bold);
+            this.btnVerifierDate.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(67)))), ((int)(((byte)(102)))), ((int)(((byte)(120)))));
+            this.btnVerifierDate.IconChar = FontAwesome.Sharp.IconChar.CalendarCheck;
+            this.btnVerifierDate.IconColor = System.Drawing.Color.FromArgb(((int)(((byte)(67)))), ((int)(((byte)(102)))), ((int)(((byte)(120)))));
+            this.btnVerifierDate.IconFont = FontAwesome.Sharp.IconFont.Auto;
+            this.btnVerifierDate.IconSize = 24;
+            this.btnVerifierDate.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.btnVerifierDate.Location = new System.Drawing.Point(567, 146);
+            this.btnVerifierDate.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.btnVerifierDate.Name = "btnVerifierDate";
+            this.btnVerifierDate.Padding = new System.Windows.Forms.Padding(10, 0, 0, 0);
+            this.btnVerifierDate.Size = new System.Drawing.Size(255, 40);
+            this.btnVerifierDate.TabIndex = 26;
+            this.btnVerifierDate.Text = "Vérifier la Date";
+            this.btnVerifierDate.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
+            this.btnVerifierDate.UseVisualStyleBackColor = false;
+            // 
             // panel3
             // 
+            this.panel3.BackColor = System.Drawing.Color.White;
             this.panel3.Controls.Add(this.iconButton1);
             this.panel3.Controls.Add(this.label4);
             this.panel3.Controls.Add(this.label3);
@@ -261,6 +264,50 @@
             this.panel3.Name = "panel3";
             this.panel3.Size = new System.Drawing.Size(1358, 168);
             this.panel3.TabIndex = 40;
+            // 
+            // iconButton1
+            // 
+            this.iconButton1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(217)))), ((int)(((byte)(226)))), ((int)(((byte)(232)))));
+            this.iconButton1.FlatAppearance.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(180)))), ((int)(((byte)(194)))), ((int)(((byte)(202)))));
+            this.iconButton1.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.iconButton1.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Bold);
+            this.iconButton1.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(67)))), ((int)(((byte)(102)))), ((int)(((byte)(120)))));
+            this.iconButton1.IconChar = FontAwesome.Sharp.IconChar.CalendarCheck;
+            this.iconButton1.IconColor = System.Drawing.Color.FromArgb(((int)(((byte)(67)))), ((int)(((byte)(102)))), ((int)(((byte)(120)))));
+            this.iconButton1.IconFont = FontAwesome.Sharp.IconFont.Auto;
+            this.iconButton1.IconSize = 24;
+            this.iconButton1.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.iconButton1.Location = new System.Drawing.Point(625, 116);
+            this.iconButton1.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.iconButton1.Name = "iconButton1";
+            this.iconButton1.Padding = new System.Windows.Forms.Padding(10, 0, 0, 0);
+            this.iconButton1.Size = new System.Drawing.Size(153, 40);
+            this.iconButton1.TabIndex = 38;
+            this.iconButton1.Text = "    Validé";
+            this.iconButton1.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
+            this.iconButton1.UseVisualStyleBackColor = false;
+            // 
+            // label4
+            // 
+            this.label4.AutoSize = true;
+            this.label4.Font = new System.Drawing.Font("Segoe UI", 13F, System.Drawing.FontStyle.Bold);
+            this.label4.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(54)))), ((int)(((byte)(94)))), ((int)(((byte)(118)))));
+            this.label4.Location = new System.Drawing.Point(949, 13);
+            this.label4.Name = "label4";
+            this.label4.Size = new System.Drawing.Size(174, 30);
+            this.label4.TabIndex = 9;
+            this.label4.Text = "Choisir la Client";
+            // 
+            // label3
+            // 
+            this.label3.AutoSize = true;
+            this.label3.Font = new System.Drawing.Font("Segoe UI", 13F, System.Drawing.FontStyle.Bold);
+            this.label3.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(54)))), ((int)(((byte)(94)))), ((int)(((byte)(118)))));
+            this.label3.Location = new System.Drawing.Point(263, 13);
+            this.label3.Name = "label3";
+            this.label3.Size = new System.Drawing.Size(190, 30);
+            this.label3.TabIndex = 8;
+            this.label3.Text = "Choisir la Voiture";
             // 
             // cmbClient
             // 
@@ -308,50 +355,6 @@
             this.lblVoiture.TabIndex = 4;
             this.lblVoiture.Text = "Voiture :";
             // 
-            // label3
-            // 
-            this.label3.AutoSize = true;
-            this.label3.Font = new System.Drawing.Font("Segoe UI", 13F, System.Drawing.FontStyle.Bold);
-            this.label3.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(54)))), ((int)(((byte)(94)))), ((int)(((byte)(118)))));
-            this.label3.Location = new System.Drawing.Point(263, 13);
-            this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(190, 30);
-            this.label3.TabIndex = 8;
-            this.label3.Text = "Choisir la Voiture";
-            // 
-            // label4
-            // 
-            this.label4.AutoSize = true;
-            this.label4.Font = new System.Drawing.Font("Segoe UI", 13F, System.Drawing.FontStyle.Bold);
-            this.label4.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(54)))), ((int)(((byte)(94)))), ((int)(((byte)(118)))));
-            this.label4.Location = new System.Drawing.Point(949, 13);
-            this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(174, 30);
-            this.label4.TabIndex = 9;
-            this.label4.Text = "Choisir la Client";
-            // 
-            // iconButton1
-            // 
-            this.iconButton1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(217)))), ((int)(((byte)(226)))), ((int)(((byte)(232)))));
-            this.iconButton1.FlatAppearance.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(180)))), ((int)(((byte)(194)))), ((int)(((byte)(202)))));
-            this.iconButton1.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.iconButton1.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Bold);
-            this.iconButton1.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(67)))), ((int)(((byte)(102)))), ((int)(((byte)(120)))));
-            this.iconButton1.IconChar = FontAwesome.Sharp.IconChar.CalendarCheck;
-            this.iconButton1.IconColor = System.Drawing.Color.FromArgb(((int)(((byte)(67)))), ((int)(((byte)(102)))), ((int)(((byte)(120)))));
-            this.iconButton1.IconFont = FontAwesome.Sharp.IconFont.Auto;
-            this.iconButton1.IconSize = 24;
-            this.iconButton1.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.iconButton1.Location = new System.Drawing.Point(642, 120);
-            this.iconButton1.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
-            this.iconButton1.Name = "iconButton1";
-            this.iconButton1.Padding = new System.Windows.Forms.Padding(10, 0, 0, 0);
-            this.iconButton1.Size = new System.Drawing.Size(153, 35);
-            this.iconButton1.TabIndex = 38;
-            this.iconButton1.Text = "    Validé";
-            this.iconButton1.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
-            this.iconButton1.UseVisualStyleBackColor = false;
-            // 
             // dgvReservations
             // 
             this.dgvReservations.AllowUserToAddRows = false;
@@ -362,14 +365,14 @@
             this.dgvReservations.BackgroundColor = System.Drawing.Color.White;
             this.dgvReservations.BorderStyle = System.Windows.Forms.BorderStyle.None;
             this.dgvReservations.ColumnHeadersBorderStyle = System.Windows.Forms.DataGridViewHeaderBorderStyle.Single;
-            dataGridViewCellStyle5.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
-            dataGridViewCellStyle5.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(51)))), ((int)(((byte)(140)))), ((int)(((byte)(170)))));
-            dataGridViewCellStyle5.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Bold);
-            dataGridViewCellStyle5.ForeColor = System.Drawing.Color.White;
-            dataGridViewCellStyle5.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(51)))), ((int)(((byte)(140)))), ((int)(((byte)(170)))));
-            dataGridViewCellStyle5.SelectionForeColor = System.Drawing.Color.White;
-            dataGridViewCellStyle5.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.dgvReservations.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle5;
+            dataGridViewCellStyle1.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            dataGridViewCellStyle1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(51)))), ((int)(((byte)(140)))), ((int)(((byte)(170)))));
+            dataGridViewCellStyle1.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Bold);
+            dataGridViewCellStyle1.ForeColor = System.Drawing.Color.White;
+            dataGridViewCellStyle1.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(51)))), ((int)(((byte)(140)))), ((int)(((byte)(170)))));
+            dataGridViewCellStyle1.SelectionForeColor = System.Drawing.Color.White;
+            dataGridViewCellStyle1.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.dgvReservations.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle1;
             this.dgvReservations.ColumnHeadersHeight = 48;
             this.dgvReservations.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.colID,
@@ -378,14 +381,14 @@
             this.colDateDebut,
             this.colDateFin,
             this.colStatut});
-            dataGridViewCellStyle6.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
-            dataGridViewCellStyle6.BackColor = System.Drawing.Color.White;
-            dataGridViewCellStyle6.Font = new System.Drawing.Font("Segoe UI", 11F);
-            dataGridViewCellStyle6.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(40)))), ((int)(((byte)(40)))), ((int)(((byte)(40)))));
-            dataGridViewCellStyle6.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(233)))), ((int)(((byte)(241)))), ((int)(((byte)(246)))));
-            dataGridViewCellStyle6.SelectionForeColor = System.Drawing.Color.Black;
-            dataGridViewCellStyle6.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
-            this.dgvReservations.DefaultCellStyle = dataGridViewCellStyle6;
+            dataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            dataGridViewCellStyle2.BackColor = System.Drawing.Color.White;
+            dataGridViewCellStyle2.Font = new System.Drawing.Font("Segoe UI", 11F);
+            dataGridViewCellStyle2.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(40)))), ((int)(((byte)(40)))), ((int)(((byte)(40)))));
+            dataGridViewCellStyle2.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(233)))), ((int)(((byte)(241)))), ((int)(((byte)(246)))));
+            dataGridViewCellStyle2.SelectionForeColor = System.Drawing.Color.Black;
+            dataGridViewCellStyle2.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
+            this.dgvReservations.DefaultCellStyle = dataGridViewCellStyle2;
             this.dgvReservations.EnableHeadersVisualStyles = false;
             this.dgvReservations.GridColor = System.Drawing.Color.FromArgb(((int)(((byte)(205)))), ((int)(((byte)(221)))), ((int)(((byte)(229)))));
             this.dgvReservations.Location = new System.Drawing.Point(12, 11);
@@ -445,6 +448,7 @@
             // 
             // panel2
             // 
+            this.panel2.BackColor = System.Drawing.Color.White;
             this.panel2.Controls.Add(this.btnAnnuler);
             this.panel2.Controls.Add(this.btnNouvelleReservation);
             this.panel2.Controls.Add(this.btnReserver);
@@ -537,13 +541,14 @@
             // reservation
             // 
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.None;
-            this.BackColor = System.Drawing.Color.White;
+            this.BackColor = System.Drawing.Color.WhiteSmoke;
             this.ClientSize = new System.Drawing.Size(1382, 853);
             this.Controls.Add(this.panel2);
             this.Controls.Add(this.dgvReservations);
             this.Controls.Add(this.panel3);
             this.Controls.Add(this.panel1);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedDialog;
+            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Name = "reservation";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "reservation";

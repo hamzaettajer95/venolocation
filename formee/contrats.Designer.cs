@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(contrats));
             this.pnlHeader = new System.Windows.Forms.Panel();
             this.lblTitle = new System.Windows.Forms.Label();
             this.pnlClient = new System.Windows.Forms.Panel();
@@ -81,6 +82,11 @@
             this.pnlRemarques = new System.Windows.Forms.Panel();
             this.txtRemarques = new System.Windows.Forms.TextBox();
             this.pnlActions = new System.Windows.Forms.Panel();
+            this.tnImprimer = new FontAwesome.Sharp.IconButton();
+            this.btnEnregistrer = new FontAwesome.Sharp.IconButton();
+            this.btnannuller = new FontAwesome.Sharp.IconButton();
+            this.btncalculer = new FontAwesome.Sharp.IconButton();
+            this.btnNouveau = new FontAwesome.Sharp.IconButton();
             this.pnlFooter = new System.Windows.Forms.Panel();
             this.lblTotalValue = new System.Windows.Forms.Label();
             this.lblFooterTotal = new System.Windows.Forms.Label();
@@ -88,11 +94,6 @@
             this.lblFooterDuree = new System.Windows.Forms.Label();
             this.lblContratValue = new System.Windows.Forms.Label();
             this.lblFooterContrat = new System.Windows.Forms.Label();
-            this.btnNouveau = new FontAwesome.Sharp.IconButton();
-            this.btncalculer = new FontAwesome.Sharp.IconButton();
-            this.btnannuller = new FontAwesome.Sharp.IconButton();
-            this.btnEnregistrer = new FontAwesome.Sharp.IconButton();
-            this.tnImprimer = new FontAwesome.Sharp.IconButton();
             this.pnlHeader.SuspendLayout();
             this.pnlClient.SuspendLayout();
             this.pnlVoiture.SuspendLayout();
@@ -682,6 +683,100 @@
             this.pnlActions.Size = new System.Drawing.Size(610, 120);
             this.pnlActions.TabIndex = 6;
             // 
+            // tnImprimer
+            // 
+            this.tnImprimer.BackColor = System.Drawing.Color.Blue;
+            this.tnImprimer.Font = new System.Drawing.Font("Segoe UI Semibold", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.tnImprimer.ForeColor = System.Drawing.Color.White;
+            this.tnImprimer.IconChar = FontAwesome.Sharp.IconChar.Print;
+            this.tnImprimer.IconColor = System.Drawing.Color.White;
+            this.tnImprimer.IconFont = FontAwesome.Sharp.IconFont.Auto;
+            this.tnImprimer.IconSize = 38;
+            this.tnImprimer.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.tnImprimer.Location = new System.Drawing.Point(328, 65);
+            this.tnImprimer.Margin = new System.Windows.Forms.Padding(0);
+            this.tnImprimer.Name = "tnImprimer";
+            this.tnImprimer.Size = new System.Drawing.Size(177, 42);
+            this.tnImprimer.TabIndex = 9;
+            this.tnImprimer.Text = "Imprimer";
+            this.tnImprimer.UseVisualStyleBackColor = false;
+            // 
+            // btnEnregistrer
+            // 
+            this.btnEnregistrer.BackColor = System.Drawing.Color.MediumSeaGreen;
+            this.btnEnregistrer.Font = new System.Drawing.Font("Segoe UI Semibold", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnEnregistrer.ForeColor = System.Drawing.Color.White;
+            this.btnEnregistrer.IconChar = FontAwesome.Sharp.IconChar.Download;
+            this.btnEnregistrer.IconColor = System.Drawing.Color.White;
+            this.btnEnregistrer.IconFont = FontAwesome.Sharp.IconFont.Auto;
+            this.btnEnregistrer.IconSize = 38;
+            this.btnEnregistrer.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.btnEnregistrer.Location = new System.Drawing.Point(67, 65);
+            this.btnEnregistrer.Margin = new System.Windows.Forms.Padding(0);
+            this.btnEnregistrer.Name = "btnEnregistrer";
+            this.btnEnregistrer.Size = new System.Drawing.Size(177, 42);
+            this.btnEnregistrer.TabIndex = 8;
+            this.btnEnregistrer.Text = "Enregistrer";
+            this.btnEnregistrer.UseVisualStyleBackColor = false;
+            this.btnEnregistrer.Click += new System.EventHandler(this.btnEnregistrer_Click_1);
+            // 
+            // btnannuller
+            // 
+            this.btnannuller.BackColor = System.Drawing.Color.Tomato;
+            this.btnannuller.Font = new System.Drawing.Font("Segoe UI Semibold", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnannuller.ForeColor = System.Drawing.Color.White;
+            this.btnannuller.IconChar = FontAwesome.Sharp.IconChar.CircleXmark;
+            this.btnannuller.IconColor = System.Drawing.Color.White;
+            this.btnannuller.IconFont = FontAwesome.Sharp.IconFont.Auto;
+            this.btnannuller.IconSize = 38;
+            this.btnannuller.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.btnannuller.Location = new System.Drawing.Point(417, 17);
+            this.btnannuller.Margin = new System.Windows.Forms.Padding(0);
+            this.btnannuller.Name = "btnannuller";
+            this.btnannuller.Size = new System.Drawing.Size(177, 42);
+            this.btnannuller.TabIndex = 7;
+            this.btnannuller.Text = "Anuller";
+            this.btnannuller.UseVisualStyleBackColor = false;
+            this.btnannuller.Click += new System.EventHandler(this.btnannuller_Click);
+            // 
+            // btncalculer
+            // 
+            this.btncalculer.BackColor = System.Drawing.Color.Orange;
+            this.btncalculer.Font = new System.Drawing.Font("Segoe UI Semibold", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btncalculer.ForeColor = System.Drawing.Color.White;
+            this.btncalculer.IconChar = FontAwesome.Sharp.IconChar.Calculator;
+            this.btncalculer.IconColor = System.Drawing.Color.White;
+            this.btncalculer.IconFont = FontAwesome.Sharp.IconFont.Auto;
+            this.btncalculer.IconSize = 38;
+            this.btncalculer.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.btncalculer.Location = new System.Drawing.Point(220, 17);
+            this.btncalculer.Margin = new System.Windows.Forms.Padding(0);
+            this.btncalculer.Name = "btncalculer";
+            this.btncalculer.Size = new System.Drawing.Size(177, 42);
+            this.btncalculer.TabIndex = 6;
+            this.btncalculer.Text = "Calculer";
+            this.btncalculer.UseVisualStyleBackColor = false;
+            this.btncalculer.Click += new System.EventHandler(this.btncalculer_Click_1);
+            // 
+            // btnNouveau
+            // 
+            this.btnNouveau.BackColor = System.Drawing.Color.RoyalBlue;
+            this.btnNouveau.Font = new System.Drawing.Font("Segoe UI Semibold", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnNouveau.ForeColor = System.Drawing.Color.White;
+            this.btnNouveau.IconChar = FontAwesome.Sharp.IconChar.MagicWandSparkles;
+            this.btnNouveau.IconColor = System.Drawing.Color.White;
+            this.btnNouveau.IconFont = FontAwesome.Sharp.IconFont.Auto;
+            this.btnNouveau.IconSize = 38;
+            this.btnNouveau.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.btnNouveau.Location = new System.Drawing.Point(12, 17);
+            this.btnNouveau.Margin = new System.Windows.Forms.Padding(0);
+            this.btnNouveau.Name = "btnNouveau";
+            this.btnNouveau.Size = new System.Drawing.Size(177, 42);
+            this.btnNouveau.TabIndex = 1;
+            this.btnNouveau.Text = "Nouveau";
+            this.btnNouveau.UseVisualStyleBackColor = false;
+            this.btnNouveau.Click += new System.EventHandler(this.btnNouveau_Click_1);
+            // 
             // pnlFooter
             // 
             this.pnlFooter.BackColor = System.Drawing.Color.AliceBlue;
@@ -762,100 +857,6 @@
             this.lblFooterContrat.TabIndex = 0;
             this.lblFooterContrat.Text = "Contrat N° :";
             // 
-            // btnNouveau
-            // 
-            this.btnNouveau.BackColor = System.Drawing.Color.RoyalBlue;
-            this.btnNouveau.Font = new System.Drawing.Font("Segoe UI Semibold", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnNouveau.ForeColor = System.Drawing.Color.White;
-            this.btnNouveau.IconChar = FontAwesome.Sharp.IconChar.MagicWandSparkles;
-            this.btnNouveau.IconColor = System.Drawing.Color.White;
-            this.btnNouveau.IconFont = FontAwesome.Sharp.IconFont.Auto;
-            this.btnNouveau.IconSize = 38;
-            this.btnNouveau.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btnNouveau.Location = new System.Drawing.Point(12, 17);
-            this.btnNouveau.Margin = new System.Windows.Forms.Padding(0);
-            this.btnNouveau.Name = "btnNouveau";
-            this.btnNouveau.Size = new System.Drawing.Size(177, 42);
-            this.btnNouveau.TabIndex = 1;
-            this.btnNouveau.Text = "Nouveau";
-            this.btnNouveau.UseVisualStyleBackColor = false;
-            this.btnNouveau.Click += new System.EventHandler(this.btnNouveau_Click_1);
-            // 
-            // btncalculer
-            // 
-            this.btncalculer.BackColor = System.Drawing.Color.Orange;
-            this.btncalculer.Font = new System.Drawing.Font("Segoe UI Semibold", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btncalculer.ForeColor = System.Drawing.Color.White;
-            this.btncalculer.IconChar = FontAwesome.Sharp.IconChar.Calculator;
-            this.btncalculer.IconColor = System.Drawing.Color.White;
-            this.btncalculer.IconFont = FontAwesome.Sharp.IconFont.Auto;
-            this.btncalculer.IconSize = 38;
-            this.btncalculer.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btncalculer.Location = new System.Drawing.Point(220, 17);
-            this.btncalculer.Margin = new System.Windows.Forms.Padding(0);
-            this.btncalculer.Name = "btncalculer";
-            this.btncalculer.Size = new System.Drawing.Size(177, 42);
-            this.btncalculer.TabIndex = 6;
-            this.btncalculer.Text = "Calculer";
-            this.btncalculer.UseVisualStyleBackColor = false;
-            this.btncalculer.Click += new System.EventHandler(this.btncalculer_Click_1);
-            // 
-            // btnannuller
-            // 
-            this.btnannuller.BackColor = System.Drawing.Color.Tomato;
-            this.btnannuller.Font = new System.Drawing.Font("Segoe UI Semibold", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnannuller.ForeColor = System.Drawing.Color.White;
-            this.btnannuller.IconChar = FontAwesome.Sharp.IconChar.CircleXmark;
-            this.btnannuller.IconColor = System.Drawing.Color.White;
-            this.btnannuller.IconFont = FontAwesome.Sharp.IconFont.Auto;
-            this.btnannuller.IconSize = 38;
-            this.btnannuller.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btnannuller.Location = new System.Drawing.Point(417, 17);
-            this.btnannuller.Margin = new System.Windows.Forms.Padding(0);
-            this.btnannuller.Name = "btnannuller";
-            this.btnannuller.Size = new System.Drawing.Size(177, 42);
-            this.btnannuller.TabIndex = 7;
-            this.btnannuller.Text = "Anuller";
-            this.btnannuller.UseVisualStyleBackColor = false;
-            this.btnannuller.Click += new System.EventHandler(this.btnannuller_Click);
-            // 
-            // btnEnregistrer
-            // 
-            this.btnEnregistrer.BackColor = System.Drawing.Color.MediumSeaGreen;
-            this.btnEnregistrer.Font = new System.Drawing.Font("Segoe UI Semibold", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnEnregistrer.ForeColor = System.Drawing.Color.White;
-            this.btnEnregistrer.IconChar = FontAwesome.Sharp.IconChar.Download;
-            this.btnEnregistrer.IconColor = System.Drawing.Color.White;
-            this.btnEnregistrer.IconFont = FontAwesome.Sharp.IconFont.Auto;
-            this.btnEnregistrer.IconSize = 38;
-            this.btnEnregistrer.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btnEnregistrer.Location = new System.Drawing.Point(67, 65);
-            this.btnEnregistrer.Margin = new System.Windows.Forms.Padding(0);
-            this.btnEnregistrer.Name = "btnEnregistrer";
-            this.btnEnregistrer.Size = new System.Drawing.Size(177, 42);
-            this.btnEnregistrer.TabIndex = 8;
-            this.btnEnregistrer.Text = "Enregistrer";
-            this.btnEnregistrer.UseVisualStyleBackColor = false;
-            this.btnEnregistrer.Click += new System.EventHandler(this.btnEnregistrer_Click_1);
-            // 
-            // tnImprimer
-            // 
-            this.tnImprimer.BackColor = System.Drawing.Color.Blue;
-            this.tnImprimer.Font = new System.Drawing.Font("Segoe UI Semibold", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.tnImprimer.ForeColor = System.Drawing.Color.White;
-            this.tnImprimer.IconChar = FontAwesome.Sharp.IconChar.Print;
-            this.tnImprimer.IconColor = System.Drawing.Color.White;
-            this.tnImprimer.IconFont = FontAwesome.Sharp.IconFont.Auto;
-            this.tnImprimer.IconSize = 38;
-            this.tnImprimer.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.tnImprimer.Location = new System.Drawing.Point(328, 65);
-            this.tnImprimer.Margin = new System.Windows.Forms.Padding(0);
-            this.tnImprimer.Name = "tnImprimer";
-            this.tnImprimer.Size = new System.Drawing.Size(177, 42);
-            this.tnImprimer.TabIndex = 9;
-            this.tnImprimer.Text = "Imprimer";
-            this.tnImprimer.UseVisualStyleBackColor = false;
-            // 
             // contrats
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 20F);
@@ -872,7 +873,9 @@
             this.Controls.Add(this.pnlHeader);
             this.Font = new System.Drawing.Font("Segoe UI", 9F);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
+            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.MaximizeBox = false;
+            this.MinimizeBox = false;
             this.Name = "contrats";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "contrats";

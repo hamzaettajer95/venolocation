@@ -67,5 +67,17 @@ namespace venolocation.formee
           formee.contrats con = new contrats();
             con.ShowDialog();
         }
+
+        private void btnDepence_Click(object sender, EventArgs e)
+        {
+            formee.depence de = new depence();
+            de.ShowDialog();
+        }
+
+        private void btretour_Click(object sender, EventArgs e)
+        {
+            formee.retour retour = new retour();
+            retour.ShowDialog();
+        }
     }
 }

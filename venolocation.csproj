@@ -83,6 +83,12 @@
     <Compile Include="formee\dashboard.Designer.cs">
       <DependentUpon>dashboard.cs</DependentUpon>
     </Compile>
+    <Compile Include="formee\depence.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="formee\depence.Designer.cs">
+      <DependentUpon>depence.cs</DependentUpon>
+    </Compile>
     <Compile Include="formee\login.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -95,6 +101,12 @@
     <Compile Include="formee\reservation.Designer.cs">
       <DependentUpon>reservation.cs</DependentUpon>
     </Compile>
+    <Compile Include="formee\retour.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="formee\retour.Designer.cs">
+      <DependentUpon>retour.cs</DependentUpon>
+    </Compile>
     <Compile Include="formee\voiture.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -106,17 +118,29 @@
     <EmbeddedResource Include="Form1.resx">
       <DependentUpon>Form1.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="formee\client.resx">
+      <DependentUpon>client.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="formee\contrats.resx">
       <DependentUpon>contrats.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="formee\dashboard.resx">
       <DependentUpon>dashboard.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="formee\depence.resx">
+      <DependentUpon>depence.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="formee\login.resx">
       <DependentUpon>login.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="formee\reservation.resx">
       <DependentUpon>reservation.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="formee\retour.resx">
+      <DependentUpon>retour.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="formee\voiture.resx">
+      <DependentUpon>voiture.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
@@ -159,6 +183,9 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="Resources\salary.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\insurance1.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
