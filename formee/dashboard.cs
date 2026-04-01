@@ -8,6 +8,8 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
+using MySql.Data.MySqlClient;
+
 namespace venolocation.formee
 {
     public partial class dashboard : Form
@@ -16,7 +18,7 @@ namespace venolocation.formee
         {
             InitializeComponent();
         }
-
+        public static string connection_string=Properties.Settings.Default.conx;
         private void timer1_Tick(object sender, EventArgs e)
         {
             lblDateTime.Text = DateTime.Now.ToString("HH:mm:ss");
@@ -26,6 +28,20 @@ namespace venolocation.formee
         {
             timer1.Start();
             lbldate.Text = DateTime.Now.ToString("dddd dd/MM/yyyy");
+
+
+            //try
+            //{
+            //    using (MySqlConnection con = new MySqlConnection(connection_string))
+            //    {
+            //        con.Open();
+            //        MessageBox.Show("Connexion réussie ✅");
+            //    }
+            //}
+            //catch (Exception ex)
+            //{
+            //    MessageBox.Show("Erreur: " + ex.Message);
+            //}
         }
 
         private void cmsUser_Opening(object sender, CancelEventArgs e)
@@ -78,6 +94,12 @@ namespace venolocation.formee
         {
             formee.retour retour = new retour();
             retour.ShowDialog();
+        }
+
+        private void btnalerte_Click(object sender, EventArgs e)
+        {
+            formee.alerte al = new alerte();
+            al.ShowDialog();
         }
     }
 }

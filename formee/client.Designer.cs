@@ -168,6 +168,7 @@ namespace venolocation.formee
             this.btnSearchTop.TabIndex = 2;
             this.btnSearchTop.Text = "🔍";
             this.btnSearchTop.UseVisualStyleBackColor = false;
+            this.btnSearchTop.Click += new System.EventHandler(this.btnSearchTop_Click);
             // 
             // dgvClients
             // 
@@ -185,6 +186,7 @@ namespace venolocation.formee
             this.dgvClients.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
             this.dgvClients.Size = new System.Drawing.Size(1270, 240);
             this.dgvClients.TabIndex = 3;
+            this.dgvClients.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvClients_CellClick);
             // 
             // gbActions
             // 
@@ -215,6 +217,7 @@ namespace venolocation.formee
             this.btnAjouter.TabIndex = 0;
             this.btnAjouter.Text = "✚ Ajouter";
             this.btnAjouter.UseVisualStyleBackColor = false;
+            this.btnAjouter.Click += new System.EventHandler(this.btnAjouter_Click);
             // 
             // btnModifier
             // 
@@ -229,6 +232,7 @@ namespace venolocation.formee
             this.btnModifier.TabIndex = 1;
             this.btnModifier.Text = "↻    Modifier";
             this.btnModifier.UseVisualStyleBackColor = false;
+            this.btnModifier.Click += new System.EventHandler(this.btnModifier_Click);
             // 
             // btnSupprimer
             // 
@@ -243,6 +247,7 @@ namespace venolocation.formee
             this.btnSupprimer.TabIndex = 2;
             this.btnSupprimer.Text = "🗑 Supprimer";
             this.btnSupprimer.UseVisualStyleBackColor = false;
+            this.btnSupprimer.Click += new System.EventHandler(this.btnSupprimer_Click);
             // 
             // btnRechercher
             // 
@@ -257,6 +262,7 @@ namespace venolocation.formee
             this.btnRechercher.TabIndex = 3;
             this.btnRechercher.Text = "🔍 Rechercher";
             this.btnRechercher.UseVisualStyleBackColor = false;
+            this.btnRechercher.Click += new System.EventHandler(this.btnRechercher_Click);
             // 
             // btnClear
             // 
@@ -271,6 +277,7 @@ namespace venolocation.formee
             this.btnClear.TabIndex = 4;
             this.btnClear.Text = "⊗ Clear";
             this.btnClear.UseVisualStyleBackColor = false;
+            this.btnClear.Click += new System.EventHandler(this.btnClear_Click);
             // 
             // btnRetour
             // 
@@ -285,6 +292,7 @@ namespace venolocation.formee
             this.btnRetour.TabIndex = 5;
             this.btnRetour.Text = "↻ Retour";
             this.btnRetour.UseVisualStyleBackColor = false;
+            this.btnRetour.Click += new System.EventHandler(this.btnRetour_Click);
             // 
             // gbInfoGauche
             // 
@@ -489,6 +497,7 @@ namespace venolocation.formee
             this.Name = "client";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Gestion des clients";
+            this.Load += new System.EventHandler(this.client_Load);
             this.gbListeClients.ResumeLayout(false);
             this.gbListeClients.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgvClients)).EndInit();
