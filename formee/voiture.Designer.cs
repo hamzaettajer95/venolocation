@@ -103,6 +103,7 @@
             this.btnAjouter.TabIndex = 1;
             this.btnAjouter.Text = "Ajouter";
             this.btnAjouter.UseVisualStyleBackColor = false;
+            this.btnAjouter.Click += new System.EventHandler(this.btnAjouter_Click);
             // 
             // btnModifier
             // 
@@ -117,6 +118,7 @@
             this.btnModifier.TabIndex = 2;
             this.btnModifier.Text = "Modifier";
             this.btnModifier.UseVisualStyleBackColor = false;
+            this.btnModifier.Click += new System.EventHandler(this.btnModifier_Click);
             // 
             // btnSupprimer
             // 
@@ -131,6 +133,7 @@
             this.btnSupprimer.TabIndex = 3;
             this.btnSupprimer.Text = "Supprimer";
             this.btnSupprimer.UseVisualStyleBackColor = false;
+            this.btnSupprimer.Click += new System.EventHandler(this.btnSupprimer_Click);
             // 
             // gbListe
             // 
@@ -153,18 +156,19 @@
             this.btnRecherche.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnRecherche.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Bold);
             this.btnRecherche.ForeColor = System.Drawing.Color.White;
-            this.btnRecherche.Location = new System.Drawing.Point(1207, 34);
+            this.btnRecherche.Location = new System.Drawing.Point(1157, 34);
             this.btnRecherche.Name = "btnRecherche";
-            this.btnRecherche.Size = new System.Drawing.Size(55, 35);
+            this.btnRecherche.Size = new System.Drawing.Size(105, 35);
             this.btnRecherche.TabIndex = 3;
             this.btnRecherche.Text = "🔍";
             this.btnRecherche.UseVisualStyleBackColor = false;
+            this.btnRecherche.Click += new System.EventHandler(this.btnRecherche_Click);
             // 
             // txtRecherche
             // 
             this.txtRecherche.Location = new System.Drawing.Point(277, 36);
             this.txtRecherche.Name = "txtRecherche";
-            this.txtRecherche.Size = new System.Drawing.Size(920, 31);
+            this.txtRecherche.Size = new System.Drawing.Size(874, 31);
             this.txtRecherche.TabIndex = 2;
             // 
             // cmbRecherche
@@ -198,6 +202,7 @@
             this.dgvVoitures.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
             this.dgvVoitures.Size = new System.Drawing.Size(1240, 214);
             this.dgvVoitures.TabIndex = 0;
+            this.dgvVoitures.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvVoitures_CellClick);
             // 
             // gbInfoGauche
             // 
@@ -235,6 +240,7 @@
             this.btnChoisirImage.TabIndex = 15;
             this.btnChoisirImage.Text = "Choisir image";
             this.btnChoisirImage.UseVisualStyleBackColor = false;
+            this.btnChoisirImage.Click += new System.EventHandler(this.btnChoisirImage_Click);
             // 
             // pbVoiture
             // 
@@ -429,6 +435,7 @@
             this.btnClear.TabIndex = 14;
             this.btnClear.Text = "Clear";
             this.btnClear.UseVisualStyleBackColor = false;
+            this.btnClear.Click += new System.EventHandler(this.btnClear_Click);
             // 
             // txtCouleur
             // 
@@ -568,6 +575,7 @@
             this.Name = "voiture";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "voituree";
+            this.Load += new System.EventHandler(this.voiture_Load);
             this.gbListe.ResumeLayout(false);
             this.gbListe.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgvVoitures)).EndInit();

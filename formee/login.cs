@@ -8,6 +8,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using System.Web;
 
 namespace venolocation.formee
 {
@@ -17,7 +18,8 @@ namespace venolocation.formee
         {
             InitializeComponent();
         }
-
+        public static string nom;
+        public static string role;
 
         private void chkShowPassword_CheckedChanged(object sender, EventArgs e)
         {
@@ -42,8 +44,8 @@ namespace venolocation.formee
 
                     if (dr.Read())
                     {
-                        string nom = dr["nom"].ToString();
-                        string role = dr["role"].ToString();
+                        nom = dr["nom"].ToString();
+                        role = dr["role"].ToString();
 
                         MessageBox.Show("Bienvenue " + nom + " (" + role + ")");
 

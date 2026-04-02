@@ -1,30 +1,40 @@
-﻿using MySql.Data.MySqlClient;
+﻿using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
 
-using static Guna.UI2.WinForms.Suite.Descriptions;
+using MySql.Data.MySqlClient;
 
-public class LogHelper
+using venolocation.formee;
+
+namespace venolocation.classee
 {
-    public static void AddLog(string message, string utilisateur)
+    internal class LogHelper
     {
-        try
+
+        public static void AddLog(string message, string utilisateur)
         {
-            using (MySqlConnection cn = new MySqlConnection(Properties.Settings.Default.conx))
+            try
             {
-                cn.Open();
+                using (MySqlConnection cn = new MySqlConnection(formee.dashboard.connection_string))
+                {
+                    cn.Open();
 
-                string q = "INSERT INTO logs (message, utilisateur, date) VALUES (@m,@u,NOW())";
+                    string q = "INSERT INTO logs (message, utilisateur, date) VALUES (@m,@u,NOW())";
 
-                MySqlCommand cmd = new MySqlCommand(q, cn);
+                    MySqlCommand cmd = new MySqlCommand(q, cn);
 
-                cmd.Parameters.AddWithValue("@m", message);
-                cmd.Parameters.AddWithValue("@u", utilisateur);
+                    cmd.Parameters.AddWithValue("@m", message);
+                    cmd.Parameters.AddWithValue("@u", utilisateur);
 
-                cmd.ExecuteNonQuery();
+                    cmd.ExecuteNonQuery();
+                }
             }
-        }
-        catch
-        {
-           
+            catch
+            {
+                
+            }
         }
     }
 }

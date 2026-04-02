@@ -11,6 +11,8 @@ using System.Windows.Forms;
 
 using MySql.Data.MySqlClient;
 
+using venolocation.classee;
+
 namespace venolocation.formee
 {
     public partial class client : Form
@@ -22,19 +24,48 @@ namespace venolocation.formee
 
         bool CinExists(string cin)
         {
-            MySqlConnection cn = new MySqlConnection(formee.dashboard.connection_string);
-            cn.Open();
+            using (MySqlConnection cn = new MySqlConnection(formee.dashboard.connection_string))
+            {
+                cn.Open();
 
-            string q = "SELECT COUNT(*) FROM clients WHERE cin=@c";
+                string q = "SELECT COUNT(*) FROM clients WHERE cin=@cin";
+                MySqlCommand cmd = new MySqlCommand(q, cn);
+                cmd.Parameters.AddWithValue("@cin", cin);
 
-            MySqlCommand cmd = new MySqlCommand(q, cn);
-            cmd.Parameters.AddWithValue("@c", cin);
+                int count = Convert.ToInt32(cmd.ExecuteScalar());
+                return count > 0;
+            }
+        }
 
-            int count = Convert.ToInt32(cmd.ExecuteScalar());
+        bool CinExistsForOtherClient(string cin, int clientId)
+        {
+            using (MySqlConnection cn = new MySqlConnection(formee.dashboard.connection_string))
+            {
+                cn.Open();
 
-            cn.Close();
+                string q = "SELECT COUNT(*) FROM clients WHERE cin=@cin AND client_id<>@id";
+                MySqlCommand cmd = new MySqlCommand(q, cn);
+                cmd.Parameters.AddWithValue("@cin", cin);
+                cmd.Parameters.AddWithValue("@id", clientId);
 
-            return count > 0;
+                int count = Convert.ToInt32(cmd.ExecuteScalar());
+                return count > 0;
+            }
+        }
+        void ClearFields()
+        {
+            txtNomClient.Clear();
+            txtPrenomClient.Clear();
+            txtCinClient.Clear();
+            txtTelephone.Clear();
+            txtAdresseClient.Clear();
+            txtVilleClient.Clear();
+            txtPermisClient.Clear();
+
+            dtpDateNaissance.Value = DateTime.Now;
+            dtpDelivreLe.Value = DateTime.Now;
+
+            txtNomClient.Focus();
         }
 
         void LoadClients()
@@ -60,85 +91,160 @@ namespace venolocation.formee
 
         private void btnAjouter_Click(object sender, EventArgs e)
         {
-            if (txtCinClient.Text == "")
+            try
             {
-                MessageBox.Show("CIN obligatoire !");
-                return;
-            }
-            if (CinExists(txtCinClient.Text))
-            {
-                MessageBox.Show("CIN déjà exist !");
-                return;
-            }
-            using (MySqlConnection cn = new MySqlConnection(formee.dashboard.connection_string))
-            {
-                cn.Open();
+                if (txtCinClient.Text.Trim() == "")
+                {
+                    MessageBox.Show("CIN obligatoire");
+                    return;
+                }
 
-                string query = @"INSERT INTO clients
-                        (nom, prenom, cin, telephone, ville, permis_num)
-                        VALUES (@nom,@prenom,@cin,@tel,@ville,@permis)";
+                if (CinExists(txtCinClient.Text.Trim()))
+                {
+                    MessageBox.Show("CIN déjà existe");
+                    return;
+                }
 
-                MySqlCommand cmd = new MySqlCommand(query, cn);
+                using (MySqlConnection cn = new MySqlConnection(formee.dashboard.connection_string))
+                {
+                    cn.Open();
 
-                cmd.Parameters.AddWithValue("@nom", txtNomClient.Text);
-                cmd.Parameters.AddWithValue("@prenom", txtPrenomClient.Text);
-                cmd.Parameters.AddWithValue("@cin", txtCinClient.Text);
-                cmd.Parameters.AddWithValue("@tel", txtTelephone.Text);
-                cmd.Parameters.AddWithValue("@ville", cmbVilleClient.Text);
-                cmd.Parameters.AddWithValue("@permis", txtPermisClient.Text);
+                    string q = @"INSERT INTO clients
+                                (nom, prenom, cin, telephone, adresse, ville, date_naissance, permis_num, permis_date, nom_utilisateur)
+                                VALUES
+                                (@nom, @prenom, @cin, @tel, @adresse, @ville, @dateN, @permis, @datePermis, @user)";
 
-                cmd.ExecuteNonQuery();
+                    MySqlCommand cmd = new MySqlCommand(q, cn);
 
-                MessageBox.Show("Ajouté !");
+                    cmd.Parameters.AddWithValue("@nom", txtNomClient.Text);
+                    cmd.Parameters.AddWithValue("@prenom", txtPrenomClient.Text);
+                    cmd.Parameters.AddWithValue("@cin", txtCinClient.Text);
+                    cmd.Parameters.AddWithValue("@tel", txtTelephone.Text);
+                    cmd.Parameters.AddWithValue("@adresse", txtAdresseClient.Text);
+                    cmd.Parameters.AddWithValue("@ville", txtVilleClient.Text);
+                    cmd.Parameters.AddWithValue("@dateN", dtpDateNaissance.Value.Date);
+                    cmd.Parameters.AddWithValue("@permis", txtPermisClient.Text);
+                    cmd.Parameters.AddWithValue("@datePermis", dtpDelivreLe.Value.Date);
+                    cmd.Parameters.AddWithValue("@user", login.nom);
+
+                    cmd.ExecuteNonQuery();
+                }
+
+                LogHelper.AddLog("Ajout client CIN: " + txtCinClient.Text, login.nom);
+                MessageBox.Show("Client ajouté avec succès");
                 LoadClients();
-            }           
+                ClearFields();
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+            }
         }
 
         private void btnModifier_Click(object sender, EventArgs e)
         {
-            using (MySqlConnection cn = new MySqlConnection(formee.dashboard.connection_string))
+            try
             {
-                cn.Open();
+                if (dgvClients.CurrentRow == null)
+                {
+                    MessageBox.Show("Sélectionne un client");
+                    return;
+                }
 
-                string query = @"UPDATE clients SET
-                                    nom=@nom,
-                                    prenom=@prenom,
-                                    telephone=@tel,
-                                    ville=@ville,
-                                    permis_num=@permis
-                                    WHERE cin=@cin";
+                int clientId = Convert.ToInt32(dgvClients.CurrentRow.Cells["client_id"].Value);
 
-                MySqlCommand cmd = new MySqlCommand(query, cn);
+                if (txtCinClient.Text.Trim() == "")
+                {
+                    MessageBox.Show("CIN obligatoire");
+                    return;
+                }
 
-                cmd.Parameters.AddWithValue("@nom", txtNomClient.Text);
-                cmd.Parameters.AddWithValue("@prenom", txtPrenomClient.Text);
-                cmd.Parameters.AddWithValue("@cin", txtCinClient.Text);
-                cmd.Parameters.AddWithValue("@tel", txtTelephone.Text);
-                cmd.Parameters.AddWithValue("@ville", cmbVilleClient.Text);
-                cmd.Parameters.AddWithValue("@permis", txtPermisClient.Text);
+                if (CinExistsForOtherClient(txtCinClient.Text.Trim(), clientId))
+                {
+                    MessageBox.Show("CIN déjà existe pour un autre client");
+                    return;
+                }
 
-                cmd.ExecuteNonQuery();
+                using (MySqlConnection cn = new MySqlConnection(formee.dashboard.connection_string))
+                {
+                    cn.Open();
 
-                MessageBox.Show("Modifié !");
+                    string q = @"UPDATE clients SET
+                                nom=@nom,
+                                prenom=@prenom,
+                                cin=@cin,
+                                telephone=@tel,
+                                adresse=@adresse,
+                                ville=@ville,
+                                date_naissance=@dateN,
+                                permis_num=@permis,
+                                permis_date=@datePermis,
+                                nom_utilisateur=@user
+                                WHERE client_id=@id";
+
+                    MySqlCommand cmd = new MySqlCommand(q, cn);
+
+                    cmd.Parameters.AddWithValue("@nom", txtNomClient.Text);
+                    cmd.Parameters.AddWithValue("@prenom", txtPrenomClient.Text);
+                    cmd.Parameters.AddWithValue("@cin", txtCinClient.Text);
+                    cmd.Parameters.AddWithValue("@tel", txtTelephone.Text);
+                    cmd.Parameters.AddWithValue("@adresse", txtAdresseClient.Text);
+                    cmd.Parameters.AddWithValue("@ville", txtVilleClient.Text);
+                    cmd.Parameters.AddWithValue("@dateN", dtpDateNaissance.Value.Date);
+                    cmd.Parameters.AddWithValue("@permis", txtPermisClient.Text);
+                    cmd.Parameters.AddWithValue("@datePermis", dtpDelivreLe.Value.Date);
+                    cmd.Parameters.AddWithValue("@user", login.nom);
+                    cmd.Parameters.AddWithValue("@id", clientId);
+
+                    cmd.ExecuteNonQuery();
+                }
+
+                LogHelper.AddLog("Modification client CIN: " + txtCinClient.Text, login.nom);
+                MessageBox.Show("Client modifié avec succès");
                 LoadClients();
+                ClearFields();
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
             }
         }
 
         private void btnSupprimer_Click(object sender, EventArgs e)
         {
-            using (MySqlConnection cn = new MySqlConnection(formee.dashboard.connection_string))
+            try
             {
-                cn.Open();
+                if (dgvClients.CurrentRow == null)
+                {
+                    MessageBox.Show("Sélectionne un client");
+                    return;
+                }
 
-                string query = "DELETE FROM clients WHERE cin=@cin";
+                int clientId = Convert.ToInt32(dgvClients.CurrentRow.Cells["client_id"].Value);
 
-                MySqlCommand cmd = new MySqlCommand(query, cn);
-                cmd.Parameters.AddWithValue("@cin", txtCinClient.Text);
+                DialogResult rep = MessageBox.Show("Tu veux vraiment supprimer ce client ?", "Confirmation", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+                if (rep != DialogResult.Yes)
+                    return;
 
-                cmd.ExecuteNonQuery();
+                using (MySqlConnection cn = new MySqlConnection(formee.dashboard.connection_string))
+                {
+                    cn.Open();
 
-                MessageBox.Show("Supprimé !");
+                    string q = "DELETE FROM clients WHERE client_id=@id";
+                    MySqlCommand cmd = new MySqlCommand(q, cn);
+                    cmd.Parameters.AddWithValue("@id", clientId);
+
+                    cmd.ExecuteNonQuery();
+                }
+
+                LogHelper.AddLog("Suppression client CIN: " + txtCinClient.Text, login.nom);
+                MessageBox.Show("Client supprimé avec succès");
                 LoadClients();
+                ClearFields();
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
             }
         }
 
@@ -149,49 +255,67 @@ namespace venolocation.formee
 
         private void btnClear_Click(object sender, EventArgs e)
         {
-
+            
         }
 
         private void btnRetour_Click(object sender, EventArgs e)
         {
-
+            ClearFields();
         }
 
         private void dgvClients_CellClick(object sender, DataGridViewCellEventArgs e)
         {
             if (e.RowIndex >= 0)
             {
-                DataGridViewRow row = dgvClients.Rows[e.RowIndex];
+                DataGridViewRow r = dgvClients.Rows[e.RowIndex];
 
-                txtNomClient.Text = row.Cells["nom"].Value.ToString();
-                txtPrenomClient.Text = row.Cells["prenom"].Value.ToString();
-                txtCinClient.Text = row.Cells["cin"].Value.ToString();
-                txtTelephone.Text = row.Cells["telephone"].Value.ToString();
-                cmbVilleClient.Text = row.Cells["ville"].Value.ToString();
-                txtPermisClient.Text = row.Cells["permis_num"].Value.ToString();
+                txtNomClient.Text = r.Cells["nom"].Value?.ToString();
+                txtPrenomClient.Text = r.Cells["prenom"].Value?.ToString();
+                txtCinClient.Text = r.Cells["cin"].Value?.ToString();
+                txtTelephone.Text = r.Cells["telephone"].Value?.ToString();
+                txtAdresseClient.Text = r.Cells["adresse"].Value?.ToString();
+                txtVilleClient.Text = r.Cells["ville"].Value?.ToString();
+                txtPermisClient.Text = r.Cells["permis_num"].Value?.ToString();
+
+                if (r.Cells["date_naissance"].Value != DBNull.Value)
+                    dtpDateNaissance.Value = Convert.ToDateTime(r.Cells["date_naissance"].Value);
+
+                if (r.Cells["permis_date"].Value != DBNull.Value)
+                    dtpDelivreLe.Value = Convert.ToDateTime(r.Cells["permis_date"].Value);
             }
         }
 
         private void btnSearchTop_Click(object sender, EventArgs e)
         {
-            MySqlConnection cn = new MySqlConnection(formee.dashboard.connection_string);
-            cn.Open();
+            try
+            {
+                using (MySqlConnection cn = new MySqlConnection(formee.dashboard.connection_string))
+                {
+                    cn.Open();
 
-            string q = @"SELECT * FROM clients 
-                 WHERE nom LIKE @s 
-                 OR prenom LIKE @s 
-                 OR cin LIKE @s";
+                    string q = @"SELECT client_id, nom, prenom, cin, telephone, adresse, ville, 
+                                        date_naissance, permis_num, permis_date, nom_utilisateur, created_at
+                                 FROM clients
+                                 WHERE nom LIKE @s
+                                    OR prenom LIKE @s
+                                    OR cin LIKE @s
+                                    OR telephone LIKE @s
+                                    OR ville LIKE @s";
 
-            MySqlCommand cmd = new MySqlCommand(q, cn);
-            cmd.Parameters.AddWithValue("@s", "%" + txtRecherche.Text + "%");
+                    MySqlCommand cmd = new MySqlCommand(q, cn);
+                    cmd.Parameters.AddWithValue("@s", "%" + txtRecherche.Text + "%");
 
-            MySqlDataAdapter da = new MySqlDataAdapter(cmd);
-            DataTable dt = new DataTable();
-            da.Fill(dt);
-
-           dgvClients.DataSource = dt;
-
-            cn.Close();
+                    MySqlDataAdapter da = new MySqlDataAdapter(cmd);
+                    DataTable dt = new DataTable();
+                    da.Fill(dt);
+                    dgvClients.DataSource = dt;
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+            }
         }
     }
+    
 }

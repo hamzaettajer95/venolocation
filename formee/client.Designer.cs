@@ -32,7 +32,6 @@ namespace venolocation.formee
 
         private GroupBox gbListeClients;
         private TextBox txtRecherche;
-        private ComboBox cmbRecherche;
         private Button btnSearchTop;
         private DataGridView dgvClients;
 
@@ -40,8 +39,6 @@ namespace venolocation.formee
         private Button btnAjouter;
         private Button btnModifier;
         private Button btnSupprimer;
-        private Button btnRechercher;
-        private Button btnClear;
         private Button btnRetour;
 
         private GroupBox gbInfoGauche;
@@ -65,7 +62,6 @@ namespace venolocation.formee
 
         private TextBox txtPermisClient;
         private DateTimePicker dtpDelivreLe;
-        private ComboBox cmbVilleClient;
         private TextBox txtAdresseClient;
         private void InitializeComponent()
         {
@@ -73,15 +69,12 @@ namespace venolocation.formee
             this.lblTitle = new System.Windows.Forms.Label();
             this.gbListeClients = new System.Windows.Forms.GroupBox();
             this.txtRecherche = new System.Windows.Forms.TextBox();
-            this.cmbRecherche = new System.Windows.Forms.ComboBox();
             this.btnSearchTop = new System.Windows.Forms.Button();
             this.dgvClients = new System.Windows.Forms.DataGridView();
             this.gbActions = new System.Windows.Forms.GroupBox();
             this.btnAjouter = new System.Windows.Forms.Button();
             this.btnModifier = new System.Windows.Forms.Button();
             this.btnSupprimer = new System.Windows.Forms.Button();
-            this.btnRechercher = new System.Windows.Forms.Button();
-            this.btnClear = new System.Windows.Forms.Button();
             this.btnRetour = new System.Windows.Forms.Button();
             this.gbInfoGauche = new System.Windows.Forms.GroupBox();
             this.lblCinClient = new System.Windows.Forms.Label();
@@ -100,9 +93,9 @@ namespace venolocation.formee
             this.lblDelivreLe = new System.Windows.Forms.Label();
             this.dtpDelivreLe = new System.Windows.Forms.DateTimePicker();
             this.lblVilleClient = new System.Windows.Forms.Label();
-            this.cmbVilleClient = new System.Windows.Forms.ComboBox();
             this.lblAdresseClient = new System.Windows.Forms.Label();
             this.txtAdresseClient = new System.Windows.Forms.TextBox();
+            this.txtVilleClient = new System.Windows.Forms.TextBox();
             this.gbListeClients.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgvClients)).BeginInit();
             this.gbActions.SuspendLayout();
@@ -123,7 +116,6 @@ namespace venolocation.formee
             // gbListeClients
             // 
             this.gbListeClients.Controls.Add(this.txtRecherche);
-            this.gbListeClients.Controls.Add(this.cmbRecherche);
             this.gbListeClients.Controls.Add(this.btnSearchTop);
             this.gbListeClients.Controls.Add(this.dgvClients);
             this.gbListeClients.Font = new System.Drawing.Font("Segoe UI", 11F);
@@ -138,22 +130,8 @@ namespace venolocation.formee
             // 
             this.txtRecherche.Location = new System.Drawing.Point(18, 42);
             this.txtRecherche.Name = "txtRecherche";
-            this.txtRecherche.Size = new System.Drawing.Size(1086, 32);
+            this.txtRecherche.Size = new System.Drawing.Size(1147, 32);
             this.txtRecherche.TabIndex = 0;
-            // 
-            // cmbRecherche
-            // 
-            this.cmbRecherche.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this.cmbRecherche.Items.AddRange(new object[] {
-            "CIN",
-            "Nom",
-            "Prénom",
-            "Téléphone",
-            "Ville"});
-            this.cmbRecherche.Location = new System.Drawing.Point(1110, 41);
-            this.cmbRecherche.Name = "cmbRecherche";
-            this.cmbRecherche.Size = new System.Drawing.Size(127, 33);
-            this.cmbRecherche.TabIndex = 1;
             // 
             // btnSearchTop
             // 
@@ -162,9 +140,9 @@ namespace venolocation.formee
             this.btnSearchTop.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnSearchTop.Font = new System.Drawing.Font("Segoe UI Emoji", 14F, System.Drawing.FontStyle.Bold);
             this.btnSearchTop.ForeColor = System.Drawing.Color.White;
-            this.btnSearchTop.Location = new System.Drawing.Point(1243, 41);
+            this.btnSearchTop.Location = new System.Drawing.Point(1186, 41);
             this.btnSearchTop.Name = "btnSearchTop";
-            this.btnSearchTop.Size = new System.Drawing.Size(45, 34);
+            this.btnSearchTop.Size = new System.Drawing.Size(102, 34);
             this.btnSearchTop.TabIndex = 2;
             this.btnSearchTop.Text = "🔍";
             this.btnSearchTop.UseVisualStyleBackColor = false;
@@ -193,8 +171,6 @@ namespace venolocation.formee
             this.gbActions.Controls.Add(this.btnAjouter);
             this.gbActions.Controls.Add(this.btnModifier);
             this.gbActions.Controls.Add(this.btnSupprimer);
-            this.gbActions.Controls.Add(this.btnRechercher);
-            this.gbActions.Controls.Add(this.btnClear);
             this.gbActions.Controls.Add(this.btnRetour);
             this.gbActions.Font = new System.Drawing.Font("Segoe UI", 11F);
             this.gbActions.Location = new System.Drawing.Point(35, 455);
@@ -215,7 +191,7 @@ namespace venolocation.formee
             this.btnAjouter.Name = "btnAjouter";
             this.btnAjouter.Size = new System.Drawing.Size(195, 48);
             this.btnAjouter.TabIndex = 0;
-            this.btnAjouter.Text = "✚ Ajouter";
+            this.btnAjouter.Text = "✚    Ajouter";
             this.btnAjouter.UseVisualStyleBackColor = false;
             this.btnAjouter.Click += new System.EventHandler(this.btnAjouter_Click);
             // 
@@ -226,7 +202,8 @@ namespace venolocation.formee
             this.btnModifier.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnModifier.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Bold);
             this.btnModifier.ForeColor = System.Drawing.Color.White;
-            this.btnModifier.Location = new System.Drawing.Point(228, 42);
+            this.btnModifier.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.btnModifier.Location = new System.Drawing.Point(371, 42);
             this.btnModifier.Name = "btnModifier";
             this.btnModifier.Size = new System.Drawing.Size(195, 48);
             this.btnModifier.TabIndex = 1;
@@ -241,43 +218,13 @@ namespace venolocation.formee
             this.btnSupprimer.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnSupprimer.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Bold);
             this.btnSupprimer.ForeColor = System.Drawing.Color.White;
-            this.btnSupprimer.Location = new System.Drawing.Point(438, 42);
+            this.btnSupprimer.Location = new System.Drawing.Point(724, 42);
             this.btnSupprimer.Name = "btnSupprimer";
             this.btnSupprimer.Size = new System.Drawing.Size(195, 48);
             this.btnSupprimer.TabIndex = 2;
             this.btnSupprimer.Text = "🗑 Supprimer";
             this.btnSupprimer.UseVisualStyleBackColor = false;
             this.btnSupprimer.Click += new System.EventHandler(this.btnSupprimer_Click);
-            // 
-            // btnRechercher
-            // 
-            this.btnRechercher.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(237)))), ((int)(((byte)(145)))), ((int)(((byte)(31)))));
-            this.btnRechercher.FlatAppearance.BorderSize = 0;
-            this.btnRechercher.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnRechercher.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Bold);
-            this.btnRechercher.ForeColor = System.Drawing.Color.White;
-            this.btnRechercher.Location = new System.Drawing.Point(648, 42);
-            this.btnRechercher.Name = "btnRechercher";
-            this.btnRechercher.Size = new System.Drawing.Size(195, 48);
-            this.btnRechercher.TabIndex = 3;
-            this.btnRechercher.Text = "🔍 Rechercher";
-            this.btnRechercher.UseVisualStyleBackColor = false;
-            this.btnRechercher.Click += new System.EventHandler(this.btnRechercher_Click);
-            // 
-            // btnClear
-            // 
-            this.btnClear.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(123)))), ((int)(((byte)(123)))), ((int)(((byte)(123)))));
-            this.btnClear.FlatAppearance.BorderSize = 0;
-            this.btnClear.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnClear.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Bold);
-            this.btnClear.ForeColor = System.Drawing.Color.White;
-            this.btnClear.Location = new System.Drawing.Point(858, 42);
-            this.btnClear.Name = "btnClear";
-            this.btnClear.Size = new System.Drawing.Size(160, 48);
-            this.btnClear.TabIndex = 4;
-            this.btnClear.Text = "⊗ Clear";
-            this.btnClear.UseVisualStyleBackColor = false;
-            this.btnClear.Click += new System.EventHandler(this.btnClear_Click);
             // 
             // btnRetour
             // 
@@ -286,9 +233,9 @@ namespace venolocation.formee
             this.btnRetour.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnRetour.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Bold);
             this.btnRetour.ForeColor = System.Drawing.Color.White;
-            this.btnRetour.Location = new System.Drawing.Point(1030, 42);
+            this.btnRetour.Location = new System.Drawing.Point(1136, 42);
             this.btnRetour.Name = "btnRetour";
-            this.btnRetour.Size = new System.Drawing.Size(270, 48);
+            this.btnRetour.Size = new System.Drawing.Size(144, 48);
             this.btnRetour.TabIndex = 5;
             this.btnRetour.Text = "↻ Retour";
             this.btnRetour.UseVisualStyleBackColor = false;
@@ -397,12 +344,12 @@ namespace venolocation.formee
             // 
             // gbInfoDroite
             // 
+            this.gbInfoDroite.Controls.Add(this.txtVilleClient);
             this.gbInfoDroite.Controls.Add(this.lblPermisClient);
             this.gbInfoDroite.Controls.Add(this.txtPermisClient);
             this.gbInfoDroite.Controls.Add(this.lblDelivreLe);
             this.gbInfoDroite.Controls.Add(this.dtpDelivreLe);
             this.gbInfoDroite.Controls.Add(this.lblVilleClient);
-            this.gbInfoDroite.Controls.Add(this.cmbVilleClient);
             this.gbInfoDroite.Controls.Add(this.lblAdresseClient);
             this.gbInfoDroite.Controls.Add(this.txtAdresseClient);
             this.gbInfoDroite.Font = new System.Drawing.Font("Segoe UI", 11F);
@@ -455,14 +402,6 @@ namespace venolocation.formee
             this.lblVilleClient.TabIndex = 4;
             this.lblVilleClient.Text = "Ville Client";
             // 
-            // cmbVilleClient
-            // 
-            this.cmbVilleClient.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this.cmbVilleClient.Location = new System.Drawing.Point(220, 128);
-            this.cmbVilleClient.Name = "cmbVilleClient";
-            this.cmbVilleClient.Size = new System.Drawing.Size(280, 33);
-            this.cmbVilleClient.TabIndex = 5;
-            // 
             // lblAdresseClient
             // 
             this.lblAdresseClient.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Bold);
@@ -478,7 +417,14 @@ namespace venolocation.formee
             this.txtAdresseClient.Multiline = true;
             this.txtAdresseClient.Name = "txtAdresseClient";
             this.txtAdresseClient.Size = new System.Drawing.Size(395, 78);
-            this.txtAdresseClient.TabIndex = 7;
+            this.txtAdresseClient.TabIndex = 5;
+            // 
+            // txtVilleClient
+            // 
+            this.txtVilleClient.Location = new System.Drawing.Point(220, 129);
+            this.txtVilleClient.Name = "txtVilleClient";
+            this.txtVilleClient.Size = new System.Drawing.Size(280, 32);
+            this.txtVilleClient.TabIndex = 4;
             // 
             // client
             // 
@@ -510,6 +456,8 @@ namespace venolocation.formee
             this.PerformLayout();
 
         }
+
+        private TextBox txtVilleClient;
     }
 }
 
