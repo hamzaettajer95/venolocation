@@ -144,6 +144,12 @@
     <Compile Include="formee\depence.Designer.cs">
       <DependentUpon>depence.cs</DependentUpon>
     </Compile>
+    <Compile Include="formee\Entretient.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="formee\Entretient.Designer.cs">
+      <DependentUpon>Entretient.cs</DependentUpon>
+    </Compile>
     <Compile Include="formee\login.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -187,6 +193,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="formee\depence.resx">
       <DependentUpon>depence.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="formee\Entretient.resx">
+      <DependentUpon>Entretient.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="formee\login.resx">
       <DependentUpon>login.cs</DependentUpon>

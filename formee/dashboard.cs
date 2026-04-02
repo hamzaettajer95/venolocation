@@ -101,5 +101,11 @@ namespace venolocation.formee
             formee.alerte al = new alerte();
             al.ShowDialog();
         }
+
+        private void btnentretient_Click(object sender, EventArgs e)
+        {
+            formee.Entretient en = new Entretient();
+            en.ShowDialog();
+        }
     }
 }

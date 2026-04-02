@@ -50,11 +50,11 @@ namespace venolocation.formee
                 cn.Open();
 
                 string q = @"INSERT INTO voitures
-        (matricule, marque, modele, categorie, carburant, boite, etat,
-         prix_jour, prix_heure, annee, image_url, nom_utilisateur)
+        (matricule, marque, modele, categorie, carburant, boite,kilometrage, etat,
+         prix_jour, prix_heure, annee,couleur, image_url, nom_utilisateur)
         VALUES
-        (@mat, @marque, @modele, @cat, @carb, @boite, @etat,
-         @pj, @ph, @annee, @img, @user)";
+        (@mat, @marque, @modele, @cat, @carb, @boite,@kilomet @etat,
+         @pj, @ph, @annee,@coul, @img, @user)";
 
                 MySqlCommand cmd = new MySqlCommand(q, cn);
 
@@ -64,10 +64,12 @@ namespace venolocation.formee
                 cmd.Parameters.AddWithValue("@cat", cmbCategorie.Text);
                 cmd.Parameters.AddWithValue("@carb", cmbTypeCarburant.Text);
                 cmd.Parameters.AddWithValue("@boite", cmbBoiteVitesse.Text);
+                cmd.Parameters.AddWithValue("@kilomet",txtKilometrage.Text);
                 cmd.Parameters.AddWithValue("@etat", cmbEtat.Text);
                 cmd.Parameters.AddWithValue("@pj", txtPrixJour.Text);
                 cmd.Parameters.AddWithValue("@ph", txtPrixHeure.Text);
                 cmd.Parameters.AddWithValue("@annee", txtAnnee.Text);
+                cmd.Parameters.AddWithValue("@coul", txtCouleur.Text);
                 cmd.Parameters.AddWithValue("@img", imagePath);
                 cmd.Parameters.AddWithValue("@user", login.nom);
 
@@ -98,10 +100,12 @@ namespace venolocation.formee
         categorie=@cat,
         carburant=@carb,
         boite=@boite,
+        kilometrage=@kilomet,
         etat=@etat,
         prix_jour=@pj,
         prix_heure=@ph,
         annee=@annee,
+        couleur=@coul,
         image_url=@img,
         nom_utilisateur=@user
         WHERE voiture_id=@id";
@@ -114,10 +118,12 @@ namespace venolocation.formee
                 cmd.Parameters.AddWithValue("@cat", cmbCategorie.Text);
                 cmd.Parameters.AddWithValue("@carb", cmbTypeCarburant.Text);
                 cmd.Parameters.AddWithValue("@boite", cmbBoiteVitesse.Text);
+                cmd.Parameters.AddWithValue("@kilomet", txtKilometrage.Text);
                 cmd.Parameters.AddWithValue("@etat", cmbEtat.Text);
                 cmd.Parameters.AddWithValue("@pj", txtPrixJour.Text);
                 cmd.Parameters.AddWithValue("@ph", txtPrixHeure.Text);
                 cmd.Parameters.AddWithValue("@annee", txtAnnee.Text);
+                cmd.Parameters.AddWithValue("@coul", txtCouleur.Text);
                 cmd.Parameters.AddWithValue("@img", imagePath);
                 cmd.Parameters.AddWithValue("@user", login.nom);
                 cmd.Parameters.AddWithValue("@id", id);

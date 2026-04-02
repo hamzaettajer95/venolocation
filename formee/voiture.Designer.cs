@@ -56,22 +56,17 @@
             this.lblMarque = new System.Windows.Forms.Label();
             this.lblImmatriculation = new System.Windows.Forms.Label();
             this.gbInfoDroite = new System.Windows.Forms.GroupBox();
-            this.btnRechercheBas = new System.Windows.Forms.Button();
             this.btnClear = new System.Windows.Forms.Button();
             this.txtCouleur = new System.Windows.Forms.TextBox();
             this.txtAnnee = new System.Windows.Forms.TextBox();
             this.txtPrixHeure = new System.Windows.Forms.TextBox();
             this.txtPrixJour = new System.Windows.Forms.TextBox();
             this.cmbEtat = new System.Windows.Forms.ComboBox();
-            this.dtpFinAssurance = new System.Windows.Forms.DateTimePicker();
-            this.dtpFinVidange = new System.Windows.Forms.DateTimePicker();
             this.lblCouleur = new System.Windows.Forms.Label();
             this.lblAnnee = new System.Windows.Forms.Label();
             this.lblPrixHeure = new System.Windows.Forms.Label();
             this.lblPrixJour = new System.Windows.Forms.Label();
             this.lblEtat = new System.Windows.Forms.Label();
-            this.lblFinAssurance = new System.Windows.Forms.Label();
-            this.lblFinVidange = new System.Windows.Forms.Label();
             this.gbListe.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgvVoitures)).BeginInit();
             this.gbInfoGauche.SuspendLayout();
@@ -387,22 +382,17 @@
             // 
             // gbInfoDroite
             // 
-            this.gbInfoDroite.Controls.Add(this.btnRechercheBas);
             this.gbInfoDroite.Controls.Add(this.btnClear);
             this.gbInfoDroite.Controls.Add(this.txtCouleur);
             this.gbInfoDroite.Controls.Add(this.txtAnnee);
             this.gbInfoDroite.Controls.Add(this.txtPrixHeure);
             this.gbInfoDroite.Controls.Add(this.txtPrixJour);
             this.gbInfoDroite.Controls.Add(this.cmbEtat);
-            this.gbInfoDroite.Controls.Add(this.dtpFinAssurance);
-            this.gbInfoDroite.Controls.Add(this.dtpFinVidange);
             this.gbInfoDroite.Controls.Add(this.lblCouleur);
             this.gbInfoDroite.Controls.Add(this.lblAnnee);
             this.gbInfoDroite.Controls.Add(this.lblPrixHeure);
             this.gbInfoDroite.Controls.Add(this.lblPrixJour);
             this.gbInfoDroite.Controls.Add(this.lblEtat);
-            this.gbInfoDroite.Controls.Add(this.lblFinAssurance);
-            this.gbInfoDroite.Controls.Add(this.lblFinVidange);
             this.gbInfoDroite.Font = new System.Drawing.Font("Segoe UI", 10.8F, System.Drawing.FontStyle.Bold);
             this.gbInfoDroite.Location = new System.Drawing.Point(712, 490);
             this.gbInfoDroite.Name = "gbInfoDroite";
@@ -411,25 +401,11 @@
             this.gbInfoDroite.TabStop = false;
             this.gbInfoDroite.Text = "Détails location";
             // 
-            // btnRechercheBas
-            // 
-            this.btnRechercheBas.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(235)))), ((int)(((byte)(151)))), ((int)(((byte)(49)))));
-            this.btnRechercheBas.FlatAppearance.BorderSize = 0;
-            this.btnRechercheBas.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnRechercheBas.Font = new System.Drawing.Font("Segoe UI", 11F, System.Drawing.FontStyle.Bold);
-            this.btnRechercheBas.ForeColor = System.Drawing.Color.White;
-            this.btnRechercheBas.Location = new System.Drawing.Point(451, 289);
-            this.btnRechercheBas.Name = "btnRechercheBas";
-            this.btnRechercheBas.Size = new System.Drawing.Size(140, 40);
-            this.btnRechercheBas.TabIndex = 15;
-            this.btnRechercheBas.Text = "Rechercher";
-            this.btnRechercheBas.UseVisualStyleBackColor = false;
-            // 
             // btnClear
             // 
             this.btnClear.BackColor = System.Drawing.Color.Gainsboro;
             this.btnClear.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnClear.Location = new System.Drawing.Point(451, 242);
+            this.btnClear.Location = new System.Drawing.Point(474, 285);
             this.btnClear.Name = "btnClear";
             this.btnClear.Size = new System.Drawing.Size(140, 40);
             this.btnClear.TabIndex = 14;
@@ -439,28 +415,28 @@
             // 
             // txtCouleur
             // 
-            this.txtCouleur.Location = new System.Drawing.Point(182, 282);
+            this.txtCouleur.Location = new System.Drawing.Point(182, 265);
             this.txtCouleur.Name = "txtCouleur";
             this.txtCouleur.Size = new System.Drawing.Size(230, 31);
             this.txtCouleur.TabIndex = 13;
             // 
             // txtAnnee
             // 
-            this.txtAnnee.Location = new System.Drawing.Point(182, 241);
+            this.txtAnnee.Location = new System.Drawing.Point(182, 209);
             this.txtAnnee.Name = "txtAnnee";
             this.txtAnnee.Size = new System.Drawing.Size(230, 31);
             this.txtAnnee.TabIndex = 12;
             // 
             // txtPrixHeure
             // 
-            this.txtPrixHeure.Location = new System.Drawing.Point(182, 200);
+            this.txtPrixHeure.Location = new System.Drawing.Point(182, 153);
             this.txtPrixHeure.Name = "txtPrixHeure";
             this.txtPrixHeure.Size = new System.Drawing.Size(230, 31);
             this.txtPrixHeure.TabIndex = 11;
             // 
             // txtPrixJour
             // 
-            this.txtPrixJour.Location = new System.Drawing.Point(182, 159);
+            this.txtPrixJour.Location = new System.Drawing.Point(182, 97);
             this.txtPrixJour.Name = "txtPrixJour";
             this.txtPrixJour.Size = new System.Drawing.Size(230, 31);
             this.txtPrixJour.TabIndex = 10;
@@ -473,29 +449,15 @@
             "Disponible",
             "Louée",
             "Maintenance"});
-            this.cmbEtat.Location = new System.Drawing.Point(182, 118);
+            this.cmbEtat.Location = new System.Drawing.Point(182, 39);
             this.cmbEtat.Name = "cmbEtat";
             this.cmbEtat.Size = new System.Drawing.Size(230, 33);
             this.cmbEtat.TabIndex = 9;
             // 
-            // dtpFinAssurance
-            // 
-            this.dtpFinAssurance.Location = new System.Drawing.Point(182, 78);
-            this.dtpFinAssurance.Name = "dtpFinAssurance";
-            this.dtpFinAssurance.Size = new System.Drawing.Size(306, 31);
-            this.dtpFinAssurance.TabIndex = 8;
-            // 
-            // dtpFinVidange
-            // 
-            this.dtpFinVidange.Location = new System.Drawing.Point(182, 37);
-            this.dtpFinVidange.Name = "dtpFinVidange";
-            this.dtpFinVidange.Size = new System.Drawing.Size(306, 31);
-            this.dtpFinVidange.TabIndex = 7;
-            // 
             // lblCouleur
             // 
             this.lblCouleur.AutoSize = true;
-            this.lblCouleur.Location = new System.Drawing.Point(21, 285);
+            this.lblCouleur.Location = new System.Drawing.Point(21, 271);
             this.lblCouleur.Name = "lblCouleur";
             this.lblCouleur.Size = new System.Drawing.Size(78, 25);
             this.lblCouleur.TabIndex = 6;
@@ -504,7 +466,7 @@
             // lblAnnee
             // 
             this.lblAnnee.AutoSize = true;
-            this.lblAnnee.Location = new System.Drawing.Point(21, 244);
+            this.lblAnnee.Location = new System.Drawing.Point(21, 215);
             this.lblAnnee.Name = "lblAnnee";
             this.lblAnnee.Size = new System.Drawing.Size(67, 25);
             this.lblAnnee.TabIndex = 5;
@@ -513,7 +475,7 @@
             // lblPrixHeure
             // 
             this.lblPrixHeure.AutoSize = true;
-            this.lblPrixHeure.Location = new System.Drawing.Point(21, 203);
+            this.lblPrixHeure.Location = new System.Drawing.Point(21, 159);
             this.lblPrixHeure.Name = "lblPrixHeure";
             this.lblPrixHeure.Size = new System.Drawing.Size(99, 25);
             this.lblPrixHeure.TabIndex = 4;
@@ -522,7 +484,7 @@
             // lblPrixJour
             // 
             this.lblPrixJour.AutoSize = true;
-            this.lblPrixJour.Location = new System.Drawing.Point(21, 162);
+            this.lblPrixJour.Location = new System.Drawing.Point(21, 103);
             this.lblPrixJour.Name = "lblPrixJour";
             this.lblPrixJour.Size = new System.Drawing.Size(84, 25);
             this.lblPrixJour.TabIndex = 3;
@@ -531,29 +493,11 @@
             // lblEtat
             // 
             this.lblEtat.AutoSize = true;
-            this.lblEtat.Location = new System.Drawing.Point(21, 121);
+            this.lblEtat.Location = new System.Drawing.Point(21, 47);
             this.lblEtat.Name = "lblEtat";
             this.lblEtat.Size = new System.Drawing.Size(46, 25);
             this.lblEtat.TabIndex = 2;
             this.lblEtat.Text = "Etat";
-            // 
-            // lblFinAssurance
-            // 
-            this.lblFinAssurance.AutoSize = true;
-            this.lblFinAssurance.Location = new System.Drawing.Point(21, 80);
-            this.lblFinAssurance.Name = "lblFinAssurance";
-            this.lblFinAssurance.Size = new System.Drawing.Size(126, 25);
-            this.lblFinAssurance.TabIndex = 1;
-            this.lblFinAssurance.Text = "Fin assurance";
-            // 
-            // lblFinVidange
-            // 
-            this.lblFinVidange.AutoSize = true;
-            this.lblFinVidange.Location = new System.Drawing.Point(21, 39);
-            this.lblFinVidange.Name = "lblFinVidange";
-            this.lblFinVidange.Size = new System.Drawing.Size(110, 25);
-            this.lblFinVidange.TabIndex = 0;
-            this.lblFinVidange.Text = "Fin vidange";
             // 
             // voiture
             // 
@@ -618,22 +562,17 @@
             private System.Windows.Forms.Label lblMarque;
             private System.Windows.Forms.Label lblImmatriculation;
             private System.Windows.Forms.GroupBox gbInfoDroite;
-            private System.Windows.Forms.Button btnRechercheBas;
             private System.Windows.Forms.Button btnClear;
             private System.Windows.Forms.TextBox txtCouleur;
             private System.Windows.Forms.TextBox txtAnnee;
             private System.Windows.Forms.TextBox txtPrixHeure;
             private System.Windows.Forms.TextBox txtPrixJour;
             private System.Windows.Forms.ComboBox cmbEtat;
-            private System.Windows.Forms.DateTimePicker dtpFinAssurance;
-            private System.Windows.Forms.DateTimePicker dtpFinVidange;
             private System.Windows.Forms.Label lblCouleur;
             private System.Windows.Forms.Label lblAnnee;
             private System.Windows.Forms.Label lblPrixHeure;
             private System.Windows.Forms.Label lblPrixJour;
             private System.Windows.Forms.Label lblEtat;
-            private System.Windows.Forms.Label lblFinAssurance;
-            private System.Windows.Forms.Label lblFinVidange;
         
     }
 }
