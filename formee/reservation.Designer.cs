@@ -34,32 +34,26 @@
             this.lblDateSection = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
             this.label1 = new System.Windows.Forms.Label();
-            this.dtpDateFin = new System.Windows.Forms.DateTimePicker();
+            this.dtDateFin = new System.Windows.Forms.DateTimePicker();
             this.lblDateFin = new System.Windows.Forms.Label();
-            this.dtpDateDebut = new System.Windows.Forms.DateTimePicker();
+            this.dtDateDebut = new System.Windows.Forms.DateTimePicker();
             this.lblDateDebut = new System.Windows.Forms.Label();
-            this.comboBox1 = new System.Windows.Forms.ComboBox();
-            this.comboBox2 = new System.Windows.Forms.ComboBox();
+            this.cbHeureDebut = new System.Windows.Forms.ComboBox();
+            this.cbHeureFin = new System.Windows.Forms.ComboBox();
             this.panel1 = new System.Windows.Forms.Panel();
             this.btnVerifierDate = new FontAwesome.Sharp.IconButton();
             this.panel3 = new System.Windows.Forms.Panel();
-            this.iconButton1 = new FontAwesome.Sharp.IconButton();
+            this.btnValider = new FontAwesome.Sharp.IconButton();
             this.label4 = new System.Windows.Forms.Label();
             this.label3 = new System.Windows.Forms.Label();
-            this.cmbClient = new System.Windows.Forms.ComboBox();
+            this.cbClient = new System.Windows.Forms.ComboBox();
             this.lblClient = new System.Windows.Forms.Label();
-            this.cmbVoiture = new System.Windows.Forms.ComboBox();
+            this.cbVoiture = new System.Windows.Forms.ComboBox();
             this.lblVoiture = new System.Windows.Forms.Label();
             this.dgvReservations = new System.Windows.Forms.DataGridView();
-            this.colID = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.colVoiture = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.colClient = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.colDateDebut = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.colDateFin = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.colStatut = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.panel2 = new System.Windows.Forms.Panel();
             this.btnAnnuler = new FontAwesome.Sharp.IconButton();
-            this.btnNouvelleReservation = new FontAwesome.Sharp.IconButton();
+            this.btnNouvelle = new FontAwesome.Sharp.IconButton();
             this.btnReserver = new FontAwesome.Sharp.IconButton();
             this.btnConfirmer = new FontAwesome.Sharp.IconButton();
             this.panel1.SuspendLayout();
@@ -100,15 +94,15 @@
             this.label1.TabIndex = 31;
             this.label1.Text = "Heur Début :";
             // 
-            // dtpDateFin
+            // dtDateFin
             // 
-            this.dtpDateFin.Font = new System.Drawing.Font("Segoe UI", 12F);
-            this.dtpDateFin.Format = System.Windows.Forms.DateTimePickerFormat.Short;
-            this.dtpDateFin.Location = new System.Drawing.Point(838, 81);
-            this.dtpDateFin.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
-            this.dtpDateFin.Name = "dtpDateFin";
-            this.dtpDateFin.Size = new System.Drawing.Size(230, 34);
-            this.dtpDateFin.TabIndex = 30;
+            this.dtDateFin.Font = new System.Drawing.Font("Segoe UI", 12F);
+            this.dtDateFin.Format = System.Windows.Forms.DateTimePickerFormat.Short;
+            this.dtDateFin.Location = new System.Drawing.Point(838, 81);
+            this.dtDateFin.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.dtDateFin.Name = "dtDateFin";
+            this.dtDateFin.Size = new System.Drawing.Size(230, 34);
+            this.dtDateFin.TabIndex = 30;
             // 
             // lblDateFin
             // 
@@ -120,15 +114,15 @@
             this.lblDateFin.TabIndex = 29;
             this.lblDateFin.Text = "Date Fin :";
             // 
-            // dtpDateDebut
+            // dtDateDebut
             // 
-            this.dtpDateDebut.Font = new System.Drawing.Font("Segoe UI", 12F);
-            this.dtpDateDebut.Format = System.Windows.Forms.DateTimePickerFormat.Short;
-            this.dtpDateDebut.Location = new System.Drawing.Point(183, 81);
-            this.dtpDateDebut.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
-            this.dtpDateDebut.Name = "dtpDateDebut";
-            this.dtpDateDebut.Size = new System.Drawing.Size(230, 34);
-            this.dtpDateDebut.TabIndex = 28;
+            this.dtDateDebut.Font = new System.Drawing.Font("Segoe UI", 12F);
+            this.dtDateDebut.Format = System.Windows.Forms.DateTimePickerFormat.Short;
+            this.dtDateDebut.Location = new System.Drawing.Point(183, 81);
+            this.dtDateDebut.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.dtDateDebut.Name = "dtDateDebut";
+            this.dtDateDebut.Size = new System.Drawing.Size(230, 34);
+            this.dtDateDebut.TabIndex = 28;
             // 
             // lblDateDebut
             // 
@@ -140,12 +134,12 @@
             this.lblDateDebut.TabIndex = 27;
             this.lblDateDebut.Text = "Date Début :";
             // 
-            // comboBox1
+            // cbHeureDebut
             // 
-            this.comboBox1.FlatStyle = System.Windows.Forms.FlatStyle.System;
-            this.comboBox1.Font = new System.Drawing.Font("Segoe UI", 10.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.comboBox1.FormattingEnabled = true;
-            this.comboBox1.Items.AddRange(new object[] {
+            this.cbHeureDebut.FlatStyle = System.Windows.Forms.FlatStyle.System;
+            this.cbHeureDebut.Font = new System.Drawing.Font("Segoe UI", 10.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.cbHeureDebut.FormattingEnabled = true;
+            this.cbHeureDebut.Items.AddRange(new object[] {
             "00:00",
             "01:00",
             "02:00",
@@ -170,17 +164,17 @@
             "21:00",
             "22:00",
             "23:00"});
-            this.comboBox1.Location = new System.Drawing.Point(578, 82);
-            this.comboBox1.Name = "comboBox1";
-            this.comboBox1.Size = new System.Drawing.Size(107, 33);
-            this.comboBox1.TabIndex = 36;
+            this.cbHeureDebut.Location = new System.Drawing.Point(578, 82);
+            this.cbHeureDebut.Name = "cbHeureDebut";
+            this.cbHeureDebut.Size = new System.Drawing.Size(107, 33);
+            this.cbHeureDebut.TabIndex = 36;
             // 
-            // comboBox2
+            // cbHeureFin
             // 
-            this.comboBox2.FlatStyle = System.Windows.Forms.FlatStyle.System;
-            this.comboBox2.Font = new System.Drawing.Font("Segoe UI", 10.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.comboBox2.FormattingEnabled = true;
-            this.comboBox2.Items.AddRange(new object[] {
+            this.cbHeureFin.FlatStyle = System.Windows.Forms.FlatStyle.System;
+            this.cbHeureFin.Font = new System.Drawing.Font("Segoe UI", 10.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.cbHeureFin.FormattingEnabled = true;
+            this.cbHeureFin.Items.AddRange(new object[] {
             "00:00",
             "01:00",
             "02:00",
@@ -205,24 +199,24 @@
             "21:00",
             "22:00",
             "23:00"});
-            this.comboBox2.Location = new System.Drawing.Point(1203, 82);
-            this.comboBox2.Name = "comboBox2";
-            this.comboBox2.Size = new System.Drawing.Size(107, 33);
-            this.comboBox2.TabIndex = 37;
+            this.cbHeureFin.Location = new System.Drawing.Point(1203, 82);
+            this.cbHeureFin.Name = "cbHeureFin";
+            this.cbHeureFin.Size = new System.Drawing.Size(107, 33);
+            this.cbHeureFin.TabIndex = 37;
             // 
             // panel1
             // 
             this.panel1.BackColor = System.Drawing.Color.White;
             this.panel1.Controls.Add(this.lblDateSection);
             this.panel1.Controls.Add(this.btnVerifierDate);
-            this.panel1.Controls.Add(this.comboBox2);
-            this.panel1.Controls.Add(this.comboBox1);
+            this.panel1.Controls.Add(this.cbHeureFin);
+            this.panel1.Controls.Add(this.cbHeureDebut);
             this.panel1.Controls.Add(this.lblDateDebut);
             this.panel1.Controls.Add(this.label2);
-            this.panel1.Controls.Add(this.dtpDateDebut);
+            this.panel1.Controls.Add(this.dtDateDebut);
             this.panel1.Controls.Add(this.label1);
             this.panel1.Controls.Add(this.lblDateFin);
-            this.panel1.Controls.Add(this.dtpDateFin);
+            this.panel1.Controls.Add(this.dtDateFin);
             this.panel1.Location = new System.Drawing.Point(12, 649);
             this.panel1.Name = "panel1";
             this.panel1.Size = new System.Drawing.Size(1358, 201);
@@ -249,43 +243,45 @@
             this.btnVerifierDate.Text = "Vérifier la Date";
             this.btnVerifierDate.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
             this.btnVerifierDate.UseVisualStyleBackColor = false;
+            this.btnVerifierDate.Click += new System.EventHandler(this.btnVerifierDate_Click);
             // 
             // panel3
             // 
             this.panel3.BackColor = System.Drawing.Color.White;
-            this.panel3.Controls.Add(this.iconButton1);
+            this.panel3.Controls.Add(this.btnValider);
             this.panel3.Controls.Add(this.label4);
             this.panel3.Controls.Add(this.label3);
-            this.panel3.Controls.Add(this.cmbClient);
+            this.panel3.Controls.Add(this.cbClient);
             this.panel3.Controls.Add(this.lblClient);
-            this.panel3.Controls.Add(this.cmbVoiture);
+            this.panel3.Controls.Add(this.cbVoiture);
             this.panel3.Controls.Add(this.lblVoiture);
             this.panel3.Location = new System.Drawing.Point(12, 475);
             this.panel3.Name = "panel3";
             this.panel3.Size = new System.Drawing.Size(1358, 168);
             this.panel3.TabIndex = 40;
             // 
-            // iconButton1
+            // btnValider
             // 
-            this.iconButton1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(217)))), ((int)(((byte)(226)))), ((int)(((byte)(232)))));
-            this.iconButton1.FlatAppearance.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(180)))), ((int)(((byte)(194)))), ((int)(((byte)(202)))));
-            this.iconButton1.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.iconButton1.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Bold);
-            this.iconButton1.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(67)))), ((int)(((byte)(102)))), ((int)(((byte)(120)))));
-            this.iconButton1.IconChar = FontAwesome.Sharp.IconChar.CalendarCheck;
-            this.iconButton1.IconColor = System.Drawing.Color.FromArgb(((int)(((byte)(67)))), ((int)(((byte)(102)))), ((int)(((byte)(120)))));
-            this.iconButton1.IconFont = FontAwesome.Sharp.IconFont.Auto;
-            this.iconButton1.IconSize = 24;
-            this.iconButton1.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.iconButton1.Location = new System.Drawing.Point(625, 116);
-            this.iconButton1.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
-            this.iconButton1.Name = "iconButton1";
-            this.iconButton1.Padding = new System.Windows.Forms.Padding(10, 0, 0, 0);
-            this.iconButton1.Size = new System.Drawing.Size(153, 40);
-            this.iconButton1.TabIndex = 38;
-            this.iconButton1.Text = "    Validé";
-            this.iconButton1.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
-            this.iconButton1.UseVisualStyleBackColor = false;
+            this.btnValider.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(217)))), ((int)(((byte)(226)))), ((int)(((byte)(232)))));
+            this.btnValider.FlatAppearance.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(180)))), ((int)(((byte)(194)))), ((int)(((byte)(202)))));
+            this.btnValider.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnValider.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Bold);
+            this.btnValider.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(67)))), ((int)(((byte)(102)))), ((int)(((byte)(120)))));
+            this.btnValider.IconChar = FontAwesome.Sharp.IconChar.CalendarCheck;
+            this.btnValider.IconColor = System.Drawing.Color.FromArgb(((int)(((byte)(67)))), ((int)(((byte)(102)))), ((int)(((byte)(120)))));
+            this.btnValider.IconFont = FontAwesome.Sharp.IconFont.Auto;
+            this.btnValider.IconSize = 24;
+            this.btnValider.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.btnValider.Location = new System.Drawing.Point(625, 116);
+            this.btnValider.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.btnValider.Name = "btnValider";
+            this.btnValider.Padding = new System.Windows.Forms.Padding(10, 0, 0, 0);
+            this.btnValider.Size = new System.Drawing.Size(153, 40);
+            this.btnValider.TabIndex = 38;
+            this.btnValider.Text = "    Validé";
+            this.btnValider.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
+            this.btnValider.UseVisualStyleBackColor = false;
+            this.btnValider.Click += new System.EventHandler(this.btnValider_Click);
             // 
             // label4
             // 
@@ -309,17 +305,17 @@
             this.label3.TabIndex = 8;
             this.label3.Text = "Choisir la Voiture";
             // 
-            // cmbClient
+            // cbClient
             // 
-            this.cmbClient.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this.cmbClient.FlatStyle = System.Windows.Forms.FlatStyle.System;
-            this.cmbClient.Font = new System.Drawing.Font("Segoe UI", 12F);
-            this.cmbClient.FormattingEnabled = true;
-            this.cmbClient.Location = new System.Drawing.Point(800, 58);
-            this.cmbClient.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
-            this.cmbClient.Name = "cmbClient";
-            this.cmbClient.Size = new System.Drawing.Size(510, 36);
-            this.cmbClient.TabIndex = 7;
+            this.cbClient.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.cbClient.FlatStyle = System.Windows.Forms.FlatStyle.System;
+            this.cbClient.Font = new System.Drawing.Font("Segoe UI", 12F);
+            this.cbClient.FormattingEnabled = true;
+            this.cbClient.Location = new System.Drawing.Point(800, 58);
+            this.cbClient.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.cbClient.Name = "cbClient";
+            this.cbClient.Size = new System.Drawing.Size(510, 36);
+            this.cbClient.TabIndex = 7;
             // 
             // lblClient
             // 
@@ -332,17 +328,17 @@
             this.lblClient.TabIndex = 6;
             this.lblClient.Text = "Client :";
             // 
-            // cmbVoiture
+            // cbVoiture
             // 
-            this.cmbVoiture.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this.cmbVoiture.FlatStyle = System.Windows.Forms.FlatStyle.System;
-            this.cmbVoiture.Font = new System.Drawing.Font("Segoe UI", 12F);
-            this.cmbVoiture.FormattingEnabled = true;
-            this.cmbVoiture.Location = new System.Drawing.Point(125, 58);
-            this.cmbVoiture.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
-            this.cmbVoiture.Name = "cmbVoiture";
-            this.cmbVoiture.Size = new System.Drawing.Size(470, 36);
-            this.cmbVoiture.TabIndex = 5;
+            this.cbVoiture.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.cbVoiture.FlatStyle = System.Windows.Forms.FlatStyle.System;
+            this.cbVoiture.Font = new System.Drawing.Font("Segoe UI", 12F);
+            this.cbVoiture.FormattingEnabled = true;
+            this.cbVoiture.Location = new System.Drawing.Point(125, 58);
+            this.cbVoiture.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.cbVoiture.Name = "cbVoiture";
+            this.cbVoiture.Size = new System.Drawing.Size(470, 36);
+            this.cbVoiture.TabIndex = 5;
             // 
             // lblVoiture
             // 
@@ -374,13 +370,6 @@
             dataGridViewCellStyle1.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
             this.dgvReservations.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle1;
             this.dgvReservations.ColumnHeadersHeight = 48;
-            this.dgvReservations.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
-            this.colID,
-            this.colVoiture,
-            this.colClient,
-            this.colDateDebut,
-            this.colDateFin,
-            this.colStatut});
             dataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
             dataGridViewCellStyle2.BackColor = System.Drawing.Color.White;
             dataGridViewCellStyle2.Font = new System.Drawing.Font("Segoe UI", 11F);
@@ -402,55 +391,13 @@
             this.dgvReservations.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
             this.dgvReservations.Size = new System.Drawing.Size(1358, 344);
             this.dgvReservations.TabIndex = 41;
-            // 
-            // colID
-            // 
-            this.colID.FillWeight = 55F;
-            this.colID.HeaderText = "ID";
-            this.colID.MinimumWidth = 6;
-            this.colID.Name = "colID";
-            this.colID.ReadOnly = true;
-            // 
-            // colVoiture
-            // 
-            this.colVoiture.HeaderText = "Voiture";
-            this.colVoiture.MinimumWidth = 6;
-            this.colVoiture.Name = "colVoiture";
-            this.colVoiture.ReadOnly = true;
-            // 
-            // colClient
-            // 
-            this.colClient.HeaderText = "Client";
-            this.colClient.MinimumWidth = 6;
-            this.colClient.Name = "colClient";
-            this.colClient.ReadOnly = true;
-            // 
-            // colDateDebut
-            // 
-            this.colDateDebut.HeaderText = "Date Début";
-            this.colDateDebut.MinimumWidth = 6;
-            this.colDateDebut.Name = "colDateDebut";
-            this.colDateDebut.ReadOnly = true;
-            // 
-            // colDateFin
-            // 
-            this.colDateFin.HeaderText = "Date Fin";
-            this.colDateFin.MinimumWidth = 6;
-            this.colDateFin.Name = "colDateFin";
-            this.colDateFin.ReadOnly = true;
-            // 
-            // colStatut
-            // 
-            this.colStatut.HeaderText = "Statut";
-            this.colStatut.MinimumWidth = 6;
-            this.colStatut.Name = "colStatut";
-            this.colStatut.ReadOnly = true;
+            this.dgvReservations.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvReservations_CellClick);
             // 
             // panel2
             // 
             this.panel2.BackColor = System.Drawing.Color.White;
             this.panel2.Controls.Add(this.btnAnnuler);
-            this.panel2.Controls.Add(this.btnNouvelleReservation);
+            this.panel2.Controls.Add(this.btnNouvelle);
             this.panel2.Controls.Add(this.btnReserver);
             this.panel2.Controls.Add(this.btnConfirmer);
             this.panel2.Location = new System.Drawing.Point(12, 369);
@@ -477,26 +424,28 @@
             this.btnAnnuler.Text = "   Annuler";
             this.btnAnnuler.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
             this.btnAnnuler.UseVisualStyleBackColor = false;
+            this.btnAnnuler.Click += new System.EventHandler(this.btnAnnuler_Click);
             // 
-            // btnNouvelleReservation
+            // btnNouvelle
             // 
-            this.btnNouvelleReservation.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(18)))), ((int)(((byte)(150)))), ((int)(((byte)(85)))));
-            this.btnNouvelleReservation.FlatAppearance.BorderSize = 0;
-            this.btnNouvelleReservation.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnNouvelleReservation.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Bold);
-            this.btnNouvelleReservation.ForeColor = System.Drawing.Color.White;
-            this.btnNouvelleReservation.IconChar = FontAwesome.Sharp.IconChar.PlusSquare;
-            this.btnNouvelleReservation.IconColor = System.Drawing.Color.White;
-            this.btnNouvelleReservation.IconFont = FontAwesome.Sharp.IconFont.Auto;
-            this.btnNouvelleReservation.IconSize = 32;
-            this.btnNouvelleReservation.Location = new System.Drawing.Point(136, 27);
-            this.btnNouvelleReservation.Margin = new System.Windows.Forms.Padding(3, 2, 28, 2);
-            this.btnNouvelleReservation.Name = "btnNouvelleReservation";
-            this.btnNouvelleReservation.Size = new System.Drawing.Size(190, 50);
-            this.btnNouvelleReservation.TabIndex = 22;
-            this.btnNouvelleReservation.Text = "    Nouvelle";
-            this.btnNouvelleReservation.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
-            this.btnNouvelleReservation.UseVisualStyleBackColor = false;
+            this.btnNouvelle.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(18)))), ((int)(((byte)(150)))), ((int)(((byte)(85)))));
+            this.btnNouvelle.FlatAppearance.BorderSize = 0;
+            this.btnNouvelle.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnNouvelle.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Bold);
+            this.btnNouvelle.ForeColor = System.Drawing.Color.White;
+            this.btnNouvelle.IconChar = FontAwesome.Sharp.IconChar.PlusSquare;
+            this.btnNouvelle.IconColor = System.Drawing.Color.White;
+            this.btnNouvelle.IconFont = FontAwesome.Sharp.IconFont.Auto;
+            this.btnNouvelle.IconSize = 32;
+            this.btnNouvelle.Location = new System.Drawing.Point(136, 27);
+            this.btnNouvelle.Margin = new System.Windows.Forms.Padding(3, 2, 28, 2);
+            this.btnNouvelle.Name = "btnNouvelle";
+            this.btnNouvelle.Size = new System.Drawing.Size(190, 50);
+            this.btnNouvelle.TabIndex = 22;
+            this.btnNouvelle.Text = "    Nouvelle";
+            this.btnNouvelle.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
+            this.btnNouvelle.UseVisualStyleBackColor = false;
+            this.btnNouvelle.Click += new System.EventHandler(this.btnNouvelle_Click);
             // 
             // btnReserver
             // 
@@ -517,6 +466,7 @@
             this.btnReserver.Text = "   Réserver";
             this.btnReserver.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
             this.btnReserver.UseVisualStyleBackColor = false;
+            this.btnReserver.Click += new System.EventHandler(this.btnReserver_Click);
             // 
             // btnConfirmer
             // 
@@ -537,6 +487,7 @@
             this.btnConfirmer.Text = "    Confirmer";
             this.btnConfirmer.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
             this.btnConfirmer.UseVisualStyleBackColor = false;
+            this.btnConfirmer.Click += new System.EventHandler(this.btnConfirmer_Click);
             // 
             // reservation
             // 
@@ -567,32 +518,26 @@
         private System.Windows.Forms.Label lblDateSection;
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.Label label1;
-        private System.Windows.Forms.DateTimePicker dtpDateFin;
+        private System.Windows.Forms.DateTimePicker dtDateFin;
         private System.Windows.Forms.Label lblDateFin;
-        private System.Windows.Forms.DateTimePicker dtpDateDebut;
+        private System.Windows.Forms.DateTimePicker dtDateDebut;
         private System.Windows.Forms.Label lblDateDebut;
         private FontAwesome.Sharp.IconButton btnVerifierDate;
-        private System.Windows.Forms.ComboBox comboBox1;
-        private System.Windows.Forms.ComboBox comboBox2;
+        private System.Windows.Forms.ComboBox cbHeureDebut;
+        private System.Windows.Forms.ComboBox cbHeureFin;
         private System.Windows.Forms.Panel panel1;
         private System.Windows.Forms.Panel panel3;
-        private FontAwesome.Sharp.IconButton iconButton1;
+        private FontAwesome.Sharp.IconButton btnValider;
         private System.Windows.Forms.Label label4;
         private System.Windows.Forms.Label label3;
-        private System.Windows.Forms.ComboBox cmbClient;
+        private System.Windows.Forms.ComboBox cbClient;
         private System.Windows.Forms.Label lblClient;
-        private System.Windows.Forms.ComboBox cmbVoiture;
+        private System.Windows.Forms.ComboBox cbVoiture;
         private System.Windows.Forms.Label lblVoiture;
         private System.Windows.Forms.DataGridView dgvReservations;
-        private System.Windows.Forms.DataGridViewTextBoxColumn colID;
-        private System.Windows.Forms.DataGridViewTextBoxColumn colVoiture;
-        private System.Windows.Forms.DataGridViewTextBoxColumn colClient;
-        private System.Windows.Forms.DataGridViewTextBoxColumn colDateDebut;
-        private System.Windows.Forms.DataGridViewTextBoxColumn colDateFin;
-        private System.Windows.Forms.DataGridViewTextBoxColumn colStatut;
         private System.Windows.Forms.Panel panel2;
         private FontAwesome.Sharp.IconButton btnAnnuler;
-        private FontAwesome.Sharp.IconButton btnNouvelleReservation;
+        private FontAwesome.Sharp.IconButton btnNouvelle;
         private FontAwesome.Sharp.IconButton btnReserver;
         private FontAwesome.Sharp.IconButton btnConfirmer;
     }

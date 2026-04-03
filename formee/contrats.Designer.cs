@@ -40,7 +40,7 @@
             this.label3 = new System.Windows.Forms.Label();
             this.txtNom = new System.Windows.Forms.TextBox();
             this.label2 = new System.Windows.Forms.Label();
-            this.cboClient = new System.Windows.Forms.ComboBox();
+            this.cbClient = new System.Windows.Forms.ComboBox();
             this.label1 = new System.Windows.Forms.Label();
             this.lblClientSection = new System.Windows.Forms.Label();
             this.pnlVoiture = new System.Windows.Forms.Panel();
@@ -48,35 +48,35 @@
             this.label13 = new System.Windows.Forms.Label();
             this.txtKilometrage = new System.Windows.Forms.TextBox();
             this.label12 = new System.Windows.Forms.Label();
-            this.cboCategorie = new System.Windows.Forms.ComboBox();
+            this.cbCategorie = new System.Windows.Forms.ComboBox();
             this.label11 = new System.Windows.Forms.Label();
-            this.cboPuissance = new System.Windows.Forms.ComboBox();
+            this.txtPuissance = new System.Windows.Forms.ComboBox();
             this.label10 = new System.Windows.Forms.Label();
-            this.cboCarburant = new System.Windows.Forms.ComboBox();
+            this.cbCarburant = new System.Windows.Forms.ComboBox();
             this.label9 = new System.Windows.Forms.Label();
-            this.cboModele = new System.Windows.Forms.ComboBox();
+            this.cbModele = new System.Windows.Forms.ComboBox();
             this.label8 = new System.Windows.Forms.Label();
-            this.cboMarque = new System.Windows.Forms.ComboBox();
+            this.cbMarque = new System.Windows.Forms.ComboBox();
             this.label7 = new System.Windows.Forms.Label();
-            this.cboImmatriculation = new System.Windows.Forms.ComboBox();
+            this.cbImmatriculation = new System.Windows.Forms.ComboBox();
             this.label6 = new System.Windows.Forms.Label();
             this.lblVoitureSection = new System.Windows.Forms.Label();
             this.pnlPeriode = new System.Windows.Forms.Panel();
             this.txtNombreJours = new System.Windows.Forms.TextBox();
             this.label16 = new System.Windows.Forms.Label();
-            this.dtpDateFin = new System.Windows.Forms.DateTimePicker();
+            this.dtDateFin = new System.Windows.Forms.DateTimePicker();
             this.label15 = new System.Windows.Forms.Label();
-            this.dtpDateDebut = new System.Windows.Forms.DateTimePicker();
+            this.dtDateDebut = new System.Windows.Forms.DateTimePicker();
             this.label14 = new System.Windows.Forms.Label();
             this.lblPeriodeSection = new System.Windows.Forms.Label();
             this.pnlPaiement = new System.Windows.Forms.Panel();
-            this.cboModePaiement = new System.Windows.Forms.ComboBox();
+            this.cbModePaiement = new System.Windows.Forms.ComboBox();
             this.label20 = new System.Windows.Forms.Label();
-            this.txtResteAPayer = new System.Windows.Forms.TextBox();
+            this.txtRestePayer = new System.Windows.Forms.TextBox();
             this.label19 = new System.Windows.Forms.Label();
-            this.nudAvance = new System.Windows.Forms.NumericUpDown();
+            this.numAvance = new System.Windows.Forms.NumericUpDown();
             this.label18 = new System.Windows.Forms.Label();
-            this.txtPrixTotal = new System.Windows.Forms.TextBox();
+            this.txtTtl = new System.Windows.Forms.TextBox();
             this.label17 = new System.Windows.Forms.Label();
             this.lblPaiementSection = new System.Windows.Forms.Label();
             this.pnlRemarques = new System.Windows.Forms.Panel();
@@ -88,18 +88,22 @@
             this.btncalculer = new FontAwesome.Sharp.IconButton();
             this.btnNouveau = new FontAwesome.Sharp.IconButton();
             this.pnlFooter = new System.Windows.Forms.Panel();
-            this.lblTotalValue = new System.Windows.Forms.Label();
+            this.lblTotal = new System.Windows.Forms.Label();
             this.lblFooterTotal = new System.Windows.Forms.Label();
-            this.lblDureeValue = new System.Windows.Forms.Label();
+            this.lblDuree = new System.Windows.Forms.Label();
             this.lblFooterDuree = new System.Windows.Forms.Label();
-            this.lblContratValue = new System.Windows.Forms.Label();
+            this.lblContratNumero = new System.Windows.Forms.Label();
             this.lblFooterContrat = new System.Windows.Forms.Label();
+            this.cbHeureDebut = new System.Windows.Forms.ComboBox();
+            this.cbHeureRetour = new System.Windows.Forms.ComboBox();
+            this.cbReservation = new System.Windows.Forms.ComboBox();
+            this.label21 = new System.Windows.Forms.Label();
             this.pnlHeader.SuspendLayout();
             this.pnlClient.SuspendLayout();
             this.pnlVoiture.SuspendLayout();
             this.pnlPeriode.SuspendLayout();
             this.pnlPaiement.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.nudAvance)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.numAvance)).BeginInit();
             this.pnlRemarques.SuspendLayout();
             this.pnlActions.SuspendLayout();
             this.pnlFooter.SuspendLayout();
@@ -108,6 +112,8 @@
             // pnlHeader
             // 
             this.pnlHeader.BackColor = System.Drawing.Color.White;
+            this.pnlHeader.Controls.Add(this.cbReservation);
+            this.pnlHeader.Controls.Add(this.label21);
             this.pnlHeader.Controls.Add(this.lblTitle);
             this.pnlHeader.Location = new System.Drawing.Point(12, 12);
             this.pnlHeader.Name = "pnlHeader";
@@ -136,7 +142,7 @@
             this.pnlClient.Controls.Add(this.label3);
             this.pnlClient.Controls.Add(this.txtNom);
             this.pnlClient.Controls.Add(this.label2);
-            this.pnlClient.Controls.Add(this.cboClient);
+            this.pnlClient.Controls.Add(this.cbClient);
             this.pnlClient.Controls.Add(this.label1);
             this.pnlClient.Controls.Add(this.lblClientSection);
             this.pnlClient.Location = new System.Drawing.Point(12, 93);
@@ -146,6 +152,7 @@
             // 
             // txtAdresse
             // 
+            this.txtAdresse.Enabled = false;
             this.txtAdresse.Font = new System.Drawing.Font("Segoe UI", 12F);
             this.txtAdresse.Location = new System.Drawing.Point(166, 235);
             this.txtAdresse.Multiline = true;
@@ -166,6 +173,7 @@
             // 
             // txtPermis
             // 
+            this.txtPermis.Enabled = false;
             this.txtPermis.Font = new System.Drawing.Font("Segoe UI", 12F);
             this.txtPermis.Location = new System.Drawing.Point(166, 191);
             this.txtPermis.Name = "txtPermis";
@@ -185,6 +193,7 @@
             // 
             // txtTelephone
             // 
+            this.txtTelephone.Enabled = false;
             this.txtTelephone.Font = new System.Drawing.Font("Segoe UI", 12F);
             this.txtTelephone.Location = new System.Drawing.Point(166, 147);
             this.txtTelephone.Name = "txtTelephone";
@@ -204,6 +213,7 @@
             // 
             // txtNom
             // 
+            this.txtNom.Enabled = false;
             this.txtNom.Font = new System.Drawing.Font("Segoe UI", 12F);
             this.txtNom.Location = new System.Drawing.Point(166, 103);
             this.txtNom.Name = "txtNom";
@@ -221,16 +231,16 @@
             this.label2.TabIndex = 3;
             this.label2.Text = "Nom";
             // 
-            // cboClient
+            // cbClient
             // 
-            this.cboClient.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this.cboClient.Font = new System.Drawing.Font("Segoe UI", 12F);
-            this.cboClient.FormattingEnabled = true;
-            this.cboClient.Location = new System.Drawing.Point(166, 59);
-            this.cboClient.Name = "cboClient";
-            this.cboClient.Size = new System.Drawing.Size(325, 36);
-            this.cboClient.TabIndex = 2;
-            this.cboClient.SelectedIndexChanged += new System.EventHandler(this.cboClient_SelectedIndexChanged);
+            this.cbClient.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.cbClient.Font = new System.Drawing.Font("Segoe UI", 12F);
+            this.cbClient.FormattingEnabled = true;
+            this.cbClient.Location = new System.Drawing.Point(166, 59);
+            this.cbClient.Name = "cbClient";
+            this.cbClient.Size = new System.Drawing.Size(325, 36);
+            this.cbClient.TabIndex = 2;
+            this.cbClient.SelectedIndexChanged += new System.EventHandler(this.cboClient_SelectedIndexChanged);
             // 
             // label1
             // 
@@ -261,17 +271,17 @@
             this.pnlVoiture.Controls.Add(this.label13);
             this.pnlVoiture.Controls.Add(this.txtKilometrage);
             this.pnlVoiture.Controls.Add(this.label12);
-            this.pnlVoiture.Controls.Add(this.cboCategorie);
+            this.pnlVoiture.Controls.Add(this.cbCategorie);
             this.pnlVoiture.Controls.Add(this.label11);
-            this.pnlVoiture.Controls.Add(this.cboPuissance);
+            this.pnlVoiture.Controls.Add(this.txtPuissance);
             this.pnlVoiture.Controls.Add(this.label10);
-            this.pnlVoiture.Controls.Add(this.cboCarburant);
+            this.pnlVoiture.Controls.Add(this.cbCarburant);
             this.pnlVoiture.Controls.Add(this.label9);
-            this.pnlVoiture.Controls.Add(this.cboModele);
+            this.pnlVoiture.Controls.Add(this.cbModele);
             this.pnlVoiture.Controls.Add(this.label8);
-            this.pnlVoiture.Controls.Add(this.cboMarque);
+            this.pnlVoiture.Controls.Add(this.cbMarque);
             this.pnlVoiture.Controls.Add(this.label7);
-            this.pnlVoiture.Controls.Add(this.cboImmatriculation);
+            this.pnlVoiture.Controls.Add(this.cbImmatriculation);
             this.pnlVoiture.Controls.Add(this.label6);
             this.pnlVoiture.Controls.Add(this.lblVoitureSection);
             this.pnlVoiture.Location = new System.Drawing.Point(662, 93);
@@ -281,6 +291,7 @@
             // 
             // txtPrixJour
             // 
+            this.txtPrixJour.Enabled = false;
             this.txtPrixJour.Font = new System.Drawing.Font("Segoe UI", 12F);
             this.txtPrixJour.Location = new System.Drawing.Point(435, 235);
             this.txtPrixJour.Name = "txtPrixJour";
@@ -301,6 +312,7 @@
             // 
             // txtKilometrage
             // 
+            this.txtKilometrage.Enabled = false;
             this.txtKilometrage.Font = new System.Drawing.Font("Segoe UI", 12F);
             this.txtKilometrage.Location = new System.Drawing.Point(435, 191);
             this.txtKilometrage.Name = "txtKilometrage";
@@ -318,15 +330,16 @@
             this.label12.TabIndex = 13;
             this.label12.Text = "Kilométrage";
             // 
-            // cboCategorie
+            // cbCategorie
             // 
-            this.cboCategorie.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this.cboCategorie.Font = new System.Drawing.Font("Segoe UI", 12F);
-            this.cboCategorie.FormattingEnabled = true;
-            this.cboCategorie.Location = new System.Drawing.Point(142, 235);
-            this.cboCategorie.Name = "cboCategorie";
-            this.cboCategorie.Size = new System.Drawing.Size(133, 36);
-            this.cboCategorie.TabIndex = 12;
+            this.cbCategorie.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.cbCategorie.Enabled = false;
+            this.cbCategorie.Font = new System.Drawing.Font("Segoe UI", 12F);
+            this.cbCategorie.FormattingEnabled = true;
+            this.cbCategorie.Location = new System.Drawing.Point(142, 235);
+            this.cbCategorie.Name = "cbCategorie";
+            this.cbCategorie.Size = new System.Drawing.Size(133, 36);
+            this.cbCategorie.TabIndex = 12;
             // 
             // label11
             // 
@@ -339,15 +352,16 @@
             this.label11.TabIndex = 11;
             this.label11.Text = "Catégorie";
             // 
-            // cboPuissance
+            // txtPuissance
             // 
-            this.cboPuissance.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this.cboPuissance.Font = new System.Drawing.Font("Segoe UI", 12F);
-            this.cboPuissance.FormattingEnabled = true;
-            this.cboPuissance.Location = new System.Drawing.Point(142, 191);
-            this.cboPuissance.Name = "cboPuissance";
-            this.cboPuissance.Size = new System.Drawing.Size(133, 36);
-            this.cboPuissance.TabIndex = 10;
+            this.txtPuissance.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.txtPuissance.Enabled = false;
+            this.txtPuissance.Font = new System.Drawing.Font("Segoe UI", 12F);
+            this.txtPuissance.FormattingEnabled = true;
+            this.txtPuissance.Location = new System.Drawing.Point(142, 191);
+            this.txtPuissance.Name = "txtPuissance";
+            this.txtPuissance.Size = new System.Drawing.Size(133, 36);
+            this.txtPuissance.TabIndex = 10;
             // 
             // label10
             // 
@@ -360,15 +374,16 @@
             this.label10.TabIndex = 9;
             this.label10.Text = "Puissance";
             // 
-            // cboCarburant
+            // cbCarburant
             // 
-            this.cboCarburant.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this.cboCarburant.Font = new System.Drawing.Font("Segoe UI", 12F);
-            this.cboCarburant.FormattingEnabled = true;
-            this.cboCarburant.Location = new System.Drawing.Point(142, 147);
-            this.cboCarburant.Name = "cboCarburant";
-            this.cboCarburant.Size = new System.Drawing.Size(431, 36);
-            this.cboCarburant.TabIndex = 8;
+            this.cbCarburant.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.cbCarburant.Enabled = false;
+            this.cbCarburant.Font = new System.Drawing.Font("Segoe UI", 12F);
+            this.cbCarburant.FormattingEnabled = true;
+            this.cbCarburant.Location = new System.Drawing.Point(142, 147);
+            this.cbCarburant.Name = "cbCarburant";
+            this.cbCarburant.Size = new System.Drawing.Size(431, 36);
+            this.cbCarburant.TabIndex = 8;
             // 
             // label9
             // 
@@ -381,15 +396,16 @@
             this.label9.TabIndex = 7;
             this.label9.Text = "Carburant";
             // 
-            // cboModele
+            // cbModele
             // 
-            this.cboModele.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this.cboModele.Font = new System.Drawing.Font("Segoe UI", 12F);
-            this.cboModele.FormattingEnabled = true;
-            this.cboModele.Location = new System.Drawing.Point(435, 103);
-            this.cboModele.Name = "cboModele";
-            this.cboModele.Size = new System.Drawing.Size(138, 36);
-            this.cboModele.TabIndex = 6;
+            this.cbModele.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.cbModele.Enabled = false;
+            this.cbModele.Font = new System.Drawing.Font("Segoe UI", 12F);
+            this.cbModele.FormattingEnabled = true;
+            this.cbModele.Location = new System.Drawing.Point(435, 103);
+            this.cbModele.Name = "cbModele";
+            this.cbModele.Size = new System.Drawing.Size(138, 36);
+            this.cbModele.TabIndex = 6;
             // 
             // label8
             // 
@@ -402,15 +418,16 @@
             this.label8.TabIndex = 5;
             this.label8.Text = "Modèle";
             // 
-            // cboMarque
+            // cbMarque
             // 
-            this.cboMarque.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this.cboMarque.Font = new System.Drawing.Font("Segoe UI", 12F);
-            this.cboMarque.FormattingEnabled = true;
-            this.cboMarque.Location = new System.Drawing.Point(142, 103);
-            this.cboMarque.Name = "cboMarque";
-            this.cboMarque.Size = new System.Drawing.Size(133, 36);
-            this.cboMarque.TabIndex = 4;
+            this.cbMarque.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.cbMarque.Enabled = false;
+            this.cbMarque.Font = new System.Drawing.Font("Segoe UI", 12F);
+            this.cbMarque.FormattingEnabled = true;
+            this.cbMarque.Location = new System.Drawing.Point(142, 103);
+            this.cbMarque.Name = "cbMarque";
+            this.cbMarque.Size = new System.Drawing.Size(133, 36);
+            this.cbMarque.TabIndex = 4;
             // 
             // label7
             // 
@@ -423,16 +440,16 @@
             this.label7.TabIndex = 3;
             this.label7.Text = "Marque";
             // 
-            // cboImmatriculation
+            // cbImmatriculation
             // 
-            this.cboImmatriculation.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this.cboImmatriculation.Font = new System.Drawing.Font("Segoe UI", 12F);
-            this.cboImmatriculation.FormattingEnabled = true;
-            this.cboImmatriculation.Location = new System.Drawing.Point(221, 59);
-            this.cboImmatriculation.Name = "cboImmatriculation";
-            this.cboImmatriculation.Size = new System.Drawing.Size(352, 36);
-            this.cboImmatriculation.TabIndex = 2;
-            this.cboImmatriculation.SelectedIndexChanged += new System.EventHandler(this.cboImmatriculation_SelectedIndexChanged);
+            this.cbImmatriculation.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.cbImmatriculation.Font = new System.Drawing.Font("Segoe UI", 12F);
+            this.cbImmatriculation.FormattingEnabled = true;
+            this.cbImmatriculation.Location = new System.Drawing.Point(221, 59);
+            this.cbImmatriculation.Name = "cbImmatriculation";
+            this.cbImmatriculation.Size = new System.Drawing.Size(352, 36);
+            this.cbImmatriculation.TabIndex = 2;
+            this.cbImmatriculation.SelectedIndexChanged += new System.EventHandler(this.cboImmatriculation_SelectedIndexChanged);
             // 
             // label6
             // 
@@ -459,11 +476,13 @@
             // pnlPeriode
             // 
             this.pnlPeriode.BackColor = System.Drawing.Color.White;
+            this.pnlPeriode.Controls.Add(this.cbHeureRetour);
+            this.pnlPeriode.Controls.Add(this.cbHeureDebut);
             this.pnlPeriode.Controls.Add(this.txtNombreJours);
             this.pnlPeriode.Controls.Add(this.label16);
-            this.pnlPeriode.Controls.Add(this.dtpDateFin);
+            this.pnlPeriode.Controls.Add(this.dtDateFin);
             this.pnlPeriode.Controls.Add(this.label15);
-            this.pnlPeriode.Controls.Add(this.dtpDateDebut);
+            this.pnlPeriode.Controls.Add(this.dtDateDebut);
             this.pnlPeriode.Controls.Add(this.label14);
             this.pnlPeriode.Controls.Add(this.lblPeriodeSection);
             this.pnlPeriode.Location = new System.Drawing.Point(12, 411);
@@ -491,14 +510,14 @@
             this.label16.TabIndex = 5;
             this.label16.Text = "Nombre de jours";
             // 
-            // dtpDateFin
+            // dtDateFin
             // 
-            this.dtpDateFin.Font = new System.Drawing.Font("Segoe UI", 12F);
-            this.dtpDateFin.Location = new System.Drawing.Point(200, 122);
-            this.dtpDateFin.Name = "dtpDateFin";
-            this.dtpDateFin.Size = new System.Drawing.Size(303, 34);
-            this.dtpDateFin.TabIndex = 4;
-            this.dtpDateFin.ValueChanged += new System.EventHandler(this.dtpDateFin_ValueChanged);
+            this.dtDateFin.Font = new System.Drawing.Font("Segoe UI", 12F);
+            this.dtDateFin.Location = new System.Drawing.Point(200, 122);
+            this.dtDateFin.Name = "dtDateFin";
+            this.dtDateFin.Size = new System.Drawing.Size(291, 34);
+            this.dtDateFin.TabIndex = 4;
+            this.dtDateFin.ValueChanged += new System.EventHandler(this.dtpDateFin_ValueChanged);
             // 
             // label15
             // 
@@ -511,14 +530,14 @@
             this.label15.TabIndex = 3;
             this.label15.Text = "Date Fin";
             // 
-            // dtpDateDebut
+            // dtDateDebut
             // 
-            this.dtpDateDebut.Font = new System.Drawing.Font("Segoe UI", 12F);
-            this.dtpDateDebut.Location = new System.Drawing.Point(200, 72);
-            this.dtpDateDebut.Name = "dtpDateDebut";
-            this.dtpDateDebut.Size = new System.Drawing.Size(303, 34);
-            this.dtpDateDebut.TabIndex = 2;
-            this.dtpDateDebut.ValueChanged += new System.EventHandler(this.dtpDateDebut_ValueChanged);
+            this.dtDateDebut.Font = new System.Drawing.Font("Segoe UI", 12F);
+            this.dtDateDebut.Location = new System.Drawing.Point(200, 72);
+            this.dtDateDebut.Name = "dtDateDebut";
+            this.dtDateDebut.Size = new System.Drawing.Size(291, 34);
+            this.dtDateDebut.TabIndex = 2;
+            this.dtDateDebut.ValueChanged += new System.EventHandler(this.dtpDateDebut_ValueChanged);
             // 
             // label14
             // 
@@ -545,13 +564,13 @@
             // pnlPaiement
             // 
             this.pnlPaiement.BackColor = System.Drawing.Color.White;
-            this.pnlPaiement.Controls.Add(this.cboModePaiement);
+            this.pnlPaiement.Controls.Add(this.cbModePaiement);
             this.pnlPaiement.Controls.Add(this.label20);
-            this.pnlPaiement.Controls.Add(this.txtResteAPayer);
+            this.pnlPaiement.Controls.Add(this.txtRestePayer);
             this.pnlPaiement.Controls.Add(this.label19);
-            this.pnlPaiement.Controls.Add(this.nudAvance);
+            this.pnlPaiement.Controls.Add(this.numAvance);
             this.pnlPaiement.Controls.Add(this.label18);
-            this.pnlPaiement.Controls.Add(this.txtPrixTotal);
+            this.pnlPaiement.Controls.Add(this.txtTtl);
             this.pnlPaiement.Controls.Add(this.label17);
             this.pnlPaiement.Controls.Add(this.lblPaiementSection);
             this.pnlPaiement.Location = new System.Drawing.Point(662, 411);
@@ -559,15 +578,15 @@
             this.pnlPaiement.Size = new System.Drawing.Size(610, 243);
             this.pnlPaiement.TabIndex = 4;
             // 
-            // cboModePaiement
+            // cbModePaiement
             // 
-            this.cboModePaiement.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this.cboModePaiement.Font = new System.Drawing.Font("Segoe UI", 12F);
-            this.cboModePaiement.FormattingEnabled = true;
-            this.cboModePaiement.Location = new System.Drawing.Point(235, 175);
-            this.cboModePaiement.Name = "cboModePaiement";
-            this.cboModePaiement.Size = new System.Drawing.Size(303, 36);
-            this.cboModePaiement.TabIndex = 8;
+            this.cbModePaiement.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.cbModePaiement.Font = new System.Drawing.Font("Segoe UI", 12F);
+            this.cbModePaiement.FormattingEnabled = true;
+            this.cbModePaiement.Location = new System.Drawing.Point(235, 175);
+            this.cbModePaiement.Name = "cbModePaiement";
+            this.cbModePaiement.Size = new System.Drawing.Size(303, 36);
+            this.cbModePaiement.TabIndex = 8;
             // 
             // label20
             // 
@@ -580,14 +599,14 @@
             this.label20.TabIndex = 7;
             this.label20.Text = "Mode paiement";
             // 
-            // txtResteAPayer
+            // txtRestePayer
             // 
-            this.txtResteAPayer.Font = new System.Drawing.Font("Segoe UI", 12F);
-            this.txtResteAPayer.Location = new System.Drawing.Point(235, 125);
-            this.txtResteAPayer.Name = "txtResteAPayer";
-            this.txtResteAPayer.ReadOnly = true;
-            this.txtResteAPayer.Size = new System.Drawing.Size(303, 34);
-            this.txtResteAPayer.TabIndex = 6;
+            this.txtRestePayer.Font = new System.Drawing.Font("Segoe UI", 12F);
+            this.txtRestePayer.Location = new System.Drawing.Point(235, 125);
+            this.txtRestePayer.Name = "txtRestePayer";
+            this.txtRestePayer.ReadOnly = true;
+            this.txtRestePayer.Size = new System.Drawing.Size(303, 34);
+            this.txtRestePayer.TabIndex = 6;
             // 
             // label19
             // 
@@ -600,14 +619,14 @@
             this.label19.TabIndex = 5;
             this.label19.Text = "Reste à payer";
             // 
-            // nudAvance
+            // numAvance
             // 
-            this.nudAvance.Font = new System.Drawing.Font("Segoe UI", 12F);
-            this.nudAvance.Location = new System.Drawing.Point(235, 75);
-            this.nudAvance.Name = "nudAvance";
-            this.nudAvance.Size = new System.Drawing.Size(140, 34);
-            this.nudAvance.TabIndex = 4;
-            this.nudAvance.ValueChanged += new System.EventHandler(this.nudAvance_ValueChanged);
+            this.numAvance.Font = new System.Drawing.Font("Segoe UI", 12F);
+            this.numAvance.Location = new System.Drawing.Point(235, 75);
+            this.numAvance.Name = "numAvance";
+            this.numAvance.Size = new System.Drawing.Size(140, 34);
+            this.numAvance.TabIndex = 4;
+            this.numAvance.ValueChanged += new System.EventHandler(this.nudAvance_ValueChanged);
             // 
             // label18
             // 
@@ -620,14 +639,14 @@
             this.label18.TabIndex = 3;
             this.label18.Text = "Avance";
             // 
-            // txtPrixTotal
+            // txtTtl
             // 
-            this.txtPrixTotal.Font = new System.Drawing.Font("Segoe UI", 12F);
-            this.txtPrixTotal.Location = new System.Drawing.Point(435, 75);
-            this.txtPrixTotal.Name = "txtPrixTotal";
-            this.txtPrixTotal.ReadOnly = true;
-            this.txtPrixTotal.Size = new System.Drawing.Size(103, 34);
-            this.txtPrixTotal.TabIndex = 2;
+            this.txtTtl.Font = new System.Drawing.Font("Segoe UI", 12F);
+            this.txtTtl.Location = new System.Drawing.Point(435, 75);
+            this.txtTtl.Name = "txtTtl";
+            this.txtTtl.ReadOnly = true;
+            this.txtTtl.Size = new System.Drawing.Size(103, 34);
+            this.txtTtl.TabIndex = 2;
             // 
             // label17
             // 
@@ -780,27 +799,27 @@
             // pnlFooter
             // 
             this.pnlFooter.BackColor = System.Drawing.Color.AliceBlue;
-            this.pnlFooter.Controls.Add(this.lblTotalValue);
+            this.pnlFooter.Controls.Add(this.lblTotal);
             this.pnlFooter.Controls.Add(this.lblFooterTotal);
-            this.pnlFooter.Controls.Add(this.lblDureeValue);
+            this.pnlFooter.Controls.Add(this.lblDuree);
             this.pnlFooter.Controls.Add(this.lblFooterDuree);
-            this.pnlFooter.Controls.Add(this.lblContratValue);
+            this.pnlFooter.Controls.Add(this.lblContratNumero);
             this.pnlFooter.Controls.Add(this.lblFooterContrat);
             this.pnlFooter.Location = new System.Drawing.Point(12, 806);
             this.pnlFooter.Name = "pnlFooter";
             this.pnlFooter.Size = new System.Drawing.Size(1260, 60);
             this.pnlFooter.TabIndex = 7;
             // 
-            // lblTotalValue
+            // lblTotal
             // 
-            this.lblTotalValue.AutoSize = true;
-            this.lblTotalValue.Font = new System.Drawing.Font("Segoe UI", 11F);
-            this.lblTotalValue.ForeColor = System.Drawing.Color.MidnightBlue;
-            this.lblTotalValue.Location = new System.Drawing.Point(1047, 17);
-            this.lblTotalValue.Name = "lblTotalValue";
-            this.lblTotalValue.Size = new System.Drawing.Size(77, 25);
-            this.lblTotalValue.TabIndex = 5;
-            this.lblTotalValue.Text = "0,00 DH";
+            this.lblTotal.AutoSize = true;
+            this.lblTotal.Font = new System.Drawing.Font("Segoe UI", 11F);
+            this.lblTotal.ForeColor = System.Drawing.Color.MidnightBlue;
+            this.lblTotal.Location = new System.Drawing.Point(1047, 17);
+            this.lblTotal.Name = "lblTotal";
+            this.lblTotal.Size = new System.Drawing.Size(77, 25);
+            this.lblTotal.TabIndex = 5;
+            this.lblTotal.Text = "0,00 DH";
             // 
             // lblFooterTotal
             // 
@@ -813,16 +832,16 @@
             this.lblFooterTotal.TabIndex = 4;
             this.lblFooterTotal.Text = "Total:";
             // 
-            // lblDureeValue
+            // lblDuree
             // 
-            this.lblDureeValue.AutoSize = true;
-            this.lblDureeValue.Font = new System.Drawing.Font("Segoe UI", 11F);
-            this.lblDureeValue.ForeColor = System.Drawing.Color.MidnightBlue;
-            this.lblDureeValue.Location = new System.Drawing.Point(688, 17);
-            this.lblDureeValue.Name = "lblDureeValue";
-            this.lblDureeValue.Size = new System.Drawing.Size(61, 25);
-            this.lblDureeValue.TabIndex = 3;
-            this.lblDureeValue.Text = "1 jour";
+            this.lblDuree.AutoSize = true;
+            this.lblDuree.Font = new System.Drawing.Font("Segoe UI", 11F);
+            this.lblDuree.ForeColor = System.Drawing.Color.MidnightBlue;
+            this.lblDuree.Location = new System.Drawing.Point(688, 17);
+            this.lblDuree.Name = "lblDuree";
+            this.lblDuree.Size = new System.Drawing.Size(61, 25);
+            this.lblDuree.TabIndex = 3;
+            this.lblDuree.Text = "1 jour";
             // 
             // lblFooterDuree
             // 
@@ -835,16 +854,16 @@
             this.lblFooterDuree.TabIndex = 2;
             this.lblFooterDuree.Text = "Durée:";
             // 
-            // lblContratValue
+            // lblContratNumero
             // 
-            this.lblContratValue.AutoSize = true;
-            this.lblContratValue.Font = new System.Drawing.Font("Segoe UI", 11F);
-            this.lblContratValue.ForeColor = System.Drawing.Color.MidnightBlue;
-            this.lblContratValue.Location = new System.Drawing.Point(164, 17);
-            this.lblContratValue.Name = "lblContratValue";
-            this.lblContratValue.Size = new System.Drawing.Size(93, 25);
-            this.lblContratValue.TabIndex = 1;
-            this.lblContratValue.Text = "CTR-0001";
+            this.lblContratNumero.AutoSize = true;
+            this.lblContratNumero.Font = new System.Drawing.Font("Segoe UI", 11F);
+            this.lblContratNumero.ForeColor = System.Drawing.Color.MidnightBlue;
+            this.lblContratNumero.Location = new System.Drawing.Point(164, 17);
+            this.lblContratNumero.Name = "lblContratNumero";
+            this.lblContratNumero.Size = new System.Drawing.Size(93, 25);
+            this.lblContratNumero.TabIndex = 1;
+            this.lblContratNumero.Text = "CTR-0001";
             // 
             // lblFooterContrat
             // 
@@ -856,6 +875,48 @@
             this.lblFooterContrat.Size = new System.Drawing.Size(117, 25);
             this.lblFooterContrat.TabIndex = 0;
             this.lblFooterContrat.Text = "Contrat N° :";
+            // 
+            // cbHeureDebut
+            // 
+            this.cbHeureDebut.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.cbHeureDebut.Font = new System.Drawing.Font("Segoe UI", 12F);
+            this.cbHeureDebut.FormattingEnabled = true;
+            this.cbHeureDebut.Location = new System.Drawing.Point(501, 67);
+            this.cbHeureDebut.Name = "cbHeureDebut";
+            this.cbHeureDebut.Size = new System.Drawing.Size(93, 36);
+            this.cbHeureDebut.TabIndex = 13;
+            // 
+            // cbHeureRetour
+            // 
+            this.cbHeureRetour.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.cbHeureRetour.Font = new System.Drawing.Font("Segoe UI", 12F);
+            this.cbHeureRetour.FormattingEnabled = true;
+            this.cbHeureRetour.Location = new System.Drawing.Point(501, 123);
+            this.cbHeureRetour.Name = "cbHeureRetour";
+            this.cbHeureRetour.Size = new System.Drawing.Size(93, 36);
+            this.cbHeureRetour.TabIndex = 14;
+            // 
+            // cbReservation
+            // 
+            this.cbReservation.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.cbReservation.Font = new System.Drawing.Font("Segoe UI", 12F);
+            this.cbReservation.FormattingEnabled = true;
+            this.cbReservation.Location = new System.Drawing.Point(885, 20);
+            this.cbReservation.Name = "cbReservation";
+            this.cbReservation.Size = new System.Drawing.Size(133, 36);
+            this.cbReservation.TabIndex = 12;
+            this.cbReservation.SelectedIndexChanged += new System.EventHandler(this.cbReservation_SelectedIndexChanged);
+            // 
+            // label21
+            // 
+            this.label21.AutoSize = true;
+            this.label21.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Bold);
+            this.label21.ForeColor = System.Drawing.Color.MidnightBlue;
+            this.label21.Location = new System.Drawing.Point(674, 20);
+            this.label21.Name = "label21";
+            this.label21.Size = new System.Drawing.Size(152, 28);
+            this.label21.TabIndex = 11;
+            this.label21.Text = "ID Réservation";
             // 
             // contrats
             // 
@@ -879,6 +940,7 @@
             this.Name = "contrats";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "contrats";
+            this.Load += new System.EventHandler(this.contrats_Load);
             this.pnlHeader.ResumeLayout(false);
             this.pnlHeader.PerformLayout();
             this.pnlClient.ResumeLayout(false);
@@ -889,7 +951,7 @@
             this.pnlPeriode.PerformLayout();
             this.pnlPaiement.ResumeLayout(false);
             this.pnlPaiement.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.nudAvance)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.numAvance)).EndInit();
             this.pnlRemarques.ResumeLayout(false);
             this.pnlRemarques.PerformLayout();
             this.pnlActions.ResumeLayout(false);
@@ -907,7 +969,7 @@
             private System.Windows.Forms.Panel pnlClient;
             private System.Windows.Forms.Label lblClientSection;
             private System.Windows.Forms.Label label1;
-            private System.Windows.Forms.ComboBox cboClient;
+            private System.Windows.Forms.ComboBox cbClient;
             private System.Windows.Forms.Label label2;
             private System.Windows.Forms.TextBox txtNom;
             private System.Windows.Forms.Label label3;
@@ -920,17 +982,17 @@
             private System.Windows.Forms.Panel pnlVoiture;
             private System.Windows.Forms.Label lblVoitureSection;
             private System.Windows.Forms.Label label6;
-            private System.Windows.Forms.ComboBox cboImmatriculation;
+            private System.Windows.Forms.ComboBox cbImmatriculation;
             private System.Windows.Forms.Label label7;
-            private System.Windows.Forms.ComboBox cboMarque;
+            private System.Windows.Forms.ComboBox cbMarque;
             private System.Windows.Forms.Label label8;
-            private System.Windows.Forms.ComboBox cboModele;
+            private System.Windows.Forms.ComboBox cbModele;
             private System.Windows.Forms.Label label9;
-            private System.Windows.Forms.ComboBox cboCarburant;
+            private System.Windows.Forms.ComboBox cbCarburant;
             private System.Windows.Forms.Label label10;
-            private System.Windows.Forms.ComboBox cboPuissance;
+            private System.Windows.Forms.ComboBox txtPuissance;
             private System.Windows.Forms.Label label11;
-            private System.Windows.Forms.ComboBox cboCategorie;
+            private System.Windows.Forms.ComboBox cbCategorie;
             private System.Windows.Forms.Label label12;
             private System.Windows.Forms.TextBox txtKilometrage;
             private System.Windows.Forms.Label label13;
@@ -939,22 +1001,22 @@
             private System.Windows.Forms.Panel pnlPeriode;
             private System.Windows.Forms.Label lblPeriodeSection;
             private System.Windows.Forms.Label label14;
-            private System.Windows.Forms.DateTimePicker dtpDateDebut;
+            private System.Windows.Forms.DateTimePicker dtDateDebut;
             private System.Windows.Forms.Label label15;
-            private System.Windows.Forms.DateTimePicker dtpDateFin;
+            private System.Windows.Forms.DateTimePicker dtDateFin;
             private System.Windows.Forms.Label label16;
             private System.Windows.Forms.TextBox txtNombreJours;
 
             private System.Windows.Forms.Panel pnlPaiement;
             private System.Windows.Forms.Label lblPaiementSection;
             private System.Windows.Forms.Label label17;
-            private System.Windows.Forms.TextBox txtPrixTotal;
+            private System.Windows.Forms.TextBox txtTtl;
             private System.Windows.Forms.Label label18;
-            private System.Windows.Forms.NumericUpDown nudAvance;
+            private System.Windows.Forms.NumericUpDown numAvance;
             private System.Windows.Forms.Label label19;
-            private System.Windows.Forms.TextBox txtResteAPayer;
+            private System.Windows.Forms.TextBox txtRestePayer;
             private System.Windows.Forms.Label label20;
-            private System.Windows.Forms.ComboBox cboModePaiement;
+            private System.Windows.Forms.ComboBox cbModePaiement;
 
             private System.Windows.Forms.Panel pnlRemarques;
             private System.Windows.Forms.TextBox txtRemarques;
@@ -963,15 +1025,19 @@
 
             private System.Windows.Forms.Panel pnlFooter;
             private System.Windows.Forms.Label lblFooterContrat;
-            private System.Windows.Forms.Label lblContratValue;
+            private System.Windows.Forms.Label lblContratNumero;
             private System.Windows.Forms.Label lblFooterDuree;
-            private System.Windows.Forms.Label lblDureeValue;
+            private System.Windows.Forms.Label lblDuree;
             private System.Windows.Forms.Label lblFooterTotal;
-            private System.Windows.Forms.Label lblTotalValue;
+            private System.Windows.Forms.Label lblTotal;
         private FontAwesome.Sharp.IconButton btnNouveau;
         private FontAwesome.Sharp.IconButton btnannuller;
         private FontAwesome.Sharp.IconButton btncalculer;
         private FontAwesome.Sharp.IconButton btnEnregistrer;
         private FontAwesome.Sharp.IconButton tnImprimer;
+        private System.Windows.Forms.ComboBox cbHeureDebut;
+        private System.Windows.Forms.ComboBox cbHeureRetour;
+        private System.Windows.Forms.ComboBox cbReservation;
+        private System.Windows.Forms.Label label21;
     }
 }
