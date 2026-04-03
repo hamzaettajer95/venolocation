@@ -70,22 +70,14 @@
             this.panelCenter = new System.Windows.Forms.Panel();
             this.panelOperations = new System.Windows.Forms.Panel();
             this.dgvDernieresOperations = new System.Windows.Forms.DataGridView();
-            this.Clients = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Operation = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Date = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.label6 = new System.Windows.Forms.Label();
             this.panelBottom = new System.Windows.Forms.Panel();
             this.tableBottom = new System.Windows.Forms.TableLayoutPanel();
             this.panelRetours = new System.Windows.Forms.Panel();
             this.dgvRetoursPrevus = new System.Windows.Forms.DataGridView();
-            this.Client = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Vehicule = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Retour = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.label2 = new System.Windows.Forms.Label();
             this.panelAlertes = new System.Windows.Forms.Panel();
             this.dgvAlertes = new System.Windows.Forms.DataGridView();
-            this.Description = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Echeance = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.label4 = new System.Windows.Forms.Label();
             this.tableStats = new System.Windows.Forms.TableLayoutPanel();
             this.cardDisponible = new System.Windows.Forms.Panel();
@@ -716,10 +708,6 @@
             dataGridViewCellStyle2.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
             this.dgvDernieresOperations.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle2;
             this.dgvDernieresOperations.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dgvDernieresOperations.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
-            this.Clients,
-            this.Operation,
-            this.Date});
             dataGridViewCellStyle3.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
             dataGridViewCellStyle3.BackColor = System.Drawing.Color.White;
             dataGridViewCellStyle3.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F);
@@ -738,27 +726,6 @@
             this.dgvDernieresOperations.RowTemplate.Height = 24;
             this.dgvDernieresOperations.Size = new System.Drawing.Size(1076, 140);
             this.dgvDernieresOperations.TabIndex = 2;
-            // 
-            // Clients
-            // 
-            this.Clients.HeaderText = "Clients";
-            this.Clients.MinimumWidth = 6;
-            this.Clients.Name = "Clients";
-            this.Clients.ReadOnly = true;
-            // 
-            // Operation
-            // 
-            this.Operation.HeaderText = "Opération";
-            this.Operation.MinimumWidth = 6;
-            this.Operation.Name = "Operation";
-            this.Operation.ReadOnly = true;
-            // 
-            // Date
-            // 
-            this.Date.HeaderText = "Date";
-            this.Date.MinimumWidth = 6;
-            this.Date.Name = "Date";
-            this.Date.ReadOnly = true;
             // 
             // label6
             // 
@@ -828,10 +795,6 @@
             dataGridViewCellStyle5.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
             this.dgvRetoursPrevus.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle5;
             this.dgvRetoursPrevus.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dgvRetoursPrevus.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
-            this.Client,
-            this.Vehicule,
-            this.Retour});
             dataGridViewCellStyle6.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
             dataGridViewCellStyle6.BackColor = System.Drawing.Color.White;
             dataGridViewCellStyle6.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F);
@@ -850,27 +813,6 @@
             this.dgvRetoursPrevus.RowTemplate.Height = 24;
             this.dgvRetoursPrevus.Size = new System.Drawing.Size(527, 192);
             this.dgvRetoursPrevus.TabIndex = 1;
-            // 
-            // Client
-            // 
-            this.Client.HeaderText = "Client";
-            this.Client.MinimumWidth = 6;
-            this.Client.Name = "Client";
-            this.Client.ReadOnly = true;
-            // 
-            // Vehicule
-            // 
-            this.Vehicule.HeaderText = "Véhicule";
-            this.Vehicule.MinimumWidth = 6;
-            this.Vehicule.Name = "Vehicule";
-            this.Vehicule.ReadOnly = true;
-            // 
-            // Retour
-            // 
-            this.Retour.HeaderText = "Retour prévu";
-            this.Retour.MinimumWidth = 6;
-            this.Retour.Name = "Retour";
-            this.Retour.ReadOnly = true;
             // 
             // label2
             // 
@@ -914,9 +856,6 @@
             dataGridViewCellStyle8.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
             this.dgvAlertes.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle8;
             this.dgvAlertes.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dgvAlertes.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
-            this.Description,
-            this.Echeance});
             dataGridViewCellStyle9.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
             dataGridViewCellStyle9.BackColor = System.Drawing.Color.White;
             dataGridViewCellStyle9.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F);
@@ -935,20 +874,6 @@
             this.dgvAlertes.RowTemplate.Height = 24;
             this.dgvAlertes.Size = new System.Drawing.Size(527, 200);
             this.dgvAlertes.TabIndex = 2;
-            // 
-            // Description
-            // 
-            this.Description.HeaderText = "Description";
-            this.Description.MinimumWidth = 6;
-            this.Description.Name = "Description";
-            this.Description.ReadOnly = true;
-            // 
-            // Echeance
-            // 
-            this.Echeance.HeaderText = "Échéance";
-            this.Echeance.MinimumWidth = 6;
-            this.Echeance.Name = "Echeance";
-            this.Echeance.ReadOnly = true;
             // 
             // label4
             // 
@@ -1256,6 +1181,7 @@
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Gestion Location Voiture";
             this.WindowState = System.Windows.Forms.FormWindowState.Maximized;
+            this.Activated += new System.EventHandler(this.dashboard_Activated);
             this.Load += new System.EventHandler(this.dashboard_Load);
             this.panelTop.ResumeLayout(false);
             this.panelTop.PerformLayout();
@@ -1324,20 +1250,12 @@
             private System.Windows.Forms.Panel panelRetours;
             private System.Windows.Forms.DataGridView dgvRetoursPrevus;
             private System.Windows.Forms.Label label2;
-            private System.Windows.Forms.DataGridViewTextBoxColumn Client;
-            private System.Windows.Forms.DataGridViewTextBoxColumn Vehicule;
-            private System.Windows.Forms.DataGridViewTextBoxColumn Retour;
             private System.Windows.Forms.Panel panelAlertes;
             private System.Windows.Forms.DataGridView dgvAlertes;
-            private System.Windows.Forms.DataGridViewTextBoxColumn Description;
-            private System.Windows.Forms.DataGridViewTextBoxColumn Echeance;
             private System.Windows.Forms.Label label4;
             private System.Windows.Forms.Panel panelOperations;
             private System.Windows.Forms.DataGridView dgvDernieresOperations;
             private System.Windows.Forms.Label label6;
-            private System.Windows.Forms.DataGridViewTextBoxColumn Clients;
-            private System.Windows.Forms.DataGridViewTextBoxColumn Operation;
-            private System.Windows.Forms.DataGridViewTextBoxColumn Date;
             private System.Windows.Forms.Label lbldate;
             private System.Windows.Forms.PictureBox pictureBox1;
             private System.Windows.Forms.Button btnUserMenu;
