@@ -209,7 +209,7 @@
             this.lblDateTime.AutoSize = true;
             this.lblDateTime.Font = new System.Drawing.Font("Algerian", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblDateTime.ForeColor = System.Drawing.Color.WhiteSmoke;
-            this.lblDateTime.Location = new System.Drawing.Point(908, 21);
+            this.lblDateTime.Location = new System.Drawing.Point(918, 21);
             this.lblDateTime.Name = "lblDateTime";
             this.lblDateTime.Size = new System.Drawing.Size(68, 22);
             this.lblDateTime.TabIndex = 2;

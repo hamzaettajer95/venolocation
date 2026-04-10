@@ -88,6 +88,7 @@ namespace venolocation.formee
             this.lblDateNaissance = new System.Windows.Forms.Label();
             this.dtpDateNaissance = new System.Windows.Forms.DateTimePicker();
             this.gbInfoDroite = new System.Windows.Forms.GroupBox();
+            this.txtVilleClient = new System.Windows.Forms.TextBox();
             this.lblPermisClient = new System.Windows.Forms.Label();
             this.txtPermisClient = new System.Windows.Forms.TextBox();
             this.lblDelivreLe = new System.Windows.Forms.Label();
@@ -95,7 +96,6 @@ namespace venolocation.formee
             this.lblVilleClient = new System.Windows.Forms.Label();
             this.lblAdresseClient = new System.Windows.Forms.Label();
             this.txtAdresseClient = new System.Windows.Forms.TextBox();
-            this.txtVilleClient = new System.Windows.Forms.TextBox();
             this.gbListeClients.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgvClients)).BeginInit();
             this.gbActions.SuspendLayout();
@@ -140,9 +140,9 @@ namespace venolocation.formee
             this.btnSearchTop.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnSearchTop.Font = new System.Drawing.Font("Segoe UI Emoji", 14F, System.Drawing.FontStyle.Bold);
             this.btnSearchTop.ForeColor = System.Drawing.Color.White;
-            this.btnSearchTop.Location = new System.Drawing.Point(1186, 41);
+            this.btnSearchTop.Location = new System.Drawing.Point(1186, 31);
             this.btnSearchTop.Name = "btnSearchTop";
-            this.btnSearchTop.Size = new System.Drawing.Size(102, 34);
+            this.btnSearchTop.Size = new System.Drawing.Size(102, 44);
             this.btnSearchTop.TabIndex = 2;
             this.btnSearchTop.Text = "🔍";
             this.btnSearchTop.UseVisualStyleBackColor = false;
@@ -360,6 +360,13 @@ namespace venolocation.formee
             this.gbInfoDroite.TabStop = false;
             this.gbInfoDroite.Text = "Informations client";
             // 
+            // txtVilleClient
+            // 
+            this.txtVilleClient.Location = new System.Drawing.Point(220, 129);
+            this.txtVilleClient.Name = "txtVilleClient";
+            this.txtVilleClient.Size = new System.Drawing.Size(280, 32);
+            this.txtVilleClient.TabIndex = 4;
+            // 
             // lblPermisClient
             // 
             this.lblPermisClient.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Bold);
@@ -418,13 +425,6 @@ namespace venolocation.formee
             this.txtAdresseClient.Name = "txtAdresseClient";
             this.txtAdresseClient.Size = new System.Drawing.Size(395, 78);
             this.txtAdresseClient.TabIndex = 5;
-            // 
-            // txtVilleClient
-            // 
-            this.txtVilleClient.Location = new System.Drawing.Point(220, 129);
-            this.txtVilleClient.Name = "txtVilleClient";
-            this.txtVilleClient.Size = new System.Drawing.Size(280, 32);
-            this.txtVilleClient.TabIndex = 4;
             // 
             // client
             // 
