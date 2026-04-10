@@ -28,7 +28,7 @@ namespace venolocation.formee
                 cn.Open();
 
                 string q = @"SELECT voiture_id, matricule, marque, modele, categorie, carburant, boite,
-                            kilometrage, etat, prix_jour, prix_heure, annee, couleur, image_url
+                            kilometrage, etat, prix_jour, prix_heure, annee, couleur
                      FROM voitures";
 
                 MySqlDataAdapter da = new MySqlDataAdapter(q, cn);

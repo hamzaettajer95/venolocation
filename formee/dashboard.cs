@@ -280,5 +280,11 @@ namespace venolocation.formee
             ChargerAlertesDocumentsExpires();
             ChargerDernieresOperations();
         }
+
+        private void btnHistorique_Click(object sender, EventArgs e)
+        {
+            droit.historique_contrats hi = new droit.historique_contrats();
+            hi.ShowDialog();
+        }
     }
 }

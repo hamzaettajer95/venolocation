@@ -139,7 +139,7 @@
             this.gbListe.Font = new System.Drawing.Font("Segoe UI", 10.8F, System.Drawing.FontStyle.Bold);
             this.gbListe.Location = new System.Drawing.Point(39, 68);
             this.gbListe.Name = "gbListe";
-            this.gbListe.Size = new System.Drawing.Size(1293, 316);
+            this.gbListe.Size = new System.Drawing.Size(1386, 316);
             this.gbListe.TabIndex = 4;
             this.gbListe.TabStop = false;
             this.gbListe.Text = "Affichage voiture";
@@ -153,9 +153,9 @@
             this.btnRecherche.ForeColor = System.Drawing.Color.White;
             this.btnRecherche.Location = new System.Drawing.Point(1157, 34);
             this.btnRecherche.Name = "btnRecherche";
-            this.btnRecherche.Size = new System.Drawing.Size(105, 35);
+            this.btnRecherche.Size = new System.Drawing.Size(223, 35);
             this.btnRecherche.TabIndex = 3;
-            this.btnRecherche.Text = "🔍";
+            this.btnRecherche.Text = "🔍 Rechercher";
             this.btnRecherche.UseVisualStyleBackColor = false;
             this.btnRecherche.Click += new System.EventHandler(this.btnRecherche_Click);
             // 
@@ -186,16 +186,17 @@
             this.dgvVoitures.AllowUserToAddRows = false;
             this.dgvVoitures.AllowUserToDeleteRows = false;
             this.dgvVoitures.AllowUserToResizeRows = false;
+            this.dgvVoitures.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
             this.dgvVoitures.BackgroundColor = System.Drawing.Color.White;
             this.dgvVoitures.ColumnHeadersHeight = 35;
-            this.dgvVoitures.Location = new System.Drawing.Point(22, 82);
+            this.dgvVoitures.Location = new System.Drawing.Point(6, 82);
             this.dgvVoitures.MultiSelect = false;
             this.dgvVoitures.Name = "dgvVoitures";
             this.dgvVoitures.RowHeadersVisible = false;
-            this.dgvVoitures.RowHeadersWidth = 51;
+            this.dgvVoitures.RowHeadersWidthSizeMode = System.Windows.Forms.DataGridViewRowHeadersWidthSizeMode.AutoSizeToDisplayedHeaders;
             this.dgvVoitures.RowTemplate.Height = 30;
             this.dgvVoitures.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.dgvVoitures.Size = new System.Drawing.Size(1240, 214);
+            this.dgvVoitures.Size = new System.Drawing.Size(1374, 214);
             this.dgvVoitures.TabIndex = 0;
             this.dgvVoitures.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvVoitures_CellClick);
             // 
@@ -394,7 +395,7 @@
             this.gbInfoDroite.Controls.Add(this.lblPrixJour);
             this.gbInfoDroite.Controls.Add(this.lblEtat);
             this.gbInfoDroite.Font = new System.Drawing.Font("Segoe UI", 10.8F, System.Drawing.FontStyle.Bold);
-            this.gbInfoDroite.Location = new System.Drawing.Point(712, 490);
+            this.gbInfoDroite.Location = new System.Drawing.Point(805, 490);
             this.gbInfoDroite.Name = "gbInfoDroite";
             this.gbInfoDroite.Size = new System.Drawing.Size(620, 342);
             this.gbInfoDroite.TabIndex = 6;
@@ -504,7 +505,7 @@
             this.AutoScaleDimensions = new System.Drawing.SizeF(10F, 25F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(245)))), ((int)(((byte)(247)))), ((int)(((byte)(251)))));
-            this.ClientSize = new System.Drawing.Size(1370, 860);
+            this.ClientSize = new System.Drawing.Size(1454, 860);
             this.Controls.Add(this.gbInfoDroite);
             this.Controls.Add(this.gbInfoGauche);
             this.Controls.Add(this.gbListe);

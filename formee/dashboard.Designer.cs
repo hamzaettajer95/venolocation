@@ -649,6 +649,7 @@
             this.btnHistorique.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this.btnHistorique.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
             this.btnHistorique.UseVisualStyleBackColor = false;
+            this.btnHistorique.Click += new System.EventHandler(this.btnHistorique_Click);
             // 
             // lblQuick
             // 
