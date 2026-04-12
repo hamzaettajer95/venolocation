@@ -107,12 +107,19 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="classee\DbHelper.cs" />
     <Compile Include="classee\LogHelper.cs" />
     <Compile Include="droit\historique_contrats.cs">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="droit\historique_contrats.Designer.cs">
       <DependentUpon>historique_contrats.cs</DependentUpon>
+    </Compile>
+    <Compile Include="droit\recette.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="droit\recette.Designer.cs">
+      <DependentUpon>recette.cs</DependentUpon>
     </Compile>
     <Compile Include="Form1.cs">
       <SubType>Form</SubType>
@@ -184,6 +191,9 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
     <EmbeddedResource Include="droit\historique_contrats.resx">
       <DependentUpon>historique_contrats.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="droit\recette.resx">
+      <DependentUpon>recette.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Form1.resx">
       <DependentUpon>Form1.cs</DependentUpon>

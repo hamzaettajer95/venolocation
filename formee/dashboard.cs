@@ -286,5 +286,11 @@ namespace venolocation.formee
             droit.historique_contrats hi = new droit.historique_contrats();
             hi.ShowDialog();
         }
+
+        private void btnRecettes_Click(object sender, EventArgs e)
+        {
+            droit.recette re = new droit.recette();
+            re.ShowDialog();
+        }
     }
 }

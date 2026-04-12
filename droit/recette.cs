@@ -12,14 +12,16 @@ using MySql.Data.MySqlClient;
 
 using venolocation.classee;
 
-namespace venolocation.formee
+namespace venolocation.droit
 {
-    public partial class depence : Form
+    public partial class recette : Form
     {
-        public depence()
+        public recette()
         {
             InitializeComponent();
         }
+
+
         private void FillDateCombos()
         {
             // 1. تعبئة السنوات (من 2024 لـ 2030 مثلاً)
@@ -46,19 +48,17 @@ namespace venolocation.formee
             }
             cb_jour.SelectedIndex = 0;
         }
-
-        private void LoadDepences()
+        private void LoadRecettes()
         {
             string filter = " WHERE 1=1 ";
-            if (cb_annee.SelectedIndex > 0) filter += $" AND YEAR(date_depense) = {cb_annee.Text}";
-            if (cb_mois.SelectedIndex > 0) filter += $" AND MONTH(date_depense) = {cb_mois.SelectedIndex}";
-            if (cb_jour.SelectedIndex > 0) filter += $" AND DAY(date_depense) = {cb_jour.Text}";
+            if (cb_annee.SelectedIndex > 0) filter += $" AND YEAR(date_recette) = {cb_annee.Text}";
+            if (cb_mois.SelectedIndex > 0) filter += $" AND MONTH(date_recette) = {cb_mois.SelectedIndex}";
+            if (cb_jour.SelectedIndex > 0) filter += $" AND DAY(date_recette) = {cb_jour.Text}";
 
-            string query = "SELECT * FROM depenses" + filter;
+            string query = "SELECT * FROM recettes" + filter;
             DataTable dt = DbHelper.GetData(query);
-            dgvDepence.DataSource = dt;
+            dgvRecette.DataSource = dt;
 
-            
             decimal total = 0;
             foreach (DataRow row in dt.Rows)
             {
@@ -66,42 +66,41 @@ namespace venolocation.formee
             }
             lbl_totale.Text = total.ToString("N2") + " DH";
         }
-        private void depence_Load(object sender, EventArgs e)
-        {
-            FillDateCombos();
-            LoadDepences();
-        }
-
         private void btn_ajouter_Click(object sender, EventArgs e)
         {
-            string query = "INSERT INTO depenses (type, montant, date_depense) VALUES (@type, @montant, NOW())";
-                MySqlParameter[] ps = {
-                new MySqlParameter("@type", txt_type.Text),
-                new MySqlParameter("@montant", txt_montant.Text)
-            };
-            if (DbHelper.ExecuteQuery(query, ps) > 0)
-            {
-                MessageBox.Show("Dépense ajoutée !", "Succès");
-                LoadDepences();
-            }
+            string query = "INSERT INTO recettes (type_recette, montant, date_recette) VALUES (@type, @montant, NOW())";
+            MySqlParameter[] ps = {
+        new MySqlParameter("@type", txt_type.Text),
+        new MySqlParameter("@montant", txt_montant.Text)
+    };
+            DbHelper.ExecuteQuery(query, ps);
+            LoadRecettes();
         }
 
         private void btn_suprimmer_Click(object sender, EventArgs e)
         {
-            if (dgvDepence.CurrentRow != null)
+            if (dgvRecette.CurrentRow != null)
             {
-                int id = Convert.ToInt32(dgvDepence.CurrentRow.Cells["depense_id"].Value);
-                string query = "DELETE FROM depenses WHERE depense_id = @id";
+                int id = Convert.ToInt32(dgvRecette.CurrentRow.Cells["recette_id"].Value);
+                string query = "DELETE FROM depences WHERE recette_id = @id";
                 DbHelper.ExecuteQuery(query, new MySqlParameter[] { new MySqlParameter("@id", id) });
-                LoadDepences();
+                LoadRecettes();
             }
         }
+
+        private void recette_Load(object sender, EventArgs e)
+        {
+            FillDateCombos();
+            LoadRecettes();
+
+        }
+
         private void CalculateTotal()
         {
             decimal total = 0;
 
             // كنمشيو سطر بسطر فـ الـ DataGridView
-            foreach (DataGridViewRow row in dgvDepence.Rows)
+            foreach (DataGridViewRow row in dgvRecette.Rows)
             {
                 // كنأكدو بلي السطر ماشي خاوي وبلي الخانة ديال Montant فيها قيمة
                 if (row.Cells["montant"].Value != null && row.Cells["montant"].Value != DBNull.Value)
@@ -113,30 +112,31 @@ namespace venolocation.formee
             // كنحطو النتيجة فـ الـ Label مع تنسيق مالي (N2 كتعني جوج أرقام ورا الفاصلة)
             lbl_totale.Text = total.ToString("N2") + " DH";
         }
+
         private void btn_filtrer_Click(object sender, EventArgs e)
         {
-            string query = "SELECT * FROM depenses WHERE 1=1"; // أو recettes
+            string query = "SELECT * FROM recettes WHERE 1=1"; // أو recettes
 
             // إذا اختار العام (SelectedIndex > 0 حيت 0 هي كلمة Année)
             if (cb_annee.SelectedIndex > 0)
             {
-                query += " AND YEAR(date_depense) = " + cb_annee.SelectedItem.ToString();
+                query += " AND YEAR(date_recette) = " + cb_annee.SelectedItem.ToString();
             }
 
             // إذا اختار الشهر
             if (cb_mois.SelectedIndex > 0)
             {
-                query += " AND MONTH(date_depense) = " + cb_mois.SelectedIndex; // SelectedIndex هنا هو رقم الشهر نيشان
+                query += " AND MONTH(date_recette) = " + cb_mois.SelectedIndex; // SelectedIndex هنا هو رقم الشهر نيشان
             }
 
             // إذا اختار النهار
             if (cb_jour.SelectedIndex > 0)
             {
-                query += " AND DAY(date_depense) = " + cb_jour.SelectedItem.ToString();
+                query += " AND DAY(date_recette) = " + cb_jour.SelectedItem.ToString();
             }
 
             // نفذ الـ Query وعمر الـ DataGridView
-            dgvDepence.DataSource = DbHelper.GetData(query);
+            dgvRecette.DataSource = DbHelper.GetData(query);
 
             // ما تنساش تعيط للدالة ديال حساب المجموع مورا هادشي
             CalculateTotal();

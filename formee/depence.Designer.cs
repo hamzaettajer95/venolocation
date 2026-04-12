@@ -32,33 +32,28 @@
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle3 = new System.Windows.Forms.DataGridViewCellStyle();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(depence));
-            this.panel1 = new System.Windows.Forms.Panel();
             this.btn_suprimmer = new FontAwesome.Sharp.IconButton();
             this.btn_modifier = new FontAwesome.Sharp.IconButton();
             this.btn_ajouter = new FontAwesome.Sharp.IconButton();
-            this.panel2 = new System.Windows.Forms.Panel();
+            this.panel1 = new System.Windows.Forms.Panel();
             this.btn_filtrer = new FontAwesome.Sharp.IconButton();
-            this.comboBox3 = new System.Windows.Forms.ComboBox();
-            this.comboBox2 = new System.Windows.Forms.ComboBox();
+            this.cb_jour = new System.Windows.Forms.ComboBox();
+            this.cb_mois = new System.Windows.Forms.ComboBox();
             this.label1 = new System.Windows.Forms.Label();
-            this.comboBox1 = new System.Windows.Forms.ComboBox();
-            this.dataGridView1 = new System.Windows.Forms.DataGridView();
             this.lbl_totale = new System.Windows.Forms.Label();
+            this.dgvDepence = new System.Windows.Forms.DataGridView();
+            this.panel2 = new System.Windows.Forms.Panel();
+            this.cb_annee = new System.Windows.Forms.ComboBox();
+            this.panel3 = new System.Windows.Forms.Panel();
+            this.label3 = new System.Windows.Forms.Label();
+            this.txt_montant = new Guna.UI2.WinForms.Guna2TextBox();
+            this.label2 = new System.Windows.Forms.Label();
+            this.txt_type = new Guna.UI2.WinForms.Guna2TextBox();
             this.panel1.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.dgvDepence)).BeginInit();
             this.panel2.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
+            this.panel3.SuspendLayout();
             this.SuspendLayout();
-            // 
-            // panel1
-            // 
-            this.panel1.BackColor = System.Drawing.Color.White;
-            this.panel1.Controls.Add(this.btn_suprimmer);
-            this.panel1.Controls.Add(this.btn_modifier);
-            this.panel1.Controls.Add(this.btn_ajouter);
-            this.panel1.Location = new System.Drawing.Point(12, 12);
-            this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(818, 92);
-            this.panel1.TabIndex = 0;
             // 
             // btn_suprimmer
             // 
@@ -71,12 +66,13 @@
             this.btn_suprimmer.IconFont = FontAwesome.Sharp.IconFont.Auto;
             this.btn_suprimmer.IconSize = 40;
             this.btn_suprimmer.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btn_suprimmer.Location = new System.Drawing.Point(589, 18);
+            this.btn_suprimmer.Location = new System.Drawing.Point(589, 3);
             this.btn_suprimmer.Name = "btn_suprimmer";
             this.btn_suprimmer.Size = new System.Drawing.Size(198, 57);
             this.btn_suprimmer.TabIndex = 2;
             this.btn_suprimmer.Text = "Supprimer";
             this.btn_suprimmer.UseVisualStyleBackColor = false;
+            this.btn_suprimmer.Click += new System.EventHandler(this.btn_suprimmer_Click);
             // 
             // btn_modifier
             // 
@@ -89,7 +85,7 @@
             this.btn_modifier.IconFont = FontAwesome.Sharp.IconFont.Auto;
             this.btn_modifier.IconSize = 40;
             this.btn_modifier.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btn_modifier.Location = new System.Drawing.Point(304, 18);
+            this.btn_modifier.Location = new System.Drawing.Point(309, 3);
             this.btn_modifier.Name = "btn_modifier";
             this.btn_modifier.Size = new System.Drawing.Size(198, 57);
             this.btn_modifier.TabIndex = 1;
@@ -107,25 +103,24 @@
             this.btn_ajouter.IconFont = FontAwesome.Sharp.IconFont.Auto;
             this.btn_ajouter.IconSize = 40;
             this.btn_ajouter.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btn_ajouter.Location = new System.Drawing.Point(19, 18);
+            this.btn_ajouter.Location = new System.Drawing.Point(21, 3);
             this.btn_ajouter.Name = "btn_ajouter";
             this.btn_ajouter.Size = new System.Drawing.Size(198, 57);
             this.btn_ajouter.TabIndex = 0;
             this.btn_ajouter.Text = "Ajouter";
             this.btn_ajouter.UseVisualStyleBackColor = false;
+            this.btn_ajouter.Click += new System.EventHandler(this.btn_ajouter_Click);
             // 
-            // panel2
+            // panel1
             // 
-            this.panel2.BackColor = System.Drawing.Color.White;
-            this.panel2.Controls.Add(this.btn_filtrer);
-            this.panel2.Controls.Add(this.comboBox3);
-            this.panel2.Controls.Add(this.comboBox2);
-            this.panel2.Controls.Add(this.label1);
-            this.panel2.Controls.Add(this.comboBox1);
-            this.panel2.Location = new System.Drawing.Point(12, 110);
-            this.panel2.Name = "panel2";
-            this.panel2.Size = new System.Drawing.Size(818, 77);
-            this.panel2.TabIndex = 1;
+            this.panel1.BackColor = System.Drawing.Color.White;
+            this.panel1.Controls.Add(this.btn_suprimmer);
+            this.panel1.Controls.Add(this.btn_modifier);
+            this.panel1.Controls.Add(this.btn_ajouter);
+            this.panel1.Location = new System.Drawing.Point(7, 555);
+            this.panel1.Name = "panel1";
+            this.panel1.Size = new System.Drawing.Size(833, 65);
+            this.panel1.TabIndex = 13;
             // 
             // btn_filtrer
             // 
@@ -144,28 +139,29 @@
             this.btn_filtrer.TabIndex = 3;
             this.btn_filtrer.Text = "Rechercher";
             this.btn_filtrer.UseVisualStyleBackColor = false;
+            this.btn_filtrer.Click += new System.EventHandler(this.btn_filtrer_Click);
             // 
-            // comboBox3
+            // cb_jour
             // 
-            this.comboBox3.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.comboBox3.Font = new System.Drawing.Font("Segoe UI Semibold", 10.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.comboBox3.FormattingEnabled = true;
-            this.comboBox3.Location = new System.Drawing.Point(411, 28);
-            this.comboBox3.Name = "comboBox3";
-            this.comboBox3.Size = new System.Drawing.Size(121, 31);
-            this.comboBox3.TabIndex = 3;
-            this.comboBox3.Text = "Jour";
+            this.cb_jour.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.cb_jour.Font = new System.Drawing.Font("Segoe UI Semibold", 10.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.cb_jour.FormattingEnabled = true;
+            this.cb_jour.Location = new System.Drawing.Point(411, 28);
+            this.cb_jour.Name = "cb_jour";
+            this.cb_jour.Size = new System.Drawing.Size(121, 31);
+            this.cb_jour.TabIndex = 3;
+            this.cb_jour.Text = "Jour";
             // 
-            // comboBox2
+            // cb_mois
             // 
-            this.comboBox2.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.comboBox2.Font = new System.Drawing.Font("Segoe UI Semibold", 10.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.comboBox2.FormattingEnabled = true;
-            this.comboBox2.Location = new System.Drawing.Point(272, 28);
-            this.comboBox2.Name = "comboBox2";
-            this.comboBox2.Size = new System.Drawing.Size(121, 31);
-            this.comboBox2.TabIndex = 2;
-            this.comboBox2.Text = "Mois";
+            this.cb_mois.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.cb_mois.Font = new System.Drawing.Font("Segoe UI Semibold", 10.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.cb_mois.FormattingEnabled = true;
+            this.cb_mois.Location = new System.Drawing.Point(272, 28);
+            this.cb_mois.Name = "cb_mois";
+            this.cb_mois.Size = new System.Drawing.Size(121, 31);
+            this.cb_mois.TabIndex = 2;
+            this.cb_mois.Text = "Mois";
             // 
             // label1
             // 
@@ -177,25 +173,24 @@
             this.label1.TabIndex = 1;
             this.label1.Text = "Filtrer par :";
             // 
-            // comboBox1
+            // lbl_totale
             // 
-            this.comboBox1.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.comboBox1.Font = new System.Drawing.Font("Segoe UI Semibold", 10.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.comboBox1.FormattingEnabled = true;
-            this.comboBox1.Location = new System.Drawing.Point(133, 28);
-            this.comboBox1.Name = "comboBox1";
-            this.comboBox1.Size = new System.Drawing.Size(121, 31);
-            this.comboBox1.TabIndex = 0;
-            this.comboBox1.Text = "Année";
+            this.lbl_totale.AutoSize = true;
+            this.lbl_totale.Font = new System.Drawing.Font("Segoe UI Semibold", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lbl_totale.Location = new System.Drawing.Point(7, 631);
+            this.lbl_totale.Name = "lbl_totale";
+            this.lbl_totale.Size = new System.Drawing.Size(167, 28);
+            this.lbl_totale.TabIndex = 12;
+            this.lbl_totale.Text = "Totale dépence : ";
             // 
-            // dataGridView1
+            // dgvDepence
             // 
-            this.dataGridView1.AllowUserToAddRows = false;
-            this.dataGridView1.AllowUserToDeleteRows = false;
+            this.dgvDepence.AllowUserToAddRows = false;
+            this.dgvDepence.AllowUserToDeleteRows = false;
             dataGridViewCellStyle1.BackColor = System.Drawing.Color.WhiteSmoke;
-            this.dataGridView1.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle1;
-            this.dataGridView1.BackgroundColor = System.Drawing.Color.White;
-            this.dataGridView1.BorderStyle = System.Windows.Forms.BorderStyle.None;
+            this.dgvDepence.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle1;
+            this.dgvDepence.BackgroundColor = System.Drawing.Color.White;
+            this.dgvDepence.BorderStyle = System.Windows.Forms.BorderStyle.None;
             dataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
             dataGridViewCellStyle2.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(52)))), ((int)(((byte)(58)))), ((int)(((byte)(64)))));
             dataGridViewCellStyle2.Font = new System.Drawing.Font("Segoe UI", 10.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
@@ -203,8 +198,8 @@
             dataGridViewCellStyle2.SelectionBackColor = System.Drawing.SystemColors.Highlight;
             dataGridViewCellStyle2.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
             dataGridViewCellStyle2.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.dataGridView1.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle2;
-            this.dataGridView1.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.dgvDepence.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle2;
+            this.dgvDepence.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             dataGridViewCellStyle3.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
             dataGridViewCellStyle3.BackColor = System.Drawing.Color.White;
             dataGridViewCellStyle3.Font = new System.Drawing.Font("Microsoft Sans Serif", 7.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
@@ -212,36 +207,120 @@
             dataGridViewCellStyle3.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(123)))), ((int)(((byte)(255)))));
             dataGridViewCellStyle3.SelectionForeColor = System.Drawing.Color.White;
             dataGridViewCellStyle3.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
-            this.dataGridView1.DefaultCellStyle = dataGridViewCellStyle3;
-            this.dataGridView1.EnableHeadersVisualStyles = false;
-            this.dataGridView1.Location = new System.Drawing.Point(12, 193);
-            this.dataGridView1.Name = "dataGridView1";
-            this.dataGridView1.ReadOnly = true;
-            this.dataGridView1.RowHeadersWidth = 51;
-            this.dataGridView1.RowTemplate.Height = 24;
-            this.dataGridView1.Size = new System.Drawing.Size(818, 478);
-            this.dataGridView1.TabIndex = 2;
+            this.dgvDepence.DefaultCellStyle = dataGridViewCellStyle3;
+            this.dgvDepence.EnableHeadersVisualStyles = false;
+            this.dgvDepence.Location = new System.Drawing.Point(7, 89);
+            this.dgvDepence.Name = "dgvDepence";
+            this.dgvDepence.ReadOnly = true;
+            this.dgvDepence.RowHeadersWidth = 51;
+            this.dgvDepence.RowTemplate.Height = 24;
+            this.dgvDepence.Size = new System.Drawing.Size(833, 460);
+            this.dgvDepence.TabIndex = 11;
             // 
-            // lbl_totale
+            // panel2
             // 
-            this.lbl_totale.AutoSize = true;
-            this.lbl_totale.Font = new System.Drawing.Font("Segoe UI Semibold", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lbl_totale.Location = new System.Drawing.Point(26, 695);
-            this.lbl_totale.Name = "lbl_totale";
-            this.lbl_totale.Size = new System.Drawing.Size(167, 28);
-            this.lbl_totale.TabIndex = 3;
-            this.lbl_totale.Text = "Totale dépence : ";
+            this.panel2.BackColor = System.Drawing.Color.White;
+            this.panel2.Controls.Add(this.btn_filtrer);
+            this.panel2.Controls.Add(this.cb_jour);
+            this.panel2.Controls.Add(this.cb_mois);
+            this.panel2.Controls.Add(this.label1);
+            this.panel2.Controls.Add(this.cb_annee);
+            this.panel2.Location = new System.Drawing.Point(7, 6);
+            this.panel2.Name = "panel2";
+            this.panel2.Size = new System.Drawing.Size(833, 77);
+            this.panel2.TabIndex = 10;
+            // 
+            // cb_annee
+            // 
+            this.cb_annee.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.cb_annee.Font = new System.Drawing.Font("Segoe UI Semibold", 10.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.cb_annee.FormattingEnabled = true;
+            this.cb_annee.Location = new System.Drawing.Point(133, 28);
+            this.cb_annee.Name = "cb_annee";
+            this.cb_annee.Size = new System.Drawing.Size(121, 31);
+            this.cb_annee.TabIndex = 0;
+            this.cb_annee.Text = "Année";
+            // 
+            // panel3
+            // 
+            this.panel3.BackColor = System.Drawing.Color.White;
+            this.panel3.Controls.Add(this.label3);
+            this.panel3.Controls.Add(this.txt_montant);
+            this.panel3.Controls.Add(this.label2);
+            this.panel3.Controls.Add(this.txt_type);
+            this.panel3.Location = new System.Drawing.Point(7, 664);
+            this.panel3.Name = "panel3";
+            this.panel3.Size = new System.Drawing.Size(833, 68);
+            this.panel3.TabIndex = 10;
+            // 
+            // label3
+            // 
+            this.label3.AutoSize = true;
+            this.label3.Font = new System.Drawing.Font("Segoe UI Semibold", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label3.Location = new System.Drawing.Point(431, 20);
+            this.label3.Name = "label3";
+            this.label3.Size = new System.Drawing.Size(101, 28);
+            this.label3.TabIndex = 4;
+            this.label3.Text = "Montant :";
+            // 
+            // txt_montant
+            // 
+            this.txt_montant.Cursor = System.Windows.Forms.Cursors.IBeam;
+            this.txt_montant.DefaultText = "";
+            this.txt_montant.DisabledState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(208)))), ((int)(((byte)(208)))), ((int)(((byte)(208)))));
+            this.txt_montant.DisabledState.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(226)))), ((int)(((byte)(226)))), ((int)(((byte)(226)))));
+            this.txt_montant.DisabledState.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(138)))), ((int)(((byte)(138)))), ((int)(((byte)(138)))));
+            this.txt_montant.DisabledState.PlaceholderForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(138)))), ((int)(((byte)(138)))), ((int)(((byte)(138)))));
+            this.txt_montant.FocusedState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(94)))), ((int)(((byte)(148)))), ((int)(((byte)(255)))));
+            this.txt_montant.Font = new System.Drawing.Font("Segoe UI Semibold", 12F, System.Drawing.FontStyle.Bold);
+            this.txt_montant.HoverState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(94)))), ((int)(((byte)(148)))), ((int)(((byte)(255)))));
+            this.txt_montant.Location = new System.Drawing.Point(539, 11);
+            this.txt_montant.Margin = new System.Windows.Forms.Padding(4, 6, 4, 6);
+            this.txt_montant.Name = "txt_montant";
+            this.txt_montant.PlaceholderText = "Montant";
+            this.txt_montant.SelectedText = "";
+            this.txt_montant.Size = new System.Drawing.Size(265, 42);
+            this.txt_montant.TabIndex = 3;
+            // 
+            // label2
+            // 
+            this.label2.AutoSize = true;
+            this.label2.Font = new System.Drawing.Font("Segoe UI Semibold", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label2.Location = new System.Drawing.Point(16, 20);
+            this.label2.Name = "label2";
+            this.label2.Size = new System.Drawing.Size(93, 28);
+            this.label2.TabIndex = 2;
+            this.label2.Text = "Le Type :";
+            // 
+            // txt_type
+            // 
+            this.txt_type.Cursor = System.Windows.Forms.Cursors.IBeam;
+            this.txt_type.DefaultText = "";
+            this.txt_type.DisabledState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(208)))), ((int)(((byte)(208)))), ((int)(((byte)(208)))));
+            this.txt_type.DisabledState.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(226)))), ((int)(((byte)(226)))), ((int)(((byte)(226)))));
+            this.txt_type.DisabledState.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(138)))), ((int)(((byte)(138)))), ((int)(((byte)(138)))));
+            this.txt_type.DisabledState.PlaceholderForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(138)))), ((int)(((byte)(138)))), ((int)(((byte)(138)))));
+            this.txt_type.FocusedState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(94)))), ((int)(((byte)(148)))), ((int)(((byte)(255)))));
+            this.txt_type.Font = new System.Drawing.Font("Segoe UI Semibold", 12F, System.Drawing.FontStyle.Bold);
+            this.txt_type.HoverState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(94)))), ((int)(((byte)(148)))), ((int)(((byte)(255)))));
+            this.txt_type.Location = new System.Drawing.Point(116, 14);
+            this.txt_type.Margin = new System.Windows.Forms.Padding(4, 6, 4, 6);
+            this.txt_type.Name = "txt_type";
+            this.txt_type.PlaceholderText = "Le Type des Dépence";
+            this.txt_type.SelectedText = "";
+            this.txt_type.Size = new System.Drawing.Size(280, 42);
+            this.txt_type.TabIndex = 0;
             // 
             // depence
             // 
-            //this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.None;
             this.BackColor = System.Drawing.Color.WhiteSmoke;
             this.ClientSize = new System.Drawing.Size(847, 744);
-            this.Controls.Add(this.lbl_totale);
-            this.Controls.Add(this.dataGridView1);
-            this.Controls.Add(this.panel2);
+            this.Controls.Add(this.panel3);
             this.Controls.Add(this.panel1);
+            this.Controls.Add(this.lbl_totale);
+            this.Controls.Add(this.dgvDepence);
+            this.Controls.Add(this.panel2);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.MaximizeBox = false;
@@ -249,28 +328,35 @@
             this.Name = "depence";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Dépence";
+            this.Load += new System.EventHandler(this.depence_Load);
             this.panel1.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.dgvDepence)).EndInit();
             this.panel2.ResumeLayout(false);
             this.panel2.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).EndInit();
+            this.panel3.ResumeLayout(false);
+            this.panel3.PerformLayout();
             this.ResumeLayout(false);
             this.PerformLayout();
 
         }
 
         #endregion
-
-        private System.Windows.Forms.Panel panel1;
-        private FontAwesome.Sharp.IconButton btn_ajouter;
         private FontAwesome.Sharp.IconButton btn_suprimmer;
         private FontAwesome.Sharp.IconButton btn_modifier;
-        private System.Windows.Forms.Panel panel2;
-        private System.Windows.Forms.ComboBox comboBox3;
-        private System.Windows.Forms.ComboBox comboBox2;
-        private System.Windows.Forms.Label label1;
-        private System.Windows.Forms.ComboBox comboBox1;
+        private FontAwesome.Sharp.IconButton btn_ajouter;
+        private System.Windows.Forms.Panel panel1;
         private FontAwesome.Sharp.IconButton btn_filtrer;
-        private System.Windows.Forms.DataGridView dataGridView1;
+        private System.Windows.Forms.ComboBox cb_jour;
+        private System.Windows.Forms.ComboBox cb_mois;
+        private System.Windows.Forms.Label label1;
         private System.Windows.Forms.Label lbl_totale;
+        private System.Windows.Forms.DataGridView dgvDepence;
+        private System.Windows.Forms.Panel panel2;
+        private System.Windows.Forms.ComboBox cb_annee;
+        private System.Windows.Forms.Panel panel3;
+        private System.Windows.Forms.Label label3;
+        private Guna.UI2.WinForms.Guna2TextBox txt_montant;
+        private System.Windows.Forms.Label label2;
+        private Guna.UI2.WinForms.Guna2TextBox txt_type;
     }
 }
