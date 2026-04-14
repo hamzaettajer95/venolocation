@@ -10,12 +10,13 @@ using System.Windows.Forms;
 
 using MySql.Data.MySqlClient;
 
+using venolocation.classee;
+
 namespace venolocation.formee
 {
     public partial class reservation : Form
     {
-        private readonly string connectionString = dashboard.connection_string;
-        private readonly string nomUtilisateur = login.nom;
+       
         private int reservationIdSelectionnee = -1;
         public reservation()
         {
@@ -36,11 +37,22 @@ namespace venolocation.formee
 
         private void reservation_Load(object sender, EventArgs e)
         {
-            InitialiserHeures();
-            ChargerVoitures();
-            ChargerClients();
-            ChargerReservations();
-            InitialiserFormulaire();
+            try
+            {
+                InitialiserHeures();
+                ChargerVoitures();
+                ChargerClients();
+                ChargerReservations();
+                InitialiserFormulaire();
+
+                
+            }
+            catch (Exception ex)
+            {
+                LogHelper.AddLog("Erreur chargement formulaire réservation : " + ex.Message, Session.Username);
+                MessageService.Error(AppMessages.UnexpectedError);
+            }
+           
 
         }
         private void InitialiserFormulaire()
@@ -73,32 +85,25 @@ namespace venolocation.formee
 
         private void ChargerVoitures()
         {
-            try
+            using (MySqlConnection cn = DbHelper.GetConnection())
             {
-                using (MySqlConnection cn = new MySqlConnection(connectionString))
+                cn.Open();
+
+                string query = @"
+                    SELECT voiture_id, CONCAT(matricule, ' - ', marque, ' ', modele) AS voiture
+                    FROM voitures
+                    ORDER BY matricule;";
+
+                using (MySqlDataAdapter da = new MySqlDataAdapter(query, cn))
                 {
-                    cn.Open();
+                    DataTable dt = new DataTable();
+                    da.Fill(dt);
 
-                    string query = @"
-                        SELECT voiture_id, CONCAT(matricule, ' - ', marque, ' ', modele) AS voiture
-                        FROM voitures
-                        ORDER BY matricule;";
-
-                    using (MySqlDataAdapter da = new MySqlDataAdapter(query, cn))
-                    {
-                        DataTable dt = new DataTable();
-                        da.Fill(dt);
-
-                        cbVoiture.DataSource = dt;
-                        cbVoiture.DisplayMember = "voiture";
-                        cbVoiture.ValueMember = "voiture_id";
-                        cbVoiture.SelectedIndex = -1;
-                    }
+                    cbVoiture.DataSource = dt;
+                    cbVoiture.DisplayMember = "voiture";
+                    cbVoiture.ValueMember = "voiture_id";
+                    cbVoiture.SelectedIndex = -1;
                 }
-            }
-            catch (Exception ex)
-            {
-                MessageBox.Show("Erreur chargement voitures : " + ex.Message);
             }
         }
 
@@ -106,14 +111,14 @@ namespace venolocation.formee
         {
             try
             {
-                using (MySqlConnection cn = new MySqlConnection(connectionString))
+                using (MySqlConnection cn = DbHelper.GetConnection())
                 {
                     cn.Open();
 
                     string query = @"
-                        SELECT client_id, CONCAT(nom, ' ', prenom, ' - ', cin) AS client
-                        FROM clients
-                        ORDER BY nom, prenom;";
+                    SELECT client_id, CONCAT(nom, ' ', prenom, ' - ', cin) AS client
+                    FROM clients
+                    ORDER BY nom, prenom;";
 
                     using (MySqlDataAdapter da = new MySqlDataAdapter(query, cn))
                     {
@@ -137,22 +142,22 @@ namespace venolocation.formee
         {
             try
             {
-                using (MySqlConnection cn = new MySqlConnection(connectionString))
+                using (MySqlConnection cn = DbHelper.GetConnection())
                 {
                     cn.Open();
 
                     string query = @"
-                        SELECT 
-                            r.reservation_id AS 'ID',
-                            CONCAT(v.matricule, ' - ', v.marque, ' ', v.modele) AS 'Voiture',
-                            CONCAT(c.nom, ' ', c.prenom) AS 'Client',
-                            CONCAT(DATE_FORMAT(r.date_debut, '%d/%m/%Y'), ' ', TIME_FORMAT(r.heure_debut, '%H:%i')) AS 'Date Début',
-                            CONCAT(DATE_FORMAT(r.date_fin, '%d/%m/%Y'), ' ', TIME_FORMAT(r.heure_fin, '%H:%i')) AS 'Date Fin',
-                            r.status AS 'Statut'
-                        FROM reservations r
-                        INNER JOIN voitures v ON v.voiture_id = r.voiture_id
-                        INNER JOIN clients c ON c.client_id = r.client_id
-                        ORDER BY r.reservation_id DESC;";
+                    SELECT 
+                        r.reservation_id AS 'ID',
+                        CONCAT(v.matricule, ' - ', v.marque, ' ', v.modele) AS 'Voiture',
+                        CONCAT(c.nom, ' ', c.prenom) AS 'Client',
+                        CONCAT(DATE_FORMAT(r.date_debut, '%d/%m/%Y'), ' ', TIME_FORMAT(r.heure_debut, '%H:%i')) AS 'Date Début',
+                        CONCAT(DATE_FORMAT(r.date_fin, '%d/%m/%Y'), ' ', TIME_FORMAT(r.heure_fin, '%H:%i')) AS 'Date Fin',
+                        r.status AS 'Statut'
+                    FROM reservations r
+                    INNER JOIN voitures v ON v.voiture_id = r.voiture_id
+                    INNER JOIN clients c ON c.client_id = r.client_id
+                    ORDER BY r.reservation_id DESC;";
 
                     using (MySqlDataAdapter da = new MySqlDataAdapter(query, cn))
                     {
@@ -163,6 +168,7 @@ namespace venolocation.formee
                 }
 
                 ColorierStatutsReservations();
+            
             }
             catch (Exception ex)
             {
@@ -174,29 +180,33 @@ namespace venolocation.formee
         {
             if (cbVoiture.SelectedIndex == -1)
             {
-                MessageBox.Show("Sélectionnez une voiture.");
+                MessageService.Warning("Sélectionnez une voiture.");
                 cbVoiture.Focus();
+                LogHelper.AddLog("Validation réservation refusée : voiture non sélectionnée.", Session.Username);
                 return false;
             }
 
             if (cbClient.SelectedIndex == -1)
             {
-                MessageBox.Show("Sélectionnez un client.");
+                MessageService.Warning("Sélectionnez un client.");
                 cbClient.Focus();
+                LogHelper.AddLog("Validation réservation refusée : client non sélectionné.", Session.Username);
                 return false;
             }
 
             if (cbHeureDebut.SelectedIndex == -1)
             {
-                MessageBox.Show("Sélectionnez l'heure de début.");
+                MessageService.Warning("Sélectionnez l'heure de début.");
                 cbHeureDebut.Focus();
+                LogHelper.AddLog("Validation réservation refusée : heure début non sélectionnée.", Session.Username);
                 return false;
             }
 
             if (cbHeureFin.SelectedIndex == -1)
             {
-                MessageBox.Show("Sélectionnez l'heure de fin.");
+                MessageService.Warning("Sélectionnez l'heure de fin.");
                 cbHeureFin.Focus();
+                LogHelper.AddLog("Validation réservation refusée : heure fin non sélectionnée.", Session.Username);
                 return false;
             }
 
@@ -205,7 +215,8 @@ namespace venolocation.formee
 
             if (fin <= debut)
             {
-                MessageBox.Show("La date/heure de fin doit être supérieure à la date/heure de début.");
+                MessageService.Warning("La date et l'heure de fin doivent être supérieures à la date et l'heure de début.");
+                LogHelper.AddLog("Validation réservation refusée : période invalide.", Session.Username);
                 return false;
             }
 
@@ -223,7 +234,7 @@ namespace venolocation.formee
             decimal prixJour = 0;
             decimal prixHeure = 0;
 
-            using (MySqlConnection cn = new MySqlConnection(connectionString))
+            using (MySqlConnection cn = DbHelper.GetConnection())
             {
                 cn.Open();
 
@@ -260,17 +271,17 @@ namespace venolocation.formee
 
         private bool VoitureDisponible(int voitureId, DateTime debut, DateTime fin)
         {
-            using (MySqlConnection cn = new MySqlConnection(connectionString))
+            using (MySqlConnection cn = DbHelper.GetConnection())
             {
                 cn.Open();
 
-                            string queryReservations = @"
-                            SELECT COUNT(*)
-                            FROM reservations
-                            WHERE voiture_id = @voiture_id
-                              AND status = 'Confirmée'
-                              AND ((@debut < TIMESTAMP(date_fin, heure_fin))
-                              AND (@fin > TIMESTAMP(date_debut, heure_debut)));";
+                string queryReservations = @"
+                    SELECT COUNT(*)
+                    FROM reservations
+                    WHERE voiture_id = @voiture_id
+                      AND status = 'Confirmée'
+                      AND ((@debut < TIMESTAMP(date_fin, heure_fin))
+                      AND (@fin > TIMESTAMP(date_debut, heure_debut)));";
 
                 using (MySqlCommand cmd = new MySqlCommand(queryReservations, cn))
                 {
@@ -287,7 +298,7 @@ namespace venolocation.formee
                     SELECT COUNT(*)
                     FROM contrats
                     WHERE voiture_id = @voiture_id
-                      AND status <> 'Terminé'
+                      AND status = 'En cours'
                       AND (
                             (@debut < TIMESTAMP(date_retour_prevu, heure_retour_prevu))
                             AND
@@ -311,38 +322,38 @@ namespace venolocation.formee
 
         private void btnVerifierDate_Click(object sender, EventArgs e)
         {
-            if (!ChampsValides())
-                return;
-
-            int voitureId = Convert.ToInt32(cbVoiture.SelectedValue);
-            DateTime debut = ConstruireDateHeure(dtDateDebut.Value.Date, cbHeureDebut.Text);
-            DateTime fin = ConstruireDateHeure(dtDateFin.Value.Date, cbHeureFin.Text);
-
-            bool disponible = VoitureDisponible(voitureId, debut, fin);
-
-            if (disponible)
+            try
             {
-                decimal total = ObtenirPrixTotal(voitureId, debut, fin);
+                if (!ChampsValides())
+                    return;
 
-                MessageBox.Show(
-                    "La voiture est disponible.\nPrix estimé : " + total.ToString("0.00") + " DH",
-                    "Disponibilité",
-                    MessageBoxButtons.OK,
-                    MessageBoxIcon.Information
-                );
+                int voitureId = Convert.ToInt32(cbVoiture.SelectedValue);
+                DateTime debut = ConstruireDateHeure(dtDateDebut.Value.Date, cbHeureDebut.Text);
+                DateTime fin = ConstruireDateHeure(dtDateFin.Value.Date, cbHeureFin.Text);
 
-                btnReserver.Enabled = true;
+                bool disponible = VoitureDisponible(voitureId, debut, fin);
+
+                if (disponible)
+                {
+                    decimal total = ObtenirPrixTotal(voitureId, debut, fin);
+
+                    MessageService.Info("La voiture est disponible.\nPrix estimé : " + total.ToString("0.00") + " DH");
+                    LogHelper.AddLog("Disponibilité vérifiée : voiture disponible. Prix estimé = " + total.ToString("0.00") + " DH.", Session.Username);
+
+                    btnReserver.Enabled = true;
+                }
+                else
+                {
+                    MessageService.Warning("La voiture n'est pas disponible dans cette période.");
+                    LogHelper.AddLog("Disponibilité vérifiée : voiture indisponible.", Session.Username);
+
+                    btnReserver.Enabled = false;
+                }
             }
-            else
+            catch (Exception ex)
             {
-                MessageBox.Show(
-                    "La voiture n'est pas disponible dans cette période.",
-                    "Indisponible",
-                    MessageBoxButtons.OK,
-                    MessageBoxIcon.Warning
-                );
-
-                btnReserver.Enabled = false;
+                LogHelper.AddLog("Erreur vérification disponibilité : " + ex.Message, Session.Username);
+                MessageService.Error(AppMessages.UnexpectedError);
             }
 
         }
@@ -392,6 +403,8 @@ namespace venolocation.formee
             dtDateFin.Value = DateTime.Today;
 
             btnReserver.Enabled = false;
+            btnConfirmer.Enabled = false;
+            btnAnnuler.Enabled = false;
             reservationIdSelectionnee = -1;
         }
 
@@ -400,11 +413,13 @@ namespace venolocation.formee
 
             if (cbVoiture.SelectedIndex == -1 || cbClient.SelectedIndex == -1)
             {
-                MessageBox.Show("Sélectionnez la voiture et le client.");
+                MessageService.Warning("Sélectionnez la voiture et le client.");
+                LogHelper.AddLog("Validation voiture/client refusée : sélection incomplète.", Session.Username);
                 return;
             }
 
-            MessageBox.Show("Voiture et client validés.");
+            MessageService.Success("Voiture et client validés.");
+           // LogHelper.AddLog("Voiture et client validés pour réservation.", Session.Username);
         }
 
         private void btnNouvelle_Click(object sender, EventArgs e)
@@ -425,7 +440,8 @@ namespace venolocation.formee
 
             if (!VoitureDisponible(voitureId, debut, fin))
             {
-                MessageBox.Show("La voiture n'est plus disponible.");
+                MessageService.Warning("La voiture n'est plus disponible.");
+                LogHelper.AddLog("Réservation refusée : voiture non disponible.", Session.Username);
                 return;
             }
 
@@ -433,7 +449,7 @@ namespace venolocation.formee
 
             try
             {
-                using (MySqlConnection cn = new MySqlConnection(connectionString))
+                using (MySqlConnection cn = DbHelper.GetConnection())
                 {
                     cn.Open();
 
@@ -453,19 +469,22 @@ namespace venolocation.formee
                         cmd.Parameters.AddWithValue("@heure_fin", fin.TimeOfDay);
                         cmd.Parameters.AddWithValue("@prix_total", prixTotal);
                         cmd.Parameters.AddWithValue("@status", "En attente");
-                        cmd.Parameters.AddWithValue("@nom_utilisateur", nomUtilisateur);
+                        cmd.Parameters.AddWithValue("@nom_utilisateur", Session.Username);
 
                         cmd.ExecuteNonQuery();
                     }
                 }
 
-                MessageBox.Show("Réservation ajoutée avec succès.");
+                LogHelper.AddLog("Réservation ajoutée avec succès. Prix total = " + prixTotal.ToString("0.00") + " DH.", Session.Username);
+                MessageService.Success("Réservation ajoutée avec succès.");
+
                 ChargerReservations();
                 ViderSaisie();
             }
             catch (Exception ex)
             {
-                MessageBox.Show("Erreur réservation : " + ex.Message);
+                LogHelper.AddLog("Erreur ajout réservation : " + ex.Message, Session.Username);
+                MessageService.Error(AppMessages.UnexpectedError);
             }
         }
 
@@ -473,13 +492,19 @@ namespace venolocation.formee
         {
             if (reservationIdSelectionnee <= 0)
             {
-                MessageBox.Show("Sélectionnez une réservation dans la liste.");
+                MessageService.Warning("Sélectionnez une réservation dans la liste.");
+                return;
+            }
+            string statut = dgvReservations.CurrentRow.Cells["Statut"].Value?.ToString();
+            if (statut != "En attente")
+            {
+                MessageService.Warning("Seules les réservations en attente peuvent être confirmées.");
                 return;
             }
 
             try
             {
-                using (MySqlConnection cn = new MySqlConnection(connectionString))
+                using (MySqlConnection cn = DbHelper.GetConnection())
                 {
                     cn.Open();
 
@@ -495,12 +520,16 @@ namespace venolocation.formee
                     }
                 }
 
-                MessageBox.Show("Réservation confirmée.");
+                LogHelper.AddLog("Réservation confirmée. ID = " + reservationIdSelectionnee, Session.Username);
+                MessageService.Success("Réservation confirmée.");
+
                 ChargerReservations();
+                ViderSaisie();
             }
             catch (Exception ex)
             {
-                MessageBox.Show("Erreur confirmation : " + ex.Message);
+                LogHelper.AddLog("Erreur confirmation réservation : " + ex.Message, Session.Username);
+                MessageService.Error(AppMessages.UnexpectedError);
             }
         }
 
@@ -508,22 +537,25 @@ namespace venolocation.formee
         {
             if (reservationIdSelectionnee <= 0)
             {
-                MessageBox.Show("Sélectionnez une réservation dans la liste.");
+                MessageService.Warning("Sélectionnez une réservation dans la liste.");
+                return;
+            }
+            string statut = dgvReservations.CurrentRow.Cells["Statut"].Value?.ToString();
+            if (statut != "En attente" && statut != "Confirmée")
+            {
+                MessageService.Warning("Cette réservation ne peut pas être annulée.");
                 return;
             }
 
-            DialogResult rep = MessageBox.Show(
-                "Voulez-vous vraiment annuler cette réservation ?",
-                "Confirmation",
-                MessageBoxButtons.YesNo,
-                MessageBoxIcon.Question);
-
-            if (rep != DialogResult.Yes)
+            if (MessageService.Confirm("Voulez-vous vraiment annuler cette réservation ?") != DialogResult.Yes)
+            {
+                //LogHelper.AddLog("Annulation réservation interrompue par l'utilisateur.", Session.Username);
                 return;
+            }
 
             try
             {
-                using (MySqlConnection cn = new MySqlConnection(connectionString))
+                using (MySqlConnection cn = DbHelper.GetConnection())
                 {
                     cn.Open();
 
@@ -539,12 +571,16 @@ namespace venolocation.formee
                     }
                 }
 
-                MessageBox.Show("Réservation annulée.");
+                LogHelper.AddLog("Réservation annulée. ID = " + reservationIdSelectionnee, Session.Username);
+                MessageService.Success("Réservation annulée.");
+
                 ChargerReservations();
+                ViderSaisie();
             }
             catch (Exception ex)
             {
-                MessageBox.Show("Erreur annulation : " + ex.Message);
+                LogHelper.AddLog("Erreur annulation réservation : " + ex.Message, Session.Username);
+                MessageService.Error(AppMessages.UnexpectedError);
             }
         }
 
@@ -553,8 +589,11 @@ namespace venolocation.formee
             if (e.RowIndex >= 0 && dgvReservations.Rows[e.RowIndex].Cells["ID"].Value != null)
             {
                 reservationIdSelectionnee = Convert.ToInt32(dgvReservations.Rows[e.RowIndex].Cells["ID"].Value);
-                btnConfirmer.Enabled = true;
-                btnAnnuler.Enabled = true;
+
+                string statut = dgvReservations.Rows[e.RowIndex].Cells["Statut"].Value?.ToString();
+
+                btnConfirmer.Enabled = (statut == "En attente");
+                btnAnnuler.Enabled = (statut == "En attente" || statut == "Confirmée");
             }
         }
     }

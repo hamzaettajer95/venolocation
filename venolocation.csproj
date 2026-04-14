@@ -107,8 +107,11 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="classee\AppMessages.cs" />
     <Compile Include="classee\DbHelper.cs" />
     <Compile Include="classee\LogHelper.cs" />
+    <Compile Include="classee\MessageService.cs" />
+    <Compile Include="classee\Session.cs" />
     <Compile Include="droit\historique_contrats.cs">
       <SubType>Form</SubType>
     </Compile>

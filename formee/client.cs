@@ -8,10 +8,12 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Controls;
 using System.Windows.Forms;
-
 using MySql.Data.MySqlClient;
-
+using MySqlX.XDevAPI;
 using venolocation.classee;
+
+
+
 
 namespace venolocation.formee
 {
@@ -24,7 +26,7 @@ namespace venolocation.formee
 
         bool CinExists(string cin)
         {
-            using (MySqlConnection cn = new MySqlConnection(formee.dashboard.connection_string))
+            using (MySqlConnection cn = DbHelper.GetConnection())
             {
                 cn.Open();
 
@@ -39,7 +41,7 @@ namespace venolocation.formee
 
         bool CinExistsForOtherClient(string cin, int clientId)
         {
-            using (MySqlConnection cn = new MySqlConnection(formee.dashboard.connection_string))
+            using (MySqlConnection cn = DbHelper.GetConnection())
             {
                 cn.Open();
 
@@ -68,9 +70,10 @@ namespace venolocation.formee
             txtNomClient.Focus();
         }
 
+
         void LoadClients()
         {
-            using (MySqlConnection cn = new MySqlConnection(formee.dashboard.connection_string))
+            using (MySqlConnection cn = DbHelper.GetConnection())
             {
                 cn.Open();
 
@@ -93,19 +96,21 @@ namespace venolocation.formee
         {
             try
             {
-                if (txtCinClient.Text.Trim() == "")
+                if (string.IsNullOrWhiteSpace(txtCinClient.Text))
                 {
-                    MessageBox.Show("CIN obligatoire");
+                    MessageService.Warning("CIN obligatoire");
+                    LogHelper.AddLog("Ajout client refusé : CIN vide", classee.Session.Username);
                     return;
                 }
 
                 if (CinExists(txtCinClient.Text.Trim()))
                 {
-                    MessageBox.Show("CIN déjà existe");
+                    MessageService.Warning("CIN déjà existant");
+                    LogHelper.AddLog("Ajout client refusé : CIN existe " + txtCinClient.Text, classee.Session.Username);
                     return;
                 }
 
-                using (MySqlConnection cn = new MySqlConnection(formee.dashboard.connection_string))
+                using (MySqlConnection cn = DbHelper.GetConnection())
                 {
                     cn.Open();
 
@@ -125,19 +130,21 @@ namespace venolocation.formee
                     cmd.Parameters.AddWithValue("@dateN", dtpDateNaissance.Value.Date);
                     cmd.Parameters.AddWithValue("@permis", txtPermisClient.Text);
                     cmd.Parameters.AddWithValue("@datePermis", dtpDelivreLe.Value.Date);
-                    cmd.Parameters.AddWithValue("@user", login.nom);
+                    cmd.Parameters.AddWithValue("@user", classee.Session.Username);
 
                     cmd.ExecuteNonQuery();
                 }
 
-                LogHelper.AddLog("Ajout client CIN: " + txtCinClient.Text, login.nom);
-                MessageBox.Show("Client ajouté avec succès");
+                LogHelper.AddLog("Client ajouté CIN: " + txtCinClient.Text, classee.Session.Username);
+                MessageService.Success(AppMessages.SaveSuccess);
+
                 LoadClients();
                 ClearFields();
             }
             catch (Exception ex)
             {
-                MessageBox.Show(ex.Message);
+                LogHelper.AddLog("Erreur ajout client: " + ex.Message, classee.Session.Username);
+                MessageService.Error(AppMessages.UnexpectedError);
             }
         }
 
@@ -147,25 +154,25 @@ namespace venolocation.formee
             {
                 if (dgvClients.CurrentRow == null)
                 {
-                    MessageBox.Show("Sélectionne un client");
+                    MessageService.Warning(AppMessages.NoSelection);
                     return;
                 }
 
                 int clientId = Convert.ToInt32(dgvClients.CurrentRow.Cells["client_id"].Value);
 
-                if (txtCinClient.Text.Trim() == "")
+                if (string.IsNullOrWhiteSpace(txtCinClient.Text))
                 {
-                    MessageBox.Show("CIN obligatoire");
+                    MessageService.Warning("CIN obligatoire");
                     return;
                 }
 
                 if (CinExistsForOtherClient(txtCinClient.Text.Trim(), clientId))
                 {
-                    MessageBox.Show("CIN déjà existe pour un autre client");
+                    MessageService.Warning("CIN déjà utilisé");
                     return;
                 }
 
-                using (MySqlConnection cn = new MySqlConnection(formee.dashboard.connection_string))
+                using (MySqlConnection cn = DbHelper.GetConnection())
                 {
                     cn.Open();
 
@@ -193,20 +200,22 @@ namespace venolocation.formee
                     cmd.Parameters.AddWithValue("@dateN", dtpDateNaissance.Value.Date);
                     cmd.Parameters.AddWithValue("@permis", txtPermisClient.Text);
                     cmd.Parameters.AddWithValue("@datePermis", dtpDelivreLe.Value.Date);
-                    cmd.Parameters.AddWithValue("@user", login.nom);
+                    cmd.Parameters.AddWithValue("@user", classee.Session.Username);
                     cmd.Parameters.AddWithValue("@id", clientId);
 
                     cmd.ExecuteNonQuery();
                 }
 
-                LogHelper.AddLog("Modification client CIN: " + txtCinClient.Text, login.nom);
-                MessageBox.Show("Client modifié avec succès");
+                LogHelper.AddLog("Client modifié CIN: " + txtCinClient.Text, classee.Session.Username);
+                MessageService.Success(AppMessages.UpdateSuccess);
+
                 LoadClients();
                 ClearFields();
             }
             catch (Exception ex)
             {
-                MessageBox.Show(ex.Message);
+                LogHelper.AddLog("Erreur modification client: " + ex.Message, classee.Session.Username);
+                MessageService.Error(AppMessages.UnexpectedError);
             }
         }
 
@@ -216,17 +225,19 @@ namespace venolocation.formee
             {
                 if (dgvClients.CurrentRow == null)
                 {
-                    MessageBox.Show("Sélectionne un client");
+                    MessageService.Warning(AppMessages.NoSelection);
+                    return;
+                }
+
+                if (MessageService.Confirm(AppMessages.DeleteConfirm) != DialogResult.Yes)
+                {
+                    LogHelper.AddLog("Suppression client annulée", classee.Session.Username);
                     return;
                 }
 
                 int clientId = Convert.ToInt32(dgvClients.CurrentRow.Cells["client_id"].Value);
 
-                DialogResult rep = MessageBox.Show("Tu veux vraiment supprimer ce client ?", "Confirmation", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
-                if (rep != DialogResult.Yes)
-                    return;
-
-                using (MySqlConnection cn = new MySqlConnection(formee.dashboard.connection_string))
+                using (MySqlConnection cn = DbHelper.GetConnection())
                 {
                     cn.Open();
 
@@ -237,14 +248,16 @@ namespace venolocation.formee
                     cmd.ExecuteNonQuery();
                 }
 
-                LogHelper.AddLog("Suppression client CIN: " + txtCinClient.Text, login.nom);
-                MessageBox.Show("Client supprimé avec succès");
+                LogHelper.AddLog("Client supprimé CIN: " + txtCinClient.Text, classee.Session.Username);
+                MessageService.Success(AppMessages.DeleteSuccess);
+
                 LoadClients();
                 ClearFields();
             }
             catch (Exception ex)
             {
-                MessageBox.Show(ex.Message);
+                LogHelper.AddLog("Erreur suppression client: " + ex.Message, classee.Session.Username);
+                MessageService.Error(AppMessages.UnexpectedError);
             }
         }
 
@@ -289,18 +302,12 @@ namespace venolocation.formee
         {
             try
             {
-                using (MySqlConnection cn = new MySqlConnection(formee.dashboard.connection_string))
+                using (MySqlConnection cn = DbHelper.GetConnection())
                 {
                     cn.Open();
 
-                    string q = @"SELECT client_id, nom, prenom, cin, telephone, adresse, ville, 
-                                        date_naissance, permis_num, permis_date, nom_utilisateur, created_at
-                                 FROM clients
-                                 WHERE nom LIKE @s
-                                    OR prenom LIKE @s
-                                    OR cin LIKE @s
-                                    OR telephone LIKE @s
-                                    OR ville LIKE @s";
+                    string q = @"SELECT * FROM clients
+                                 WHERE nom LIKE @s OR prenom LIKE @s OR cin LIKE @s";
 
                     MySqlCommand cmd = new MySqlCommand(q, cn);
                     cmd.Parameters.AddWithValue("@s", "%" + txtRecherche.Text + "%");
@@ -313,7 +320,8 @@ namespace venolocation.formee
             }
             catch (Exception ex)
             {
-                MessageBox.Show(ex.Message);
+                LogHelper.AddLog("Erreur recherche client: " + ex.Message, classee.Session.Username);
+                MessageService.Error(AppMessages.UnexpectedError);
             }
         }
     }

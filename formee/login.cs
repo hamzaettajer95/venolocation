@@ -2,13 +2,16 @@
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
-using MySql.Data.MySqlClient;
 using System.Drawing;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using System.Windows.Forms;
 using System.Web;
+using System.Windows.Forms;
+
+using MySql.Data.MySqlClient;
+
+using venolocation.classee;
 
 namespace venolocation.formee
 {
@@ -46,6 +49,9 @@ namespace venolocation.formee
                     {
                         nom = dr["nom"].ToString();
                         role = dr["role"].ToString();
+                        Session.Username = txtUsername.Text.Trim();
+                        Session.Role = role;
+                        LogHelper.AddLog("Connexion réussie.", Session.Username);
 
                         MessageBox.Show("Bienvenue " + nom + " (" + role + ")");
 

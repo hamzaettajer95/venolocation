@@ -24,23 +24,23 @@ namespace venolocation.droit
 
         private void FillDateCombos()
         {
-            // 1. تعبئة السنوات (من 2024 لـ 2030 مثلاً)
-            cb_annee.Items.Add("Année"); // هادي الرتبة 0
-            for (int i = 2024; i <= 2030; i++)
+          
+            cb_annee.Items.Add("Année"); 
+            for (int i = 2024; i <= 2040; i++)
             {
                 cb_annee.Items.Add(i.ToString());
             }
-            cb_annee.SelectedIndex = 0; // اختيار "Année" كافتراضي
+            cb_annee.SelectedIndex = 0;
 
-            // 2. تعبئة الشهور (1 لـ 12)
+            
             cb_mois.Items.Add("Mois");
             for (int i = 1; i <= 12; i++)
             {
-                cb_mois.Items.Add(i.ToString("D2")); // D2 باش تبان 01, 02...
+                cb_mois.Items.Add(i.ToString("D2"));
             }
             cb_mois.SelectedIndex = 0;
 
-            // 3. تعبئة الأيام (1 لـ 31)
+            
             cb_jour.Items.Add("Jour");
             for (int i = 1; i <= 31; i++)
             {
@@ -99,46 +99,46 @@ namespace venolocation.droit
         {
             decimal total = 0;
 
-            // كنمشيو سطر بسطر فـ الـ DataGridView
+            
             foreach (DataGridViewRow row in dgvRecette.Rows)
             {
-                // كنأكدو بلي السطر ماشي خاوي وبلي الخانة ديال Montant فيها قيمة
+              
                 if (row.Cells["montant"].Value != null && row.Cells["montant"].Value != DBNull.Value)
                 {
                     total += Convert.ToDecimal(row.Cells["montant"].Value);
                 }
             }
 
-            // كنحطو النتيجة فـ الـ Label مع تنسيق مالي (N2 كتعني جوج أرقام ورا الفاصلة)
+           
             lbl_totale.Text = total.ToString("N2") + " DH";
         }
 
         private void btn_filtrer_Click(object sender, EventArgs e)
         {
-            string query = "SELECT * FROM recettes WHERE 1=1"; // أو recettes
+            string query = "SELECT * FROM recettes WHERE 1=1";
 
-            // إذا اختار العام (SelectedIndex > 0 حيت 0 هي كلمة Année)
+            
             if (cb_annee.SelectedIndex > 0)
             {
                 query += " AND YEAR(date_recette) = " + cb_annee.SelectedItem.ToString();
             }
 
-            // إذا اختار الشهر
+           
             if (cb_mois.SelectedIndex > 0)
             {
-                query += " AND MONTH(date_recette) = " + cb_mois.SelectedIndex; // SelectedIndex هنا هو رقم الشهر نيشان
+                query += " AND MONTH(date_recette) = " + cb_mois.SelectedIndex; 
             }
 
-            // إذا اختار النهار
+            
             if (cb_jour.SelectedIndex > 0)
             {
                 query += " AND DAY(date_recette) = " + cb_jour.SelectedItem.ToString();
             }
 
-            // نفذ الـ Query وعمر الـ DataGridView
+           
             dgvRecette.DataSource = DbHelper.GetData(query);
 
-            // ما تنساش تعيط للدالة ديال حساب المجموع مورا هادشي
+            
             CalculateTotal();
         }
     }
