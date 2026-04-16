@@ -172,6 +172,12 @@
     <Compile Include="formee\login.Designer.cs">
       <DependentUpon>login.cs</DependentUpon>
     </Compile>
+    <Compile Include="formee\n_reservation.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="formee\n_reservation.Designer.cs">
+      <DependentUpon>n_reservation.cs</DependentUpon>
+    </Compile>
     <Compile Include="formee\reservation.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -221,6 +227,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="formee\login.resx">
       <DependentUpon>login.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="formee\n_reservation.resx">
+      <DependentUpon>n_reservation.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="formee\reservation.resx">
       <DependentUpon>reservation.cs</DependentUpon>
@@ -276,6 +285,29 @@
   <ItemGroup>
     <None Include="Resources\insurance1.png" />
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <None Include="Resources\edit.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\check.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\delete.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\check1.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\print-icon.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\icons8-approval-100.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\fender-bender.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\check2.png" />
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

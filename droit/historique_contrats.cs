@@ -165,7 +165,7 @@ namespace venolocation.droit
             if (dgvHistory.CurrentRow != null && dgvHistory.CurrentRow.Cells["status"].Value != null)
             {
                 string status = dgvHistory.CurrentRow.Cells["status"].Value.ToString();
-                btnannuller.Enabled = (status == "En cours");
+                btnAnnuler.Enabled = (status == "En cours");
             }
         }
 

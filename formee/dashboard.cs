@@ -233,7 +233,7 @@ namespace venolocation.formee
 
         private void btnreservation_Click(object sender, EventArgs e)
         {
-            formee.reservation res = new reservation();
+            formee.n_reservation res = new n_reservation();
             res.ShowDialog();
         }
 
