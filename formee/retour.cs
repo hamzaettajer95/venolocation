@@ -363,6 +363,18 @@ namespace venolocation.formee
                     return;
                 }
             }
+            decimal montantpaye = 0;
+
+            if (!string.IsNullOrWhiteSpace(txtMontantpaye.Text))
+            {
+                if (!decimal.TryParse(txtMontantpaye.Text.Trim(), out montantpaye) || montantpaye < 0)
+                {
+                    MessageBox.Show("Montant Paye invalide.",
+                        "Attention", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                    txtMontantpaye.Focus();
+                    return;
+                }
+            }
 
             DialogResult rep = MessageBox.Show(
                 "Confirmer le retour avec accident ?",
@@ -397,9 +409,9 @@ namespace venolocation.formee
 
                             string insertAccident = @"
                                 INSERT INTO accidents
-                                (contrat_id, date_accident, description, montant_reparation, nom_utilisateur)
+                                (contrat_id, date_accident, description, montant_reparation,montant_paye, nom_utilisateur)
                                 VALUES
-                                (@contrat_id, @date_accident, @description, @montant_reparation, @nom_utilisateur);";
+                                (@contrat_id, @date_accident, @description, @montant_reparation,@montant_paye, @nom_utilisateur);";
 
                             using (MySqlCommand cmd2 = new MySqlCommand(insertAccident, cn, tr))
                             {
@@ -407,10 +419,25 @@ namespace venolocation.formee
                                 cmd2.Parameters.AddWithValue("@date_accident", DateTime.Now.Date);
                                 cmd2.Parameters.AddWithValue("@description", descriptionAccident);
                                 cmd2.Parameters.AddWithValue("@montant_reparation", montantReparation);
+                                cmd2.Parameters.AddWithValue("@montant_paye", montantpaye);
                                 cmd2.Parameters.AddWithValue("@nom_utilisateur", login.nom);
                                 cmd2.ExecuteNonQuery();
                             }
+                            string insertrecette = @"
+                                INSERT INTO recettes
+                                (contrat_id, montant, type, date_recette, nom_utilisateur)
+                                VALUES
+                                (@contrat_id, @montant, @type, @date_recette, @nom_utilisateur);";
 
+                            using (MySqlCommand cmd3 = new MySqlCommand(insertrecette, cn, tr))
+                            {
+                                cmd3.Parameters.AddWithValue("@contrat_id", contratId);
+                                cmd3.Parameters.AddWithValue("@montant", montantpaye);
+                                cmd3.Parameters.AddWithValue("@type", "Accident");
+                                cmd3.Parameters.AddWithValue("@date_recette", DateTime.Now.Date);
+                                cmd3.Parameters.AddWithValue("@nom_utilisateur", login.nom);
+                                cmd3.ExecuteNonQuery();
+                            }
                             tr.Commit();
                             LogHelper.AddLog("Retour avec accident voiture: " + cbVoiture.Text, login.nom);
                             MessageBox.Show("Retour avec accident enregistré avec succès.",

@@ -138,7 +138,7 @@ namespace venolocation.formee
 
         private void ChargerVoitures()
         {
-            using (MySqlConnection cn = DbHelper.GetConnection())
+            using (MySqlConnection cn = Dbexec.GetConnection())
             {
                 cn.Open();
 
@@ -164,7 +164,7 @@ namespace venolocation.formee
         {
             try
             {
-                using (MySqlConnection cn = DbHelper.GetConnection())
+                using (MySqlConnection cn = Dbexec.GetConnection())
                 {
                     cn.Open();
 
@@ -201,7 +201,7 @@ namespace venolocation.formee
             decimal prixJour = 0;
             decimal prixHeure = 0;
 
-            using (MySqlConnection cn = DbHelper.GetConnection())
+            using (MySqlConnection cn = Dbexec.GetConnection())
             {
                 cn.Open();
 
@@ -238,7 +238,7 @@ namespace venolocation.formee
 
         private bool VoitureDisponible(int voitureId, DateTime debut, DateTime fin)
         {
-            using (MySqlConnection cn = DbHelper.GetConnection())
+            using (MySqlConnection cn = Dbexec.GetConnection())
             {
                 cn.Open();
 
@@ -309,7 +309,7 @@ namespace venolocation.formee
         {
             try
             {
-                using (MySqlConnection cn = DbHelper.GetConnection())
+                using (MySqlConnection cn = Dbexec.GetConnection())
                 {
                     cn.Open();
 
@@ -439,7 +439,7 @@ namespace venolocation.formee
 
             try
             {
-                using (MySqlConnection cn = DbHelper.GetConnection())
+                using (MySqlConnection cn = Dbexec.GetConnection())
                 {
                     cn.Open();
 
@@ -494,7 +494,7 @@ namespace venolocation.formee
 
             try
             {
-                using (MySqlConnection cn = DbHelper.GetConnection())
+                using (MySqlConnection cn = Dbexec.GetConnection())
                 {
                     cn.Open();
 
@@ -545,7 +545,7 @@ namespace venolocation.formee
 
             try
             {
-                using (MySqlConnection cn = DbHelper.GetConnection())
+                using (MySqlConnection cn = Dbexec.GetConnection())
                 {
                     cn.Open();
 

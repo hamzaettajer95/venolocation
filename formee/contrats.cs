@@ -5,6 +5,8 @@ using System.Windows.Forms;
 
 using MySql.Data.MySqlClient;
 
+using venolocation.classee;
+
 namespace venolocation.formee
 {
     public partial class contrats : Form
@@ -62,6 +64,7 @@ namespace venolocation.formee
             }
             catch (Exception ex)
             {
+                dbErreur.AddLog(ex.Message, login.nom, "contrats", "ChargerReservationsConfirmees");
                 MessageBox.Show("Erreur chargement réservations confirmées : " + ex.Message);
             }
         }
@@ -394,25 +397,36 @@ namespace venolocation.formee
                 }
 
                 MessageBox.Show("Contrat enregistré avec succès.");
+                LogHelper.AddLog("Enregistrement contrat client ID: " + clientId + " voiture ID: " + voitureId, login.nom);
                 ChargerReservationsConfirmees();
                 ChargerVoituresDisponibles();
                 NouveauContrat();
             }
             catch (Exception ex)
             {
+                dbErreur.AddLog(ex.Message, login.nom, "contrats", "btnEnregistrer_Click_1");
                 MessageBox.Show("Erreur enregistrement contrat : " + ex.Message);
             }
-        
+
         }
 
         private void contrats_Load(object sender, EventArgs e)
         {
-            ChargerClients();
-            ChargerVoituresDisponibles();
-            ChargerReservationsConfirmees();
-            InitialiserModePaiement();
-            InitialiserHeures();
-            NouveauContrat();
+            try
+            {
+                ChargerClients();
+                ChargerVoituresDisponibles();
+                ChargerReservationsConfirmees();
+                InitialiserModePaiement();
+                InitialiserHeures();
+                NouveauContrat();
+            }
+            catch (Exception ex)
+            {
+                dbErreur.AddLog(ex.Message, login.nom, "contrats", "contrats_Load");
+                MessageBox.Show("Erreur chargement formulaire : " + ex.Message);
+            }
+
         }
         private void ChargerVoitureParId(int voitureId)
         {
@@ -472,6 +486,7 @@ namespace venolocation.formee
             }
             catch (Exception ex)
             {
+                dbErreur.AddLog(ex.Message, login.nom, "contrats", "ChargerClients");
                 MessageBox.Show("Erreur chargement clients : " + ex.Message);
             }
         }
@@ -525,6 +540,7 @@ namespace venolocation.formee
             }
             catch (Exception ex)
             {
+                dbErreur.AddLog(ex.Message, login.nom, "contrats", "ChargerVoituresDisponibles");
                 MessageBox.Show("Erreur chargement voitures : " + ex.Message);
             }
         }
@@ -634,6 +650,7 @@ namespace venolocation.formee
             }
             catch (Exception ex)
             {
+                dbErreur.AddLog(ex.Message, login.nom, "contrats", "cbReservation_SelectedIndexChanged");
                 MessageBox.Show("Erreur chargement réservation : " + ex.Message);
             }
         }

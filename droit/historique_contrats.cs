@@ -9,6 +9,7 @@ using System.Threading.Tasks;
 using System.Windows.Forms;
 using MySql.Data.MySqlClient;
 using venolocation.classee;
+using venolocation.formee;
 
 
 
@@ -67,10 +68,11 @@ namespace venolocation.droit
 
             try
             {
-                dgvHistory.DataSource = DbHelper.GetData(query);
+                dgvHistory.DataSource = Dbexec.GetData(query);
             }
             catch (Exception ex)
             {
+                dbErreur.AddLog(ex.Message, login.nom, "historique_contrats", "LoadContracts");
                 MessageBox.Show("Erreur lors de la récupération des données : " + ex.Message);
             }
         }
@@ -80,7 +82,7 @@ namespace venolocation.droit
             try
             {
                 
-                DataTable dtClients = DbHelper.GetData("SELECT client_id, nom FROM clients");
+                DataTable dtClients = Dbexec.GetData("SELECT client_id, nom FROM clients");
                 DataRow drClient = dtClients.NewRow();
                 drClient["client_id"] = 0; 
                 drClient["nom"] = "--- Tout ---";
@@ -91,7 +93,7 @@ namespace venolocation.droit
                 cb_client.ValueMember = "client_id";
 
                
-                DataTable dtCars = DbHelper.GetData("SELECT voiture_id, matricule FROM voitures");
+                DataTable dtCars = Dbexec.GetData("SELECT voiture_id, matricule FROM voitures");
                 DataRow drCar = dtCars.NewRow();
                 drCar["voiture_id"] = 0;
                 drCar["matricule"] = "--- Tout ---";
@@ -108,6 +110,7 @@ namespace venolocation.droit
             }
             catch (Exception ex)
             {
+                dbErreur.AddLog(ex.Message, login.nom, "historique_contrats", "FillCombos");
                 MessageBox.Show("Erreur lors du chargement des listes : " + ex.Message, "Erreur", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
@@ -143,17 +146,21 @@ namespace venolocation.droit
                         string archiveQuery = @"INSERT INTO old_contrats (contrat_id, client_id, voiture_id, date_contrat, date_retour_prevu, status, total) 
                                                SELECT contrat_id, client_id, voiture_id, date_contrat, date_retour_prevu, 'Annulé', total 
                                                FROM contrats WHERE contrat_id = @id";
-                        DbHelper.ExecuteQuery(archiveQuery, new MySqlParameter[] { new MySqlParameter("@id", idContrat) });
+                        Dbexec.ExecuteQuery(archiveQuery, new MySqlParameter[] { new MySqlParameter("@id", idContrat) });
 
-                        DbHelper.ExecuteQuery("DELETE FROM contrats WHERE contrat_id = @id", new MySqlParameter[] { new MySqlParameter("@id", idContrat) });
+                        Dbexec.ExecuteQuery("DELETE FROM contrats WHERE contrat_id = @id", new MySqlParameter[] { new MySqlParameter("@id", idContrat) });
 
-                        DbHelper.ExecuteQuery("UPDATE voitures SET etat = 'Disponible' WHERE voiture_id = @vid", new MySqlParameter[] { new MySqlParameter("@vid", idVoiture) });
-
+                        Dbexec.ExecuteQuery("UPDATE voitures SET etat = 'Disponible' WHERE voiture_id = @vid", new MySqlParameter[] { new MySqlParameter("@vid", idVoiture) });
+                        
+                        
+                        
+                        LogHelper.AddLog("Annulation contrat ID: " + idContrat, login.nom);
                         MessageBox.Show("Contrat annulé avec succès et véhicule libéré.", "Succès", MessageBoxButtons.OK, MessageBoxIcon.Information);
                         LoadContracts();
                     }
                     catch (Exception ex)
                     {
+                        dbErreur.AddLog(ex.Message, login.nom, "historique_contrats", "btnannuller_Click");
                         MessageBox.Show("Echec de l'opération : " + ex.Message, "Erreur", MessageBoxButtons.OK, MessageBoxIcon.Error);
                     }
                 }

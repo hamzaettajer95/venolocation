@@ -1,8 +1,10 @@
-﻿using MySql.Data.MySqlClient;
-
-using System;
+﻿using System;
 using System.Drawing;
 using System.Windows.Forms;
+
+using MySql.Data.MySqlClient;
+
+using venolocation.classee;
 
 namespace venolocation.formee
 {
@@ -59,6 +61,7 @@ namespace venolocation.formee
                 }
                 catch (Exception ex)
                 {
+                    dbErreur.AddLog(ex.Message, login.nom, "alerte", "LoadAlertes");
                     MessageBox.Show("Erreur lors du chargement : " + ex.Message);
                 }
             }
@@ -128,9 +131,11 @@ namespace venolocation.formee
                         cmd.Parameters.AddWithValue("@id", id);
                         cmd.ExecuteNonQuery();
                     }
+                    LogHelper.AddLog("Mise à jour alerte ID: " + id + " vue = " + (vue ? 1 : 0), login.nom);
                 }
                 catch (Exception ex)
                 {
+                    dbErreur.AddLog(ex.Message, login.nom, "alerte", "UpdateVueInDatabase");
                     MessageBox.Show("Erreur lors de la mise à jour : " + ex.Message);
                     LoadAlertes();
                 }

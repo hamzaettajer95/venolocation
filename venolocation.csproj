@@ -108,7 +108,8 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="classee\AppMessages.cs" />
-    <Compile Include="classee\DbHelper.cs" />
+    <Compile Include="classee\dbErreur.cs" />
+    <Compile Include="classee\Dbexec.cs" />
     <Compile Include="classee\LogHelper.cs" />
     <Compile Include="classee\MessageService.cs" />
     <Compile Include="classee\Session.cs" />

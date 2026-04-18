@@ -21,7 +21,7 @@ namespace venolocation.formee
         string imagePath = "";
         void LoadVoitures()
         {
-            using (MySqlConnection cn = DbHelper.GetConnection())
+            using (MySqlConnection cn = Dbexec.GetConnection())
             {
                 cn.Open();
 
@@ -52,7 +52,7 @@ namespace venolocation.formee
                     return;
                 }
 
-                using (MySqlConnection cn = DbHelper.GetConnection())
+                using (MySqlConnection cn = Dbexec.GetConnection())
                 {
                     cn.Open();
 
@@ -108,7 +108,7 @@ namespace venolocation.formee
 
                 int id = Convert.ToInt32(dgvVoitures.CurrentRow.Cells["voiture_id"].Value);
 
-                using (MySqlConnection cn = DbHelper.GetConnection())
+                using (MySqlConnection cn = Dbexec.GetConnection())
                 {
                     cn.Open();
 
@@ -183,7 +183,7 @@ namespace venolocation.formee
 
                 int id = Convert.ToInt32(dgvVoitures.CurrentRow.Cells["voiture_id"].Value);
 
-                using (MySqlConnection cn = DbHelper.GetConnection())
+                using (MySqlConnection cn = Dbexec.GetConnection())
                 {
                     cn.Open();
 
@@ -231,7 +231,7 @@ namespace venolocation.formee
         {
             try
             {
-                using (MySqlConnection cn = DbHelper.GetConnection())
+                using (MySqlConnection cn = Dbexec.GetConnection())
                 {
                     cn.Open();
 

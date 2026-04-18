@@ -31,6 +31,9 @@
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(historique_contrats));
             this.dgvHistory = new System.Windows.Forms.DataGridView();
             this.panel1 = new System.Windows.Forms.Panel();
+            this.dtp_fin = new Guna.UI2.WinForms.Guna2DateTimePicker();
+            this.dtp_debut = new Guna.UI2.WinForms.Guna2DateTimePicker();
+            this.iconButton1 = new FontAwesome.Sharp.IconButton();
             this.label6 = new System.Windows.Forms.Label();
             this.label5 = new System.Windows.Forms.Label();
             this.label4 = new System.Windows.Forms.Label();
@@ -41,18 +44,15 @@
             this.cb_client = new System.Windows.Forms.ComboBox();
             this.guna2GradientPanel1 = new Guna.UI2.WinForms.Guna2GradientPanel();
             this.label1 = new System.Windows.Forms.Label();
-            this.panel2 = new System.Windows.Forms.Panel();
-            this.dtp_debut = new Guna.UI2.WinForms.Guna2DateTimePicker();
-            this.dtp_fin = new Guna.UI2.WinForms.Guna2DateTimePicker();
-            this.btnAnnuler = new Guna.UI2.WinForms.Guna2Button();
             this.guna2CirclePictureBox1 = new Guna.UI2.WinForms.Guna2CirclePictureBox();
-            this.iconButton1 = new FontAwesome.Sharp.IconButton();
+            this.panel2 = new System.Windows.Forms.Panel();
             this.btnimprimer = new Guna.UI2.WinForms.Guna2Button();
+            this.btnAnnuler = new Guna.UI2.WinForms.Guna2Button();
             ((System.ComponentModel.ISupportInitialize)(this.dgvHistory)).BeginInit();
             this.panel1.SuspendLayout();
             this.guna2GradientPanel1.SuspendLayout();
-            this.panel2.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.guna2CirclePictureBox1)).BeginInit();
+            this.panel2.SuspendLayout();
             this.SuspendLayout();
             // 
             // dgvHistory
@@ -94,6 +94,54 @@
             this.panel1.Size = new System.Drawing.Size(1419, 130);
             this.panel1.TabIndex = 5;
             // 
+            // dtp_fin
+            // 
+            this.dtp_fin.BorderRadius = 8;
+            this.dtp_fin.Checked = true;
+            this.dtp_fin.FillColor = System.Drawing.Color.White;
+            this.dtp_fin.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.dtp_fin.Format = System.Windows.Forms.DateTimePickerFormat.Short;
+            this.dtp_fin.Location = new System.Drawing.Point(700, 82);
+            this.dtp_fin.MaxDate = new System.DateTime(9998, 12, 31, 0, 0, 0, 0);
+            this.dtp_fin.MinDate = new System.DateTime(1753, 1, 1, 0, 0, 0, 0);
+            this.dtp_fin.Name = "dtp_fin";
+            this.dtp_fin.Size = new System.Drawing.Size(210, 36);
+            this.dtp_fin.TabIndex = 12;
+            this.dtp_fin.Value = new System.DateTime(2026, 4, 16, 14, 47, 30, 391);
+            // 
+            // dtp_debut
+            // 
+            this.dtp_debut.BorderRadius = 8;
+            this.dtp_debut.Checked = true;
+            this.dtp_debut.FillColor = System.Drawing.Color.White;
+            this.dtp_debut.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.dtp_debut.Format = System.Windows.Forms.DateTimePickerFormat.Short;
+            this.dtp_debut.Location = new System.Drawing.Point(261, 82);
+            this.dtp_debut.MaxDate = new System.DateTime(9998, 12, 31, 0, 0, 0, 0);
+            this.dtp_debut.MinDate = new System.DateTime(1753, 1, 1, 0, 0, 0, 0);
+            this.dtp_debut.Name = "dtp_debut";
+            this.dtp_debut.Size = new System.Drawing.Size(210, 36);
+            this.dtp_debut.TabIndex = 11;
+            this.dtp_debut.Value = new System.DateTime(2026, 4, 16, 14, 47, 30, 391);
+            // 
+            // iconButton1
+            // 
+            this.iconButton1.Font = new System.Drawing.Font("Segoe UI Semibold", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.iconButton1.IconChar = FontAwesome.Sharp.IconChar.SearchDollar;
+            this.iconButton1.IconColor = System.Drawing.Color.Gray;
+            this.iconButton1.IconFont = FontAwesome.Sharp.IconFont.Auto;
+            this.iconButton1.IconSize = 34;
+            this.iconButton1.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.iconButton1.Location = new System.Drawing.Point(939, 73);
+            this.iconButton1.Name = "iconButton1";
+            this.iconButton1.Size = new System.Drawing.Size(184, 45);
+            this.iconButton1.TabIndex = 10;
+            this.iconButton1.Text = "Rechercher";
+            this.iconButton1.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
+            this.iconButton1.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
+            this.iconButton1.UseVisualStyleBackColor = true;
+            this.iconButton1.Click += new System.EventHandler(this.iconButton1_Click);
+            // 
             // label6
             // 
             this.label6.AutoSize = true;
@@ -130,7 +178,7 @@
             this.cb_statut.Font = new System.Drawing.Font("Segoe UI Semibold", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.cb_statut.FormattingEnabled = true;
             this.cb_statut.Items.AddRange(new object[] {
-            "Tout",
+            "--- Tout ---",
             "En cours",
             "Terminé",
             "Annulé"});
@@ -203,65 +251,6 @@
             this.label1.TabIndex = 1;
             this.label1.Text = "Historique des contrats";
             // 
-            // panel2
-            // 
-            this.panel2.Controls.Add(this.btnimprimer);
-            this.panel2.Controls.Add(this.btnAnnuler);
-            this.panel2.Location = new System.Drawing.Point(12, 671);
-            this.panel2.Name = "panel2";
-            this.panel2.Size = new System.Drawing.Size(1419, 72);
-            this.panel2.TabIndex = 7;
-            // 
-            // dtp_debut
-            // 
-            this.dtp_debut.BorderRadius = 8;
-            this.dtp_debut.Checked = true;
-            this.dtp_debut.FillColor = System.Drawing.Color.White;
-            this.dtp_debut.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.dtp_debut.Format = System.Windows.Forms.DateTimePickerFormat.Short;
-            this.dtp_debut.Location = new System.Drawing.Point(261, 82);
-            this.dtp_debut.MaxDate = new System.DateTime(9998, 12, 31, 0, 0, 0, 0);
-            this.dtp_debut.MinDate = new System.DateTime(1753, 1, 1, 0, 0, 0, 0);
-            this.dtp_debut.Name = "dtp_debut";
-            this.dtp_debut.Size = new System.Drawing.Size(210, 36);
-            this.dtp_debut.TabIndex = 11;
-            this.dtp_debut.Value = new System.DateTime(2026, 4, 16, 14, 47, 30, 391);
-            // 
-            // dtp_fin
-            // 
-            this.dtp_fin.BorderRadius = 8;
-            this.dtp_fin.Checked = true;
-            this.dtp_fin.FillColor = System.Drawing.Color.White;
-            this.dtp_fin.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.dtp_fin.Format = System.Windows.Forms.DateTimePickerFormat.Short;
-            this.dtp_fin.Location = new System.Drawing.Point(700, 82);
-            this.dtp_fin.MaxDate = new System.DateTime(9998, 12, 31, 0, 0, 0, 0);
-            this.dtp_fin.MinDate = new System.DateTime(1753, 1, 1, 0, 0, 0, 0);
-            this.dtp_fin.Name = "dtp_fin";
-            this.dtp_fin.Size = new System.Drawing.Size(210, 36);
-            this.dtp_fin.TabIndex = 12;
-            this.dtp_fin.Value = new System.DateTime(2026, 4, 16, 14, 47, 30, 391);
-            // 
-            // btnAnnuler
-            // 
-            this.btnAnnuler.BorderRadius = 10;
-            this.btnAnnuler.DisabledState.BorderColor = System.Drawing.Color.DarkGray;
-            this.btnAnnuler.DisabledState.CustomBorderColor = System.Drawing.Color.DarkGray;
-            this.btnAnnuler.DisabledState.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(169)))), ((int)(((byte)(169)))), ((int)(((byte)(169)))));
-            this.btnAnnuler.DisabledState.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(141)))), ((int)(((byte)(141)))), ((int)(((byte)(141)))));
-            this.btnAnnuler.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(235)))), ((int)(((byte)(46)))), ((int)(((byte)(46)))));
-            this.btnAnnuler.Font = new System.Drawing.Font("Segoe UI", 16.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnAnnuler.ForeColor = System.Drawing.Color.White;
-            this.btnAnnuler.HoverState.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(210)))), ((int)(((byte)(35)))), ((int)(((byte)(35)))));
-            this.btnAnnuler.Image = global::venolocation.Properties.Resources.delete;
-            this.btnAnnuler.ImageAlign = System.Windows.Forms.HorizontalAlignment.Left;
-            this.btnAnnuler.ImageSize = new System.Drawing.Size(35, 35);
-            this.btnAnnuler.Location = new System.Drawing.Point(956, 4);
-            this.btnAnnuler.Name = "btnAnnuler";
-            this.btnAnnuler.Size = new System.Drawing.Size(310, 60);
-            this.btnAnnuler.TabIndex = 11;
-            this.btnAnnuler.Text = "Annuler";
-            // 
             // guna2CirclePictureBox1
             // 
             this.guna2CirclePictureBox1.BackColor = System.Drawing.Color.Transparent;
@@ -275,23 +264,14 @@
             this.guna2CirclePictureBox1.TabIndex = 0;
             this.guna2CirclePictureBox1.TabStop = false;
             // 
-            // iconButton1
+            // panel2
             // 
-            this.iconButton1.Font = new System.Drawing.Font("Segoe UI Semibold", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.iconButton1.IconChar = FontAwesome.Sharp.IconChar.SearchDollar;
-            this.iconButton1.IconColor = System.Drawing.Color.Gray;
-            this.iconButton1.IconFont = FontAwesome.Sharp.IconFont.Auto;
-            this.iconButton1.IconSize = 34;
-            this.iconButton1.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.iconButton1.Location = new System.Drawing.Point(939, 73);
-            this.iconButton1.Name = "iconButton1";
-            this.iconButton1.Size = new System.Drawing.Size(184, 45);
-            this.iconButton1.TabIndex = 10;
-            this.iconButton1.Text = "Rechercher";
-            this.iconButton1.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
-            this.iconButton1.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
-            this.iconButton1.UseVisualStyleBackColor = true;
-            this.iconButton1.Click += new System.EventHandler(this.iconButton1_Click);
+            this.panel2.Controls.Add(this.btnimprimer);
+            this.panel2.Controls.Add(this.btnAnnuler);
+            this.panel2.Location = new System.Drawing.Point(12, 671);
+            this.panel2.Name = "panel2";
+            this.panel2.Size = new System.Drawing.Size(1419, 72);
+            this.panel2.TabIndex = 7;
             // 
             // btnimprimer
             // 
@@ -312,6 +292,26 @@
             this.btnimprimer.Size = new System.Drawing.Size(310, 60);
             this.btnimprimer.TabIndex = 12;
             this.btnimprimer.Text = "Imprimer";
+            // 
+            // btnAnnuler
+            // 
+            this.btnAnnuler.BorderRadius = 10;
+            this.btnAnnuler.DisabledState.BorderColor = System.Drawing.Color.DarkGray;
+            this.btnAnnuler.DisabledState.CustomBorderColor = System.Drawing.Color.DarkGray;
+            this.btnAnnuler.DisabledState.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(169)))), ((int)(((byte)(169)))), ((int)(((byte)(169)))));
+            this.btnAnnuler.DisabledState.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(141)))), ((int)(((byte)(141)))), ((int)(((byte)(141)))));
+            this.btnAnnuler.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(235)))), ((int)(((byte)(46)))), ((int)(((byte)(46)))));
+            this.btnAnnuler.Font = new System.Drawing.Font("Segoe UI", 16.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnAnnuler.ForeColor = System.Drawing.Color.White;
+            this.btnAnnuler.HoverState.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(210)))), ((int)(((byte)(35)))), ((int)(((byte)(35)))));
+            this.btnAnnuler.Image = global::venolocation.Properties.Resources.delete;
+            this.btnAnnuler.ImageAlign = System.Windows.Forms.HorizontalAlignment.Left;
+            this.btnAnnuler.ImageSize = new System.Drawing.Size(35, 35);
+            this.btnAnnuler.Location = new System.Drawing.Point(956, 4);
+            this.btnAnnuler.Name = "btnAnnuler";
+            this.btnAnnuler.Size = new System.Drawing.Size(310, 60);
+            this.btnAnnuler.TabIndex = 11;
+            this.btnAnnuler.Text = "Annuler";
             // 
             // historique_contrats
             // 
@@ -335,8 +335,8 @@
             this.panel1.PerformLayout();
             this.guna2GradientPanel1.ResumeLayout(false);
             this.guna2GradientPanel1.PerformLayout();
-            this.panel2.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.guna2CirclePictureBox1)).EndInit();
+            this.panel2.ResumeLayout(false);
             this.ResumeLayout(false);
 
         }

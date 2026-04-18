@@ -26,7 +26,7 @@ namespace venolocation.formee
 
         bool CinExists(string cin)
         {
-            using (MySqlConnection cn = DbHelper.GetConnection())
+            using (MySqlConnection cn = Dbexec.GetConnection())
             {
                 cn.Open();
 
@@ -41,7 +41,7 @@ namespace venolocation.formee
 
         bool CinExistsForOtherClient(string cin, int clientId)
         {
-            using (MySqlConnection cn = DbHelper.GetConnection())
+            using (MySqlConnection cn = Dbexec.GetConnection())
             {
                 cn.Open();
 
@@ -73,7 +73,7 @@ namespace venolocation.formee
 
         void LoadClients()
         {
-            using (MySqlConnection cn = DbHelper.GetConnection())
+            using (MySqlConnection cn = Dbexec.GetConnection())
             {
                 cn.Open();
 
@@ -110,7 +110,7 @@ namespace venolocation.formee
                     return;
                 }
 
-                using (MySqlConnection cn = DbHelper.GetConnection())
+                using (MySqlConnection cn = Dbexec.GetConnection())
                 {
                     cn.Open();
 
@@ -143,7 +143,7 @@ namespace venolocation.formee
             }
             catch (Exception ex)
             {
-                LogHelper.AddLog("Erreur ajout client: " + ex.Message, classee.Session.Username);
+                dbErreur.AddLog(ex.Message, login.nom, "client", "btnAjouter_Click");
                 MessageService.Error(AppMessages.UnexpectedError);
             }
         }
@@ -172,7 +172,7 @@ namespace venolocation.formee
                     return;
                 }
 
-                using (MySqlConnection cn = DbHelper.GetConnection())
+                using (MySqlConnection cn = Dbexec.GetConnection())
                 {
                     cn.Open();
 
@@ -214,7 +214,7 @@ namespace venolocation.formee
             }
             catch (Exception ex)
             {
-                LogHelper.AddLog("Erreur modification client: " + ex.Message, classee.Session.Username);
+                dbErreur.AddLog(ex.Message, login.nom, "client", "btnModifier_Click");
                 MessageService.Error(AppMessages.UnexpectedError);
             }
         }
@@ -237,7 +237,7 @@ namespace venolocation.formee
 
                 int clientId = Convert.ToInt32(dgvClients.CurrentRow.Cells["client_id"].Value);
 
-                using (MySqlConnection cn = DbHelper.GetConnection())
+                using (MySqlConnection cn = Dbexec.GetConnection())
                 {
                     cn.Open();
 
@@ -256,7 +256,7 @@ namespace venolocation.formee
             }
             catch (Exception ex)
             {
-                LogHelper.AddLog("Erreur suppression client: " + ex.Message, classee.Session.Username);
+                dbErreur.AddLog(ex.Message, login.nom, "client", "btnSupprimer_Click");
                 MessageService.Error(AppMessages.UnexpectedError);
             }
         }
@@ -302,7 +302,7 @@ namespace venolocation.formee
         {
             try
             {
-                using (MySqlConnection cn = DbHelper.GetConnection())
+                using (MySqlConnection cn = Dbexec.GetConnection())
                 {
                     cn.Open();
 
@@ -320,7 +320,7 @@ namespace venolocation.formee
             }
             catch (Exception ex)
             {
-                LogHelper.AddLog("Erreur recherche client: " + ex.Message, classee.Session.Username);
+                dbErreur.AddLog(ex.Message, login.nom, "client", "btnSearchTop_Click");
                 MessageService.Error(AppMessages.UnexpectedError);
             }
         }

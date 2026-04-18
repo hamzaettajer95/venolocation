@@ -55,7 +55,7 @@ namespace venolocation.formee
             if (cb_jour.SelectedIndex > 0) filter += $" AND DAY(date_depense) = {cb_jour.Text}";
 
             string query = "SELECT * FROM depenses" + filter;
-            DataTable dt = DbHelper.GetData(query);
+            DataTable dt = Dbexec.GetData(query);
             dgvDepence.DataSource = dt;
 
             
@@ -79,7 +79,7 @@ namespace venolocation.formee
                 new MySqlParameter("@type", txt_type.Text),
                 new MySqlParameter("@montant", txt_montant.Text)
             };
-            if (DbHelper.ExecuteQuery(query, ps) > 0)
+            if (Dbexec.ExecuteQuery(query, ps) > 0)
             {
                 MessageBox.Show("Dépense ajoutée !", "Succès");
                 LoadDepences();
@@ -92,7 +92,7 @@ namespace venolocation.formee
             {
                 int id = Convert.ToInt32(dgvDepence.CurrentRow.Cells["depense_id"].Value);
                 string query = "DELETE FROM depenses WHERE depense_id = @id";
-                DbHelper.ExecuteQuery(query, new MySqlParameter[] { new MySqlParameter("@id", id) });
+                Dbexec.ExecuteQuery(query, new MySqlParameter[] { new MySqlParameter("@id", id) });
                 LoadDepences();
             }
         }
@@ -136,7 +136,7 @@ namespace venolocation.formee
             }
 
           
-            dgvDepence.DataSource = DbHelper.GetData(query);
+            dgvDepence.DataSource = Dbexec.GetData(query);
 
             
             CalculateTotal();

@@ -10,7 +10,7 @@ namespace venolocation.classee
         {
             try
             {
-                using (MySqlConnection cn = DbHelper.GetConnection())
+                using (MySqlConnection cn = Dbexec.GetConnection())
                 {
                     cn.Open();
 

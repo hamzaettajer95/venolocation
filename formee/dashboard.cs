@@ -7,7 +7,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
-
+using venolocation.classee;
 using MySql.Data.MySqlClient;
 
 namespace venolocation.formee
@@ -37,6 +37,7 @@ namespace venolocation.formee
             ChargerDernieresOperations();
 
         }
+
         private void ChargerStatistiquesDashboard()
         {
             try
@@ -81,6 +82,8 @@ namespace venolocation.formee
             }
             catch (Exception ex)
             {
+               
+                dbErreur.AddLog(ex.Message, login.nom, "dashboard", "ChargerStatistiquesDashboard");
                 MessageBox.Show("Erreur dashboard : " + ex.Message);
             }
         }
@@ -117,12 +120,15 @@ namespace venolocation.formee
             }
             catch (Exception ex)
             {
+                dbErreur.AddLog(ex.Message, login.nom, "dashboard", "ChargerRetoursPrevusAujourdhui");
                 MessageBox.Show("Erreur retours prévus : " + ex.Message);
             }
         }
 
         private void ChargerAlertesDocumentsExpires()
         {
+            
+
             try
             {
                 using (MySqlConnection cn = new MySqlConnection(connectionString))
@@ -131,11 +137,13 @@ namespace venolocation.formee
 
                     string query = @"
                 SELECT 
-                    CONCAT(type_echeance, ' - voiture ID ', voiture_id) AS Description,
-                    DATE_FORMAT(date_fin, '%d/%m/%Y') AS Échéance
-                FROM voiture_echeances
-                WHERE date_fin <= CURDATE()
-                ORDER BY date_fin ASC;";
+                    type AS Type,
+                    voiture AS Voiture,
+                    DATE_FORMAT(date_alerte, '%d/%m/%Y') AS Date,
+                    statut AS Statut
+                FROM alerte
+                WHERE vue = 0
+                ORDER BY date_alerte DESC, id DESC;";
 
                     using (MySqlDataAdapter da = new MySqlDataAdapter(query, cn))
                     {
@@ -149,6 +157,7 @@ namespace venolocation.formee
             }
             catch (Exception ex)
             {
+                dbErreur.AddLog(ex.Message, login.nom, "dashboard", "ChargerAlertesDocumentsExpires");
                 MessageBox.Show("Erreur alertes : " + ex.Message);
             }
         }
@@ -182,31 +191,44 @@ namespace venolocation.formee
             }
             catch (Exception ex)
             {
+                dbErreur.AddLog(ex.Message, login.nom, "dashboard", "ChargerDernieresOperations");
                 MessageBox.Show("Erreur dernières opérations : " + ex.Message);
             }
         }
 
         private void StyleGrid(DataGridView dgv)
         {
-            dgv.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
+           
+            dgv.EnableHeadersVisualStyles = false;
+            dgv.BorderStyle = BorderStyle.None;
+            dgv.CellBorderStyle = DataGridViewCellBorderStyle.SingleHorizontal;
+            dgv.ColumnHeadersBorderStyle = DataGridViewHeaderBorderStyle.None;
             dgv.RowHeadersVisible = false;
-            dgv.AllowUserToAddRows = false;
-            dgv.AllowUserToDeleteRows = false;
-            dgv.ReadOnly = true;
             dgv.SelectionMode = DataGridViewSelectionMode.FullRowSelect;
             dgv.MultiSelect = false;
+            dgv.AllowUserToAddRows = false;
+            dgv.AllowUserToDeleteRows = false;
+            dgv.AllowUserToResizeRows = false;
+            dgv.ReadOnly = true;
+            dgv.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
             dgv.BackgroundColor = Color.White;
-            dgv.BorderStyle = BorderStyle.None;
-            dgv.EnableHeadersVisualStyles = false;
+            dgv.GridColor = Color.FromArgb(230, 235, 240);
 
-            dgv.ColumnHeadersDefaultCellStyle.BackColor = Color.FromArgb(52, 152, 219);
+            dgv.ColumnHeadersDefaultCellStyle.BackColor = Color.FromArgb(18, 73, 139);
             dgv.ColumnHeadersDefaultCellStyle.ForeColor = Color.White;
-            dgv.ColumnHeadersDefaultCellStyle.Font = new Font("Segoe UI", 10, FontStyle.Bold);
+            dgv.ColumnHeadersDefaultCellStyle.Font = new Font("Segoe UI", 12F, FontStyle.Bold);
+            dgv.ColumnHeadersDefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter;
+            dgv.ColumnHeadersHeight = 38;
 
             dgv.DefaultCellStyle.BackColor = Color.White;
-            dgv.DefaultCellStyle.ForeColor = Color.Black;
-            dgv.DefaultCellStyle.SelectionBackColor = Color.Gainsboro;
+            dgv.DefaultCellStyle.ForeColor = Color.FromArgb(40, 40, 40);
+            dgv.DefaultCellStyle.Font = new Font("Segoe UI", 11F, FontStyle.Regular);
+            dgv.DefaultCellStyle.SelectionBackColor = Color.FromArgb(220, 235, 252);
             dgv.DefaultCellStyle.SelectionForeColor = Color.Black;
+            dgv.DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleLeft;
+
+            dgv.AlternatingRowsDefaultCellStyle.BackColor = Color.FromArgb(245, 249, 253);
+            dgv.RowTemplate.Height = 34;
         }
 
         private void cmsUser_Opening(object sender, CancelEventArgs e)

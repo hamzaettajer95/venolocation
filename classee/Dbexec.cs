@@ -9,7 +9,7 @@ using MySql.Data.MySqlClient;
 
 namespace venolocation.classee
 {
-    internal class DbHelper
+    internal class Dbexec
     {
 
         
