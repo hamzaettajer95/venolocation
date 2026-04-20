@@ -21,20 +21,29 @@ namespace venolocation.formee
         string imagePath = "";
         void LoadVoitures()
         {
-            using (MySqlConnection cn = Dbexec.GetConnection())
+            try
             {
-                cn.Open();
+                using (MySqlConnection cn = Dbexec.GetConnection())
+                {
+                    cn.Open();
 
-                string q = @"SELECT voiture_id, matricule, marque, modele, categorie, carburant, boite,
+                    string q = @"SELECT voiture_id, matricule, marque, modele, categorie, carburant, boite,
                             kilometrage, etat, prix_jour, prix_heure, annee, couleur, image_url
                             FROM voitures";
 
-                MySqlDataAdapter da = new MySqlDataAdapter(q, cn);
-                DataTable dt = new DataTable();
-                da.Fill(dt);
+                    MySqlDataAdapter da = new MySqlDataAdapter(q, cn);
+                    DataTable dt = new DataTable();
+                    da.Fill(dt);
 
-                dgvVoitures.DataSource = dt;
+                    dgvVoitures.DataSource = dt;
+                }
             }
+            catch (Exception ex)
+            {
+                dbErreur.AddLog(ex.Message, login.nom, "voiture", "voiture_load");
+                MessageService.Error(AppMessages.UnexpectedError);
+            }
+            
         }
         private void voiture_Load(object sender, EventArgs e)
         {
@@ -90,7 +99,7 @@ namespace venolocation.formee
             }
             catch (Exception ex)
             {
-                LogHelper.AddLog("Erreur ajout voiture: " + ex.Message, Session.Username);
+                dbErreur.AddLog(ex.Message, login.nom, "voiture", "btnAjouter_Click");
                 MessageService.Error(AppMessages.UnexpectedError);
             }
         }
@@ -157,7 +166,7 @@ namespace venolocation.formee
             }
             catch (Exception ex)
             {
-                LogHelper.AddLog("Erreur modification voiture: " + ex.Message, Session.Username);
+                dbErreur.AddLog(ex.Message, login.nom, "voiture", "btnModifier_Click");
                 MessageService.Error(AppMessages.UnexpectedError);
             }
         }
@@ -201,7 +210,7 @@ namespace venolocation.formee
             }
             catch (Exception ex)
             {
-                LogHelper.AddLog("Erreur suppression voiture: " + ex.Message, Session.Username);
+                dbErreur.AddLog(ex.Message, login.nom, "voiture", "btnSupprimer_Click");
                 MessageService.Error(AppMessages.UnexpectedError);
             }
         }
@@ -252,7 +261,7 @@ namespace venolocation.formee
             }
             catch (Exception ex)
             {
-                LogHelper.AddLog("Erreur recherche voiture: " + ex.Message, Session.Username);
+                dbErreur.AddLog(ex.Message, login.nom, "voiture", "btnRecherche_Click");
                 MessageService.Error(AppMessages.UnexpectedError);
             }
         }

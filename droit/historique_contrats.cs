@@ -21,6 +21,41 @@ namespace venolocation.droit
         {
             InitializeComponent();
         }
+
+        private void StyleGrid(DataGridView dgv)
+        {
+
+            dgv.EnableHeadersVisualStyles = false;
+            dgv.BorderStyle = BorderStyle.None;
+            dgv.CellBorderStyle = DataGridViewCellBorderStyle.SingleHorizontal;
+            dgv.ColumnHeadersBorderStyle = DataGridViewHeaderBorderStyle.None;
+            dgv.RowHeadersVisible = false;
+            dgv.SelectionMode = DataGridViewSelectionMode.FullRowSelect;
+            dgv.MultiSelect = false;
+            dgv.AllowUserToAddRows = false;
+            dgv.AllowUserToDeleteRows = false;
+            dgv.AllowUserToResizeRows = false;
+            dgv.ReadOnly = true;
+            dgv.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
+            dgv.BackgroundColor = Color.White;
+            dgv.GridColor = Color.FromArgb(230, 235, 240);
+
+            dgv.ColumnHeadersDefaultCellStyle.BackColor = Color.FromArgb(18, 73, 139);
+            dgv.ColumnHeadersDefaultCellStyle.ForeColor = Color.White;
+            dgv.ColumnHeadersDefaultCellStyle.Font = new Font("Segoe UI", 12F, FontStyle.Bold);
+            dgv.ColumnHeadersDefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter;
+            dgv.ColumnHeadersHeight = 38;
+
+            dgv.DefaultCellStyle.BackColor = Color.White;
+            dgv.DefaultCellStyle.ForeColor = Color.FromArgb(40, 40, 40);
+            dgv.DefaultCellStyle.Font = new Font("Segoe UI", 11F, FontStyle.Regular);
+            dgv.DefaultCellStyle.SelectionBackColor = Color.FromArgb(220, 235, 252);
+            dgv.DefaultCellStyle.SelectionForeColor = Color.Black;
+            dgv.DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleLeft;
+
+            dgv.AlternatingRowsDefaultCellStyle.BackColor = Color.FromArgb(245, 249, 253);
+            dgv.RowTemplate.Height = 34;
+        }
         private void LoadContracts()
         {
 
@@ -53,7 +88,7 @@ namespace venolocation.droit
             {
                 query = "SELECT contrat_id, client_id, voiture_id, status, date_contrat, date_retour_prevu, total FROM contrats" + filter;
             }
-            else if (selectedStatus == "Tout")
+            else if (selectedStatus == "--- Tout ---")
             {
                 
                 query = $@"SELECT contrat_id, client_id, voiture_id, status, date_contrat, date_retour_prevu, total FROM contrats {filter}
@@ -69,6 +104,7 @@ namespace venolocation.droit
             try
             {
                 dgvHistory.DataSource = Dbexec.GetData(query);
+                StyleGrid(dgvHistory);
             }
             catch (Exception ex)
             {
@@ -182,6 +218,49 @@ namespace venolocation.droit
 
         
             LoadContracts();
+        }
+
+        private void btnAnnuler_Click(object sender, EventArgs e)
+        {
+            if (dgvHistory.CurrentRow != null)
+            {
+                string status = dgvHistory.CurrentRow.Cells["status"].Value.ToString();
+                if (status != "En cours")
+                {
+                    MessageBox.Show("Vous ne pouvez pas annuler un contrat déjà terminé ou annulé.", "Action Interdite", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                    return;
+                }
+
+                int idContrat = Convert.ToInt32(dgvHistory.CurrentRow.Cells["contrat_id"].Value);
+                int idVoiture = Convert.ToInt32(dgvHistory.CurrentRow.Cells["voiture_id"].Value);
+
+                DialogResult res = MessageBox.Show("Êtes-vous sûr de vouloir annuler ce contrat ?", "Confirmation", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+                if (res == DialogResult.Yes)
+                {
+                    try
+                    {
+                        string archiveQuery = @"INSERT INTO old_contrats (contrat_id, client_id, voiture_id, date_contrat, date_retour_prevu, status, total) 
+                                               SELECT contrat_id, client_id, voiture_id, date_contrat, date_retour_prevu, 'Annulé', total 
+                                               FROM contrats WHERE contrat_id = @id";
+                        Dbexec.ExecuteQuery(archiveQuery, new MySqlParameter[] { new MySqlParameter("@id", idContrat) });
+
+                        Dbexec.ExecuteQuery("DELETE FROM contrats WHERE contrat_id = @id", new MySqlParameter[] { new MySqlParameter("@id", idContrat) });
+
+                        Dbexec.ExecuteQuery("UPDATE voitures SET etat = 'Disponible' WHERE voiture_id = @vid", new MySqlParameter[] { new MySqlParameter("@vid", idVoiture) });
+
+
+
+                        LogHelper.AddLog("Annulation contrat ID: " + idContrat, login.nom);
+                        MessageBox.Show("Contrat annulé avec succès et véhicule libéré.", "Succès", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                        LoadContracts();
+                    }
+                    catch (Exception ex)
+                    {
+                        dbErreur.AddLog(ex.Message, login.nom, "historique_contrats", "btnannuller_Click");
+                        MessageBox.Show("Echec de l'opération : " + ex.Message, "Erreur", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    }
+                }
+            }
         }
     }
 }

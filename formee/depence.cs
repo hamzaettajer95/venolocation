@@ -22,23 +22,23 @@ namespace venolocation.formee
         }
         private void FillDateCombos()
         {
-            
-            cb_annee.Items.Add("Année"); 
+
+            cb_annee.Items.Add("Année");
             for (int i = 2024; i <= 2040; i++)
             {
                 cb_annee.Items.Add(i.ToString());
             }
-            cb_annee.SelectedIndex = 0; 
+            cb_annee.SelectedIndex = 0;
 
-           
+
             cb_mois.Items.Add("Mois");
             for (int i = 1; i <= 12; i++)
             {
-                cb_mois.Items.Add(i.ToString("D2")); 
+                cb_mois.Items.Add(i.ToString("D2"));
             }
             cb_mois.SelectedIndex = 0;
 
-            
+
             cb_jour.Items.Add("Jour");
             for (int i = 1; i <= 31; i++)
             {
@@ -49,97 +49,140 @@ namespace venolocation.formee
 
         private void LoadDepences()
         {
-            string filter = " WHERE 1=1 ";
-            if (cb_annee.SelectedIndex > 0) filter += $" AND YEAR(date_depense) = {cb_annee.Text}";
-            if (cb_mois.SelectedIndex > 0) filter += $" AND MONTH(date_depense) = {cb_mois.SelectedIndex}";
-            if (cb_jour.SelectedIndex > 0) filter += $" AND DAY(date_depense) = {cb_jour.Text}";
-
-            string query = "SELECT * FROM depenses" + filter;
-            DataTable dt = Dbexec.GetData(query);
-            dgvDepence.DataSource = dt;
-
-            
-            decimal total = 0;
-            foreach (DataRow row in dt.Rows)
+            try
             {
-                total += Convert.ToDecimal(row["montant"]);
+                string filter = " WHERE 1=1 ";
+                if (cb_annee.SelectedIndex > 0) filter += $" AND YEAR(date_depense) = {cb_annee.Text}";
+                if (cb_mois.SelectedIndex > 0) filter += $" AND MONTH(date_depense) = {cb_mois.SelectedIndex}";
+                if (cb_jour.SelectedIndex > 0) filter += $" AND DAY(date_depense) = {cb_jour.Text}";
+
+                string query = "SELECT * FROM depenses" + filter;
+                DataTable dt = Dbexec.GetData(query);
+                dgvDepence.DataSource = dt;
+
+                decimal total = 0;
+                foreach (DataRow row in dt.Rows)
+                {
+                    total += Convert.ToDecimal(row["montant"]);
+                }
+                lbl_totale.Text = total.ToString("N2") + " DH";
             }
-            lbl_totale.Text = total.ToString("N2") + " DH";
+            catch (Exception ex)
+            {
+                dbErreur.AddLog(ex.Message, login.nom, "depence", "LoadDepences");
+                MessageBox.Show("Erreur lors du chargement des dépenses : " + ex.Message);
+            }
         }
         private void depence_Load(object sender, EventArgs e)
         {
-            FillDateCombos();
-            LoadDepences();
+            try
+            {
+                FillDateCombos();
+                LoadDepences();
+            }
+            catch (Exception ex)
+            {
+                dbErreur.AddLog(ex.Message, login.nom, "depence", "depence_Load");
+                MessageBox.Show("Erreur lors du chargement du formulaire : " + ex.Message);
+            }
         }
 
         private void btn_ajouter_Click(object sender, EventArgs e)
         {
-            string query = "INSERT INTO depenses (type, montant, date_depense) VALUES (@type, @montant, NOW())";
-                MySqlParameter[] ps = {
-                new MySqlParameter("@type", txt_type.Text),
-                new MySqlParameter("@montant", txt_montant.Text)
-            };
-            if (Dbexec.ExecuteQuery(query, ps) > 0)
+            try
             {
-                MessageBox.Show("Dépense ajoutée !", "Succès");
-                LoadDepences();
+                string query = "INSERT INTO depenses (type, montant, date_depense) VALUES (@type, @montant, NOW())";
+                MySqlParameter[] ps = {
+            new MySqlParameter("@type", txt_type.Text),
+            new MySqlParameter("@montant", txt_montant.Text)
+                };
+
+                if (Dbexec.ExecuteQuery(query, ps) > 0)
+                {
+                    LogHelper.AddLog("Ajout dépense type: " + txt_type.Text, login.nom);
+                    MessageBox.Show("Dépense ajoutée !", "Succès");
+                    LoadDepences();
+                }
+            }
+            catch (Exception ex)
+            {
+                dbErreur.AddLog(ex.Message, login.nom, "depence", "button ajouter");
             }
         }
 
         private void btn_suprimmer_Click(object sender, EventArgs e)
         {
-            if (dgvDepence.CurrentRow != null)
+            try
             {
-                int id = Convert.ToInt32(dgvDepence.CurrentRow.Cells["depense_id"].Value);
-                string query = "DELETE FROM depenses WHERE depense_id = @id";
-                Dbexec.ExecuteQuery(query, new MySqlParameter[] { new MySqlParameter("@id", id) });
-                LoadDepences();
+                if (dgvDepence.CurrentRow != null)
+                {
+                    int id = Convert.ToInt32(dgvDepence.CurrentRow.Cells["depense_id"].Value);
+                    string query = "DELETE FROM depenses WHERE depense_id = @id";
+                    Dbexec.ExecuteQuery(query, new MySqlParameter[] { new MySqlParameter("@id", id) });
+
+                    LogHelper.AddLog("Suppression dépense ID: " + id, login.nom);
+                    LoadDepences();
+                }
+            }
+            catch (Exception ex)
+            {
+                dbErreur.AddLog(ex.Message, login.nom, "depence", "btn_suprimmer_Click");
+                MessageBox.Show("Erreur lors de la suppression : " + ex.Message);
             }
         }
         private void CalculateTotal()
         {
-            decimal total = 0;
-
-            
-            foreach (DataGridViewRow row in dgvDepence.Rows)
+            try
             {
-                
-                if (row.Cells["montant"].Value != null && row.Cells["montant"].Value != DBNull.Value)
-                {
-                    total += Convert.ToDecimal(row.Cells["montant"].Value);
-                }
-            }
+                decimal total = 0;
 
-           
-            lbl_totale.Text = total.ToString("N2") + " DH";
+                foreach (DataGridViewRow row in dgvDepence.Rows)
+                {
+                    if (row.Cells["montant"].Value != null && row.Cells["montant"].Value != DBNull.Value)
+                    {
+                        total += Convert.ToDecimal(row.Cells["montant"].Value);
+                    }
+                }
+
+                lbl_totale.Text = total.ToString("N2") + " DH";
+            }
+            catch (Exception ex)
+            {
+                dbErreur.AddLog(ex.Message, login.nom, "depence", "CalculateTotal");
+                MessageBox.Show("Erreur lors du calcul du total : " + ex.Message);
+            }
         }
         private void btn_filtrer_Click(object sender, EventArgs e)
         {
-            string query = "SELECT * FROM depenses WHERE 1=1"; 
-
-           
-            if (cb_annee.SelectedIndex > 0)
+            try
             {
-                query += " AND YEAR(date_depense) = " + cb_annee.SelectedItem.ToString();
-            }
+                string query = "SELECT * FROM depenses WHERE 1=1";
 
-            
-            if (cb_mois.SelectedIndex > 0)
+                if (cb_annee.SelectedIndex > 0)
+                {
+                    query += " AND YEAR(date_depense) = " + cb_annee.SelectedItem.ToString();
+                }
+
+                if (cb_mois.SelectedIndex > 0)
+                {
+                    query += " AND MONTH(date_depense) = " + cb_mois.SelectedIndex;
+                }
+
+                if (cb_jour.SelectedIndex > 0)
+                {
+                    query += " AND DAY(date_depense) = " + cb_jour.SelectedItem.ToString();
+                }
+
+                dgvDepence.DataSource = Dbexec.GetData(query);
+                LogHelper.AddLog("Filtrage dépenses", login.nom);
+
+                CalculateTotal();
+            }
+            catch (Exception ex)
             {
-                query += " AND MONTH(date_depense) = " + cb_mois.SelectedIndex;
+                dbErreur.AddLog(ex.Message, login.nom, "depence", "btn_filtrer_Click");
+                MessageBox.Show("Erreur lors du filtrage : " + ex.Message);
             }
-
-           
-            if (cb_jour.SelectedIndex > 0)
-            {
-                query += " AND DAY(date_depense) = " + cb_jour.SelectedItem.ToString();
-            }
-
-          
-            dgvDepence.DataSource = Dbexec.GetData(query);
-
-            
-            CalculateTotal();
         }
     }
 }

@@ -67,6 +67,7 @@
             this.dgvHistory.Location = new System.Drawing.Point(12, 222);
             this.dgvHistory.MultiSelect = false;
             this.dgvHistory.Name = "dgvHistory";
+            this.dgvHistory.ReadOnly = true;
             this.dgvHistory.RowHeadersVisible = false;
             this.dgvHistory.RowHeadersWidth = 51;
             this.dgvHistory.RowTemplate.Height = 34;
@@ -312,6 +313,7 @@
             this.btnAnnuler.Size = new System.Drawing.Size(310, 60);
             this.btnAnnuler.TabIndex = 11;
             this.btnAnnuler.Text = "Annuler";
+            this.btnAnnuler.Click += new System.EventHandler(this.btnAnnuler_Click);
             // 
             // historique_contrats
             // 

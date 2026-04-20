@@ -120,6 +120,7 @@ namespace venolocation.formee
             }
             catch (Exception ex)
             {
+                dbErreur.AddLog(ex.Message, login.nom, "Entretient", "ChargerVoitures");
                 MessageBox.Show("Erreur chargement voitures : " + ex.Message);
             }
         }
@@ -196,12 +197,14 @@ namespace venolocation.formee
                     catch (Exception ex)
                     {
                         tr.Rollback();
+                        dbErreur.AddLog(ex.Message, login.nom, "Entretient", "btnValider_Click_Transaction");
                         MessageBox.Show("Erreur lors de l'enregistrement : " + ex.Message);
                     }
                 }
             }
             catch (Exception ex)
             {
+                dbErreur.AddLog(ex.Message, login.nom, "Entretient", "btnValider_Click");
                 MessageBox.Show("Erreur connexion : " + ex.Message);
             }
 

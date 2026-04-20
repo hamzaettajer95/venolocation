@@ -1087,11 +1087,11 @@
             this.lblRecetteJour.Anchor = System.Windows.Forms.AnchorStyles.Bottom;
             this.lblRecetteJour.Font = new System.Drawing.Font("Segoe UI", 28.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblRecetteJour.ForeColor = System.Drawing.Color.White;
-            this.lblRecetteJour.Location = new System.Drawing.Point(103, 161);
+            this.lblRecetteJour.Location = new System.Drawing.Point(50, 161);
             this.lblRecetteJour.Name = "lblRecetteJour";
-            this.lblRecetteJour.Size = new System.Drawing.Size(54, 62);
+            this.lblRecetteJour.Size = new System.Drawing.Size(183, 62);
             this.lblRecetteJour.TabIndex = 7;
-            this.lblRecetteJour.Text = "2";
+            this.lblRecetteJour.Text = "222222";
             this.lblRecetteJour.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
             // label7

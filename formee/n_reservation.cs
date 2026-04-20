@@ -138,26 +138,36 @@ namespace venolocation.formee
 
         private void ChargerVoitures()
         {
-            using (MySqlConnection cn = Dbexec.GetConnection())
+            try
             {
-                cn.Open();
+                using (MySqlConnection cn = Dbexec.GetConnection())
+                {
+                    cn.Open();
 
-                string query = @"
+                    string query = @"
                     SELECT voiture_id, CONCAT(matricule, ' - ', marque, ' ', modele) AS voiture
                     FROM voitures
                     ORDER BY matricule;";
 
-                using (MySqlDataAdapter da = new MySqlDataAdapter(query, cn))
-                {
-                    DataTable dt = new DataTable();
-                    da.Fill(dt);
+                    using (MySqlDataAdapter da = new MySqlDataAdapter(query, cn))
+                    {
+                        DataTable dt = new DataTable();
+                        da.Fill(dt);
 
-                    cbVoiture.DataSource = dt;
-                    cbVoiture.DisplayMember = "voiture";
-                    cbVoiture.ValueMember = "voiture_id";
-                    cbVoiture.SelectedIndex = -1;
+                        cbVoiture.DataSource = dt;
+                        cbVoiture.DisplayMember = "voiture";
+                        cbVoiture.ValueMember = "voiture_id";
+                        cbVoiture.SelectedIndex = -1;
+                    }
                 }
+
             }
+            catch (Exception ex)
+            {
+                dbErreur.AddLog(ex.Message, login.nom, "n_reservation", "ChargerVoiture");
+                MessageBox.Show("Erreur chargement voiture : " + ex.Message);
+            }
+
         }
 
         private void ChargerClients()
@@ -187,6 +197,7 @@ namespace venolocation.formee
             }
             catch (Exception ex)
             {
+                dbErreur.AddLog(ex.Message, login.nom, "n_reservation", "ChargerClients");
                 MessageBox.Show("Erreur chargement clients : " + ex.Message);
             }
         }
@@ -339,6 +350,7 @@ namespace venolocation.formee
             }
             catch (Exception ex)
             {
+                dbErreur.AddLog(ex.Message, login.nom, "n_reservation", "ChargerReservations");
                 MessageBox.Show("Erreur chargement réservations : " + ex.Message);
             }
         }
@@ -406,7 +418,7 @@ namespace venolocation.formee
             }
             catch (Exception ex)
             {
-                LogHelper.AddLog("Erreur chargement formulaire réservation : " + ex.Message, Session.Username);
+                dbErreur.AddLog(ex.Message, login.nom, "n_reservation", "n_reservation_Load");
                 MessageService.Error(AppMessages.UnexpectedError);
             }
         }
@@ -473,7 +485,7 @@ namespace venolocation.formee
             }
             catch (Exception ex)
             {
-                LogHelper.AddLog("Erreur ajout réservation : " + ex.Message, Session.Username);
+                dbErreur.AddLog(ex.Message, login.nom, "n_reservation", "btnReserver_Click");
                 MessageService.Error(AppMessages.UnexpectedError);
             }
         }
@@ -518,7 +530,7 @@ namespace venolocation.formee
             }
             catch (Exception ex)
             {
-                LogHelper.AddLog("Erreur confirmation réservation : " + ex.Message, Session.Username);
+                dbErreur.AddLog(ex.Message, login.nom, "n_reservation", "btnConfirmer_Click");
                 MessageService.Error(AppMessages.UnexpectedError);
             }
         }
@@ -569,7 +581,7 @@ namespace venolocation.formee
             }
             catch (Exception ex)
             {
-                LogHelper.AddLog("Erreur annulation réservation : " + ex.Message, Session.Username);
+                dbErreur.AddLog(ex.Message, login.nom, "n_reservation", "btnAnnuler_Click");
                 MessageService.Error(AppMessages.UnexpectedError);
             }
         }
@@ -623,7 +635,7 @@ namespace venolocation.formee
             }
             catch (Exception ex)
             {
-                LogHelper.AddLog("Erreur vérification disponibilité : " + ex.Message, Session.Username);
+                dbErreur.AddLog(ex.Message, login.nom, "n_reservation", "btnVerifierDate_Click_1");
                 MessageService.Error(AppMessages.UnexpectedError);
             }
         }

@@ -68,6 +68,7 @@ namespace venolocation.formee
             }
             catch (Exception ex)
             {
+                dbErreur.AddLog(ex.Message, login.nom, "retour", "ChargerVoituresEnLocation");
                 MessageBox.Show("Erreur chargement voitures : " + ex.Message,
                     "Erreur", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
@@ -203,6 +204,7 @@ namespace venolocation.formee
             }
             catch (Exception ex)
             {
+                dbErreur.AddLog(ex.Message, login.nom, "retour", "ChargerContratEnCours");
                 MessageBox.Show("Erreur chargement contrat : " + ex.Message,
                     "Erreur", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
@@ -322,6 +324,7 @@ namespace venolocation.formee
                         catch (Exception ex)
                         {
                             tr.Rollback();
+                            dbErreur.AddLog(ex.Message, login.nom, "retour", "btnRetourSimple_Click_1_Transaction");
                             MessageBox.Show("Erreur enregistrement retour : " + ex.Message,
                                 "Erreur", MessageBoxButtons.OK, MessageBoxIcon.Error);
                         }
@@ -330,6 +333,7 @@ namespace venolocation.formee
             }
             catch (Exception ex)
             {
+                dbErreur.AddLog(ex.Message, login.nom, "retour", "btnRetourSimple_Click_1");
                 MessageBox.Show("Erreur connexion : " + ex.Message,
                     "Erreur", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
@@ -448,6 +452,7 @@ namespace venolocation.formee
                         catch (Exception ex)
                         {
                             tr.Rollback();
+                            dbErreur.AddLog(ex.Message, login.nom, "retour", "btnAccident_Click_1_Transaction");
                             MessageBox.Show("Erreur retour avec accident : " + ex.Message,
                                 "Erreur", MessageBoxButtons.OK, MessageBoxIcon.Error);
                         }
@@ -456,6 +461,7 @@ namespace venolocation.formee
             }
             catch (Exception ex)
             {
+                dbErreur.AddLog(ex.Message, login.nom, "retour", "btnAccident_Click_1");
                 MessageBox.Show("Erreur connexion : " + ex.Message,
                     "Erreur", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }

@@ -71,12 +71,14 @@ namespace venolocation.formee
 
                     // Recette du jour
                     using (MySqlCommand cmd = new MySqlCommand(
-                        @"SELECT IFNULL(SUM(montant),0) 
-                  FROM recettes 
-                  WHERE date_recette = CURDATE()", cn))
+                            @"SELECT IFNULL(SUM(montant),0) 
+                              FROM recettes 
+                              WHERE DATE(date_recette) = CURDATE()", cn))
                     {
                         decimal totalJour = Convert.ToDecimal(cmd.ExecuteScalar());
-                        lblRecetteJour.Text = totalJour.ToString("0.00");
+
+                        //MessageBox.Show(totalJour.ToString());
+                        lblRecetteJour.Text = totalJour.ToString();
                     }
                 }
             }
