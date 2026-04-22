@@ -120,7 +120,7 @@ namespace venolocation.formee
             }
             catch (Exception ex)
             {
-                dbErreur.AddLog(ex.Message, login.nom, "Entretient", "ChargerVoitures");
+                dbErreur.AddLog(ex.Message, Session.Username, "Entretient", "ChargerVoitures");
                 MessageBox.Show("Erreur chargement voitures : " + ex.Message);
             }
         }
@@ -170,7 +170,7 @@ namespace venolocation.formee
                                 string.IsNullOrWhiteSpace(txtPrix.Text)
                                 ? (object)DBNull.Value
                                 : decimal.Parse(txtPrix.Text.Trim()));
-                            cmd.Parameters.AddWithValue("@nom_utilisateur", login.nom);
+                            cmd.Parameters.AddWithValue("@nom_utilisateur", Session.Username);
 
                             cmd.ExecuteNonQuery();
                         }
@@ -189,7 +189,7 @@ namespace venolocation.formee
                         }
 
                         tr.Commit();
-                        LogHelper.AddLog("Ajoute Entretien voiture : " + cbVoiture.Text+" et le type :"+cbTypeEntretien.Text, login.nom);
+                        LogHelper.AddLog("Ajoute Entretien voiture : " + cbVoiture.Text+" et le type :"+cbTypeEntretien.Text, Session.Username);
                         MessageBox.Show("Entretien ajouté avec succès.");
 
                         ViderChamps();
@@ -197,14 +197,14 @@ namespace venolocation.formee
                     catch (Exception ex)
                     {
                         tr.Rollback();
-                        dbErreur.AddLog(ex.Message, login.nom, "Entretient", "btnValider_Click_Transaction");
+                        dbErreur.AddLog(ex.Message, Session.Username, "Entretient", "btnValider_Click_Transaction");
                         MessageBox.Show("Erreur lors de l'enregistrement : " + ex.Message);
                     }
                 }
             }
             catch (Exception ex)
             {
-                dbErreur.AddLog(ex.Message, login.nom, "Entretient", "btnValider_Click");
+                dbErreur.AddLog(ex.Message, Session.Username, "Entretient", "btnValider_Click");
                 MessageBox.Show("Erreur connexion : " + ex.Message);
             }
 

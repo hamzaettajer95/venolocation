@@ -48,11 +48,13 @@
             this.panel2 = new System.Windows.Forms.Panel();
             this.btnimprimer = new Guna.UI2.WinForms.Guna2Button();
             this.btnAnnuler = new Guna.UI2.WinForms.Guna2Button();
+            this.iconPictureBox1 = new FontAwesome.Sharp.IconPictureBox();
             ((System.ComponentModel.ISupportInitialize)(this.dgvHistory)).BeginInit();
             this.panel1.SuspendLayout();
             this.guna2GradientPanel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.guna2CirclePictureBox1)).BeginInit();
             this.panel2.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.iconPictureBox1)).BeginInit();
             this.SuspendLayout();
             // 
             // dgvHistory
@@ -78,7 +80,7 @@
             // 
             // panel1
             // 
-            this.panel1.BackColor = System.Drawing.Color.WhiteSmoke;
+            this.panel1.BackColor = System.Drawing.Color.White;
             this.panel1.Controls.Add(this.dtp_fin);
             this.panel1.Controls.Add(this.dtp_debut);
             this.panel1.Controls.Add(this.iconButton1);
@@ -175,6 +177,7 @@
             // 
             // cb_statut
             // 
+            this.cb_statut.BackColor = System.Drawing.Color.WhiteSmoke;
             this.cb_statut.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.cb_statut.Font = new System.Drawing.Font("Segoe UI Semibold", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.cb_statut.FormattingEnabled = true;
@@ -200,6 +203,7 @@
             // 
             // cb_voiture
             // 
+            this.cb_voiture.BackColor = System.Drawing.Color.WhiteSmoke;
             this.cb_voiture.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.cb_voiture.Font = new System.Drawing.Font("Segoe UI Semibold", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.cb_voiture.FormattingEnabled = true;
@@ -220,6 +224,7 @@
             // 
             // cb_client
             // 
+            this.cb_client.BackColor = System.Drawing.Color.WhiteSmoke;
             this.cb_client.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.cb_client.Font = new System.Drawing.Font("Segoe UI Semibold", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.cb_client.FormattingEnabled = true;
@@ -230,6 +235,8 @@
             // 
             // guna2GradientPanel1
             // 
+            this.guna2GradientPanel1.BorderRadius = 8;
+            this.guna2GradientPanel1.Controls.Add(this.iconPictureBox1);
             this.guna2GradientPanel1.Controls.Add(this.label1);
             this.guna2GradientPanel1.Controls.Add(this.guna2CirclePictureBox1);
             this.guna2GradientPanel1.Dock = System.Windows.Forms.DockStyle.Top;
@@ -246,7 +253,7 @@
             this.label1.BackColor = System.Drawing.Color.Transparent;
             this.label1.Font = new System.Drawing.Font("Segoe UI", 16.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label1.ForeColor = System.Drawing.Color.White;
-            this.label1.Location = new System.Drawing.Point(544, 22);
+            this.label1.Location = new System.Drawing.Point(79, 22);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(321, 38);
             this.label1.TabIndex = 1;
@@ -267,6 +274,7 @@
             // 
             // panel2
             // 
+            this.panel2.BackColor = System.Drawing.Color.White;
             this.panel2.Controls.Add(this.btnimprimer);
             this.panel2.Controls.Add(this.btnAnnuler);
             this.panel2.Location = new System.Drawing.Point(12, 671);
@@ -315,10 +323,23 @@
             this.btnAnnuler.Text = "Annuler";
             this.btnAnnuler.Click += new System.EventHandler(this.btnAnnuler_Click);
             // 
+            // iconPictureBox1
+            // 
+            this.iconPictureBox1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(60)))), ((int)(((byte)(136)))), ((int)(((byte)(232)))));
+            this.iconPictureBox1.IconChar = FontAwesome.Sharp.IconChar.RectangleList;
+            this.iconPictureBox1.IconColor = System.Drawing.Color.White;
+            this.iconPictureBox1.IconFont = FontAwesome.Sharp.IconFont.Auto;
+            this.iconPictureBox1.IconSize = 55;
+            this.iconPictureBox1.Location = new System.Drawing.Point(18, 12);
+            this.iconPictureBox1.Name = "iconPictureBox1";
+            this.iconPictureBox1.Size = new System.Drawing.Size(55, 55);
+            this.iconPictureBox1.TabIndex = 3;
+            this.iconPictureBox1.TabStop = false;
+            // 
             // historique_contrats
             // 
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.None;
-            this.BackColor = System.Drawing.Color.WhiteSmoke;
+            this.BackColor = System.Drawing.Color.White;
             this.ClientSize = new System.Drawing.Size(1443, 748);
             this.Controls.Add(this.panel2);
             this.Controls.Add(this.guna2GradientPanel1);
@@ -339,6 +360,7 @@
             this.guna2GradientPanel1.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.guna2CirclePictureBox1)).EndInit();
             this.panel2.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.iconPictureBox1)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -364,5 +386,6 @@
         private Guna.UI2.WinForms.Guna2DateTimePicker dtp_debut;
         private Guna.UI2.WinForms.Guna2DateTimePicker dtp_fin;
         private Guna.UI2.WinForms.Guna2Button btnimprimer;
+        private FontAwesome.Sharp.IconPictureBox iconPictureBox1;
     }
 }

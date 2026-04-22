@@ -30,6 +30,8 @@
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(contrats));
             this.pnlHeader = new System.Windows.Forms.Panel();
+            this.cbReservation = new System.Windows.Forms.ComboBox();
+            this.label21 = new System.Windows.Forms.Label();
             this.lblTitle = new System.Windows.Forms.Label();
             this.pnlClient = new System.Windows.Forms.Panel();
             this.txtAdresse = new System.Windows.Forms.TextBox();
@@ -62,6 +64,8 @@
             this.label6 = new System.Windows.Forms.Label();
             this.lblVoitureSection = new System.Windows.Forms.Label();
             this.pnlPeriode = new System.Windows.Forms.Panel();
+            this.cbHeureRetour = new System.Windows.Forms.ComboBox();
+            this.cbHeureDebut = new System.Windows.Forms.ComboBox();
             this.txtNombreJours = new System.Windows.Forms.TextBox();
             this.label16 = new System.Windows.Forms.Label();
             this.dtDateFin = new System.Windows.Forms.DateTimePicker();
@@ -94,10 +98,6 @@
             this.lblFooterDuree = new System.Windows.Forms.Label();
             this.lblContratNumero = new System.Windows.Forms.Label();
             this.lblFooterContrat = new System.Windows.Forms.Label();
-            this.cbHeureDebut = new System.Windows.Forms.ComboBox();
-            this.cbHeureRetour = new System.Windows.Forms.ComboBox();
-            this.cbReservation = new System.Windows.Forms.ComboBox();
-            this.label21 = new System.Windows.Forms.Label();
             this.pnlHeader.SuspendLayout();
             this.pnlClient.SuspendLayout();
             this.pnlVoiture.SuspendLayout();
@@ -119,6 +119,28 @@
             this.pnlHeader.Name = "pnlHeader";
             this.pnlHeader.Size = new System.Drawing.Size(1260, 71);
             this.pnlHeader.TabIndex = 0;
+            // 
+            // cbReservation
+            // 
+            this.cbReservation.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.cbReservation.Font = new System.Drawing.Font("Segoe UI", 12F);
+            this.cbReservation.FormattingEnabled = true;
+            this.cbReservation.Location = new System.Drawing.Point(885, 20);
+            this.cbReservation.Name = "cbReservation";
+            this.cbReservation.Size = new System.Drawing.Size(270, 36);
+            this.cbReservation.TabIndex = 12;
+            this.cbReservation.SelectedIndexChanged += new System.EventHandler(this.cbReservation_SelectedIndexChanged);
+            // 
+            // label21
+            // 
+            this.label21.AutoSize = true;
+            this.label21.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Bold);
+            this.label21.ForeColor = System.Drawing.Color.MidnightBlue;
+            this.label21.Location = new System.Drawing.Point(674, 20);
+            this.label21.Name = "label21";
+            this.label21.Size = new System.Drawing.Size(152, 28);
+            this.label21.TabIndex = 11;
+            this.label21.Text = "ID Réservation";
             // 
             // lblTitle
             // 
@@ -489,6 +511,26 @@
             this.pnlPeriode.Name = "pnlPeriode";
             this.pnlPeriode.Size = new System.Drawing.Size(610, 243);
             this.pnlPeriode.TabIndex = 3;
+            // 
+            // cbHeureRetour
+            // 
+            this.cbHeureRetour.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.cbHeureRetour.Font = new System.Drawing.Font("Segoe UI", 12F);
+            this.cbHeureRetour.FormattingEnabled = true;
+            this.cbHeureRetour.Location = new System.Drawing.Point(501, 123);
+            this.cbHeureRetour.Name = "cbHeureRetour";
+            this.cbHeureRetour.Size = new System.Drawing.Size(93, 36);
+            this.cbHeureRetour.TabIndex = 14;
+            // 
+            // cbHeureDebut
+            // 
+            this.cbHeureDebut.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.cbHeureDebut.Font = new System.Drawing.Font("Segoe UI", 12F);
+            this.cbHeureDebut.FormattingEnabled = true;
+            this.cbHeureDebut.Location = new System.Drawing.Point(501, 67);
+            this.cbHeureDebut.Name = "cbHeureDebut";
+            this.cbHeureDebut.Size = new System.Drawing.Size(93, 36);
+            this.cbHeureDebut.TabIndex = 13;
             // 
             // txtNombreJours
             // 
@@ -875,48 +917,6 @@
             this.lblFooterContrat.Size = new System.Drawing.Size(117, 25);
             this.lblFooterContrat.TabIndex = 0;
             this.lblFooterContrat.Text = "Contrat N° :";
-            // 
-            // cbHeureDebut
-            // 
-            this.cbHeureDebut.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this.cbHeureDebut.Font = new System.Drawing.Font("Segoe UI", 12F);
-            this.cbHeureDebut.FormattingEnabled = true;
-            this.cbHeureDebut.Location = new System.Drawing.Point(501, 67);
-            this.cbHeureDebut.Name = "cbHeureDebut";
-            this.cbHeureDebut.Size = new System.Drawing.Size(93, 36);
-            this.cbHeureDebut.TabIndex = 13;
-            // 
-            // cbHeureRetour
-            // 
-            this.cbHeureRetour.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this.cbHeureRetour.Font = new System.Drawing.Font("Segoe UI", 12F);
-            this.cbHeureRetour.FormattingEnabled = true;
-            this.cbHeureRetour.Location = new System.Drawing.Point(501, 123);
-            this.cbHeureRetour.Name = "cbHeureRetour";
-            this.cbHeureRetour.Size = new System.Drawing.Size(93, 36);
-            this.cbHeureRetour.TabIndex = 14;
-            // 
-            // cbReservation
-            // 
-            this.cbReservation.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this.cbReservation.Font = new System.Drawing.Font("Segoe UI", 12F);
-            this.cbReservation.FormattingEnabled = true;
-            this.cbReservation.Location = new System.Drawing.Point(885, 20);
-            this.cbReservation.Name = "cbReservation";
-            this.cbReservation.Size = new System.Drawing.Size(133, 36);
-            this.cbReservation.TabIndex = 12;
-            this.cbReservation.SelectedIndexChanged += new System.EventHandler(this.cbReservation_SelectedIndexChanged);
-            // 
-            // label21
-            // 
-            this.label21.AutoSize = true;
-            this.label21.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Bold);
-            this.label21.ForeColor = System.Drawing.Color.MidnightBlue;
-            this.label21.Location = new System.Drawing.Point(674, 20);
-            this.label21.Name = "label21";
-            this.label21.Size = new System.Drawing.Size(152, 28);
-            this.label21.TabIndex = 11;
-            this.label21.Text = "ID Réservation";
             // 
             // contrats
             // 

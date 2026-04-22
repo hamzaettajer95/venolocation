@@ -69,7 +69,7 @@ namespace venolocation.formee
             }
             catch (Exception ex)
             {
-                dbErreur.AddLog(ex.Message, login.nom, "depence", "LoadDepences");
+                dbErreur.AddLog(ex.Message, Session.Username, "depence", "LoadDepences");
                 MessageBox.Show("Erreur lors du chargement des dépenses : " + ex.Message);
             }
         }
@@ -82,7 +82,7 @@ namespace venolocation.formee
             }
             catch (Exception ex)
             {
-                dbErreur.AddLog(ex.Message, login.nom, "depence", "depence_Load");
+                dbErreur.AddLog(ex.Message, Session.Username, "depence", "depence_Load");
                 MessageBox.Show("Erreur lors du chargement du formulaire : " + ex.Message);
             }
         }
@@ -99,14 +99,14 @@ namespace venolocation.formee
 
                 if (Dbexec.ExecuteQuery(query, ps) > 0)
                 {
-                    LogHelper.AddLog("Ajout dépense type: " + txt_type.Text, login.nom);
+                    LogHelper.AddLog("Ajout dépense type: " + txt_type.Text, Session.Username);
                     MessageBox.Show("Dépense ajoutée !", "Succès");
                     LoadDepences();
                 }
             }
             catch (Exception ex)
             {
-                dbErreur.AddLog(ex.Message, login.nom, "depence", "button ajouter");
+                dbErreur.AddLog(ex.Message, Session.Username, "depence", "button ajouter");
             }
         }
 
@@ -120,13 +120,13 @@ namespace venolocation.formee
                     string query = "DELETE FROM depenses WHERE depense_id = @id";
                     Dbexec.ExecuteQuery(query, new MySqlParameter[] { new MySqlParameter("@id", id) });
 
-                    LogHelper.AddLog("Suppression dépense ID: " + id, login.nom);
+                    LogHelper.AddLog("Suppression dépense ID: " + id, Session.Username);
                     LoadDepences();
                 }
             }
             catch (Exception ex)
             {
-                dbErreur.AddLog(ex.Message, login.nom, "depence", "btn_suprimmer_Click");
+                dbErreur.AddLog(ex.Message, Session.Username, "depence", "btn_suprimmer_Click");
                 MessageBox.Show("Erreur lors de la suppression : " + ex.Message);
             }
         }
@@ -148,7 +148,7 @@ namespace venolocation.formee
             }
             catch (Exception ex)
             {
-                dbErreur.AddLog(ex.Message, login.nom, "depence", "CalculateTotal");
+                dbErreur.AddLog(ex.Message, Session.Username, "depence", "CalculateTotal");
                 MessageBox.Show("Erreur lors du calcul du total : " + ex.Message);
             }
         }
@@ -174,13 +174,13 @@ namespace venolocation.formee
                 }
 
                 dgvDepence.DataSource = Dbexec.GetData(query);
-                LogHelper.AddLog("Filtrage dépenses", login.nom);
+                LogHelper.AddLog("Filtrage dépenses", Session.Username);
 
                 CalculateTotal();
             }
             catch (Exception ex)
             {
-                dbErreur.AddLog(ex.Message, login.nom, "depence", "btn_filtrer_Click");
+                dbErreur.AddLog(ex.Message, Session.Username, "depence", "btn_filtrer_Click");
                 MessageBox.Show("Erreur lors du filtrage : " + ex.Message);
             }
         }

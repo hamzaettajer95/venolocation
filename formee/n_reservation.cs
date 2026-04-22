@@ -164,7 +164,7 @@ namespace venolocation.formee
             }
             catch (Exception ex)
             {
-                dbErreur.AddLog(ex.Message, login.nom, "n_reservation", "ChargerVoiture");
+                dbErreur.AddLog(ex.Message, Session.Username, "n_reservation", "ChargerVoiture");
                 MessageBox.Show("Erreur chargement voiture : " + ex.Message);
             }
 
@@ -197,7 +197,7 @@ namespace venolocation.formee
             }
             catch (Exception ex)
             {
-                dbErreur.AddLog(ex.Message, login.nom, "n_reservation", "ChargerClients");
+                dbErreur.AddLog(ex.Message, Session.Username, "n_reservation", "ChargerClients");
                 MessageBox.Show("Erreur chargement clients : " + ex.Message);
             }
         }
@@ -350,7 +350,7 @@ namespace venolocation.formee
             }
             catch (Exception ex)
             {
-                dbErreur.AddLog(ex.Message, login.nom, "n_reservation", "ChargerReservations");
+                dbErreur.AddLog(ex.Message, Session.Username, "n_reservation", "ChargerReservations");
                 MessageBox.Show("Erreur chargement réservations : " + ex.Message);
             }
         }
@@ -418,7 +418,7 @@ namespace venolocation.formee
             }
             catch (Exception ex)
             {
-                dbErreur.AddLog(ex.Message, login.nom, "n_reservation", "n_reservation_Load");
+                dbErreur.AddLog(ex.Message, Session.Username, "n_reservation", "n_reservation_Load");
                 MessageService.Error(AppMessages.UnexpectedError);
             }
         }
@@ -485,7 +485,7 @@ namespace venolocation.formee
             }
             catch (Exception ex)
             {
-                dbErreur.AddLog(ex.Message, login.nom, "n_reservation", "btnReserver_Click");
+                dbErreur.AddLog(ex.Message, Session.Username, "n_reservation", "btnReserver_Click");
                 MessageService.Error(AppMessages.UnexpectedError);
             }
         }
@@ -530,7 +530,7 @@ namespace venolocation.formee
             }
             catch (Exception ex)
             {
-                dbErreur.AddLog(ex.Message, login.nom, "n_reservation", "btnConfirmer_Click");
+                dbErreur.AddLog(ex.Message,Session.Username, "n_reservation", "btnConfirmer_Click");
                 MessageService.Error(AppMessages.UnexpectedError);
             }
         }
@@ -581,7 +581,7 @@ namespace venolocation.formee
             }
             catch (Exception ex)
             {
-                dbErreur.AddLog(ex.Message, login.nom, "n_reservation", "btnAnnuler_Click");
+                dbErreur.AddLog(ex.Message, Session.Username, "n_reservation", "btnAnnuler_Click");
                 MessageService.Error(AppMessages.UnexpectedError);
             }
         }
@@ -635,7 +635,7 @@ namespace venolocation.formee
             }
             catch (Exception ex)
             {
-                dbErreur.AddLog(ex.Message, login.nom, "n_reservation", "btnVerifierDate_Click_1");
+                dbErreur.AddLog(ex.Message, Session.Username, "n_reservation", "btnVerifierDate_Click_1");
                 MessageService.Error(AppMessages.UnexpectedError);
             }
         }

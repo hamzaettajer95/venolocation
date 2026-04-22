@@ -125,6 +125,12 @@
     <Compile Include="droit\recette.Designer.cs">
       <DependentUpon>recette.cs</DependentUpon>
     </Compile>
+    <Compile Include="droit\reparation.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="droit\reparation.Designer.cs">
+      <DependentUpon>reparation.cs</DependentUpon>
+    </Compile>
     <Compile Include="Form1.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -204,6 +210,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="droit\recette.resx">
       <DependentUpon>recette.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="droit\reparation.resx">
+      <DependentUpon>reparation.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Form1.resx">
       <DependentUpon>Form1.cs</DependentUpon>
@@ -309,6 +318,9 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="Resources\check2.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\image %28366%29.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

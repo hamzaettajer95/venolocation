@@ -69,7 +69,7 @@ namespace venolocation.droit
             }
             catch (Exception ex)
             {
-                dbErreur.AddLog(ex.Message, login.nom, "recette", "LoadRecettes");
+                dbErreur.AddLog(ex.Message, Session.Username, "recette", "LoadRecettes");
                 MessageBox.Show("Erreur lors du chargement des recettes : " + ex.Message);
             }
         }
@@ -84,12 +84,12 @@ namespace venolocation.droit
         };
 
                 Dbexec.ExecuteQuery(query, ps);
-                LogHelper.AddLog("Ajout recette type: " + txt_type.Text, login.nom);
+                LogHelper.AddLog("Ajout recette type: " + txt_type.Text, Session.Username);
                 LoadRecettes();
             }
             catch (Exception ex)
             {
-                dbErreur.AddLog(ex.Message, login.nom, "recette", "btn_ajouter_Click");
+                dbErreur.AddLog(ex.Message, Session.Username, "recette", "btn_ajouter_Click");
                 MessageBox.Show("Erreur lors de l'ajout : " + ex.Message);
             }
         }
@@ -104,13 +104,13 @@ namespace venolocation.droit
                     string query = "DELETE FROM recettes WHERE recette_id = @id";
                     Dbexec.ExecuteQuery(query, new MySqlParameter[] { new MySqlParameter("@id", id) });
 
-                    LogHelper.AddLog("Suppression recette ID: " + id, login.nom);
+                    LogHelper.AddLog("Suppression recette ID: " + id, Session.Username);
                     LoadRecettes();
                 }
             }
             catch (Exception ex)
             {
-                dbErreur.AddLog(ex.Message, login.nom, "recette", "btn_suprimmer_Click");
+                dbErreur.AddLog(ex.Message, Session.Username, "recette", "btn_suprimmer_Click");
                 MessageBox.Show("Erreur lors de la suppression : " + ex.Message);
             }
         }
@@ -124,7 +124,7 @@ namespace venolocation.droit
             }
             catch (Exception ex)
             {
-                dbErreur.AddLog(ex.Message, login.nom, "recette", "recette_Load");
+                dbErreur.AddLog(ex.Message, Session.Username, "recette", "recette_Load");
                 MessageBox.Show("Erreur lors du chargement du formulaire : " + ex.Message);
             }
 
@@ -148,7 +148,7 @@ namespace venolocation.droit
             }
             catch (Exception ex)
             {
-                dbErreur.AddLog(ex.Message, login.nom, "recette", "CalculateTotal");
+                dbErreur.AddLog(ex.Message, Session.Username, "recette", "CalculateTotal");
                 MessageBox.Show("Erreur lors du calcul du total : " + ex.Message);
             }
         }
@@ -175,13 +175,13 @@ namespace venolocation.droit
                 }
 
                 dgvRecette.DataSource = Dbexec.GetData(query);
-                LogHelper.AddLog("Filtrage recettes", login.nom);
+                LogHelper.AddLog("Filtrage recettes", Session.Username);
 
                 CalculateTotal();
             }
             catch (Exception ex)
             {
-                dbErreur.AddLog(ex.Message, login.nom, "recette", "btn_filtrer_Click");
+                dbErreur.AddLog(ex.Message, Session.Username, "recette", "btn_filtrer_Click");
                 MessageBox.Show("Erreur lors du filtrage : " + ex.Message);
             }
         }

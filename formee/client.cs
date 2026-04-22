@@ -9,7 +9,7 @@ using System.Threading.Tasks;
 using System.Windows.Controls;
 using System.Windows.Forms;
 using MySql.Data.MySqlClient;
-using MySqlX.XDevAPI;
+
 using venolocation.classee;
 
 
@@ -143,7 +143,7 @@ namespace venolocation.formee
             }
             catch (Exception ex)
             {
-                dbErreur.AddLog(ex.Message, login.nom, "client", "btnAjouter_Click");
+                dbErreur.AddLog(ex.Message, Session.Username, "client", "btnAjouter_Click");
                 MessageService.Error(AppMessages.UnexpectedError);
             }
         }
@@ -214,7 +214,7 @@ namespace venolocation.formee
             }
             catch (Exception ex)
             {
-                dbErreur.AddLog(ex.Message, login.nom, "client", "btnModifier_Click");
+                dbErreur.AddLog(ex.Message, Session.Username, "client", "btnModifier_Click");
                 MessageService.Error(AppMessages.UnexpectedError);
             }
         }
@@ -256,7 +256,7 @@ namespace venolocation.formee
             }
             catch (Exception ex)
             {
-                dbErreur.AddLog(ex.Message, login.nom, "client", "btnSupprimer_Click");
+                dbErreur.AddLog(ex.Message, Session.Username, "client", "btnSupprimer_Click");
                 MessageService.Error(AppMessages.UnexpectedError);
             }
         }
@@ -320,7 +320,7 @@ namespace venolocation.formee
             }
             catch (Exception ex)
             {
-                dbErreur.AddLog(ex.Message, login.nom, "client", "btnSearchTop_Click");
+                dbErreur.AddLog(ex.Message, Session.Username, "client", "btnSearchTop_Click");
                 MessageService.Error(AppMessages.UnexpectedError);
             }
         }

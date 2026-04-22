@@ -49,11 +49,11 @@ namespace venolocation.formee
                     {
                         nom = dr["nom"].ToString();
                         role = dr["role"].ToString();
-                        Session.Username = txtUsername.Text.Trim();
+                        Session.Username = nom;                        
                         Session.Role = role;
                         LogHelper.AddLog("Connexion réussie.", Session.Username);
 
-                        MessageBox.Show("Bienvenue " + nom + " (" + role + ")");
+                        MessageBox.Show("Bienvenue " + Session.Username + " (" + Session.Role + ")");
 
                      
                     }

@@ -39,10 +39,10 @@
             this.btn_modifier = new FontAwesome.Sharp.IconButton();
             this.btn_ajouter = new FontAwesome.Sharp.IconButton();
             this.panel3 = new System.Windows.Forms.Panel();
-            this.txt_type = new Guna.UI2.WinForms.Guna2TextBox();
-            this.label2 = new System.Windows.Forms.Label();
             this.label3 = new System.Windows.Forms.Label();
             this.txt_montant = new Guna.UI2.WinForms.Guna2TextBox();
+            this.label2 = new System.Windows.Forms.Label();
+            this.txt_type = new Guna.UI2.WinForms.Guna2TextBox();
             this.panel2 = new System.Windows.Forms.Panel();
             this.btn_filtrer = new FontAwesome.Sharp.IconButton();
             this.cb_jour = new System.Windows.Forms.ComboBox();
@@ -96,6 +96,7 @@
             this.dgvRecette.ReadOnly = true;
             this.dgvRecette.RowHeadersWidth = 51;
             this.dgvRecette.RowTemplate.Height = 24;
+            this.dgvRecette.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
             this.dgvRecette.Size = new System.Drawing.Size(833, 460);
             this.dgvRecette.TabIndex = 6;
             // 
@@ -178,35 +179,6 @@
             this.panel3.Size = new System.Drawing.Size(833, 68);
             this.panel3.TabIndex = 9;
             // 
-            // txt_type
-            // 
-            this.txt_type.Cursor = System.Windows.Forms.Cursors.IBeam;
-            this.txt_type.DefaultText = "";
-            this.txt_type.DisabledState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(208)))), ((int)(((byte)(208)))), ((int)(((byte)(208)))));
-            this.txt_type.DisabledState.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(226)))), ((int)(((byte)(226)))), ((int)(((byte)(226)))));
-            this.txt_type.DisabledState.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(138)))), ((int)(((byte)(138)))), ((int)(((byte)(138)))));
-            this.txt_type.DisabledState.PlaceholderForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(138)))), ((int)(((byte)(138)))), ((int)(((byte)(138)))));
-            this.txt_type.FocusedState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(94)))), ((int)(((byte)(148)))), ((int)(((byte)(255)))));
-            this.txt_type.Font = new System.Drawing.Font("Segoe UI Semibold", 12F, System.Drawing.FontStyle.Bold);
-            this.txt_type.HoverState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(94)))), ((int)(((byte)(148)))), ((int)(((byte)(255)))));
-            this.txt_type.Location = new System.Drawing.Point(116, 14);
-            this.txt_type.Margin = new System.Windows.Forms.Padding(4, 6, 4, 6);
-            this.txt_type.Name = "txt_type";
-            this.txt_type.PlaceholderText = "Le Type des recettes";
-            this.txt_type.SelectedText = "";
-            this.txt_type.Size = new System.Drawing.Size(280, 42);
-            this.txt_type.TabIndex = 0;
-            // 
-            // label2
-            // 
-            this.label2.AutoSize = true;
-            this.label2.Font = new System.Drawing.Font("Segoe UI Semibold", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label2.Location = new System.Drawing.Point(16, 20);
-            this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(93, 28);
-            this.label2.TabIndex = 2;
-            this.label2.Text = "Le Type :";
-            // 
             // label3
             // 
             this.label3.AutoSize = true;
@@ -235,6 +207,35 @@
             this.txt_montant.SelectedText = "";
             this.txt_montant.Size = new System.Drawing.Size(265, 42);
             this.txt_montant.TabIndex = 3;
+            // 
+            // label2
+            // 
+            this.label2.AutoSize = true;
+            this.label2.Font = new System.Drawing.Font("Segoe UI Semibold", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label2.Location = new System.Drawing.Point(16, 20);
+            this.label2.Name = "label2";
+            this.label2.Size = new System.Drawing.Size(93, 28);
+            this.label2.TabIndex = 2;
+            this.label2.Text = "Le Type :";
+            // 
+            // txt_type
+            // 
+            this.txt_type.Cursor = System.Windows.Forms.Cursors.IBeam;
+            this.txt_type.DefaultText = "";
+            this.txt_type.DisabledState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(208)))), ((int)(((byte)(208)))), ((int)(((byte)(208)))));
+            this.txt_type.DisabledState.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(226)))), ((int)(((byte)(226)))), ((int)(((byte)(226)))));
+            this.txt_type.DisabledState.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(138)))), ((int)(((byte)(138)))), ((int)(((byte)(138)))));
+            this.txt_type.DisabledState.PlaceholderForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(138)))), ((int)(((byte)(138)))), ((int)(((byte)(138)))));
+            this.txt_type.FocusedState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(94)))), ((int)(((byte)(148)))), ((int)(((byte)(255)))));
+            this.txt_type.Font = new System.Drawing.Font("Segoe UI Semibold", 12F, System.Drawing.FontStyle.Bold);
+            this.txt_type.HoverState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(94)))), ((int)(((byte)(148)))), ((int)(((byte)(255)))));
+            this.txt_type.Location = new System.Drawing.Point(116, 14);
+            this.txt_type.Margin = new System.Windows.Forms.Padding(4, 6, 4, 6);
+            this.txt_type.Name = "txt_type";
+            this.txt_type.PlaceholderText = "Le Type des recettes";
+            this.txt_type.SelectedText = "";
+            this.txt_type.Size = new System.Drawing.Size(280, 42);
+            this.txt_type.TabIndex = 0;
             // 
             // panel2
             // 

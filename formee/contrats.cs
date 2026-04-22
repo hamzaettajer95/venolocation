@@ -12,7 +12,7 @@ namespace venolocation.formee
     public partial class contrats : Form
     {
         private readonly string connectionString = dashboard.connection_string;
-        private readonly string nomUtilisateur = login.nom;
+        private readonly string nomUtilisateur = Session.Username;
         private DataTable dtClients;
         private DataTable dtVoitures;
         private DataTable dtReservationsConfirmees;
@@ -64,7 +64,7 @@ namespace venolocation.formee
             }
             catch (Exception ex)
             {
-                dbErreur.AddLog(ex.Message, login.nom, "contrats", "ChargerReservationsConfirmees");
+                dbErreur.AddLog(ex.Message, Session.Username, "contrats", "ChargerReservationsConfirmees");
                 MessageBox.Show("Erreur chargement réservations confirmées : " + ex.Message);
             }
         }
@@ -397,14 +397,14 @@ namespace venolocation.formee
                 }
 
                 MessageBox.Show("Contrat enregistré avec succès.");
-                LogHelper.AddLog("Enregistrement contrat client ID: " + clientId + " voiture ID: " + voitureId, login.nom);
+                LogHelper.AddLog("Enregistrement contrat client ID: " + clientId + " voiture ID: " + voitureId, Session.Username);
                 ChargerReservationsConfirmees();
                 ChargerVoituresDisponibles();
                 NouveauContrat();
             }
             catch (Exception ex)
             {
-                dbErreur.AddLog(ex.Message, login.nom, "contrats", "btnEnregistrer_Click_1");
+                dbErreur.AddLog(ex.Message, Session.Username, "contrats", "btnEnregistrer_Click_1");
                 MessageBox.Show("Erreur enregistrement contrat : " + ex.Message);
             }
 
@@ -423,7 +423,7 @@ namespace venolocation.formee
             }
             catch (Exception ex)
             {
-                dbErreur.AddLog(ex.Message, login.nom, "contrats", "contrats_Load");
+                dbErreur.AddLog(ex.Message, Session.Username, "contrats", "contrats_Load");
                 MessageBox.Show("Erreur chargement formulaire : " + ex.Message);
             }
 
@@ -486,7 +486,7 @@ namespace venolocation.formee
             }
             catch (Exception ex)
             {
-                dbErreur.AddLog(ex.Message, login.nom, "contrats", "ChargerClients");
+                dbErreur.AddLog(ex.Message, Session.Username, "contrats", "ChargerClients");
                 MessageBox.Show("Erreur chargement clients : " + ex.Message);
             }
         }
@@ -540,7 +540,7 @@ namespace venolocation.formee
             }
             catch (Exception ex)
             {
-                dbErreur.AddLog(ex.Message, login.nom, "contrats", "ChargerVoituresDisponibles");
+                dbErreur.AddLog(ex.Message, Session.Username, "contrats", "ChargerVoituresDisponibles");
                 MessageBox.Show("Erreur chargement voitures : " + ex.Message);
             }
         }
@@ -650,7 +650,7 @@ namespace venolocation.formee
             }
             catch (Exception ex)
             {
-                dbErreur.AddLog(ex.Message, login.nom, "contrats", "cbReservation_SelectedIndexChanged");
+                dbErreur.AddLog(ex.Message, Session.Username, "contrats", "cbReservation_SelectedIndexChanged");
                 MessageBox.Show("Erreur chargement réservation : " + ex.Message);
             }
         }

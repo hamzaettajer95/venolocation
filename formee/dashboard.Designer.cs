@@ -556,6 +556,7 @@
             this.btnReparation.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this.btnReparation.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
             this.btnReparation.UseVisualStyleBackColor = false;
+            this.btnReparation.Click += new System.EventHandler(this.btnReparation_Click);
             // 
             // btnSituation
             // 
@@ -937,11 +938,11 @@
             this.lblVoituresDisponibles.Anchor = System.Windows.Forms.AnchorStyles.Bottom;
             this.lblVoituresDisponibles.Font = new System.Drawing.Font("Segoe UI", 28.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblVoituresDisponibles.ForeColor = System.Drawing.Color.White;
-            this.lblVoituresDisponibles.Location = new System.Drawing.Point(98, 161);
+            this.lblVoituresDisponibles.Location = new System.Drawing.Point(83, 161);
             this.lblVoituresDisponibles.Name = "lblVoituresDisponibles";
-            this.lblVoituresDisponibles.Size = new System.Drawing.Size(54, 62);
+            this.lblVoituresDisponibles.Size = new System.Drawing.Size(87, 62);
             this.lblVoituresDisponibles.TabIndex = 1;
-            this.lblVoituresDisponibles.Text = "2";
+            this.lblVoituresDisponibles.Text = "22";
             this.lblVoituresDisponibles.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
             // label1
@@ -987,11 +988,11 @@
             this.lblVoituresLouees.Anchor = System.Windows.Forms.AnchorStyles.Bottom;
             this.lblVoituresLouees.Font = new System.Drawing.Font("Segoe UI", 28.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblVoituresLouees.ForeColor = System.Drawing.Color.White;
-            this.lblVoituresLouees.Location = new System.Drawing.Point(108, 161);
+            this.lblVoituresLouees.Location = new System.Drawing.Point(92, 161);
             this.lblVoituresLouees.Name = "lblVoituresLouees";
-            this.lblVoituresLouees.Size = new System.Drawing.Size(54, 62);
+            this.lblVoituresLouees.Size = new System.Drawing.Size(87, 62);
             this.lblVoituresLouees.TabIndex = 3;
-            this.lblVoituresLouees.Text = "2";
+            this.lblVoituresLouees.Text = "22";
             this.lblVoituresLouees.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
             // label3
@@ -1037,11 +1038,11 @@
             this.lblReservations.Anchor = System.Windows.Forms.AnchorStyles.Bottom;
             this.lblReservations.Font = new System.Drawing.Font("Segoe UI", 28.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblReservations.ForeColor = System.Drawing.Color.White;
-            this.lblReservations.Location = new System.Drawing.Point(106, 161);
+            this.lblReservations.Location = new System.Drawing.Point(84, 161);
             this.lblReservations.Name = "lblReservations";
-            this.lblReservations.Size = new System.Drawing.Size(54, 62);
+            this.lblReservations.Size = new System.Drawing.Size(99, 62);
             this.lblReservations.TabIndex = 5;
-            this.lblReservations.Text = "2";
+            this.lblReservations.Text = "22";
             this.lblReservations.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
             // label5

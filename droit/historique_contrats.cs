@@ -62,7 +62,7 @@ namespace venolocation.droit
             if (cb_statut.SelectedItem == null) return;
 
             string selectedStatus = cb_statut.SelectedItem.ToString();
-            string query = "";
+            string query ;
             string filter = " WHERE 1=1 ";
 
             
@@ -108,7 +108,7 @@ namespace venolocation.droit
             }
             catch (Exception ex)
             {
-                dbErreur.AddLog(ex.Message, login.nom, "historique_contrats", "LoadContracts");
+                dbErreur.AddLog(ex.Message, Session.Username, "historique_contrats", "LoadContracts");
                 MessageBox.Show("Erreur lors de la récupération des données : " + ex.Message);
             }
         }
@@ -146,7 +146,7 @@ namespace venolocation.droit
             }
             catch (Exception ex)
             {
-                dbErreur.AddLog(ex.Message, login.nom, "historique_contrats", "FillCombos");
+                dbErreur.AddLog(ex.Message, Session.Username, "historique_contrats", "FillCombos");
                 MessageBox.Show("Erreur lors du chargement des listes : " + ex.Message, "Erreur", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
@@ -190,13 +190,13 @@ namespace venolocation.droit
                         
                         
                         
-                        LogHelper.AddLog("Annulation contrat ID: " + idContrat, login.nom);
+                        LogHelper.AddLog("Annulation contrat ID: " + idContrat, Session.Username);
                         MessageBox.Show("Contrat annulé avec succès et véhicule libéré.", "Succès", MessageBoxButtons.OK, MessageBoxIcon.Information);
                         LoadContracts();
                     }
                     catch (Exception ex)
                     {
-                        dbErreur.AddLog(ex.Message, login.nom, "historique_contrats", "btnannuller_Click");
+                        dbErreur.AddLog(ex.Message, Session.Username, "historique_contrats", "btnannuller_Click");
                         MessageBox.Show("Echec de l'opération : " + ex.Message, "Erreur", MessageBoxButtons.OK, MessageBoxIcon.Error);
                     }
                 }
@@ -250,13 +250,13 @@ namespace venolocation.droit
 
 
 
-                        LogHelper.AddLog("Annulation contrat ID: " + idContrat, login.nom);
+                        LogHelper.AddLog("Annulation contrat ID: " + idContrat, Session.Username);
                         MessageBox.Show("Contrat annulé avec succès et véhicule libéré.", "Succès", MessageBoxButtons.OK, MessageBoxIcon.Information);
                         LoadContracts();
                     }
                     catch (Exception ex)
                     {
-                        dbErreur.AddLog(ex.Message, login.nom, "historique_contrats", "btnannuller_Click");
+                        dbErreur.AddLog(ex.Message, Session.Username, "historique_contrats", "btnannuller_Click");
                         MessageBox.Show("Echec de l'opération : " + ex.Message, "Erreur", MessageBoxButtons.OK, MessageBoxIcon.Error);
                     }
                 }

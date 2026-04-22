@@ -40,7 +40,7 @@ namespace venolocation.formee
             }
             catch (Exception ex)
             {
-                dbErreur.AddLog(ex.Message, login.nom, "voiture", "voiture_load");
+                dbErreur.AddLog(ex.Message, Session.Username, "voiture", "voiture_load");
                 MessageService.Error(AppMessages.UnexpectedError);
             }
             
@@ -99,7 +99,7 @@ namespace venolocation.formee
             }
             catch (Exception ex)
             {
-                dbErreur.AddLog(ex.Message, login.nom, "voiture", "btnAjouter_Click");
+                dbErreur.AddLog(ex.Message, Session.Username, "voiture", "btnAjouter_Click");
                 MessageService.Error(AppMessages.UnexpectedError);
             }
         }
@@ -166,7 +166,7 @@ namespace venolocation.formee
             }
             catch (Exception ex)
             {
-                dbErreur.AddLog(ex.Message, login.nom, "voiture", "btnModifier_Click");
+                dbErreur.AddLog(ex.Message, Session.Username, "voiture", "btnModifier_Click");
                 MessageService.Error(AppMessages.UnexpectedError);
             }
         }
@@ -210,7 +210,7 @@ namespace venolocation.formee
             }
             catch (Exception ex)
             {
-                dbErreur.AddLog(ex.Message, login.nom, "voiture", "btnSupprimer_Click");
+                dbErreur.AddLog(ex.Message, Session.Username, "voiture", "btnSupprimer_Click");
                 MessageService.Error(AppMessages.UnexpectedError);
             }
         }
@@ -261,7 +261,7 @@ namespace venolocation.formee
             }
             catch (Exception ex)
             {
-                dbErreur.AddLog(ex.Message, login.nom, "voiture", "btnRecherche_Click");
+                dbErreur.AddLog(ex.Message, Session.Username, "voiture", "btnRecherche_Click");
                 MessageService.Error(AppMessages.UnexpectedError);
             }
         }

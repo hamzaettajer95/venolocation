@@ -60,11 +60,11 @@ namespace venolocation.formee
                         lblVoituresLouees.Text = cmd.ExecuteScalar().ToString();
                     }
 
-                    // Réservations confirmées ou en attente pour aujourd'hui ou futures
+                    // Réservations confirmées  pour aujourd'hui ou futures
                     using (MySqlCommand cmd = new MySqlCommand(
                         @"SELECT COUNT(*) 
                   FROM reservations 
-                  WHERE status IN ('En attente', 'Confirmée')", cn))
+                  WHERE status IN ( 'Confirmée')", cn))
                     {
                         lblReservations.Text = cmd.ExecuteScalar().ToString();
                     }
@@ -85,7 +85,7 @@ namespace venolocation.formee
             catch (Exception ex)
             {
                
-                dbErreur.AddLog(ex.Message, login.nom, "dashboard", "ChargerStatistiquesDashboard");
+                dbErreur.AddLog(ex.Message, Session.Username, "dashboard", "ChargerStatistiquesDashboard");
                 MessageBox.Show("Erreur dashboard : " + ex.Message);
             }
         }
@@ -115,6 +115,7 @@ namespace venolocation.formee
                         DataTable dt = new DataTable();
                         da.Fill(dt);
                         dgvRetoursPrevus.DataSource = dt;
+                        dgvRetoursPrevus.DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter;
                     }
                 }
 
@@ -122,7 +123,7 @@ namespace venolocation.formee
             }
             catch (Exception ex)
             {
-                dbErreur.AddLog(ex.Message, login.nom, "dashboard", "ChargerRetoursPrevusAujourdhui");
+                dbErreur.AddLog(ex.Message, Session.Username, "dashboard", "ChargerRetoursPrevusAujourdhui");
                 MessageBox.Show("Erreur retours prévus : " + ex.Message);
             }
         }
@@ -152,6 +153,7 @@ namespace venolocation.formee
                         DataTable dt = new DataTable();
                         da.Fill(dt);
                         dgvAlertes.DataSource = dt;
+                        dgvAlertes.DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter;
                     }
                 }
 
@@ -159,7 +161,7 @@ namespace venolocation.formee
             }
             catch (Exception ex)
             {
-                dbErreur.AddLog(ex.Message, login.nom, "dashboard", "ChargerAlertesDocumentsExpires");
+                dbErreur.AddLog(ex.Message, Session.Username, "dashboard", "ChargerAlertesDocumentsExpires");
                 MessageBox.Show("Erreur alertes : " + ex.Message);
             }
         }
@@ -173,19 +175,26 @@ namespace venolocation.formee
                     cn.Open();
 
                     string query = @"
-                SELECT 
-                    utilisateur AS Utilisateur,
-                    message AS Opération,
-                    DATE_FORMAT(date, '%d/%m/%Y') AS Date
-                FROM logs
-                ORDER BY id DESC
-                LIMIT 20;";
+                    SELECT 
+                        utilisateur AS Utilisateur,
+                        message AS Opération,
+                        DATE_FORMAT(date, '%d/%m/%Y %H:%i:%s') AS Date
+                    FROM logs
+                    ORDER BY id DESC
+                    LIMIT 20;";
 
                     using (MySqlDataAdapter da = new MySqlDataAdapter(query, cn))
                     {
                         DataTable dt = new DataTable();
                         da.Fill(dt);
                         dgvDernieresOperations.DataSource = dt;
+                        dgvDernieresOperations.DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter;
+                        dgvDernieresOperations.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
+                        dgvDernieresOperations.ColumnHeadersDefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter;
+
+                        dgvDernieresOperations.Columns["Utilisateur"].FillWeight = 25;
+                        dgvDernieresOperations.Columns["Opération"].FillWeight = 50;
+                        dgvDernieresOperations.Columns["Date"].FillWeight = 25;
                     }
                 }
 
@@ -193,7 +202,7 @@ namespace venolocation.formee
             }
             catch (Exception ex)
             {
-                dbErreur.AddLog(ex.Message, login.nom, "dashboard", "ChargerDernieresOperations");
+                dbErreur.AddLog(ex.Message, Session.Username, "dashboard", "ChargerDernieresOperations");
                 MessageBox.Show("Erreur dernières opérations : " + ex.Message);
             }
         }
@@ -314,6 +323,12 @@ namespace venolocation.formee
         private void btnRecettes_Click(object sender, EventArgs e)
         {
             droit.recette re = new droit.recette();
+            re.ShowDialog();
+        }
+
+        private void btnReparation_Click(object sender, EventArgs e)
+        {
+            droit.reparation re = new droit.reparation();
             re.ShowDialog();
         }
     }

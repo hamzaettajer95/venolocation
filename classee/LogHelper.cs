@@ -14,7 +14,7 @@ namespace venolocation.classee
                 {
                     cn.Open();
 
-                    string q = "INSERT INTO logs (message, utilisateur, date) VALUES (@m, @u, NOW())";
+                    string q = "INSERT INTO logs (message, utilisateur) VALUES (@m, @u)";
 
                     using (MySqlCommand cmd = new MySqlCommand(q, cn))
                     {
