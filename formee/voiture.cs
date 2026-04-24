@@ -52,123 +52,13 @@ namespace venolocation.formee
 
         private void btnAjouter_Click(object sender, EventArgs e)
         {
-            try
-            {
-                if (string.IsNullOrWhiteSpace(txtImmatriculation.Text))
-                {
-                    MessageService.Warning("Matricule obligatoire");
-                    LogHelper.AddLog("Ajout voiture refusé : matricule vide", Session.Username);
-                    return;
-                }
-
-                using (MySqlConnection cn = Dbexec.GetConnection())
-                {
-                    cn.Open();
-
-                    string q = @"INSERT INTO voitures
-                    (matricule, marque, modele, categorie, carburant, boite, kilometrage, etat,
-                     prix_jour, prix_heure, annee, couleur, image_url, nom_utilisateur)
-                    VALUES
-                    (@mat, @marque, @modele, @cat, @carb, @boite, @kilomet, @etat,
-                     @pj, @ph, @annee, @coul, @img, @user)";
-
-                    MySqlCommand cmd = new MySqlCommand(q, cn);
-
-                    cmd.Parameters.AddWithValue("@mat", txtImmatriculation.Text);
-                    cmd.Parameters.AddWithValue("@marque", txtMarque.Text);
-                    cmd.Parameters.AddWithValue("@modele", txtModele.Text);
-                    cmd.Parameters.AddWithValue("@cat", cmbCategorie.Text);
-                    cmd.Parameters.AddWithValue("@carb", cmbTypeCarburant.Text);
-                    cmd.Parameters.AddWithValue("@boite", cmbBoiteVitesse.Text);
-                    cmd.Parameters.AddWithValue("@kilomet", txtKilometrage.Text);
-                    cmd.Parameters.AddWithValue("@etat", cmbEtat.Text);
-                    cmd.Parameters.AddWithValue("@pj", txtPrixJour.Text);
-                    cmd.Parameters.AddWithValue("@ph", txtPrixHeure.Text);
-                    cmd.Parameters.AddWithValue("@annee", txtAnnee.Text);
-                    cmd.Parameters.AddWithValue("@coul", txtCouleur.Text);
-                    cmd.Parameters.AddWithValue("@img", imagePath);
-                    cmd.Parameters.AddWithValue("@user", Session.Username);
-
-                    cmd.ExecuteNonQuery();
-                }
-
-                LogHelper.AddLog("Ajout voiture: " + txtImmatriculation.Text, Session.Username);
-                MessageService.Success(AppMessages.SaveSuccess);
-
-                LoadVoitures();
-            }
-            catch (Exception ex)
-            {
-                dbErreur.AddLog(ex.Message, Session.Username, "voiture", "btnAjouter_Click");
-                MessageService.Error(AppMessages.UnexpectedError);
-            }
+           
         }
 
         private void btnModifier_Click(object sender, EventArgs e)
         {
 
-            try
-            {
-                if (dgvVoitures.CurrentRow == null)
-                {
-                    MessageService.Warning(AppMessages.NoSelection);
-                    return;
-                }
-
-                int id = Convert.ToInt32(dgvVoitures.CurrentRow.Cells["voiture_id"].Value);
-
-                using (MySqlConnection cn = Dbexec.GetConnection())
-                {
-                    cn.Open();
-
-                    string q = @"UPDATE voitures SET
-                    matricule=@mat,
-                    marque=@marque,
-                    modele=@modele,
-                    categorie=@cat,
-                    carburant=@carb,
-                    boite=@boite,
-                    kilometrage=@kilomet,
-                    etat=@etat,
-                    prix_jour=@pj,
-                    prix_heure=@ph,
-                    annee=@annee,
-                    couleur=@coul,
-                    image_url=@img,
-                    nom_utilisateur=@user
-                    WHERE voiture_id=@id";
-
-                    MySqlCommand cmd = new MySqlCommand(q, cn);
-
-                    cmd.Parameters.AddWithValue("@mat", txtImmatriculation.Text);
-                    cmd.Parameters.AddWithValue("@marque", txtMarque.Text);
-                    cmd.Parameters.AddWithValue("@modele", txtModele.Text);
-                    cmd.Parameters.AddWithValue("@cat", cmbCategorie.Text);
-                    cmd.Parameters.AddWithValue("@carb", cmbTypeCarburant.Text);
-                    cmd.Parameters.AddWithValue("@boite", cmbBoiteVitesse.Text);
-                    cmd.Parameters.AddWithValue("@kilomet", txtKilometrage.Text);
-                    cmd.Parameters.AddWithValue("@etat", cmbEtat.Text);
-                    cmd.Parameters.AddWithValue("@pj", txtPrixJour.Text);
-                    cmd.Parameters.AddWithValue("@ph", txtPrixHeure.Text);
-                    cmd.Parameters.AddWithValue("@annee", txtAnnee.Text);
-                    cmd.Parameters.AddWithValue("@coul", txtCouleur.Text);
-                    cmd.Parameters.AddWithValue("@img", imagePath);
-                    cmd.Parameters.AddWithValue("@user", Session.Username);
-                    cmd.Parameters.AddWithValue("@id", id);
-
-                    cmd.ExecuteNonQuery();
-                }
-
-                LogHelper.AddLog("Modification voiture: " + txtImmatriculation.Text, Session.Username);
-                MessageService.Success(AppMessages.UpdateSuccess);
-
-                LoadVoitures();
-            }
-            catch (Exception ex)
-            {
-                dbErreur.AddLog(ex.Message, Session.Username, "voiture", "btnModifier_Click");
-                MessageService.Error(AppMessages.UnexpectedError);
-            }
+           
         }
 
         
@@ -176,43 +66,7 @@ namespace venolocation.formee
         private void btnSupprimer_Click(object sender, EventArgs e)
         {
 
-            try
-            {
-                if (dgvVoitures.CurrentRow == null)
-                {
-                    MessageService.Warning(AppMessages.NoSelection);
-                    return;
-                }
-
-                if (MessageService.Confirm(AppMessages.DeleteConfirm) != DialogResult.Yes)
-                {
-                    LogHelper.AddLog("Suppression voiture annulée", Session.Username);
-                    return;
-                }
-
-                int id = Convert.ToInt32(dgvVoitures.CurrentRow.Cells["voiture_id"].Value);
-
-                using (MySqlConnection cn = Dbexec.GetConnection())
-                {
-                    cn.Open();
-
-                    string q = "DELETE FROM voitures WHERE voiture_id=@id";
-                    MySqlCommand cmd = new MySqlCommand(q, cn);
-                    cmd.Parameters.AddWithValue("@id", id);
-
-                    cmd.ExecuteNonQuery();
-                }
-
-                LogHelper.AddLog("Suppression voiture: " + txtImmatriculation.Text, Session.Username);
-                MessageService.Success(AppMessages.DeleteSuccess);
-
-                LoadVoitures();
-            }
-            catch (Exception ex)
-            {
-                dbErreur.AddLog(ex.Message, Session.Username, "voiture", "btnSupprimer_Click");
-                MessageService.Error(AppMessages.UnexpectedError);
-            }
+            
         }
         
 
@@ -233,7 +87,7 @@ namespace venolocation.formee
 
         private void btnClear_Click(object sender, EventArgs e)
         {
-
+            clear();
         }
 
         private void btnRecherche_Click(object sender, EventArgs e)
@@ -302,6 +156,189 @@ namespace venolocation.formee
                     pbVoiture.Image = null;
                 }
             }
+        }
+
+        private void btnAjouter_Click_1(object sender, EventArgs e)
+        {
+            try
+            {
+                if (string.IsNullOrWhiteSpace(txtImmatriculation.Text))
+                {
+                    MessageService.Warning("Matricule obligatoire");
+                    LogHelper.AddLog("Ajout voiture refusé : matricule vide", Session.Username);
+                    return;
+                }
+
+                using (MySqlConnection cn = Dbexec.GetConnection())
+                {
+                    cn.Open();
+
+                    string q = @"INSERT INTO voitures
+                    (matricule, marque, modele, categorie, carburant, boite, kilometrage, etat,
+                     prix_jour, prix_heure, annee, couleur, image_url, nom_utilisateur)
+                    VALUES
+                    (@mat, @marque, @modele, @cat, @carb, @boite, @kilomet, @etat,
+                     @pj, @ph, @annee, @coul, @img, @user)";
+
+                    MySqlCommand cmd = new MySqlCommand(q, cn);
+
+                    cmd.Parameters.AddWithValue("@mat", txtImmatriculation.Text);
+                    cmd.Parameters.AddWithValue("@marque", txtMarque.Text);
+                    cmd.Parameters.AddWithValue("@modele", txtModele.Text);
+                    cmd.Parameters.AddWithValue("@cat", cmbCategorie.Text);
+                    cmd.Parameters.AddWithValue("@carb", cmbTypeCarburant.Text);
+                    cmd.Parameters.AddWithValue("@boite", cmbBoiteVitesse.Text);
+                    cmd.Parameters.AddWithValue("@kilomet", txtKilometrage.Text);
+                    cmd.Parameters.AddWithValue("@etat", cmbEtat.Text);
+                    cmd.Parameters.AddWithValue("@pj", txtPrixJour.Text);
+                    cmd.Parameters.AddWithValue("@ph", txtPrixHeure.Text);
+                    cmd.Parameters.AddWithValue("@annee", txtAnnee.Text);
+                    cmd.Parameters.AddWithValue("@coul", txtCouleur.Text);
+                    cmd.Parameters.AddWithValue("@img", imagePath);
+                    cmd.Parameters.AddWithValue("@user", Session.Username);
+
+                    cmd.ExecuteNonQuery();
+                }
+
+                LogHelper.AddLog("Ajout voiture: " + txtImmatriculation.Text, Session.Username);
+                MessageService.Success(AppMessages.SaveSuccess);
+
+                LoadVoitures();
+            }
+            catch (Exception ex)
+            {
+                dbErreur.AddLog(ex.Message, Session.Username, "voiture", "btnAjouter_Click");
+                MessageService.Error(AppMessages.UnexpectedError);
+            }
+        }
+
+        private void btnModifier_Click_1(object sender, EventArgs e)
+        {
+            try
+            {
+                if (dgvVoitures.CurrentRow == null)
+                {
+                    MessageService.Warning(AppMessages.NoSelection);
+                    return;
+                }
+
+                int id = Convert.ToInt32(dgvVoitures.CurrentRow.Cells["voiture_id"].Value);
+
+                using (MySqlConnection cn = Dbexec.GetConnection())
+                {
+                    cn.Open();
+
+                    string q = @"UPDATE voitures SET
+                    matricule=@mat,
+                    marque=@marque,
+                    modele=@modele,
+                    categorie=@cat,
+                    carburant=@carb,
+                    boite=@boite,
+                    kilometrage=@kilomet,
+                    etat=@etat,
+                    prix_jour=@pj,
+                    prix_heure=@ph,
+                    annee=@annee,
+                    couleur=@coul,
+                    image_url=@img,
+                    nom_utilisateur=@user
+                    WHERE voiture_id=@id";
+
+                    MySqlCommand cmd = new MySqlCommand(q, cn);
+
+                    cmd.Parameters.AddWithValue("@mat", txtImmatriculation.Text);
+                    cmd.Parameters.AddWithValue("@marque", txtMarque.Text);
+                    cmd.Parameters.AddWithValue("@modele", txtModele.Text);
+                    cmd.Parameters.AddWithValue("@cat", cmbCategorie.Text);
+                    cmd.Parameters.AddWithValue("@carb", cmbTypeCarburant.Text);
+                    cmd.Parameters.AddWithValue("@boite", cmbBoiteVitesse.Text);
+                    cmd.Parameters.AddWithValue("@kilomet", txtKilometrage.Text);
+                    cmd.Parameters.AddWithValue("@etat", cmbEtat.Text);
+                    cmd.Parameters.AddWithValue("@pj", txtPrixJour.Text);
+                    cmd.Parameters.AddWithValue("@ph", txtPrixHeure.Text);
+                    cmd.Parameters.AddWithValue("@annee", txtAnnee.Text);
+                    cmd.Parameters.AddWithValue("@coul", txtCouleur.Text);
+                    cmd.Parameters.AddWithValue("@img", imagePath);
+                    cmd.Parameters.AddWithValue("@user", Session.Username);
+                    cmd.Parameters.AddWithValue("@id", id);
+
+                    cmd.ExecuteNonQuery();
+                }
+
+                LogHelper.AddLog("Modification voiture: " + txtImmatriculation.Text, Session.Username);
+                MessageService.Success(AppMessages.UpdateSuccess);
+
+                LoadVoitures();
+            }
+            catch (Exception ex)
+            {
+                dbErreur.AddLog(ex.Message, Session.Username, "voiture", "btnModifier_Click");
+                MessageService.Error(AppMessages.UnexpectedError);
+            }
+        }
+
+        private void btnSupprimer_Click_1(object sender, EventArgs e)
+        {
+            try
+            {
+                if (dgvVoitures.CurrentRow == null)
+                {
+                    MessageService.Warning(AppMessages.NoSelection);
+                    return;
+                }
+
+                if (MessageService.Confirm(AppMessages.DeleteConfirm) != DialogResult.Yes)
+                {
+                    LogHelper.AddLog("Suppression voiture annulée", Session.Username);
+                    return;
+                }
+
+                int id = Convert.ToInt32(dgvVoitures.CurrentRow.Cells["voiture_id"].Value);
+
+                using (MySqlConnection cn = Dbexec.GetConnection())
+                {
+                    cn.Open();
+
+                    string q = "DELETE FROM voitures WHERE voiture_id=@id";
+                    MySqlCommand cmd = new MySqlCommand(q, cn);
+                    cmd.Parameters.AddWithValue("@id", id);
+
+                    cmd.ExecuteNonQuery();
+                }
+
+                LogHelper.AddLog("Suppression voiture: " + txtImmatriculation.Text, Session.Username);
+                MessageService.Success(AppMessages.DeleteSuccess);
+
+                LoadVoitures();
+            }
+            catch (Exception ex)
+            {
+                dbErreur.AddLog(ex.Message, Session.Username, "voiture", "btnSupprimer_Click");
+                MessageService.Error(AppMessages.UnexpectedError);
+            }
+        }
+
+
+
+        void clear()
+        {
+            pbVoiture.Image=null;
+            txtAnnee.Clear();
+            txtCouleur.Clear();
+            txtImmatriculation.Clear();
+            txtKilometrage.Clear();
+            txtMarque.Clear();
+            txtModele.Clear();
+            txtPrixHeure.Clear();
+            txtPrixJour.Clear();
+            txtRecherche.Clear();
+            cmbBoiteVitesse.SelectedIndex = -1;
+            cmbCategorie.SelectedIndex = -1;
+            cmbEtat.SelectedIndex = -1;
+            cmbTypeCarburant.SelectedIndex = -1;
+
+
         }
     }
 }

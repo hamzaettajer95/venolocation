@@ -30,9 +30,6 @@
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(voiture));
             this.lblTitre = new System.Windows.Forms.Label();
-            this.btnAjouter = new System.Windows.Forms.Button();
-            this.btnModifier = new System.Windows.Forms.Button();
-            this.btnSupprimer = new System.Windows.Forms.Button();
             this.gbListe = new System.Windows.Forms.GroupBox();
             this.btnRecherche = new System.Windows.Forms.Button();
             this.txtRecherche = new System.Windows.Forms.TextBox();
@@ -67,6 +64,9 @@
             this.lblPrixHeure = new System.Windows.Forms.Label();
             this.lblPrixJour = new System.Windows.Forms.Label();
             this.lblEtat = new System.Windows.Forms.Label();
+            this.btnAjouter = new Guna.UI2.WinForms.Guna2Button();
+            this.btnModifier = new Guna.UI2.WinForms.Guna2Button();
+            this.btnSupprimer = new Guna.UI2.WinForms.Guna2Button();
             this.gbListe.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgvVoitures)).BeginInit();
             this.gbInfoGauche.SuspendLayout();
@@ -84,51 +84,6 @@
             this.lblTitre.Size = new System.Drawing.Size(273, 45);
             this.lblTitre.TabIndex = 0;
             this.lblTitre.Text = "Gestion voitures";
-            // 
-            // btnAjouter
-            // 
-            this.btnAjouter.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(79)))), ((int)(((byte)(170)))), ((int)(((byte)(86)))));
-            this.btnAjouter.FlatAppearance.BorderSize = 0;
-            this.btnAjouter.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnAjouter.Font = new System.Drawing.Font("Segoe UI", 13.8F, System.Drawing.FontStyle.Bold);
-            this.btnAjouter.ForeColor = System.Drawing.Color.White;
-            this.btnAjouter.Location = new System.Drawing.Point(132, 405);
-            this.btnAjouter.Name = "btnAjouter";
-            this.btnAjouter.Size = new System.Drawing.Size(228, 54);
-            this.btnAjouter.TabIndex = 1;
-            this.btnAjouter.Text = "Ajouter";
-            this.btnAjouter.UseVisualStyleBackColor = false;
-            this.btnAjouter.Click += new System.EventHandler(this.btnAjouter_Click);
-            // 
-            // btnModifier
-            // 
-            this.btnModifier.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(62)))), ((int)(((byte)(123)))), ((int)(((byte)(232)))));
-            this.btnModifier.FlatAppearance.BorderSize = 0;
-            this.btnModifier.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnModifier.Font = new System.Drawing.Font("Segoe UI", 13.8F, System.Drawing.FontStyle.Bold);
-            this.btnModifier.ForeColor = System.Drawing.Color.White;
-            this.btnModifier.Location = new System.Drawing.Point(491, 405);
-            this.btnModifier.Name = "btnModifier";
-            this.btnModifier.Size = new System.Drawing.Size(228, 54);
-            this.btnModifier.TabIndex = 2;
-            this.btnModifier.Text = "Modifier";
-            this.btnModifier.UseVisualStyleBackColor = false;
-            this.btnModifier.Click += new System.EventHandler(this.btnModifier_Click);
-            // 
-            // btnSupprimer
-            // 
-            this.btnSupprimer.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(225)))), ((int)(((byte)(72)))), ((int)(((byte)(72)))));
-            this.btnSupprimer.FlatAppearance.BorderSize = 0;
-            this.btnSupprimer.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnSupprimer.Font = new System.Drawing.Font("Segoe UI", 13.8F, System.Drawing.FontStyle.Bold);
-            this.btnSupprimer.ForeColor = System.Drawing.Color.White;
-            this.btnSupprimer.Location = new System.Drawing.Point(857, 405);
-            this.btnSupprimer.Name = "btnSupprimer";
-            this.btnSupprimer.Size = new System.Drawing.Size(228, 54);
-            this.btnSupprimer.TabIndex = 3;
-            this.btnSupprimer.Text = "Supprimer";
-            this.btnSupprimer.UseVisualStyleBackColor = false;
-            this.btnSupprimer.Click += new System.EventHandler(this.btnSupprimer_Click);
             // 
             // gbListe
             // 
@@ -500,18 +455,78 @@
             this.lblEtat.TabIndex = 2;
             this.lblEtat.Text = "Etat";
             // 
+            // btnAjouter
+            // 
+            this.btnAjouter.BorderRadius = 8;
+            this.btnAjouter.DisabledState.BorderColor = System.Drawing.Color.DarkGray;
+            this.btnAjouter.DisabledState.CustomBorderColor = System.Drawing.Color.DarkGray;
+            this.btnAjouter.DisabledState.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(169)))), ((int)(((byte)(169)))), ((int)(((byte)(169)))));
+            this.btnAjouter.DisabledState.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(141)))), ((int)(((byte)(141)))), ((int)(((byte)(141)))));
+            this.btnAjouter.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(21)))), ((int)(((byte)(101)))), ((int)(((byte)(192)))));
+            this.btnAjouter.Font = new System.Drawing.Font("Segoe UI", 10.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnAjouter.ForeColor = System.Drawing.Color.White;
+            this.btnAjouter.Image = global::venolocation.Properties.Resources.save;
+            this.btnAjouter.ImageAlign = System.Windows.Forms.HorizontalAlignment.Left;
+            this.btnAjouter.ImageSize = new System.Drawing.Size(30, 30);
+            this.btnAjouter.Location = new System.Drawing.Point(110, 405);
+            this.btnAjouter.Name = "btnAjouter";
+            this.btnAjouter.Size = new System.Drawing.Size(279, 54);
+            this.btnAjouter.TabIndex = 7;
+            this.btnAjouter.Text = "Enregistrer";
+            this.btnAjouter.Click += new System.EventHandler(this.btnAjouter_Click_1);
+            // 
+            // btnModifier
+            // 
+            this.btnModifier.BorderRadius = 8;
+            this.btnModifier.DisabledState.BorderColor = System.Drawing.Color.DarkGray;
+            this.btnModifier.DisabledState.CustomBorderColor = System.Drawing.Color.DarkGray;
+            this.btnModifier.DisabledState.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(169)))), ((int)(((byte)(169)))), ((int)(((byte)(169)))));
+            this.btnModifier.DisabledState.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(141)))), ((int)(((byte)(141)))), ((int)(((byte)(141)))));
+            this.btnModifier.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(22)))), ((int)(((byte)(163)))), ((int)(((byte)(74)))));
+            this.btnModifier.Font = new System.Drawing.Font("Segoe UI", 10.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnModifier.ForeColor = System.Drawing.Color.White;
+            this.btnModifier.Image = global::venolocation.Properties.Resources.edit;
+            this.btnModifier.ImageAlign = System.Windows.Forms.HorizontalAlignment.Left;
+            this.btnModifier.ImageSize = new System.Drawing.Size(30, 30);
+            this.btnModifier.Location = new System.Drawing.Point(532, 405);
+            this.btnModifier.Name = "btnModifier";
+            this.btnModifier.Size = new System.Drawing.Size(279, 54);
+            this.btnModifier.TabIndex = 8;
+            this.btnModifier.Text = "Modifier";
+            this.btnModifier.Click += new System.EventHandler(this.btnModifier_Click_1);
+            // 
+            // btnSupprimer
+            // 
+            this.btnSupprimer.BorderRadius = 8;
+            this.btnSupprimer.DisabledState.BorderColor = System.Drawing.Color.DarkGray;
+            this.btnSupprimer.DisabledState.CustomBorderColor = System.Drawing.Color.DarkGray;
+            this.btnSupprimer.DisabledState.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(169)))), ((int)(((byte)(169)))), ((int)(((byte)(169)))));
+            this.btnSupprimer.DisabledState.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(141)))), ((int)(((byte)(141)))), ((int)(((byte)(141)))));
+            this.btnSupprimer.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(239)))), ((int)(((byte)(68)))), ((int)(((byte)(68)))));
+            this.btnSupprimer.Font = new System.Drawing.Font("Segoe UI", 10.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnSupprimer.ForeColor = System.Drawing.Color.White;
+            this.btnSupprimer.Image = global::venolocation.Properties.Resources.delete;
+            this.btnSupprimer.ImageAlign = System.Windows.Forms.HorizontalAlignment.Left;
+            this.btnSupprimer.ImageSize = new System.Drawing.Size(30, 30);
+            this.btnSupprimer.Location = new System.Drawing.Point(954, 405);
+            this.btnSupprimer.Name = "btnSupprimer";
+            this.btnSupprimer.Size = new System.Drawing.Size(279, 54);
+            this.btnSupprimer.TabIndex = 9;
+            this.btnSupprimer.Text = "Supprimer";
+            this.btnSupprimer.Click += new System.EventHandler(this.btnSupprimer_Click_1);
+            // 
             // voiture
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(10F, 25F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(245)))), ((int)(((byte)(247)))), ((int)(((byte)(251)))));
             this.ClientSize = new System.Drawing.Size(1454, 860);
-            this.Controls.Add(this.gbInfoDroite);
-            this.Controls.Add(this.gbInfoGauche);
-            this.Controls.Add(this.gbListe);
             this.Controls.Add(this.btnSupprimer);
             this.Controls.Add(this.btnModifier);
             this.Controls.Add(this.btnAjouter);
+            this.Controls.Add(this.gbInfoDroite);
+            this.Controls.Add(this.gbInfoGauche);
+            this.Controls.Add(this.gbListe);
             this.Controls.Add(this.lblTitre);
             this.Font = new System.Drawing.Font("Segoe UI", 10.8F);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
@@ -537,9 +552,6 @@
             #endregion
 
             private System.Windows.Forms.Label lblTitre;
-            private System.Windows.Forms.Button btnAjouter;
-            private System.Windows.Forms.Button btnModifier;
-            private System.Windows.Forms.Button btnSupprimer;
             private System.Windows.Forms.GroupBox gbListe;
             private System.Windows.Forms.Button btnRecherche;
             private System.Windows.Forms.TextBox txtRecherche;
@@ -574,7 +586,9 @@
             private System.Windows.Forms.Label lblPrixHeure;
             private System.Windows.Forms.Label lblPrixJour;
             private System.Windows.Forms.Label lblEtat;
-        
+        private Guna.UI2.WinForms.Guna2Button btnAjouter;
+        private Guna.UI2.WinForms.Guna2Button btnModifier;
+        private Guna.UI2.WinForms.Guna2Button btnSupprimer;
     }
 }
 

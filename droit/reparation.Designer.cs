@@ -33,37 +33,37 @@
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle3 = new System.Windows.Forms.DataGridViewCellStyle();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(reparation));
             this.pnlHeader = new Guna.UI2.WinForms.Guna2GradientPanel();
-            this.label1 = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
+            this.iconPictureBox1 = new FontAwesome.Sharp.IconPictureBox();
+            this.label1 = new System.Windows.Forms.Label();
+            this.guna2CirclePictureBox1 = new Guna.UI2.WinForms.Guna2CirclePictureBox();
             this.cardInfo = new Guna.UI2.WinForms.Guna2Panel();
-            this.label3 = new System.Windows.Forms.Label();
-            this.label4 = new System.Windows.Forms.Label();
-            this.cbVoiture = new Guna.UI2.WinForms.Guna2ComboBox();
-            this.cbTypeOperation = new Guna.UI2.WinForms.Guna2ComboBox();
-            this.label5 = new System.Windows.Forms.Label();
-            this.label6 = new System.Windows.Forms.Label();
-            this.txtDescription = new Guna.UI2.WinForms.Guna2TextBox();
+            this.dtDateOperation = new Guna.UI2.WinForms.Guna2DateTimePicker();
+            this.txtMontant = new Guna.UI2.WinForms.Guna2TextBox();
             this.label8 = new System.Windows.Forms.Label();
             this.label9 = new System.Windows.Forms.Label();
-            this.txtMontant = new Guna.UI2.WinForms.Guna2TextBox();
-            this.dtDateOperation = new Guna.UI2.WinForms.Guna2DateTimePicker();
+            this.txtDescription = new Guna.UI2.WinForms.Guna2TextBox();
+            this.label6 = new System.Windows.Forms.Label();
+            this.cbTypeOperation = new Guna.UI2.WinForms.Guna2ComboBox();
+            this.label5 = new System.Windows.Forms.Label();
+            this.cbVoiture = new Guna.UI2.WinForms.Guna2ComboBox();
+            this.label4 = new System.Windows.Forms.Label();
+            this.label3 = new System.Windows.Forms.Label();
+            this.iconPictureBox2 = new FontAwesome.Sharp.IconPictureBox();
             this.guna2Panel1 = new Guna.UI2.WinForms.Guna2Panel();
             this.btnReset = new Guna.UI2.WinForms.Guna2Button();
             this.btnSupprimer = new Guna.UI2.WinForms.Guna2Button();
             this.btnModifier = new Guna.UI2.WinForms.Guna2Button();
             this.btnEnregistrer = new Guna.UI2.WinForms.Guna2Button();
-            this.iconPictureBox2 = new FontAwesome.Sharp.IconPictureBox();
-            this.iconPictureBox1 = new FontAwesome.Sharp.IconPictureBox();
-            this.guna2CirclePictureBox1 = new Guna.UI2.WinForms.Guna2CirclePictureBox();
             this.dgvReparations = new System.Windows.Forms.DataGridView();
             this.label7 = new System.Windows.Forms.Label();
             this.iconPictureBox3 = new FontAwesome.Sharp.IconPictureBox();
             this.pnlHeader.SuspendLayout();
-            this.cardInfo.SuspendLayout();
-            this.guna2Panel1.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.iconPictureBox2)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.iconPictureBox1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.guna2CirclePictureBox1)).BeginInit();
+            this.cardInfo.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.iconPictureBox2)).BeginInit();
+            this.guna2Panel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgvReparations)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.iconPictureBox3)).BeginInit();
             this.SuspendLayout();
@@ -83,6 +83,31 @@
             this.pnlHeader.Size = new System.Drawing.Size(1432, 91);
             this.pnlHeader.TabIndex = 2;
             // 
+            // label2
+            // 
+            this.label2.AutoSize = true;
+            this.label2.BackColor = System.Drawing.Color.Transparent;
+            this.label2.Font = new System.Drawing.Font("Segoe UI", 10.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label2.ForeColor = System.Drawing.Color.White;
+            this.label2.Location = new System.Drawing.Point(86, 55);
+            this.label2.Name = "label2";
+            this.label2.Size = new System.Drawing.Size(542, 25);
+            this.label2.TabIndex = 3;
+            this.label2.Text = "Gérez les opérations de réparation et de maintenance des véhicules";
+            // 
+            // iconPictureBox1
+            // 
+            this.iconPictureBox1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(60)))), ((int)(((byte)(136)))), ((int)(((byte)(232)))));
+            this.iconPictureBox1.IconChar = FontAwesome.Sharp.IconChar.ScrewdriverWrench;
+            this.iconPictureBox1.IconColor = System.Drawing.Color.White;
+            this.iconPictureBox1.IconFont = FontAwesome.Sharp.IconFont.Auto;
+            this.iconPictureBox1.IconSize = 55;
+            this.iconPictureBox1.Location = new System.Drawing.Point(21, 18);
+            this.iconPictureBox1.Name = "iconPictureBox1";
+            this.iconPictureBox1.Size = new System.Drawing.Size(55, 55);
+            this.iconPictureBox1.TabIndex = 2;
+            this.iconPictureBox1.TabStop = false;
+            // 
             // label1
             // 
             this.label1.AutoSize = true;
@@ -95,17 +120,18 @@
             this.label1.TabIndex = 1;
             this.label1.Text = "Gestion des Réparations";
             // 
-            // label2
+            // guna2CirclePictureBox1
             // 
-            this.label2.AutoSize = true;
-            this.label2.BackColor = System.Drawing.Color.Transparent;
-            this.label2.Font = new System.Drawing.Font("Segoe UI", 10.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label2.ForeColor = System.Drawing.Color.White;
-            this.label2.Location = new System.Drawing.Point(86, 55);
-            this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(542, 25);
-            this.label2.TabIndex = 3;
-            this.label2.Text = "Gérez les opérations de réparation et de maintenance des véhicules";
+            this.guna2CirclePictureBox1.BackColor = System.Drawing.Color.Transparent;
+            this.guna2CirclePictureBox1.Image = global::venolocation.Properties.Resources.insurance;
+            this.guna2CirclePictureBox1.ImageRotate = 0F;
+            this.guna2CirclePictureBox1.Location = new System.Drawing.Point(1315, 8);
+            this.guna2CirclePictureBox1.Name = "guna2CirclePictureBox1";
+            this.guna2CirclePictureBox1.ShadowDecoration.Mode = Guna.UI2.WinForms.Enums.ShadowMode.Circle;
+            this.guna2CirclePictureBox1.Size = new System.Drawing.Size(80, 74);
+            this.guna2CirclePictureBox1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
+            this.guna2CirclePictureBox1.TabIndex = 0;
+            this.guna2CirclePictureBox1.TabStop = false;
             // 
             // cardInfo
             // 
@@ -129,44 +155,99 @@
             this.cardInfo.Size = new System.Drawing.Size(1415, 362);
             this.cardInfo.TabIndex = 3;
             // 
-            // label3
+            // dtDateOperation
             // 
-            this.label3.AutoSize = true;
-            this.label3.Font = new System.Drawing.Font("Segoe UI", 16.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label3.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(11)))), ((int)(((byte)(61)))), ((int)(((byte)(122)))));
-            this.label3.Location = new System.Drawing.Point(50, 8);
-            this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(404, 38);
-            this.label3.TabIndex = 4;
-            this.label3.Text = "Informations de la réparation";
+            this.dtDateOperation.BorderRadius = 8;
+            this.dtDateOperation.Checked = true;
+            this.dtDateOperation.FillColor = System.Drawing.Color.White;
+            this.dtDateOperation.Font = new System.Drawing.Font("Segoe UI", 10.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.dtDateOperation.Format = System.Windows.Forms.DateTimePickerFormat.Long;
+            this.dtDateOperation.Location = new System.Drawing.Point(776, 191);
+            this.dtDateOperation.MaxDate = new System.DateTime(9998, 12, 31, 0, 0, 0, 0);
+            this.dtDateOperation.MinDate = new System.DateTime(1753, 1, 1, 0, 0, 0, 0);
+            this.dtDateOperation.Name = "dtDateOperation";
+            this.dtDateOperation.Size = new System.Drawing.Size(370, 36);
+            this.dtDateOperation.TabIndex = 15;
+            this.dtDateOperation.Value = new System.DateTime(2026, 4, 22, 14, 36, 56, 972);
             // 
-            // label4
+            // txtMontant
             // 
-            this.label4.AutoSize = true;
-            this.label4.Font = new System.Drawing.Font("Segoe UI", 10.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label4.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(30)))), ((int)(((byte)(41)))), ((int)(((byte)(59)))));
-            this.label4.Location = new System.Drawing.Point(52, 56);
-            this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(102, 25);
-            this.label4.TabIndex = 5;
-            this.label4.Text = "Véhicule :*";
+            this.txtMontant.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(210)))), ((int)(((byte)(218)))), ((int)(((byte)(226)))));
+            this.txtMontant.BorderRadius = 8;
+            this.txtMontant.Cursor = System.Windows.Forms.Cursors.IBeam;
+            this.txtMontant.DefaultText = "";
+            this.txtMontant.DisabledState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(208)))), ((int)(((byte)(208)))), ((int)(((byte)(208)))));
+            this.txtMontant.DisabledState.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(226)))), ((int)(((byte)(226)))), ((int)(((byte)(226)))));
+            this.txtMontant.DisabledState.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(138)))), ((int)(((byte)(138)))), ((int)(((byte)(138)))));
+            this.txtMontant.DisabledState.PlaceholderForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(138)))), ((int)(((byte)(138)))), ((int)(((byte)(138)))));
+            this.txtMontant.FocusedState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(94)))), ((int)(((byte)(148)))), ((int)(((byte)(255)))));
+            this.txtMontant.Font = new System.Drawing.Font("Segoe UI", 10.8F);
+            this.txtMontant.HoverState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(94)))), ((int)(((byte)(148)))), ((int)(((byte)(255)))));
+            this.txtMontant.Location = new System.Drawing.Point(774, 106);
+            this.txtMontant.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            this.txtMontant.Multiline = true;
+            this.txtMontant.Name = "txtMontant";
+            this.txtMontant.PlaceholderText = "0,00";
+            this.txtMontant.SelectedText = "";
+            this.txtMontant.Size = new System.Drawing.Size(372, 41);
+            this.txtMontant.TabIndex = 14;
+            this.txtMontant.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
+            this.txtMontant.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txtMontant_KeyPress);
             // 
-            // cbVoiture
+            // label8
             // 
-            this.cbVoiture.BackColor = System.Drawing.Color.Transparent;
-            this.cbVoiture.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(210)))), ((int)(((byte)(218)))), ((int)(((byte)(226)))));
-            this.cbVoiture.BorderRadius = 8;
-            this.cbVoiture.DrawMode = System.Windows.Forms.DrawMode.OwnerDrawFixed;
-            this.cbVoiture.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this.cbVoiture.FocusedColor = System.Drawing.Color.FromArgb(((int)(((byte)(94)))), ((int)(((byte)(148)))), ((int)(((byte)(255)))));
-            this.cbVoiture.FocusedState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(94)))), ((int)(((byte)(148)))), ((int)(((byte)(255)))));
-            this.cbVoiture.Font = new System.Drawing.Font("Segoe UI", 10.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.cbVoiture.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(68)))), ((int)(((byte)(88)))), ((int)(((byte)(112)))));
-            this.cbVoiture.ItemHeight = 30;
-            this.cbVoiture.Location = new System.Drawing.Point(50, 84);
-            this.cbVoiture.Name = "cbVoiture";
-            this.cbVoiture.Size = new System.Drawing.Size(541, 36);
-            this.cbVoiture.TabIndex = 6;
+            this.label8.AutoSize = true;
+            this.label8.Font = new System.Drawing.Font("Segoe UI", 10.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label8.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(30)))), ((int)(((byte)(41)))), ((int)(((byte)(59)))));
+            this.label8.Location = new System.Drawing.Point(771, 163);
+            this.label8.Name = "label8";
+            this.label8.Size = new System.Drawing.Size(174, 25);
+            this.label8.TabIndex = 12;
+            this.label8.Text = "Date d\'opération :*";
+            // 
+            // label9
+            // 
+            this.label9.AutoSize = true;
+            this.label9.Font = new System.Drawing.Font("Segoe UI", 10.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label9.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(30)))), ((int)(((byte)(41)))), ((int)(((byte)(59)))));
+            this.label9.Location = new System.Drawing.Point(769, 73);
+            this.label9.Name = "label9";
+            this.label9.Size = new System.Drawing.Size(150, 25);
+            this.label9.TabIndex = 11;
+            this.label9.Text = "Montant (DH) :*";
+            // 
+            // txtDescription
+            // 
+            this.txtDescription.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(210)))), ((int)(((byte)(218)))), ((int)(((byte)(226)))));
+            this.txtDescription.BorderRadius = 8;
+            this.txtDescription.Cursor = System.Windows.Forms.Cursors.IBeam;
+            this.txtDescription.DefaultText = "";
+            this.txtDescription.DisabledState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(208)))), ((int)(((byte)(208)))), ((int)(((byte)(208)))));
+            this.txtDescription.DisabledState.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(226)))), ((int)(((byte)(226)))), ((int)(((byte)(226)))));
+            this.txtDescription.DisabledState.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(138)))), ((int)(((byte)(138)))), ((int)(((byte)(138)))));
+            this.txtDescription.DisabledState.PlaceholderForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(138)))), ((int)(((byte)(138)))), ((int)(((byte)(138)))));
+            this.txtDescription.FocusedState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(94)))), ((int)(((byte)(148)))), ((int)(((byte)(255)))));
+            this.txtDescription.Font = new System.Drawing.Font("Segoe UI", 10.8F);
+            this.txtDescription.HoverState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(94)))), ((int)(((byte)(148)))), ((int)(((byte)(255)))));
+            this.txtDescription.Location = new System.Drawing.Point(41, 255);
+            this.txtDescription.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            this.txtDescription.Multiline = true;
+            this.txtDescription.Name = "txtDescription";
+            this.txtDescription.PlaceholderText = "Décrivez la réparation ou le problème constaté";
+            this.txtDescription.SelectedText = "";
+            this.txtDescription.Size = new System.Drawing.Size(541, 96);
+            this.txtDescription.TabIndex = 10;
+            // 
+            // label6
+            // 
+            this.label6.AutoSize = true;
+            this.label6.Font = new System.Drawing.Font("Segoe UI", 10.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label6.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(30)))), ((int)(((byte)(41)))), ((int)(((byte)(59)))));
+            this.label6.Location = new System.Drawing.Point(52, 222);
+            this.label6.Name = "label6";
+            this.label6.Size = new System.Drawing.Size(127, 25);
+            this.label6.TabIndex = 9;
+            this.label6.Text = "Description :*";
             // 
             // cbTypeOperation
             // 
@@ -196,99 +277,57 @@
             this.label5.TabIndex = 7;
             this.label5.Text = "Type d\'opération :*";
             // 
-            // label6
+            // cbVoiture
             // 
-            this.label6.AutoSize = true;
-            this.label6.Font = new System.Drawing.Font("Segoe UI", 10.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label6.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(30)))), ((int)(((byte)(41)))), ((int)(((byte)(59)))));
-            this.label6.Location = new System.Drawing.Point(52, 222);
-            this.label6.Name = "label6";
-            this.label6.Size = new System.Drawing.Size(127, 25);
-            this.label6.TabIndex = 9;
-            this.label6.Text = "Description :*";
+            this.cbVoiture.BackColor = System.Drawing.Color.Transparent;
+            this.cbVoiture.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(210)))), ((int)(((byte)(218)))), ((int)(((byte)(226)))));
+            this.cbVoiture.BorderRadius = 8;
+            this.cbVoiture.DrawMode = System.Windows.Forms.DrawMode.OwnerDrawFixed;
+            this.cbVoiture.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.cbVoiture.FocusedColor = System.Drawing.Color.FromArgb(((int)(((byte)(94)))), ((int)(((byte)(148)))), ((int)(((byte)(255)))));
+            this.cbVoiture.FocusedState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(94)))), ((int)(((byte)(148)))), ((int)(((byte)(255)))));
+            this.cbVoiture.Font = new System.Drawing.Font("Segoe UI", 10.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.cbVoiture.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(68)))), ((int)(((byte)(88)))), ((int)(((byte)(112)))));
+            this.cbVoiture.ItemHeight = 30;
+            this.cbVoiture.Location = new System.Drawing.Point(50, 84);
+            this.cbVoiture.Name = "cbVoiture";
+            this.cbVoiture.Size = new System.Drawing.Size(541, 36);
+            this.cbVoiture.TabIndex = 6;
             // 
-            // txtDescription
+            // label4
             // 
-            this.txtDescription.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(210)))), ((int)(((byte)(218)))), ((int)(((byte)(226)))));
-            this.txtDescription.BorderRadius = 8;
-            this.txtDescription.Cursor = System.Windows.Forms.Cursors.IBeam;
-            this.txtDescription.DefaultText = "";
-            this.txtDescription.DisabledState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(208)))), ((int)(((byte)(208)))), ((int)(((byte)(208)))));
-            this.txtDescription.DisabledState.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(226)))), ((int)(((byte)(226)))), ((int)(((byte)(226)))));
-            this.txtDescription.DisabledState.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(138)))), ((int)(((byte)(138)))), ((int)(((byte)(138)))));
-            this.txtDescription.DisabledState.PlaceholderForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(138)))), ((int)(((byte)(138)))), ((int)(((byte)(138)))));
-            this.txtDescription.FocusedState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(94)))), ((int)(((byte)(148)))), ((int)(((byte)(255)))));
-            this.txtDescription.Font = new System.Drawing.Font("Segoe UI", 10.8F);
-            this.txtDescription.HoverState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(94)))), ((int)(((byte)(148)))), ((int)(((byte)(255)))));
-            this.txtDescription.Location = new System.Drawing.Point(41, 255);
-            this.txtDescription.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
-            this.txtDescription.Multiline = true;
-            this.txtDescription.Name = "txtDescription";
-            this.txtDescription.PlaceholderText = "Décrivez la réparation ou le problème constaté";
-            this.txtDescription.SelectedText = "";
-            this.txtDescription.Size = new System.Drawing.Size(541, 96);
-            this.txtDescription.TabIndex = 10;
+            this.label4.AutoSize = true;
+            this.label4.Font = new System.Drawing.Font("Segoe UI", 10.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label4.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(30)))), ((int)(((byte)(41)))), ((int)(((byte)(59)))));
+            this.label4.Location = new System.Drawing.Point(52, 56);
+            this.label4.Name = "label4";
+            this.label4.Size = new System.Drawing.Size(102, 25);
+            this.label4.TabIndex = 5;
+            this.label4.Text = "Véhicule :*";
             // 
-            // label8
+            // label3
             // 
-            this.label8.AutoSize = true;
-            this.label8.Font = new System.Drawing.Font("Segoe UI", 10.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label8.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(30)))), ((int)(((byte)(41)))), ((int)(((byte)(59)))));
-            this.label8.Location = new System.Drawing.Point(771, 163);
-            this.label8.Name = "label8";
-            this.label8.Size = new System.Drawing.Size(174, 25);
-            this.label8.TabIndex = 12;
-            this.label8.Text = "Date d\'opération :*";
+            this.label3.AutoSize = true;
+            this.label3.Font = new System.Drawing.Font("Segoe UI", 16.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label3.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(11)))), ((int)(((byte)(61)))), ((int)(((byte)(122)))));
+            this.label3.Location = new System.Drawing.Point(50, 8);
+            this.label3.Name = "label3";
+            this.label3.Size = new System.Drawing.Size(404, 38);
+            this.label3.TabIndex = 4;
+            this.label3.Text = "Informations de la réparation";
             // 
-            // label9
+            // iconPictureBox2
             // 
-            this.label9.AutoSize = true;
-            this.label9.Font = new System.Drawing.Font("Segoe UI", 10.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label9.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(30)))), ((int)(((byte)(41)))), ((int)(((byte)(59)))));
-            this.label9.Location = new System.Drawing.Point(769, 73);
-            this.label9.Name = "label9";
-            this.label9.Size = new System.Drawing.Size(150, 25);
-            this.label9.TabIndex = 11;
-            this.label9.Text = "Montant (DH) :*";
-            // 
-            // txtMontant
-            // 
-            this.txtMontant.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(210)))), ((int)(((byte)(218)))), ((int)(((byte)(226)))));
-            this.txtMontant.BorderRadius = 8;
-            this.txtMontant.Cursor = System.Windows.Forms.Cursors.IBeam;
-            this.txtMontant.DefaultText = "";
-            this.txtMontant.DisabledState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(208)))), ((int)(((byte)(208)))), ((int)(((byte)(208)))));
-            this.txtMontant.DisabledState.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(226)))), ((int)(((byte)(226)))), ((int)(((byte)(226)))));
-            this.txtMontant.DisabledState.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(138)))), ((int)(((byte)(138)))), ((int)(((byte)(138)))));
-            this.txtMontant.DisabledState.PlaceholderForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(138)))), ((int)(((byte)(138)))), ((int)(((byte)(138)))));
-            this.txtMontant.FocusedState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(94)))), ((int)(((byte)(148)))), ((int)(((byte)(255)))));
-            this.txtMontant.Font = new System.Drawing.Font("Segoe UI", 10.8F);
-            this.txtMontant.HoverState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(94)))), ((int)(((byte)(148)))), ((int)(((byte)(255)))));
-            this.txtMontant.Location = new System.Drawing.Point(774, 106);
-            this.txtMontant.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
-            this.txtMontant.Multiline = true;
-            this.txtMontant.Name = "txtMontant";
-            this.txtMontant.PlaceholderText = "0,00";
-            this.txtMontant.SelectedText = "";
-            this.txtMontant.Size = new System.Drawing.Size(372, 41);
-            this.txtMontant.TabIndex = 14;
-            this.txtMontant.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
-            this.txtMontant.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txtMontant_KeyPress);
-            // 
-            // dtDateOperation
-            // 
-            this.dtDateOperation.BorderRadius = 8;
-            this.dtDateOperation.Checked = true;
-            this.dtDateOperation.FillColor = System.Drawing.Color.White;
-            this.dtDateOperation.Font = new System.Drawing.Font("Segoe UI", 10.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.dtDateOperation.Format = System.Windows.Forms.DateTimePickerFormat.Long;
-            this.dtDateOperation.Location = new System.Drawing.Point(776, 191);
-            this.dtDateOperation.MaxDate = new System.DateTime(9998, 12, 31, 0, 0, 0, 0);
-            this.dtDateOperation.MinDate = new System.DateTime(1753, 1, 1, 0, 0, 0, 0);
-            this.dtDateOperation.Name = "dtDateOperation";
-            this.dtDateOperation.Size = new System.Drawing.Size(370, 36);
-            this.dtDateOperation.TabIndex = 15;
-            this.dtDateOperation.Value = new System.DateTime(2026, 4, 22, 14, 36, 56, 972);
+            this.iconPictureBox2.BackColor = System.Drawing.Color.White;
+            this.iconPictureBox2.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(21)))), ((int)(((byte)(101)))), ((int)(((byte)(192)))));
+            this.iconPictureBox2.IconChar = FontAwesome.Sharp.IconChar.ClipboardList;
+            this.iconPictureBox2.IconColor = System.Drawing.Color.FromArgb(((int)(((byte)(21)))), ((int)(((byte)(101)))), ((int)(((byte)(192)))));
+            this.iconPictureBox2.IconFont = FontAwesome.Sharp.IconFont.Auto;
+            this.iconPictureBox2.Location = new System.Drawing.Point(12, 12);
+            this.iconPictureBox2.Name = "iconPictureBox2";
+            this.iconPictureBox2.Size = new System.Drawing.Size(32, 32);
+            this.iconPictureBox2.TabIndex = 3;
+            this.iconPictureBox2.TabStop = false;
             // 
             // guna2Panel1
             // 
@@ -371,7 +410,7 @@
             this.btnEnregistrer.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(21)))), ((int)(((byte)(101)))), ((int)(((byte)(192)))));
             this.btnEnregistrer.Font = new System.Drawing.Font("Segoe UI", 10.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnEnregistrer.ForeColor = System.Drawing.Color.White;
-            this.btnEnregistrer.Image = global::venolocation.Properties.Resources.check;
+            this.btnEnregistrer.Image = global::venolocation.Properties.Resources.save;
             this.btnEnregistrer.ImageAlign = System.Windows.Forms.HorizontalAlignment.Left;
             this.btnEnregistrer.ImageSize = new System.Drawing.Size(30, 30);
             this.btnEnregistrer.Location = new System.Drawing.Point(49, 13);
@@ -380,45 +419,6 @@
             this.btnEnregistrer.TabIndex = 0;
             this.btnEnregistrer.Text = "Enregistrer";
             this.btnEnregistrer.Click += new System.EventHandler(this.btnEnregistrer_Click);
-            // 
-            // iconPictureBox2
-            // 
-            this.iconPictureBox2.BackColor = System.Drawing.Color.White;
-            this.iconPictureBox2.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(21)))), ((int)(((byte)(101)))), ((int)(((byte)(192)))));
-            this.iconPictureBox2.IconChar = FontAwesome.Sharp.IconChar.ClipboardList;
-            this.iconPictureBox2.IconColor = System.Drawing.Color.FromArgb(((int)(((byte)(21)))), ((int)(((byte)(101)))), ((int)(((byte)(192)))));
-            this.iconPictureBox2.IconFont = FontAwesome.Sharp.IconFont.Auto;
-            this.iconPictureBox2.Location = new System.Drawing.Point(12, 12);
-            this.iconPictureBox2.Name = "iconPictureBox2";
-            this.iconPictureBox2.Size = new System.Drawing.Size(32, 32);
-            this.iconPictureBox2.TabIndex = 3;
-            this.iconPictureBox2.TabStop = false;
-            // 
-            // iconPictureBox1
-            // 
-            this.iconPictureBox1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(60)))), ((int)(((byte)(136)))), ((int)(((byte)(232)))));
-            this.iconPictureBox1.IconChar = FontAwesome.Sharp.IconChar.ScrewdriverWrench;
-            this.iconPictureBox1.IconColor = System.Drawing.Color.White;
-            this.iconPictureBox1.IconFont = FontAwesome.Sharp.IconFont.Auto;
-            this.iconPictureBox1.IconSize = 55;
-            this.iconPictureBox1.Location = new System.Drawing.Point(21, 18);
-            this.iconPictureBox1.Name = "iconPictureBox1";
-            this.iconPictureBox1.Size = new System.Drawing.Size(55, 55);
-            this.iconPictureBox1.TabIndex = 2;
-            this.iconPictureBox1.TabStop = false;
-            // 
-            // guna2CirclePictureBox1
-            // 
-            this.guna2CirclePictureBox1.BackColor = System.Drawing.Color.Transparent;
-            this.guna2CirclePictureBox1.Image = global::venolocation.Properties.Resources.insurance;
-            this.guna2CirclePictureBox1.ImageRotate = 0F;
-            this.guna2CirclePictureBox1.Location = new System.Drawing.Point(1315, 8);
-            this.guna2CirclePictureBox1.Name = "guna2CirclePictureBox1";
-            this.guna2CirclePictureBox1.ShadowDecoration.Mode = Guna.UI2.WinForms.Enums.ShadowMode.Circle;
-            this.guna2CirclePictureBox1.Size = new System.Drawing.Size(80, 74);
-            this.guna2CirclePictureBox1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
-            this.guna2CirclePictureBox1.TabIndex = 0;
-            this.guna2CirclePictureBox1.TabStop = false;
             // 
             // dgvReparations
             // 
@@ -504,12 +504,12 @@
             this.Load += new System.EventHandler(this.reparation_Load);
             this.pnlHeader.ResumeLayout(false);
             this.pnlHeader.PerformLayout();
-            this.cardInfo.ResumeLayout(false);
-            this.cardInfo.PerformLayout();
-            this.guna2Panel1.ResumeLayout(false);
-            ((System.ComponentModel.ISupportInitialize)(this.iconPictureBox2)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.iconPictureBox1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.guna2CirclePictureBox1)).EndInit();
+            this.cardInfo.ResumeLayout(false);
+            this.cardInfo.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.iconPictureBox2)).EndInit();
+            this.guna2Panel1.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.dgvReparations)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.iconPictureBox3)).EndInit();
             this.ResumeLayout(false);

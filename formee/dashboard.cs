@@ -331,5 +331,17 @@ namespace venolocation.formee
             droit.reparation re = new droit.reparation();
             re.ShowDialog();
         }
+
+        private void btnAccidents_Click(object sender, EventArgs e)
+        {
+            droit.accident acc = new droit.accident();
+            acc.ShowDialog();
+        }
+
+        private void btnSituation_Click(object sender, EventArgs e)
+        {
+            droit.situation df = new droit.situation();
+            df.ShowDialog();
+        }
     }
 }
