@@ -266,7 +266,7 @@ namespace venolocation.formee
 
         private void btnreservation_Click(object sender, EventArgs e)
         {
-            formee.n_reservation res = new n_reservation();
+            formee.reservation res = new reservation();
             res.ShowDialog();
         }
 
@@ -342,6 +342,31 @@ namespace venolocation.formee
         {
             droit.situation df = new droit.situation();
             df.ShowDialog();
+        }
+
+        private void deconnecterToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            panelRight.Enabled=false;
+            flowMenu.Enabled=false;
+            LogHelper.AddLog(" Quitter Connexion.", Session.Username);
+        }
+
+        private void btnSetting_Click(object sender, EventArgs e)
+        {
+            droit.setting set = new droit.setting();
+            set.ShowDialog();
+        }
+
+        private void ProfilToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            login lo = new login();
+            lo.ShowDialog();
+        }
+
+        private void btndeveloppeur_Click(object sender, EventArgs e)
+        {
+            droit.developpeur de = new droit.developpeur();
+            de.ShowDialog();
         }
     }
 }

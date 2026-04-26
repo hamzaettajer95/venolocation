@@ -34,7 +34,7 @@ namespace venolocation.droit
         {
             try
             {
-                InitialiserHorloge();
+                
                 InitialiserCharts();
                 ChargerTout();
 
@@ -46,38 +46,8 @@ namespace venolocation.droit
                 MessageService.Error("Erreur lors du chargement du formulaire situation.");
             }
         }
-        private void InitialiserHorloge()
-        {
-            try
-            {
-                tmrHorloge = new Timer();
-                tmrHorloge.Interval = 1000;
-                tmrHorloge.Tick += TmrHorloge_Tick;
-                tmrHorloge.Start();
-                MettreAJourDateHeure();
-            }
-            catch (Exception ex)
-            {
-                dbErreur.AddLog(ex.Message, Session.Username, "situation", "InitialiserHorloge");
-            }
-        }
-        private void TmrHorloge_Tick(object sender, EventArgs e)
-        {
-            MettreAJourDateHeure();
-        }
-        private void MettreAJourDateHeure()
-        {
-            try
-            {
-                CultureInfo fr = new CultureInfo("fr-FR");
-                lblDateHeure.Text = DateTime.Now.ToString("dddd dd MMMM yyyy    HH:mm:ss", fr);
-            }
-            catch (Exception ex)
-            {
-                dbErreur.AddLog(ex.Message, Session.Username, "situation", "MettreAJourDateHeure");
-            }
-        }
-
+       
+      
         private void btnActualiser_Click(object sender, EventArgs e)
         {
             try

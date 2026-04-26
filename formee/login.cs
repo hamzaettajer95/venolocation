@@ -53,7 +53,10 @@ namespace venolocation.formee
                         Session.Role = role;
                         LogHelper.AddLog("Connexion réussie.", Session.Username);
 
-                        MessageBox.Show("Bienvenue " + Session.Username + " (" + Session.Role + ")");
+                        formee.dashboard da = new dashboard();
+                        da.ShowDialog();
+                        
+                        this.Close();
 
                      
                     }

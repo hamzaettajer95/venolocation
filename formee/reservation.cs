@@ -16,44 +16,97 @@ namespace venolocation.formee
 {
     public partial class reservation : Form
     {
-       
-        private int reservationIdSelectionnee = -1;
         public reservation()
         {
             InitializeComponent();
-            this.AutoScaleMode = AutoScaleMode.None;
-            
+        }
+        private void StyliserDataGridView()
+        {
+            dgvReservations.EnableHeadersVisualStyles = false;
+            dgvReservations.BorderStyle = BorderStyle.None;
+            dgvReservations.CellBorderStyle = DataGridViewCellBorderStyle.SingleHorizontal;
+            dgvReservations.ColumnHeadersBorderStyle = DataGridViewHeaderBorderStyle.None;
+            dgvReservations.RowHeadersVisible = false;
+            dgvReservations.SelectionMode = DataGridViewSelectionMode.FullRowSelect;
+            dgvReservations.MultiSelect = false;
+            dgvReservations.AllowUserToAddRows = false;
+            dgvReservations.AllowUserToDeleteRows = false;
+            dgvReservations.AllowUserToResizeRows = false;
+            dgvReservations.ReadOnly = true;
+            dgvReservations.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
+            dgvReservations.BackgroundColor = Color.White;
+            dgvReservations.GridColor = Color.FromArgb(230, 235, 240);
+
+            dgvReservations.ColumnHeadersDefaultCellStyle.BackColor = Color.FromArgb(18, 73, 139);
+            dgvReservations.ColumnHeadersDefaultCellStyle.ForeColor = Color.White;
+            dgvReservations.ColumnHeadersDefaultCellStyle.Font = new Font("Segoe UI", 12F, FontStyle.Bold);
+            dgvReservations.ColumnHeadersDefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter;
+            dgvReservations.ColumnHeadersHeight = 38;
+
+            dgvReservations.DefaultCellStyle.BackColor = Color.White;
+            dgvReservations.DefaultCellStyle.ForeColor = Color.FromArgb(40, 40, 40);
+            dgvReservations.DefaultCellStyle.Font = new Font("Segoe UI", 11F, FontStyle.Regular);
+            dgvReservations.DefaultCellStyle.SelectionBackColor = Color.FromArgb(220, 235, 252);
+            dgvReservations.DefaultCellStyle.SelectionForeColor = Color.Black;
+            dgvReservations.DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleLeft;
+
+            dgvReservations.AlternatingRowsDefaultCellStyle.BackColor = Color.FromArgb(245, 249, 253);
+            dgvReservations.RowTemplate.Height = 34;
         }
 
-        private void pnlDateTitle_Paint(object sender, PaintEventArgs e)
+        private void ColorierStatutsReservations()
         {
+            if (!dgvReservations.Columns.Contains("Statut"))
+                return;
 
-        }
-
-        private void pnlDateFields_Paint(object sender, PaintEventArgs e)
-        {
-
-        }
-
-        private void reservation_Load(object sender, EventArgs e)
-        {
-            try
+            foreach (DataGridViewRow row in dgvReservations.Rows)
             {
-                InitialiserHeures();
-                ChargerVoitures();
-                ChargerClients();
-                ChargerReservations();
-                InitialiserFormulaire();
+                if (row.IsNewRow || row.Cells["Statut"].Value == null)
+                    continue;
 
-                
-            }
-            catch (Exception ex)
-            {
-                LogHelper.AddLog("Erreur chargement formulaire réservation : " + ex.Message, Session.Username);
-                MessageService.Error(AppMessages.UnexpectedError);
-            }
-           
+                string statut = row.Cells["Statut"].Value.ToString().Trim();
 
+                DataGridViewCell cell = row.Cells["Statut"];
+
+                cell.Style.Font = new Font("Segoe UI", 10F, FontStyle.Bold);
+                cell.Style.Alignment = DataGridViewContentAlignment.MiddleCenter;
+
+                if (statut == "Confirmée")
+                {
+                    cell.Style.BackColor = Color.FromArgb(220, 245, 228);
+                    cell.Style.ForeColor = Color.FromArgb(28, 137, 74);
+                    cell.Style.SelectionBackColor = Color.FromArgb(200, 235, 214);
+                    cell.Style.SelectionForeColor = Color.FromArgb(28, 137, 74);
+                }
+                else if (statut == "En attente")
+                {
+                    cell.Style.BackColor = Color.FromArgb(255, 239, 213);
+                    cell.Style.ForeColor = Color.FromArgb(212, 133, 0);
+                    cell.Style.SelectionBackColor = Color.FromArgb(250, 228, 190);
+                    cell.Style.SelectionForeColor = Color.FromArgb(212, 133, 0);
+                }
+                else if (statut == "Annulée")
+                {
+                    cell.Style.BackColor = Color.FromArgb(252, 220, 220);
+                    cell.Style.ForeColor = Color.FromArgb(200, 55, 55);
+                    cell.Style.SelectionBackColor = Color.FromArgb(245, 205, 205);
+                    cell.Style.SelectionForeColor = Color.FromArgb(200, 55, 55);
+                }
+                else if (statut == "Terminée")
+                {
+                    cell.Style.BackColor = Color.FromArgb(220, 232, 248);
+                    cell.Style.ForeColor = Color.FromArgb(53, 100, 170);
+                    cell.Style.SelectionBackColor = Color.FromArgb(205, 222, 245);
+                    cell.Style.SelectionForeColor = Color.FromArgb(53, 100, 170);
+                }
+                else
+                {
+                    cell.Style.BackColor = Color.White;
+                    cell.Style.ForeColor = Color.Black;
+                    cell.Style.SelectionBackColor = Color.FromArgb(220, 235, 252);
+                    cell.Style.SelectionForeColor = Color.Black;
+                }
+            }
         }
         private void InitialiserFormulaire()
         {
@@ -85,26 +138,37 @@ namespace venolocation.formee
 
         private void ChargerVoitures()
         {
-            using (MySqlConnection cn = Dbexec.GetConnection())
+            try
             {
-                cn.Open();
-
-                string query = @"
-                    SELECT voiture_id, CONCAT(matricule, ' - ', marque, ' ', modele) AS voiture
-                    FROM voitures
-                    ORDER BY matricule;";
-
-                using (MySqlDataAdapter da = new MySqlDataAdapter(query, cn))
+                using (MySqlConnection cn = Dbexec.GetConnection())
                 {
-                    DataTable dt = new DataTable();
-                    da.Fill(dt);
+                    cn.Open();
 
-                    cbVoiture.DataSource = dt;
-                    cbVoiture.DisplayMember = "voiture";
-                    cbVoiture.ValueMember = "voiture_id";
-                    cbVoiture.SelectedIndex = -1;
+                    string query = @"
+                                    SELECT voiture_id, CONCAT(matricule, ' - ', marque, ' ', modele) AS voiture
+                                    FROM voitures
+                                    WHERE etat = 'Disponible' OR etat IS NULL
+                                    ORDER BY matricule;";
+
+                    using (MySqlDataAdapter da = new MySqlDataAdapter(query, cn))
+                    {
+                        DataTable dt = new DataTable();
+                        da.Fill(dt);
+
+                        cbVoiture.DataSource = dt;
+                        cbVoiture.DisplayMember = "voiture";
+                        cbVoiture.ValueMember = "voiture_id";
+                        cbVoiture.SelectedIndex = -1;
+                    }
                 }
+
             }
+            catch (Exception ex)
+            {
+                dbErreur.AddLog(ex.Message, Session.Username, "n_reservation", "ChargerVoiture");
+                MessageBox.Show("Erreur chargement voiture : " + ex.Message);
+            }
+
         }
 
         private void ChargerClients()
@@ -134,95 +198,10 @@ namespace venolocation.formee
             }
             catch (Exception ex)
             {
+                dbErreur.AddLog(ex.Message, Session.Username, "n_reservation", "ChargerClients");
                 MessageBox.Show("Erreur chargement clients : " + ex.Message);
             }
         }
-
-        private void ChargerReservations()
-        {
-            try
-            {
-                using (MySqlConnection cn = Dbexec.GetConnection())
-                {
-                    cn.Open();
-
-                    string query = @"
-                    SELECT 
-                        r.reservation_id AS 'ID',
-                        CONCAT(v.matricule, ' - ', v.marque, ' ', v.modele) AS 'Voiture',
-                        CONCAT(c.nom, ' ', c.prenom) AS 'Client',
-                        CONCAT(DATE_FORMAT(r.date_debut, '%d/%m/%Y'), ' ', TIME_FORMAT(r.heure_debut, '%H:%i')) AS 'Date Début',
-                        CONCAT(DATE_FORMAT(r.date_fin, '%d/%m/%Y'), ' ', TIME_FORMAT(r.heure_fin, '%H:%i')) AS 'Date Fin',
-                        r.status AS 'Statut'
-                    FROM reservations r
-                    INNER JOIN voitures v ON v.voiture_id = r.voiture_id
-                    INNER JOIN clients c ON c.client_id = r.client_id
-                    ORDER BY r.reservation_id DESC;";
-
-                    using (MySqlDataAdapter da = new MySqlDataAdapter(query, cn))
-                    {
-                        DataTable dt = new DataTable();
-                        da.Fill(dt);
-                        dgvReservations.DataSource = dt;
-                    }
-                }
-
-                ColorierStatutsReservations();
-            
-            }
-            catch (Exception ex)
-            {
-                MessageBox.Show("Erreur chargement réservations : " + ex.Message);
-            }
-        }
-
-        private bool ChampsValides()
-        {
-            if (cbVoiture.SelectedIndex == -1)
-            {
-                MessageService.Warning("Sélectionnez une voiture.");
-                cbVoiture.Focus();
-                LogHelper.AddLog("Validation réservation refusée : voiture non sélectionnée.", Session.Username);
-                return false;
-            }
-
-            if (cbClient.SelectedIndex == -1)
-            {
-                MessageService.Warning("Sélectionnez un client.");
-                cbClient.Focus();
-                LogHelper.AddLog("Validation réservation refusée : client non sélectionné.", Session.Username);
-                return false;
-            }
-
-            if (cbHeureDebut.SelectedIndex == -1)
-            {
-                MessageService.Warning("Sélectionnez l'heure de début.");
-                cbHeureDebut.Focus();
-                LogHelper.AddLog("Validation réservation refusée : heure début non sélectionnée.", Session.Username);
-                return false;
-            }
-
-            if (cbHeureFin.SelectedIndex == -1)
-            {
-                MessageService.Warning("Sélectionnez l'heure de fin.");
-                cbHeureFin.Focus();
-                LogHelper.AddLog("Validation réservation refusée : heure fin non sélectionnée.", Session.Username);
-                return false;
-            }
-
-            DateTime debut = ConstruireDateHeure(dtDateDebut.Value.Date, cbHeureDebut.Text);
-            DateTime fin = ConstruireDateHeure(dtDateFin.Value.Date, cbHeureFin.Text);
-
-            if (fin <= debut)
-            {
-                MessageService.Warning("La date et l'heure de fin doivent être supérieures à la date et l'heure de début.");
-                LogHelper.AddLog("Validation réservation refusée : période invalide.", Session.Username);
-                return false;
-            }
-
-            return true;
-        }
-
         private DateTime ConstruireDateHeure(DateTime date, string heure)
         {
             TimeSpan ts = TimeSpan.Parse(heure);
@@ -320,77 +299,7 @@ namespace venolocation.formee
             return true;
         }
 
-        private void btnVerifierDate_Click(object sender, EventArgs e)
-        {
-            try
-            {
-                if (!ChampsValides())
-                    return;
-
-                int voitureId = Convert.ToInt32(cbVoiture.SelectedValue);
-                DateTime debut = ConstruireDateHeure(dtDateDebut.Value.Date, cbHeureDebut.Text);
-                DateTime fin = ConstruireDateHeure(dtDateFin.Value.Date, cbHeureFin.Text);
-
-                bool disponible = VoitureDisponible(voitureId, debut, fin);
-
-                if (disponible)
-                {
-                    decimal total = ObtenirPrixTotal(voitureId, debut, fin);
-
-                    MessageService.Info("La voiture est disponible.\nPrix estimé : " + total.ToString("0.00") + " DH");
-                    LogHelper.AddLog("Disponibilité vérifiée : voiture disponible. Prix estimé = " + total.ToString("0.00") + " DH.", Session.Username);
-
-                    btnReserver.Enabled = true;
-                }
-                else
-                {
-                    MessageService.Warning("La voiture n'est pas disponible dans cette période.");
-                    LogHelper.AddLog("Disponibilité vérifiée : voiture indisponible.", Session.Username);
-
-                    btnReserver.Enabled = false;
-                }
-            }
-            catch (Exception ex)
-            {
-                LogHelper.AddLog("Erreur vérification disponibilité : " + ex.Message, Session.Username);
-                MessageService.Error(AppMessages.UnexpectedError);
-            }
-
-        }
-
-        private void ColorierStatutsReservations()
-        {
-            foreach (DataGridViewRow row in dgvReservations.Rows)
-            {
-                if (row.Cells["Statut"].Value == null)
-                    continue;
-
-                string statut = row.Cells["Statut"].Value.ToString();
-
-                if (statut == "Confirmée")
-                {
-                    row.Cells["Statut"].Style.BackColor = System.Drawing.Color.LightGreen;
-                    row.Cells["Statut"].Style.ForeColor = System.Drawing.Color.DarkGreen;
-                }
-                else if (statut == "En attente")
-                {
-                    row.Cells["Statut"].Style.BackColor = System.Drawing.Color.Khaki;
-                    row.Cells["Statut"].Style.ForeColor = System.Drawing.Color.DarkOrange;
-                }
-                else if (statut == "Annulée")
-                {
-                    row.Cells["Statut"].Style.BackColor = System.Drawing.Color.LightCoral;
-                    row.Cells["Statut"].Style.ForeColor = System.Drawing.Color.DarkRed;
-                }
-                else
-                {
-                    row.Cells["Statut"].Style.BackColor = System.Drawing.Color.White;
-                    row.Cells["Statut"].Style.ForeColor = System.Drawing.Color.Black;
-                }
-
-                row.Cells["Statut"].Style.Font = new System.Drawing.Font(dgvReservations.Font, System.Drawing.FontStyle.Bold);
-            }
-        } 
+        
 
         private void ViderSaisie()
         {
@@ -408,18 +317,111 @@ namespace venolocation.formee
             reservationIdSelectionnee = -1;
         }
 
-        private void btnValider_Click(object sender, EventArgs e)
+        private void ChargerReservations()
         {
-
-            if (cbVoiture.SelectedIndex == -1 || cbClient.SelectedIndex == -1)
+            try
             {
-                MessageService.Warning("Sélectionnez la voiture et le client.");
-                LogHelper.AddLog("Validation voiture/client refusée : sélection incomplète.", Session.Username);
-                return;
+                using (MySqlConnection cn = Dbexec.GetConnection())
+                {
+                    cn.Open();
+
+                    string query = @"
+                    SELECT 
+                        r.reservation_id AS 'ID',
+                        CONCAT(v.matricule, ' - ', v.marque, ' ', v.modele) AS 'Voiture',
+                        CONCAT(c.nom, ' ', c.prenom) AS 'Client',
+                        CONCAT(DATE_FORMAT(r.date_debut, '%d/%m/%Y'), ' ', TIME_FORMAT(r.heure_debut, '%H:%i')) AS 'Date Début',
+                        CONCAT(DATE_FORMAT(r.date_fin, '%d/%m/%Y'), ' ', TIME_FORMAT(r.heure_fin, '%H:%i')) AS 'Date Fin',
+                        r.status AS 'Statut'
+                    FROM reservations r
+                    INNER JOIN voitures v ON v.voiture_id = r.voiture_id
+                    INNER JOIN clients c ON c.client_id = r.client_id
+                    ORDER BY r.reservation_id DESC;";
+
+                    using (MySqlDataAdapter da = new MySqlDataAdapter(query, cn))
+                    {
+                        DataTable dt = new DataTable();
+                        da.Fill(dt);
+                        dgvReservations.DataSource = dt;
+                    }
+                }
+                StyliserDataGridView();
+                ColorierStatutsReservations();
+
+            }
+            catch (Exception ex)
+            {
+                dbErreur.AddLog(ex.Message, Session.Username, "n_reservation", "ChargerReservations");
+                MessageBox.Show("Erreur chargement réservations : " + ex.Message);
+            }
+        }
+
+        private bool ChampsValides()
+        {
+            if (cbVoiture.SelectedIndex == -1)
+            {
+                MessageService.Warning("Sélectionnez une voiture.");
+                cbVoiture.Focus();
+                LogHelper.AddLog("Validation réservation refusée : voiture non sélectionnée.", Session.Username);
+                return false;
             }
 
-            MessageService.Success("Voiture et client validés.");
-           // LogHelper.AddLog("Voiture et client validés pour réservation.", Session.Username);
+            if (cbClient.SelectedIndex == -1)
+            {
+                MessageService.Warning("Sélectionnez un client.");
+                cbClient.Focus();
+                LogHelper.AddLog("Validation réservation refusée : client non sélectionné.", Session.Username);
+                return false;
+            }
+
+            if (cbHeureDebut.SelectedIndex == -1)
+            {
+                MessageService.Warning("Sélectionnez l'heure de début.");
+                cbHeureDebut.Focus();
+                LogHelper.AddLog("Validation réservation refusée : heure début non sélectionnée.", Session.Username);
+                return false;
+            }
+
+            if (cbHeureFin.SelectedIndex == -1)
+            {
+                MessageService.Warning("Sélectionnez l'heure de fin.");
+                cbHeureFin.Focus();
+                LogHelper.AddLog("Validation réservation refusée : heure fin non sélectionnée.", Session.Username);
+                return false;
+            }
+
+            DateTime debut = ConstruireDateHeure(dtDateDebut.Value.Date, cbHeureDebut.Text);
+            DateTime fin = ConstruireDateHeure(dtDateFin.Value.Date, cbHeureFin.Text);
+
+            if (fin <= debut)
+            {
+                MessageService.Warning("La date et l'heure de fin doivent être supérieures à la date et l'heure de début.");
+                LogHelper.AddLog("Validation réservation refusée : période invalide.", Session.Username);
+                return false;
+            }
+
+            return true;
+        }
+
+
+        private int reservationIdSelectionnee = -1;
+        private void n_reservation_Load(object sender, EventArgs e)
+        {
+            try
+            {
+                InitialiserHeures();
+                ChargerVoitures();
+                ChargerClients();
+                ChargerReservations();
+                InitialiserFormulaire();
+
+
+            }
+            catch (Exception ex)
+            {
+                dbErreur.AddLog(ex.Message, Session.Username, "n_reservation", "n_reservation_Load");
+                MessageService.Error(AppMessages.UnexpectedError);
+            }
         }
 
         private void btnNouvelle_Click(object sender, EventArgs e)
@@ -429,6 +431,7 @@ namespace venolocation.formee
 
         private void btnReserver_Click(object sender, EventArgs e)
         {
+
             if (!ChampsValides())
                 return;
 
@@ -483,7 +486,7 @@ namespace venolocation.formee
             }
             catch (Exception ex)
             {
-                LogHelper.AddLog("Erreur ajout réservation : " + ex.Message, Session.Username);
+                dbErreur.AddLog(ex.Message, Session.Username, "n_reservation", "btnReserver_Click");
                 MessageService.Error(AppMessages.UnexpectedError);
             }
         }
@@ -528,7 +531,7 @@ namespace venolocation.formee
             }
             catch (Exception ex)
             {
-                LogHelper.AddLog("Erreur confirmation réservation : " + ex.Message, Session.Username);
+                dbErreur.AddLog(ex.Message,Session.Username, "n_reservation", "btnConfirmer_Click");
                 MessageService.Error(AppMessages.UnexpectedError);
             }
         }
@@ -579,13 +582,68 @@ namespace venolocation.formee
             }
             catch (Exception ex)
             {
-                LogHelper.AddLog("Erreur annulation réservation : " + ex.Message, Session.Username);
+                dbErreur.AddLog(ex.Message, Session.Username, "n_reservation", "btnAnnuler_Click");
+                MessageService.Error(AppMessages.UnexpectedError);
+            }
+        }
+
+        private void btnValider_Click(object sender, EventArgs e)
+        {
+            if (cbVoiture.SelectedIndex == -1 || cbClient.SelectedIndex == -1)
+            {
+                MessageService.Warning("Sélectionnez la voiture et le client.");
+                LogHelper.AddLog("Validation voiture/client refusée : sélection incomplète.", Session.Username);
+                return;
+            }
+
+            MessageService.Success("Voiture et client validés.");
+        }
+
+        private void btnVerifierDate_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void btnVerifierDate_Click_1(object sender, EventArgs e)
+        {
+            try
+            {
+                if (!ChampsValides())
+                    return;
+
+                int voitureId = Convert.ToInt32(cbVoiture.SelectedValue);
+                DateTime debut = ConstruireDateHeure(dtDateDebut.Value.Date, cbHeureDebut.Text);
+                DateTime fin = ConstruireDateHeure(dtDateFin.Value.Date, cbHeureFin.Text);
+
+                bool disponible = VoitureDisponible(voitureId, debut, fin);
+
+                if (disponible)
+                {
+                    decimal total = ObtenirPrixTotal(voitureId, debut, fin);
+
+                    MessageService.Info("La voiture est disponible.\nPrix estimé : " + total.ToString("0.00") + " DH");
+                    LogHelper.AddLog("Disponibilité vérifiée : voiture disponible. Prix estimé = " + total.ToString("0.00") + " DH.", Session.Username);
+
+                    btnReserver.Enabled = true;
+                }
+                else
+                {
+                    MessageService.Warning("La voiture n'est pas disponible dans cette période.");
+                    LogHelper.AddLog("Disponibilité vérifiée : voiture indisponible.", Session.Username);
+
+                    btnReserver.Enabled = false;
+                }
+            }
+            catch (Exception ex)
+            {
+                dbErreur.AddLog(ex.Message, Session.Username, "n_reservation", "btnVerifierDate_Click_1");
                 MessageService.Error(AppMessages.UnexpectedError);
             }
         }
 
         private void dgvReservations_CellClick(object sender, DataGridViewCellEventArgs e)
         {
+
             if (e.RowIndex >= 0 && dgvReservations.Rows[e.RowIndex].Cells["ID"].Value != null)
             {
                 reservationIdSelectionnee = Convert.ToInt32(dgvReservations.Rows[e.RowIndex].Cells["ID"].Value);

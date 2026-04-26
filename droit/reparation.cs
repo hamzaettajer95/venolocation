@@ -23,6 +23,7 @@ namespace venolocation.droit
         }
         string connectionString = dashboard.connection_string;
         int reparationIdSelectionnee = -1;
+        int voitureIdSelectionnee = -1;
 
         private void ChargerVoitures()
         {
@@ -46,25 +47,62 @@ namespace venolocation.droit
                 MessageBox.Show("Erreur chargement voitures : " + ex.Message);
             }
         }
+        private void ColorierStatutReparations()
+        {
+            if (!dgvReparations.Columns.Contains("Statut"))
+                return;
+
+            foreach (DataGridViewRow row in dgvReparations.Rows)
+            {
+                if (row.IsNewRow || row.Cells["Statut"].Value == null)
+                    continue;
+
+                string statut = row.Cells["Statut"].Value.ToString().Trim();
+                DataGridViewCell cell = row.Cells["Statut"];
+
+                cell.Style.Font = new Font("Segoe UI", 10F, FontStyle.Bold);
+                cell.Style.Alignment = DataGridViewContentAlignment.MiddleCenter;
+
+                if (statut == "Maintenance")
+                {
+                    cell.Style.BackColor = Color.FromArgb(252, 220, 220);
+                    cell.Style.ForeColor = Color.FromArgb(200, 55, 55);
+                    cell.Style.SelectionBackColor = Color.FromArgb(245, 205, 205);
+                    cell.Style.SelectionForeColor = Color.FromArgb(200, 55, 55);
+                }
+                else if (statut == "Terminée")
+                {
+                    cell.Style.BackColor = Color.FromArgb(220, 245, 228);
+                    cell.Style.ForeColor = Color.FromArgb(28, 137, 74);
+                    cell.Style.SelectionBackColor = Color.FromArgb(200, 235, 214);
+                    cell.Style.SelectionForeColor = Color.FromArgb(28, 137, 74);
+                }
+            }
+        }
         private void ChargerReparations()
         {
             try
             {
                 string query = @"
-            SELECT 
-                reparation_id AS 'ID',
-                voiture_id AS 'Voiture ID',
-                type_operation AS 'Type opération',
-                description AS 'Description',
-                montant AS 'Montant',
-                DATE_FORMAT(date_operation, '%d/%m/%Y') AS 'Date opération',
-                nom_utilisateur AS 'Utilisateur',
-                DATE_FORMAT(created_at, '%d/%m/%Y %H:%i:%s') AS 'Créé le'
-            FROM reparations
-            ORDER BY reparation_id DESC;";
+                                SELECT 
+                                    reparation_id AS 'ID',
+                                    voiture_id AS 'Voiture ID',
+                                    type_operation AS 'Type opération',
+                                    description AS 'Description',
+                                    montant AS 'Montant',
+                                    DATE_FORMAT(date_operation, '%d/%m/%Y') AS 'Date opération',
+                                    CASE 
+                                        WHEN status = b'1' THEN 'Maintenance'
+                                        ELSE 'Terminée'
+                                    END AS 'Statut',
+                                    nom_utilisateur AS 'Utilisateur',
+                                    DATE_FORMAT(created_at, '%d/%m/%Y %H:%i:%s') AS 'Créé le'
+                                FROM reparations
+                                ORDER BY reparation_id DESC;";
 
                 dgvReparations.DataSource = Dbexec.GetData(query);
                 StyleGridReparations();
+                ColorierStatutReparations();
             }
             catch (Exception ex)
             {
@@ -108,13 +146,14 @@ namespace venolocation.droit
             if (dgvReparations.Columns.Count > 0)
             {
                 dgvReparations.Columns["ID"].FillWeight = 10;
-                dgvReparations.Columns["Voiture ID"].FillWeight = 18;
-                dgvReparations.Columns["Type opération"].FillWeight = 22;
-                dgvReparations.Columns["Description"].FillWeight = 35;
-                dgvReparations.Columns["Montant"].FillWeight = 18;
-                dgvReparations.Columns["Date opération"].FillWeight = 18;
-                dgvReparations.Columns["Utilisateur"].FillWeight = 15;
-                dgvReparations.Columns["Créé le"].FillWeight = 22;
+                dgvReparations.Columns["Voiture ID"].FillWeight = 16;
+                dgvReparations.Columns["Type opération"].FillWeight = 20;
+                dgvReparations.Columns["Description"].FillWeight = 32;
+                dgvReparations.Columns["Montant"].FillWeight = 14;
+                dgvReparations.Columns["Date opération"].FillWeight = 16;
+                dgvReparations.Columns["Statut"].FillWeight = 14;
+                dgvReparations.Columns["Utilisateur"].FillWeight = 14;
+                dgvReparations.Columns["Créé le"].FillWeight = 20;
 
                 dgvReparations.Columns["Description"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleLeft;
                 dgvReparations.Columns["Type opération"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleLeft;
@@ -124,6 +163,7 @@ namespace venolocation.droit
         private void ViderChamps()
         {
             reparationIdSelectionnee = -1;
+            voitureIdSelectionnee = -1;
             cbVoiture.SelectedIndex = -1;
             cbTypeOperation.SelectedIndex = -1;
             txtDescription.Clear();
@@ -200,22 +240,29 @@ namespace venolocation.droit
             try
             {
                 string query = @"
-                INSERT INTO reparations
-                (voiture_id, type_operation, description, montant, date_operation, nom_utilisateur, created_at)
-                VALUES
-                (@voiture_id, @type_operation, @description, @montant, @date_operation, @nom_utilisateur, NOW())";
+                            INSERT INTO reparations
+                            (voiture_id, type_operation, description, montant, date_operation, status, nom_utilisateur, created_at)
+                            VALUES
+                            (@voiture_id, @type_operation, @description, @montant, @date_operation, @status, @nom_utilisateur, NOW())";
 
                 MySqlParameter[] ps =
                 {
-            new MySqlParameter("@voiture_id", cbVoiture.SelectedValue),
-            new MySqlParameter("@type_operation", cbTypeOperation.Text.Trim()),
-            new MySqlParameter("@description", txtDescription.Text.Trim()),
-            new MySqlParameter("@montant", decimal.Parse(txtMontant.Text.Trim())),
-            new MySqlParameter("@date_operation", dtDateOperation.Value.Date),
-            new MySqlParameter("@nom_utilisateur", login.nom)
-                };
+                    new MySqlParameter("@voiture_id", cbVoiture.SelectedValue),
+                    new MySqlParameter("@type_operation", cbTypeOperation.Text.Trim()),
+                    new MySqlParameter("@description", txtDescription.Text.Trim()),
+                    new MySqlParameter("@montant", decimal.Parse(txtMontant.Text.Trim())),
+                    new MySqlParameter("@date_operation", dtDateOperation.Value.Date),
+                    new MySqlParameter("@status", 1),
+                    new MySqlParameter("@nom_utilisateur", login.nom)
+                    };
 
                 Dbexec.ExecuteQuery(query, ps);
+
+                string queryVoiture = "UPDATE voitures SET etat = 'Maintenance' WHERE voiture_id = @voiture_id";
+                MySqlParameter[] psVoiture ={new MySqlParameter("@voiture_id", cbVoiture.SelectedValue)};
+
+                Dbexec.ExecuteQuery(queryVoiture, psVoiture);
+
                 LogHelper.AddLog("Ajout réparation véhicule ID: " + cbVoiture.SelectedValue, login.nom);
                 MessageBox.Show("Réparation enregistrée avec succès.");
                 ChargerReparations();
@@ -243,14 +290,14 @@ namespace venolocation.droit
             try
             {
                 string query = @"
-                UPDATE reparations SET
-                voiture_id = @voiture_id,
-                type_operation = @type_operation,
-                description = @description,
-                montant = @montant,
-                date_operation = @date_operation,
-                nom_utilisateur = @nom_utilisateur
-                WHERE reparation_id = @reparation_id";
+                        UPDATE reparations SET
+                            voiture_id = @voiture_id,
+                            type_operation = @type_operation,
+                            description = @description,
+                            montant = @montant,
+                            date_operation = @date_operation,
+                            nom_utilisateur = @nom_utilisateur
+                        WHERE reparation_id = @reparation_id";
                 MySqlParameter[] ps =
         {
             new MySqlParameter("@voiture_id", cbVoiture.SelectedValue),
@@ -312,8 +359,61 @@ namespace venolocation.droit
 
         private void btnReset_Click(object sender, EventArgs e)
         {
-            ViderChamps();
-            LogHelper.AddLog("Réinitialisation formulaire réparation", Session.Username);
+            if (reparationIdSelectionnee <= 0)
+            {
+                MessageBox.Show("Sélectionnez une réparation.");
+                return;
+            }
+
+            try
+            {
+                string queryStatus = "UPDATE reparations SET status = 0 WHERE reparation_id = @id";
+                MySqlParameter[] psStatus =
+                {
+            new MySqlParameter("@id", reparationIdSelectionnee)
+        };
+
+                Dbexec.ExecuteQuery(queryStatus, psStatus);
+
+                string queryCheck = @"
+            SELECT COUNT(*) 
+            FROM reparations
+            WHERE voiture_id = @voiture_id
+              AND status = 1
+              AND reparation_id <> @reparation_id";
+
+                DataTable dtCheck = Dbexec.GetData(
+                    queryCheck
+                        .Replace("@voiture_id", voitureIdSelectionnee.ToString())
+                        .Replace("@reparation_id", reparationIdSelectionnee.ToString())
+                );
+
+                int nbAutres = 0;
+                if (dtCheck.Rows.Count > 0)
+                    nbAutres = Convert.ToInt32(dtCheck.Rows[0][0]);
+
+                if (nbAutres == 0)
+                {
+                    string queryVoiture = "UPDATE voitures SET etat = 'Disponible' WHERE voiture_id = @voiture_id";
+                    MySqlParameter[] psVoiture =
+                    {
+                new MySqlParameter("@voiture_id", voitureIdSelectionnee)
+            };
+
+                    Dbexec.ExecuteQuery(queryVoiture, psVoiture);
+                }
+
+                LogHelper.AddLog("Réparation terminée ID: " + reparationIdSelectionnee, login.nom);
+                MessageBox.Show("Réparation terminée avec succès.");
+
+                ChargerReparations();
+                ViderChamps();
+            }
+            catch (Exception ex)
+            {
+                dbErreur.AddLog(ex.Message, login.nom, "reparation", "btnTerminer_Click");
+                MessageBox.Show("Erreur fin réparation : " + ex.Message);
+            }
         }
 
         private void dgvReparations_CellClick(object sender, DataGridViewCellEventArgs e)
@@ -323,6 +423,8 @@ namespace venolocation.droit
                 DataGridViewRow row = dgvReparations.Rows[e.RowIndex];
 
                 reparationIdSelectionnee = Convert.ToInt32(row.Cells["ID"].Value);
+                voitureIdSelectionnee = Convert.ToInt32(row.Cells["Voiture ID"].Value);
+
                 cbVoiture.SelectedValue = row.Cells["Voiture ID"].Value;
                 cbTypeOperation.Text = row.Cells["Type opération"].Value?.ToString();
                 txtDescription.Text = row.Cells["Description"].Value?.ToString();

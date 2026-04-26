@@ -125,6 +125,12 @@
     <Compile Include="droit\accident.Designer.cs">
       <DependentUpon>accident.cs</DependentUpon>
     </Compile>
+    <Compile Include="droit\developpeur.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="droit\developpeur.Designer.cs">
+      <DependentUpon>developpeur.cs</DependentUpon>
+    </Compile>
     <Compile Include="droit\historique_contrats.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -142,6 +148,12 @@
     </Compile>
     <Compile Include="droit\reparation.Designer.cs">
       <DependentUpon>reparation.cs</DependentUpon>
+    </Compile>
+    <Compile Include="droit\setting.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="droit\setting.Designer.cs">
+      <DependentUpon>setting.cs</DependentUpon>
     </Compile>
     <Compile Include="droit\situation.cs">
       <SubType>Form</SubType>
@@ -197,12 +209,6 @@
     <Compile Include="formee\login.Designer.cs">
       <DependentUpon>login.cs</DependentUpon>
     </Compile>
-    <Compile Include="formee\n_reservation.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="formee\n_reservation.Designer.cs">
-      <DependentUpon>n_reservation.cs</DependentUpon>
-    </Compile>
     <Compile Include="formee\reservation.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -223,12 +229,6 @@
     </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="situation.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="situation.Designer.cs">
-      <DependentUpon>situation.cs</DependentUpon>
-    </Compile>
     <EmbeddedResource Include="droit\accident.resx">
       <DependentUpon>accident.cs</DependentUpon>
     </EmbeddedResource>
@@ -240,6 +240,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="droit\reparation.resx">
       <DependentUpon>reparation.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="droit\setting.resx">
+      <DependentUpon>setting.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="droit\situation.resx">
       <DependentUpon>situation.cs</DependentUpon>
@@ -268,9 +271,6 @@
     <EmbeddedResource Include="formee\login.resx">
       <DependentUpon>login.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="formee\n_reservation.resx">
-      <DependentUpon>n_reservation.cs</DependentUpon>
-    </EmbeddedResource>
     <EmbeddedResource Include="formee\reservation.resx">
       <DependentUpon>reservation.cs</DependentUpon>
     </EmbeddedResource>
@@ -290,9 +290,6 @@
       <DependentUpon>Resources.resx</DependentUpon>
       <DesignTime>True</DesignTime>
     </Compile>
-    <EmbeddedResource Include="situation.resx">
-      <DependentUpon>situation.cs</DependentUpon>
-    </EmbeddedResource>
     <None Include="packages.config" />
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
@@ -366,6 +363,20 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="logo_ico.ico" />
+    <None Include="Resources\file.png" />
+    <None Include="Resources\cleaner.png" />
+    <None Include="Resources\reload.png" />
+    <None Include="Resources\data.png" />
+    <None Include="Resources\refresh-data %281%29.png" />
+    <None Include="Resources\save-data.png" />
+    <None Include="Resources\cloud-computing.png" />
+    <None Include="Resources\zoom.png" />
+    <None Include="Resources\logo_png.png" />
+    <None Include="Resources\certificate.png" />
+    <None Include="Resources\parametre.png" />
+    <None Include="Resources\user-interface.png" />
+    <None Include="Resources\updated %281%29.png" />
+    <None Include="Resources\shield.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

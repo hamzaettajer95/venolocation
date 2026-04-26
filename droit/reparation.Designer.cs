@@ -350,14 +350,14 @@
             this.btnReset.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(107)))), ((int)(((byte)(114)))), ((int)(((byte)(128)))));
             this.btnReset.Font = new System.Drawing.Font("Segoe UI", 10.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnReset.ForeColor = System.Drawing.Color.White;
-            this.btnReset.Image = global::venolocation.Properties.Resources.image__366_;
+            this.btnReset.Image = global::venolocation.Properties.Resources.insurance__1_;
             this.btnReset.ImageAlign = System.Windows.Forms.HorizontalAlignment.Left;
             this.btnReset.ImageSize = new System.Drawing.Size(30, 30);
             this.btnReset.Location = new System.Drawing.Point(1019, 13);
             this.btnReset.Name = "btnReset";
             this.btnReset.Size = new System.Drawing.Size(194, 45);
             this.btnReset.TabIndex = 3;
-            this.btnReset.Text = "Réinitialiser";
+            this.btnReset.Text = "   Fin Réparation";
             this.btnReset.Click += new System.EventHandler(this.btnReset_Click);
             // 
             // btnSupprimer
