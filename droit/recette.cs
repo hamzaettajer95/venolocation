@@ -19,7 +19,41 @@ namespace venolocation.droit
         {
             InitializeComponent();
         }
+        private DataTable ChargerRecettesFiltres()
+        {
+            string query = @"
+                            SELECT 
+                                recette_id AS 'ID',
+                                type AS 'Type',
+                                montant AS 'Montant',
+                                DATE_FORMAT(date_recette, '%d/%m/%Y %H:%i:%s') AS 'Date'
+                            FROM recettes
+                            WHERE 1=1 ";
 
+            List<MySqlParameter> ps = new List<MySqlParameter>();
+
+            if (cb_annee.SelectedIndex > 0)
+            {
+                query += " AND YEAR(date_recette) = @annee ";
+                ps.Add(new MySqlParameter("@annee", Convert.ToInt32(cb_annee.Text)));
+            }
+
+            if (cb_mois.SelectedIndex > 0)
+            {
+                query += " AND MONTH(date_recette) = @mois ";
+                ps.Add(new MySqlParameter("@mois", cb_mois.SelectedIndex));
+            }
+
+            if (cb_jour.SelectedIndex > 0)
+            {
+                query += " AND DAY(date_recette) = @jour ";
+                ps.Add(new MySqlParameter("@jour", Convert.ToInt32(cb_jour.Text)));
+            }
+
+            query += " ORDER BY recette_id DESC LIMIT 300;";
+
+            return Dbexec.GetData(query, ps.ToArray());
+        }
 
         private void FillDateCombos()
         {
@@ -51,21 +85,29 @@ namespace venolocation.droit
         {
             try
             {
-                string filter = " WHERE 1=1 ";
-                if (cb_annee.SelectedIndex > 0) filter += $" AND YEAR(date_recette) = {cb_annee.Text}";
-                if (cb_mois.SelectedIndex > 0) filter += $" AND MONTH(date_recette) = {cb_mois.SelectedIndex}";
-                if (cb_jour.SelectedIndex > 0) filter += $" AND DAY(date_recette) = {cb_jour.Text}";
-
-                string query = "SELECT * FROM recettes" + filter;
-                DataTable dt = Dbexec.GetData(query);
+                DataTable dt = ChargerRecettesFiltres();
                 dgvRecette.DataSource = dt;
+
+                GridStyleHelper_1.Apply(dgvRecette);
+
+                if (dgvRecette.Columns.Count > 0)
+                {
+                    dgvRecette.Columns["ID"].FillWeight = 10;
+                    dgvRecette.Columns["Type"].FillWeight = 35;
+                    dgvRecette.Columns["Montant"].FillWeight = 20;
+                    dgvRecette.Columns["Date"].FillWeight = 25;
+
+                    GridStyleHelper_1.AlignLeft(dgvRecette, "Type");
+                }
 
                 decimal total = 0;
                 foreach (DataRow row in dt.Rows)
                 {
-                    total += Convert.ToDecimal(row["montant"]);
+                    if (row["Montant"] != DBNull.Value)
+                        total += Convert.ToDecimal(row["Montant"]);
                 }
-                lbl_totale.Text = total.ToString("N2") + " DH";
+
+                lbl_totale.Text = "Le Totale : " + total.ToString("N2") + " DH";
             }
             catch (Exception ex)
             {
@@ -77,14 +119,33 @@ namespace venolocation.droit
         {
             try
             {
-                string query = "INSERT INTO recettes (type_recette, montant, date_recette) VALUES (@type, @montant, NOW())";
-                MySqlParameter[] ps = {
-            new MySqlParameter("@type", txt_type.Text),
-            new MySqlParameter("@montant", txt_montant.Text)
-        };
+                if (string.IsNullOrWhiteSpace(txt_type.Text))
+                {
+                    MessageBox.Show("Saisissez le type de recette.");
+                    txt_type.Focus();
+                    return;
+                }
+
+                if (!decimal.TryParse(txt_montant.Text.Trim(), out decimal montant) || montant <= 0)
+                {
+                    MessageBox.Show("Montant invalide.");
+                    txt_montant.Focus();
+                    return;
+                }
+
+                string query = @"
+                                INSERT INTO recettes (type, montant, date_recette)
+                                VALUES (@type, @montant, NOW())";
+
+                MySqlParameter[] ps =
+                {
+                        new MySqlParameter("@type", txt_type.Text.Trim()),
+                        new MySqlParameter("@montant", montant)
+                };
 
                 Dbexec.ExecuteQuery(query, ps);
-                LogHelper.AddLog("Ajout recette type: " + txt_type.Text, Session.Username);
+
+                LogHelper.AddLog("Ajout recette type: " + txt_type.Text.Trim(), Session.Username);
                 LoadRecettes();
             }
             catch (Exception ex)
@@ -98,15 +159,29 @@ namespace venolocation.droit
         {
             try
             {
-                if (dgvRecette.CurrentRow != null)
+                if (dgvRecette.CurrentRow == null)
                 {
-                    int id = Convert.ToInt32(dgvRecette.CurrentRow.Cells["recette_id"].Value);
-                    string query = "DELETE FROM recettes WHERE recette_id = @id";
-                    Dbexec.ExecuteQuery(query, new MySqlParameter[] { new MySqlParameter("@id", id) });
-
-                    LogHelper.AddLog("Suppression recette ID: " + id, Session.Username);
-                    LoadRecettes();
+                    MessageBox.Show("Sélectionnez une recette.");
+                    return;
                 }
+
+                int id = Convert.ToInt32(dgvRecette.CurrentRow.Cells["ID"].Value);
+
+                if (MessageBox.Show("Voulez-vous vraiment supprimer cette recette ?", "Confirmation",
+                    MessageBoxButtons.YesNo, MessageBoxIcon.Question) != DialogResult.Yes)
+                {
+                    return;
+                }
+
+                string query = "DELETE FROM recettes WHERE recette_id = @id";
+
+                Dbexec.ExecuteQuery(query, new MySqlParameter[]
+                {
+            new MySqlParameter("@id", id)
+                });
+
+                LogHelper.AddLog("Suppression recette ID: " + id, Session.Username);
+                LoadRecettes();
             }
             catch (Exception ex)
             {
@@ -119,6 +194,8 @@ namespace venolocation.droit
         {
             try
             {
+                this.SuspendLayout();
+
                 FillDateCombos();
                 LoadRecettes();
             }
@@ -127,57 +204,22 @@ namespace venolocation.droit
                 dbErreur.AddLog(ex.Message, Session.Username, "recette", "recette_Load");
                 MessageBox.Show("Erreur lors du chargement du formulaire : " + ex.Message);
             }
+            finally
+            {
+                this.ResumeLayout();
+            }
 
         }
 
-        private void CalculateTotal()
-        {
-            try
-            {
-                decimal total = 0;
-
-                foreach (DataGridViewRow row in dgvRecette.Rows)
-                {
-                    if (row.Cells["montant"].Value != null && row.Cells["montant"].Value != DBNull.Value)
-                    {
-                        total += Convert.ToDecimal(row.Cells["montant"].Value);
-                    }
-                }
-
-                lbl_totale.Text = "Le Totale : "+total.ToString("N2") + " DH";
-            }
-            catch (Exception ex)
-            {
-                dbErreur.AddLog(ex.Message, Session.Username, "recette", "CalculateTotal");
-                MessageBox.Show("Erreur lors du calcul du total : " + ex.Message);
-            }
-        }
+       
 
         private void btn_filtrer_Click(object sender, EventArgs e)
         {
             try
             {
-                string query = "SELECT * FROM recettes WHERE 1=1";
+                LoadRecettes();
 
-                if (cb_annee.SelectedIndex > 0)
-                {
-                    query += " AND YEAR(date_recette) = " + cb_annee.SelectedItem.ToString();
-                }
-
-                if (cb_mois.SelectedIndex > 0)
-                {
-                    query += " AND MONTH(date_recette) = " + cb_mois.SelectedIndex;
-                }
-
-                if (cb_jour.SelectedIndex > 0)
-                {
-                    query += " AND DAY(date_recette) = " + cb_jour.SelectedItem.ToString();
-                }
-
-                dgvRecette.DataSource = Dbexec.GetData(query);
-                LogHelper.AddLog("Filtrage recettes", Session.Username);
-
-                CalculateTotal();
+                //LogHelper.AddLog("Filtrage recettes", Session.Username);
             }
             catch (Exception ex)
             {

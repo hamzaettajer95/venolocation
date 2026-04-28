@@ -27,11 +27,12 @@ namespace venolocation.droit
             try
             {
                 string query = @"
-                    SELECT 
-                        contrat_id,
-                        CONCAT('Contrat N° ', contrat_id) AS contrat_display
-                    FROM contrats
-                    ORDER BY contrat_id DESC;";
+                SELECT 
+                    contrat_id,
+                    CONCAT('Contrat N° ', contrat_id) AS contrat_display
+                FROM contrats
+                ORDER BY contrat_id DESC
+                LIMIT 300;";
 
                 DataTable dt = Dbexec.GetData(query);
 
@@ -52,74 +53,41 @@ namespace venolocation.droit
             try
             {
                 string query = @"
-                    SELECT
-                        accident_id AS 'ID',
-                        contrat_id AS 'Contrat',
-                        DATE_FORMAT(date_accident, '%d/%m/%Y') AS 'Date accident',
-                        description AS 'Description',
-                        montant_reparation AS 'Montant réparation',
-                        montant_paye AS 'Montant payé',
-                        nom_utilisateur AS 'Utilisateur',
-                        DATE_FORMAT(created_at, '%d/%m/%Y %H:%i:%s') AS 'Créé le'
-                    FROM accidents
-                    ORDER BY accident_id DESC;";
+                SELECT
+                    accident_id AS 'ID',
+                    contrat_id AS 'Contrat',
+                    DATE_FORMAT(date_accident, '%d/%m/%Y') AS 'Date accident',
+                    description AS 'Description',
+                    montant_reparation AS 'Montant réparation',
+                    montant_paye AS 'Montant payé',
+                    nom_utilisateur AS 'Utilisateur',
+                    DATE_FORMAT(created_at, '%d/%m/%Y %H:%i:%s') AS 'Créé le'
+                FROM accidents
+                ORDER BY accident_id DESC
+                LIMIT 300;";
 
                 dgvAccidents.DataSource = Dbexec.GetData(query);
 
-                StyliserDataGridView();
+                GridStyleHelper_1.Apply(dgvAccidents);
+
+                if (dgvAccidents.Columns.Count > 0)
+                {
+                    dgvAccidents.Columns["ID"].FillWeight = 10;
+                    dgvAccidents.Columns["Contrat"].FillWeight = 14;
+                    dgvAccidents.Columns["Date accident"].FillWeight = 16;
+                    dgvAccidents.Columns["Description"].FillWeight = 34;
+                    dgvAccidents.Columns["Montant réparation"].FillWeight = 18;
+                    dgvAccidents.Columns["Montant payé"].FillWeight = 18;
+                    dgvAccidents.Columns["Utilisateur"].FillWeight = 15;
+                    dgvAccidents.Columns["Créé le"].FillWeight = 22;
+
+                    GridStyleHelper_1.AlignLeft(dgvAccidents, "Description");
+                }
             }
             catch (Exception ex)
             {
                 dbErreur.AddLog(ex.Message, Session.Username, "accident", "ChargerAccidents");
                 MessageService.Error("Erreur chargement accidents.");
-            }
-        }
-
-        private void StyliserDataGridView()
-        {
-            dgvAccidents.EnableHeadersVisualStyles = false;
-            dgvAccidents.BorderStyle = BorderStyle.None;
-            dgvAccidents.CellBorderStyle = DataGridViewCellBorderStyle.SingleHorizontal;
-            dgvAccidents.ColumnHeadersBorderStyle = DataGridViewHeaderBorderStyle.None;
-            dgvAccidents.RowHeadersVisible = false;
-            dgvAccidents.SelectionMode = DataGridViewSelectionMode.FullRowSelect;
-            dgvAccidents.MultiSelect = false;
-            dgvAccidents.AllowUserToAddRows = false;
-            dgvAccidents.AllowUserToDeleteRows = false;
-            dgvAccidents.AllowUserToResizeRows = false;
-            dgvAccidents.ReadOnly = true;
-            dgvAccidents.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
-            dgvAccidents.BackgroundColor = Color.White;
-            dgvAccidents.GridColor = Color.FromArgb(230, 235, 240);
-
-            dgvAccidents.ColumnHeadersDefaultCellStyle.BackColor = Color.FromArgb(11, 61, 122);
-            dgvAccidents.ColumnHeadersDefaultCellStyle.ForeColor = Color.White;
-            dgvAccidents.ColumnHeadersDefaultCellStyle.Font = new Font("Segoe UI", 11F, FontStyle.Bold);
-            dgvAccidents.ColumnHeadersDefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter;
-            dgvAccidents.ColumnHeadersHeight = 38;
-
-            dgvAccidents.DefaultCellStyle.BackColor = Color.White;
-            dgvAccidents.DefaultCellStyle.ForeColor = Color.FromArgb(40, 40, 40);
-            dgvAccidents.DefaultCellStyle.Font = new Font("Segoe UI", 10.5F, FontStyle.Regular);
-            dgvAccidents.DefaultCellStyle.SelectionBackColor = Color.FromArgb(220, 235, 252);
-            dgvAccidents.DefaultCellStyle.SelectionForeColor = Color.Black;
-            dgvAccidents.DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter;
-
-            dgvAccidents.AlternatingRowsDefaultCellStyle.BackColor = Color.FromArgb(245, 249, 253);
-            dgvAccidents.RowTemplate.Height = 34;
-
-            if (dgvAccidents.Columns.Count > 0)
-            {
-                dgvAccidents.Columns["ID"].FillWeight = 10;
-                dgvAccidents.Columns["Contrat"].FillWeight = 14;
-                dgvAccidents.Columns["Date accident"].FillWeight = 16;
-                dgvAccidents.Columns["Description"].FillWeight = 34;
-                dgvAccidents.Columns["Montant réparation"].FillWeight = 18;
-                dgvAccidents.Columns["Montant payé"].FillWeight = 18;
-                dgvAccidents.Columns["Utilisateur"].FillWeight = 15;
-                dgvAccidents.Columns["Créé le"].FillWeight = 22;
-
-                dgvAccidents.Columns["Description"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleLeft;
             }
         }
 
@@ -169,6 +137,16 @@ namespace venolocation.droit
             return true;
         }
 
+        private decimal LireMontantPaye()
+        {
+            if (string.IsNullOrWhiteSpace(txtMontantPaye.Text))
+                return 0;
+
+            return decimal.Parse(txtMontantPaye.Text.Trim());
+        }
+
+
+
         private void btnEnregistrer_Click(object sender, EventArgs e)
         {
             if (!ChampsValides())
@@ -177,10 +155,10 @@ namespace venolocation.droit
             try
             {
                 string query = @"
-                    INSERT INTO accidents
-                    (contrat_id, date_accident, description, montant_reparation, montant_paye, nom_utilisateur, created_at)
-                    VALUES
-                    (@contrat_id, @date_accident, @description, @montant_reparation, @montant_paye, @nom_utilisateur, NOW())";
+                INSERT INTO accidents
+                (contrat_id, date_accident, description, montant_reparation, montant_paye, nom_utilisateur, created_at)
+                VALUES
+                (@contrat_id, @date_accident, @description, @montant_reparation, @montant_paye, @nom_utilisateur, NOW())";
 
                 MySqlParameter[] ps =
                 {
@@ -188,8 +166,7 @@ namespace venolocation.droit
                     new MySqlParameter("@date_accident", dtDateAccident.Value.Date),
                     new MySqlParameter("@description", txtDescription.Text.Trim()),
                     new MySqlParameter("@montant_reparation", decimal.Parse(txtMontantReparation.Text.Trim())),
-                    new MySqlParameter("@montant_paye",
-                        string.IsNullOrWhiteSpace(txtMontantPaye.Text) ? (object)0 : decimal.Parse(txtMontantPaye.Text.Trim())),
+                    new MySqlParameter("@montant_paye", LireMontantPaye()),
                     new MySqlParameter("@nom_utilisateur", Session.Username)
                 };
 
@@ -210,20 +187,22 @@ namespace venolocation.droit
 
         private void accident_Load(object sender, EventArgs e)
         {
-
             try
             {
+                this.SuspendLayout();
+
                 ChargerContrats();
                 ChargerAccidents();
-                StyliserDataGridView();
                 ViderChamps();
-
-               
             }
             catch (Exception ex)
             {
                 dbErreur.AddLog(ex.Message, Session.Username, "accident", "accident_Load");
                 MessageService.Error("Erreur lors du chargement du formulaire.");
+            }
+            finally
+            {
+                this.ResumeLayout();
             }
 
         }
@@ -242,14 +221,14 @@ namespace venolocation.droit
             try
             {
                 string query = @"
-                    UPDATE accidents SET
-                        contrat_id = @contrat_id,
-                        date_accident = @date_accident,
-                        description = @description,
-                        montant_reparation = @montant_reparation,
-                        montant_paye = @montant_paye,
-                        nom_utilisateur = @nom_utilisateur
-                    WHERE accident_id = @accident_id";
+                UPDATE accidents SET
+                    contrat_id = @contrat_id,
+                    date_accident = @date_accident,
+                    description = @description,
+                    montant_reparation = @montant_reparation,
+                    montant_paye = @montant_paye,
+                    nom_utilisateur = @nom_utilisateur
+                WHERE accident_id = @accident_id";
 
                 MySqlParameter[] ps =
                 {
@@ -257,8 +236,7 @@ namespace venolocation.droit
                     new MySqlParameter("@date_accident", dtDateAccident.Value.Date),
                     new MySqlParameter("@description", txtDescription.Text.Trim()),
                     new MySqlParameter("@montant_reparation", decimal.Parse(txtMontantReparation.Text.Trim())),
-                    new MySqlParameter("@montant_paye",
-                        string.IsNullOrWhiteSpace(txtMontantPaye.Text) ? (object)0 : decimal.Parse(txtMontantPaye.Text.Trim())),
+                    new MySqlParameter("@montant_paye", LireMontantPaye()),
                     new MySqlParameter("@nom_utilisateur", Session.Username),
                     new MySqlParameter("@accident_id", accidentIdSelectionne)
                 };

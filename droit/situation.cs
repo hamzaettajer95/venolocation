@@ -8,14 +8,18 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
-using venolocation.classee;
 using System.Windows.Forms.DataVisualization.Charting;
+
+using MySql.Data.MySqlClient;
+
+using venolocation.classee;
+
 using WinChart = System.Windows.Forms.DataVisualization.Charting.Chart;
-using WinSeries = System.Windows.Forms.DataVisualization.Charting.Series;
 using WinChartArea = System.Windows.Forms.DataVisualization.Charting.ChartArea;
-using WinLegend = System.Windows.Forms.DataVisualization.Charting.Legend;
-using WinDocking = System.Windows.Forms.DataVisualization.Charting.Docking;
 using WinChartColorPalette = System.Windows.Forms.DataVisualization.Charting.ChartColorPalette;
+using WinDocking = System.Windows.Forms.DataVisualization.Charting.Docking;
+using WinLegend = System.Windows.Forms.DataVisualization.Charting.Legend;
+using WinSeries = System.Windows.Forms.DataVisualization.Charting.Series;
 using WinSeriesChartType = System.Windows.Forms.DataVisualization.Charting.SeriesChartType;
 
 
@@ -34,16 +38,21 @@ namespace venolocation.droit
         {
             try
             {
-                
+                this.SuspendLayout();
+
                 InitialiserCharts();
                 ChargerTout();
 
-                
+                //LogHelper.AddLog("Ouverture formulaire situation", Session.Username);
             }
             catch (Exception ex)
             {
                 dbErreur.AddLog(ex.Message, Session.Username, "situation", "situation_Load");
                 MessageService.Error("Erreur lors du chargement du formulaire situation.");
+            }
+            finally
+            {
+                this.ResumeLayout();
             }
         }
        
@@ -52,13 +61,20 @@ namespace venolocation.droit
         {
             try
             {
+                this.SuspendLayout();
+
                 ChargerTout();
-               
+
+               // LogHelper.AddLog("Actualisation situation générale", Session.Username);
             }
             catch (Exception ex)
             {
                 dbErreur.AddLog(ex.Message, Session.Username, "situation", "btnActualiser_Click");
                 MessageService.Error("Erreur lors de l'actualisation.");
+            }
+            finally
+            {
+                this.ResumeLayout();
             }
         }
 
@@ -71,44 +87,76 @@ namespace venolocation.droit
             AppliquerStylesGrids();
         }
 
-        private int GetIntValue(string query)
+        private int GetIntValue(string query, MySqlParameter[] ps = null)
         {
-            DataTable dt = Dbexec.GetData(query);
-            if (dt.Rows.Count > 0 && dt.Rows[0][0] != DBNull.Value)
-                return Convert.ToInt32(dt.Rows[0][0]);
-
-            return 0;
+            return Dbexec.ExecuteScalarInt(query, ps);
         }
 
-        private decimal GetDecimalValue(string query)
+        private decimal GetDecimalValue(string query, MySqlParameter[] ps = null)
         {
-            DataTable dt = Dbexec.GetData(query);
-            if (dt.Rows.Count > 0 && dt.Rows[0][0] != DBNull.Value)
-                return Convert.ToDecimal(dt.Rows[0][0]);
-
-            return 0;
+            return Dbexec.ExecuteScalarDecimal(query, ps);
         }
+
 
         private void ChargerStatistiques()
         {
             try
             {
                 int totalVehicules = GetIntValue("SELECT COUNT(*) FROM voitures");
-                int vehiculesLouees = GetIntValue("SELECT COUNT(*) FROM voitures WHERE etat = 'En location'");
-                int vehiculesDisponibles = GetIntValue("SELECT COUNT(*) FROM voitures WHERE etat = 'Disponible' OR etat IS NULL");
-                int vehiculesMaintenance = GetIntValue("SELECT COUNT(*) FROM voitures WHERE etat IN ('En maintenance','Maintenance','Réparation')");
+
+                int vehiculesLouees = GetIntValue(
+                    "SELECT COUNT(*) FROM voitures WHERE etat = @etat",
+                    new MySqlParameter[]
+                    {
+                        new MySqlParameter("@etat", AppStatus.VoitureEnLocation)
+                    });
+
+                int vehiculesDisponibles = GetIntValue(
+                    "SELECT COUNT(*) FROM voitures WHERE etat = @etat OR etat IS NULL",
+                    new MySqlParameter[]
+                    {
+                        new MySqlParameter("@etat", AppStatus.VoitureDisponible)
+                    });
+
+                int vehiculesMaintenance = GetIntValue(
+                    "SELECT COUNT(*) FROM voitures WHERE etat = @etat",
+                    new MySqlParameter[]
+                    {
+                        new MySqlParameter("@etat", AppStatus.VoitureMaintenance)
+                    });
+
                 int totalClients = GetIntValue("SELECT COUNT(*) FROM clients");
 
-                decimal entreesJour = GetDecimalValue("SELECT IFNULL(SUM(montant),0) FROM recettes WHERE DATE(date_recette) = CURDATE()");
-                decimal sortiesJour = GetDecimalValue("SELECT IFNULL(SUM(montant),0) FROM depenses WHERE DATE(date_depense) = CURDATE()");
+                decimal entreesJour = GetDecimalValue(
+                                 "SELECT IFNULL(SUM(montant),0) FROM recettes WHERE DATE(date_recette) = CURDATE()");
+
+                decimal sortiesJour = GetDecimalValue(
+                                 "SELECT IFNULL(SUM(montant),0) FROM depenses WHERE DATE(date_depense) = CURDATE()");
+
                 decimal soldeJour = entreesJour - sortiesJour;
 
-                decimal entreesMois = GetDecimalValue("SELECT IFNULL(SUM(montant),0) FROM recettes WHERE MONTH(date_recette)=MONTH(CURDATE()) AND YEAR(date_recette)=YEAR(CURDATE())");
-                decimal sortiesMois = GetDecimalValue("SELECT IFNULL(SUM(montant),0) FROM depenses WHERE MONTH(date_depense)=MONTH(CURDATE()) AND YEAR(date_depense)=YEAR(CURDATE())");
+                decimal entreesMois = GetDecimalValue(@"
+                        SELECT IFNULL(SUM(montant),0) 
+                        FROM recettes 
+                        WHERE MONTH(date_recette)=MONTH(CURDATE()) 
+                          AND YEAR(date_recette)=YEAR(CURDATE())");
+
+                decimal sortiesMois = GetDecimalValue(@"
+                        SELECT IFNULL(SUM(montant),0) 
+                        FROM depenses 
+                        WHERE MONTH(date_depense)=MONTH(CURDATE()) 
+                          AND YEAR(date_depense)=YEAR(CURDATE())");
+
                 decimal beneficeNet = entreesMois - sortiesMois;
 
                 int parkTotal = capaciteParking;
-                int parkOccupe = GetIntValue("SELECT COUNT(*) FROM voitures WHERE etat <> 'En location' OR etat IS NULL");
+                int parkOccupe = GetIntValue(
+                    "SELECT COUNT(*) FROM voitures WHERE etat <> @etat OR etat IS NULL",
+                    new MySqlParameter[]
+                    {
+                        new MySqlParameter("@etat", AppStatus.VoitureEnLocation)
+                    });
+
                 int parkDisponible = parkTotal - parkOccupe;
                 if (parkDisponible < 0) parkDisponible = 0;
 
@@ -118,45 +166,38 @@ namespace venolocation.droit
                 int percentClients = totalClients > 0 ? 100 : 0;
                 int tauxOccupation = parkTotal > 0 ? (parkOccupe * 100) / parkTotal : 0;
 
-                // values
                 lblTotalVehicules.Text = totalVehicules.ToString();
                 lblVehiculesLouees.Text = vehiculesLouees.ToString();
                 lblVehiculesDisponibles.Text = vehiculesDisponibles.ToString();
                 lblVehiculesMaintenance.Text = vehiculesMaintenance.ToString();
                 lblTotalClients.Text = totalClients.ToString();
 
-                // percents
                 lblPercentTotalVehicules.Text = "100%";
                 lblPercentLouees.Text = percentLouees + "%";
                 lblPercentDisponibles.Text = percentDisponibles + "%";
                 lblPercentMaintenance.Text = percentMaintenance + "%";
                 lblPercentClients.Text = percentClients + "%";
 
-                // progress
                 pbTotalVehicules.Value = 100;
                 pbVehiculesLouees.Value = Math.Max(0, Math.Min(100, percentLouees));
                 pbVehiculesDisponibles.Value = Math.Max(0, Math.Min(100, percentDisponibles));
                 pbVehiculesMaintenance.Value = Math.Max(0, Math.Min(100, percentMaintenance));
                 pbTotalClients.Value = Math.Max(0, Math.Min(100, percentClients));
 
-                // finance jour
                 lblEntreesJour.Text = entreesJour.ToString("N2") + " DH";
                 lblSortiesJour.Text = sortiesJour.ToString("N2") + " DH";
                 lblSoldeJour.Text = soldeJour.ToString("N2") + " DH";
 
-                // parking
                 lblParkTotal.Text = parkTotal.ToString();
                 lblParkOccupe.Text = parkOccupe.ToString();
                 lblParkDisponible.Text = parkDisponible.ToString();
                 lblTauxOccupation.Text = tauxOccupation + "%";
 
-                // mois
                 lblEntreesMois.Text = entreesMois.ToString("N2") + " DH";
                 lblSortiesMois.Text = sortiesMois.ToString("N2") + " DH";
                 lblBeneficeNet.Text = beneficeNet.ToString("N2") + " DH";
 
                 ChargerChartVehicules(vehiculesLouees, vehiculesDisponibles, vehiculesMaintenance);
-                //ChargerChartRevenus(entreesMois, sortiesMois, beneficeNet);
                 ChargerChartRevenusMois();
             }
             catch (Exception ex)
@@ -250,25 +291,25 @@ namespace venolocation.droit
                 s["DoughnutRadius"] = "58";
 
                 decimal locations = GetDecimalValue(@"
-            SELECT IFNULL(SUM(montant),0)
-            FROM recettes
-            WHERE MONTH(date_recette)=MONTH(CURDATE())
-              AND YEAR(date_recette)=YEAR(CURDATE())
-              AND (type = 'Location' OR type = 'Contrat')");
+                        SELECT IFNULL(SUM(montant),0)
+                        FROM recettes
+                        WHERE MONTH(date_recette)=MONTH(CURDATE())
+                          AND YEAR(date_recette)=YEAR(CURDATE())
+                          AND (type = 'Location' OR type = 'Contrat')");
 
                 decimal accidents = GetDecimalValue(@"
-            SELECT IFNULL(SUM(montant),0)
-            FROM recettes
-            WHERE MONTH(date_recette)=MONTH(CURDATE())
-              AND YEAR(date_recette)=YEAR(CURDATE())
-              AND type = 'Accident'");
+                        SELECT IFNULL(SUM(montant),0)
+                        FROM recettes
+                        WHERE MONTH(date_recette)=MONTH(CURDATE())
+                          AND YEAR(date_recette)=YEAR(CURDATE())
+                          AND type = 'Accident'");
 
                 decimal autres = GetDecimalValue(@"
-            SELECT IFNULL(SUM(montant),0)
-            FROM recettes
-            WHERE MONTH(date_recette)=MONTH(CURDATE())
-              AND YEAR(date_recette)=YEAR(CURDATE())
-              AND type NOT IN ('Location', 'Contrat', 'Accident')");
+                        SELECT IFNULL(SUM(montant),0)
+                        FROM recettes
+                        WHERE MONTH(date_recette)=MONTH(CURDATE())
+                          AND YEAR(date_recette)=YEAR(CURDATE())
+                          AND type NOT IN ('Location', 'Contrat', 'Accident')");
 
                 if (locations > 0) s.Points.AddXY("Locations", locations);
                 if (accidents > 0) s.Points.AddXY("Accidents", accidents);
@@ -363,15 +404,15 @@ namespace venolocation.droit
         {
             try
             {
-                StyleGrid(dgvTopVehicules);
-                StyleGrid(dgvDernieresLocations);
-                StyleGrid(dgvActivites);
+                GridStyleHelper_2.Apply(dgvTopVehicules);
+                GridStyleHelper_2.Apply(dgvDernieresLocations);
+                GridStyleHelper_2.Apply(dgvActivites);
 
                 if (dgvTopVehicules.Columns.Count > 0)
                 {
                     dgvTopVehicules.Columns["Véhicule"].FillWeight = 70;
                     dgvTopVehicules.Columns["Nombre locations"].FillWeight = 30;
-                    dgvTopVehicules.Columns["Véhicule"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleLeft;
+                    GridStyleHelper_2.AlignLeft(dgvTopVehicules, "Véhicule");
                 }
 
                 if (dgvDernieresLocations.Columns.Count > 0)
@@ -382,8 +423,9 @@ namespace venolocation.droit
                     dgvDernieresLocations.Columns["Date début"].FillWeight = 16;
                     dgvDernieresLocations.Columns["Date fin"].FillWeight = 16;
                     dgvDernieresLocations.Columns["Montant"].FillWeight = 16;
-                    dgvDernieresLocations.Columns["Client"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleLeft;
-                    dgvDernieresLocations.Columns["Véhicule"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleLeft;
+
+                    GridStyleHelper_2.AlignLeft(dgvDernieresLocations, "Client");
+                    GridStyleHelper_2.AlignLeft(dgvDernieresLocations, "Véhicule");
                 }
 
                 if (dgvActivites.Columns.Count > 0)
@@ -391,7 +433,8 @@ namespace venolocation.droit
                     dgvActivites.Columns["Utilisateur"].FillWeight = 20;
                     dgvActivites.Columns["Opération"].FillWeight = 55;
                     dgvActivites.Columns["Date"].FillWeight = 25;
-                    dgvActivites.Columns["Opération"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleLeft;
+
+                    GridStyleHelper_2.AlignLeft(dgvActivites, "Opération");
                 }
             }
             catch (Exception ex)
@@ -400,38 +443,6 @@ namespace venolocation.droit
             }
         }
 
-        private void StyleGrid(DataGridView dgv)
-        {
-            dgv.EnableHeadersVisualStyles = false;
-            dgv.BorderStyle = BorderStyle.None;
-            dgv.CellBorderStyle = DataGridViewCellBorderStyle.SingleHorizontal;
-            dgv.ColumnHeadersBorderStyle = DataGridViewHeaderBorderStyle.None;
-            dgv.RowHeadersVisible = false;
-            dgv.SelectionMode = DataGridViewSelectionMode.FullRowSelect;
-            dgv.MultiSelect = false;
-            dgv.AllowUserToAddRows = false;
-            dgv.AllowUserToDeleteRows = false;
-            dgv.AllowUserToResizeRows = false;
-            dgv.ReadOnly = true;
-            dgv.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
-            dgv.BackgroundColor = Color.White;
-            dgv.GridColor = Color.FromArgb(230, 235, 240);
 
-            dgv.ColumnHeadersDefaultCellStyle.BackColor = Color.FromArgb(18, 73, 139);
-            dgv.ColumnHeadersDefaultCellStyle.ForeColor = Color.White;
-            dgv.ColumnHeadersDefaultCellStyle.Font = new Font("Segoe UI", 11F, FontStyle.Bold);
-            dgv.ColumnHeadersDefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter;
-            dgv.ColumnHeadersHeight = 36;
-
-            dgv.DefaultCellStyle.BackColor = Color.White;
-            dgv.DefaultCellStyle.ForeColor = Color.FromArgb(40, 40, 40);
-            dgv.DefaultCellStyle.Font = new Font("Segoe UI", 10F, FontStyle.Regular);
-            dgv.DefaultCellStyle.SelectionBackColor = Color.FromArgb(220, 235, 252);
-            dgv.DefaultCellStyle.SelectionForeColor = Color.Black;
-            dgv.DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter;
-
-            dgv.AlternatingRowsDefaultCellStyle.BackColor = Color.FromArgb(245, 249, 253);
-            dgv.RowTemplate.Height = 32;
-        }
     }
 }

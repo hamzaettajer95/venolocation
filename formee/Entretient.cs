@@ -20,7 +20,7 @@ namespace venolocation.formee
         {
             InitializeComponent();
         }
-        string connectionString=dashboard.connection_string;
+        
         private void guna2TextBox1_TextChanged(object sender, EventArgs e)
         {
 
@@ -98,25 +98,26 @@ namespace venolocation.formee
         {
             try
             {
-                using (MySqlConnection cn = new MySqlConnection(connectionString))
+                string query = @"
+                                SELECT 
+                                    voiture_id, 
+                                    CONCAT(matricule, ' - ', marque, ' ', modele) AS voiture
+                                FROM voitures
+                                WHERE etat = @etat OR etat IS NULL
+                                ORDER BY matricule
+                                LIMIT 500;";
+
+                MySqlParameter[] ps =
                 {
-                    cn.Open();
+                    new MySqlParameter("@etat", AppStatus.VoitureDisponible)
+                };
 
-                    string query = @"SELECT voiture_id, CONCAT(matricule, ' - ', marque, ' ', modele) AS voiture
-                                     FROM voitures
-                                     ORDER BY matricule";
+                DataTable dt = Dbexec.GetData(query, ps);
 
-                    using (MySqlDataAdapter da = new MySqlDataAdapter(query, cn))
-                    {
-                        DataTable dt = new DataTable();
-                        da.Fill(dt);
-
-                        cbVoiture.DataSource = dt;
-                        cbVoiture.DisplayMember = "voiture";
-                        cbVoiture.ValueMember = "voiture_id";
-                        cbVoiture.SelectedIndex = -1;
-                    }
-                }
+                cbVoiture.DataSource = dt;
+                cbVoiture.DisplayMember = "voiture";
+                cbVoiture.ValueMember = "voiture_id";
+                cbVoiture.SelectedIndex = -1;
             }
             catch (Exception ex)
             {
@@ -127,11 +128,27 @@ namespace venolocation.formee
 
         private void Entretient_Load(object sender, EventArgs e)
         {
-            ChargerVoitures();
-            ChargerTypesEntretien();
+            try
+            {
+                this.SuspendLayout();
 
-            dtDateEntretien.Value = DateTime.Now;
-            dtDateEntretien.Format = DateTimePickerFormat.Short;
+                ChargerVoitures();
+                ChargerTypesEntretien();
+
+                dtDateEntretien.Value = DateTime.Now;
+                dtDateEntretien.Format = DateTimePickerFormat.Short;
+                dtprocheEntretien.Value = DateTime.Now;
+                dtprocheEntretien.Format = DateTimePickerFormat.Short;
+            }
+            catch (Exception ex)
+            {
+                dbErreur.AddLog(ex.Message, Session.Username, "Entretient", "Entretient_Load");
+                MessageBox.Show("Erreur chargement formulaire : " + ex.Message);
+            }
+            finally
+            {
+                this.ResumeLayout();
+            }
         }
 
         private void btnValider_Click(object sender, EventArgs e)
@@ -141,64 +158,78 @@ namespace venolocation.formee
 
             try
             {
-                using (MySqlConnection cn = new MySqlConnection(connectionString))
+                using (MySqlConnection cn = Dbexec.GetConnection())
                 {
                     cn.Open();
-                    MySqlTransaction tr = cn.BeginTransaction();
 
-                    try
+                    using (MySqlTransaction tr = cn.BeginTransaction())
                     {
-                        string insertEntretien = @"
-                            INSERT INTO entretiens
-                            (voiture_id, type_entretien, description, date_entretien, kilometrage, date_prochaine, prochain_km, prix, nom_utilisateur)
-                            VALUES
-                            (@voiture_id, @type_entretien, @description, @date_entretien, @kilometrage, @date_prochaine, @prochain_km, @prix, @nom_utilisateur)";
-
-                        using (MySqlCommand cmd = new MySqlCommand(insertEntretien, cn, tr))
+                        try
                         {
-                            cmd.Parameters.AddWithValue("@voiture_id", cbVoiture.SelectedValue);
-                            cmd.Parameters.AddWithValue("@type_entretien", cbTypeEntretien.Text.Trim());
-                            cmd.Parameters.AddWithValue("@description", string.IsNullOrWhiteSpace(txtDescription.Text) ? (object)DBNull.Value : txtDescription.Text.Trim());
-                            cmd.Parameters.AddWithValue("@date_entretien", dtDateEntretien.Value.Date);
-                            cmd.Parameters.AddWithValue("@kilometrage", int.Parse(txtKilometrage.Text.Trim()));
-                            cmd.Parameters.AddWithValue("@date_prochaine",dtprocheEntretien.Value.Date); 
-                            cmd.Parameters.AddWithValue("@prochain_km",
-                                string.IsNullOrWhiteSpace(txtProchainKilometrage.Text)
-                                ? (object)DBNull.Value
-                                : int.Parse(txtProchainKilometrage.Text.Trim()));
-                            cmd.Parameters.AddWithValue("@prix",
-                                string.IsNullOrWhiteSpace(txtPrix.Text)
-                                ? (object)DBNull.Value
-                                : decimal.Parse(txtPrix.Text.Trim()));
-                            cmd.Parameters.AddWithValue("@nom_utilisateur", Session.Username);
+                            int kilometrage = int.Parse(txtKilometrage.Text.Trim());
 
-                            cmd.ExecuteNonQuery();
+                            object prochainKm = string.IsNullOrWhiteSpace(txtProchainKilometrage.Text)
+                                ? (object)DBNull.Value
+                                : int.Parse(txtProchainKilometrage.Text.Trim());
+
+                            object prix = string.IsNullOrWhiteSpace(txtPrix.Text)
+                                ? (object)DBNull.Value
+                                : decimal.Parse(txtPrix.Text.Trim());
+
+                            object description = string.IsNullOrWhiteSpace(txtDescription.Text)
+                                ? (object)DBNull.Value
+                                : txtDescription.Text.Trim();
+
+                            string insertEntretien = @"
+                                    INSERT INTO entretiens
+                                    (voiture_id, type_entretien, description, date_entretien, kilometrage, date_prochaine, prochain_km, prix, nom_utilisateur)
+                                    VALUES
+                                    (@voiture_id, @type_entretien, @description, @date_entretien, @kilometrage, @date_prochaine, @prochain_km, @prix, @nom_utilisateur)";
+
+                            using (MySqlCommand cmd = new MySqlCommand(insertEntretien, cn, tr))
+                            {
+                                cmd.Parameters.AddWithValue("@voiture_id", cbVoiture.SelectedValue);
+                                cmd.Parameters.AddWithValue("@type_entretien", cbTypeEntretien.Text.Trim());
+                                cmd.Parameters.AddWithValue("@description", description);
+                                cmd.Parameters.AddWithValue("@date_entretien", dtDateEntretien.Value.Date);
+                                cmd.Parameters.AddWithValue("@kilometrage", kilometrage);
+                                cmd.Parameters.AddWithValue("@date_prochaine", dtprocheEntretien.Value.Date);
+                                cmd.Parameters.AddWithValue("@prochain_km", prochainKm);
+                                cmd.Parameters.AddWithValue("@prix", prix);
+                                cmd.Parameters.AddWithValue("@nom_utilisateur", Session.Username);
+
+                                cmd.ExecuteNonQuery();
+                            }
+
+                            string updateKilometrage = @"
+                                        UPDATE voitures
+                                        SET kilometrage = @kilometrage
+                                        WHERE voiture_id = @voiture_id
+                                          AND (@kilometrage > IFNULL(kilometrage, 0))";
+
+                            using (MySqlCommand cmdUpdate = new MySqlCommand(updateKilometrage, cn, tr))
+                            {
+                                cmdUpdate.Parameters.AddWithValue("@kilometrage", kilometrage);
+                                cmdUpdate.Parameters.AddWithValue("@voiture_id", cbVoiture.SelectedValue);
+                                cmdUpdate.ExecuteNonQuery();
+                            }
+
+                           
+
+                            tr.Commit();
+
+                            LogHelper.AddLog("Ajout entretien voiture : " + cbVoiture.Text + " et le type : " + cbTypeEntretien.Text, Session.Username);
+                            MessageBox.Show("Entretien ajouté avec succès.");
+
+                            ViderChamps();
+                            ChargerVoitures();
                         }
-
-                        string updateVoiture = @"
-                            UPDATE voitures
-                            SET kilometrage = @kilometrage
-                            WHERE voiture_id = @voiture_id
-                              AND (@kilometrage > IFNULL(kilometrage, 0))";
-
-                        using (MySqlCommand cmdUpdate = new MySqlCommand(updateVoiture, cn, tr))
+                        catch (Exception ex)
                         {
-                            cmdUpdate.Parameters.AddWithValue("@kilometrage", int.Parse(txtKilometrage.Text.Trim()));
-                            cmdUpdate.Parameters.AddWithValue("@voiture_id", cbVoiture.SelectedValue);
-                            cmdUpdate.ExecuteNonQuery();
+                            tr.Rollback();
+                            dbErreur.AddLog(ex.Message, Session.Username, "Entretient", "btnValider_Click_Transaction");
+                            MessageBox.Show("Erreur lors de l'enregistrement : " + ex.Message);
                         }
-
-                        tr.Commit();
-                        LogHelper.AddLog("Ajoute Entretien voiture : " + cbVoiture.Text+" et le type :"+cbTypeEntretien.Text, Session.Username);
-                        MessageBox.Show("Entretien ajouté avec succès.");
-
-                        ViderChamps();
-                    }
-                    catch (Exception ex)
-                    {
-                        tr.Rollback();
-                        dbErreur.AddLog(ex.Message, Session.Username, "Entretient", "btnValider_Click_Transaction");
-                        MessageBox.Show("Erreur lors de l'enregistrement : " + ex.Message);
                     }
                 }
             }
@@ -219,11 +250,12 @@ namespace venolocation.formee
             txtProchainKilometrage.Clear();
             txtPrix.Clear();
             dtDateEntretien.Value = DateTime.Now;
+            dtprocheEntretien.Value = DateTime.Now;
         }
 
         private void btnAnnuler_Click(object sender, EventArgs e)
         {
-
+            ViderChamps();
         }
 
         private void txtKilometrage_KeyPress(object sender, KeyPressEventArgs e)

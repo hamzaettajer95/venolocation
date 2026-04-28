@@ -11,7 +11,7 @@ namespace venolocation.formee
 {
     public partial class contrats : Form
     {
-        private readonly string connectionString = dashboard.connection_string;
+       
         private readonly string nomUtilisateur = Session.Username;
         private DataTable dtClients;
         private DataTable dtVoitures;
@@ -29,38 +29,36 @@ namespace venolocation.formee
         {
             try
             {
-                using (MySqlConnection cn = new MySqlConnection(connectionString))
+                string query = @"
+                                SELECT 
+                                    r.reservation_id,
+                                    r.client_id,
+                                    r.voiture_id,
+                                    r.date_debut,
+                                    r.heure_debut,
+                                    r.date_fin,
+                                    r.heure_fin,
+                                    CONCAT('RES-', r.reservation_id, ' | ',
+                                           cl.nom, ' ', cl.prenom, ' | ',
+                                           v.matricule, ' - ', v.marque, ' ', v.modele) AS reservation_display
+                                FROM reservations r
+                                INNER JOIN clients cl ON cl.client_id = r.client_id
+                                INNER JOIN voitures v ON v.voiture_id = r.voiture_id
+                                WHERE r.status = @status
+                                ORDER BY r.reservation_id DESC
+                                LIMIT 300;";
+
+                MySqlParameter[] ps =
                 {
-                    cn.Open();
+                    new MySqlParameter("@status", AppStatus.ReservationConfirmee)
+                };
 
-                    string query = @"
-                SELECT r.reservation_id,
-                       r.client_id,
-                       r.voiture_id,
-                       r.date_debut,
-                       r.heure_debut,
-                       r.date_fin,
-                       r.heure_fin,
-                       CONCAT('RES-', r.reservation_id, ' | ',
-                              cl.nom, ' ', cl.prenom, ' | ',
-                              v.matricule, ' - ', v.marque, ' ', v.modele) AS reservation_display
-                FROM reservations r
-                INNER JOIN clients cl ON cl.client_id = r.client_id
-                INNER JOIN voitures v ON v.voiture_id = r.voiture_id
-                WHERE r.status = 'Confirmée'
-                ORDER BY r.reservation_id DESC;";
+                dtReservationsConfirmees = Dbexec.GetData(query, ps);
 
-                    using (MySqlDataAdapter da = new MySqlDataAdapter(query, cn))
-                    {
-                        dtReservationsConfirmees = new DataTable();
-                        da.Fill(dtReservationsConfirmees);
-
-                        cbReservation.DataSource = dtReservationsConfirmees;
-                        cbReservation.DisplayMember = "reservation_display";
-                        cbReservation.ValueMember = "reservation_id";
-                        cbReservation.SelectedIndex = -1;
-                    }
-                }
+                cbReservation.DataSource = dtReservationsConfirmees;
+                cbReservation.DisplayMember = "reservation_display";
+                cbReservation.ValueMember = "reservation_id";
+                cbReservation.SelectedIndex = -1;
             }
             catch (Exception ex)
             {
@@ -302,7 +300,7 @@ namespace venolocation.formee
 
         private void btnEnregistrer_Click_1(object sender, EventArgs e)
         {
-            
+
             if (!ChampsValides())
                 return;
 
@@ -334,22 +332,23 @@ namespace venolocation.formee
                 decimal avance = numAvance.Value;
                 decimal total = CalculerTotal();
 
-                using (MySqlConnection cn = new MySqlConnection(connectionString))
+                using (MySqlConnection cn = Dbexec.GetConnection())
                 {
                     cn.Open();
+
                     using (MySqlTransaction tr = cn.BeginTransaction())
                     {
                         try
                         {
                             string query = @"
-                        INSERT INTO contrats
-                        (client_id, voiture_id, reservation_id, date_contrat, heure_debut, 
-                         date_retour_prevu, heure_retour_prevu, kilometrage_sortie, 
-                         prix_jour, prix_heure, avance, total, status, nom_utilisateur)
-                        VALUES
-                        (@client_id, @voiture_id, @reservation_id, @date_contrat, @heure_debut,
-                         @date_retour_prevu, @heure_retour_prevu, @kilometrage_sortie,
-                         @prix_jour, @prix_heure, @avance, @total, @status, @nom_utilisateur);";
+                    INSERT INTO contrats
+                    (client_id, voiture_id, reservation_id, date_contrat, heure_debut, 
+                     date_retour_prevu, heure_retour_prevu, kilometrage_sortie, 
+                     prix_jour, prix_heure, avance, total, status, nom_utilisateur)
+                    VALUES
+                    (@client_id, @voiture_id, @reservation_id, @date_contrat, @heure_debut,
+                     @date_retour_prevu, @heure_retour_prevu, @kilometrage_sortie,
+                     @prix_jour, @prix_heure, @avance, @total, @status, @nom_utilisateur);";
 
                             using (MySqlCommand cmd = new MySqlCommand(query, cn, tr))
                             {
@@ -366,21 +365,23 @@ namespace venolocation.formee
                                 cmd.Parameters.AddWithValue("@prix_heure", prixHeure);
                                 cmd.Parameters.AddWithValue("@avance", avance);
                                 cmd.Parameters.AddWithValue("@total", total);
-                                cmd.Parameters.AddWithValue("@status", "En cours");
+                                cmd.Parameters.AddWithValue("@status", AppStatus.ContratEnCours);
                                 cmd.Parameters.AddWithValue("@nom_utilisateur", nomUtilisateur);
 
                                 cmd.ExecuteNonQuery();
                             }
 
+                            
                             if (reservationIdSelectionnee > 0)
                             {
                                 string updateReservation = @"
-                            UPDATE reservations
-                            SET status = 'Terminée'
-                            WHERE reservation_id = @reservation_id;";
+                                        UPDATE reservations
+                                        SET status = @status
+                                        WHERE reservation_id = @reservation_id;";
 
                                 using (MySqlCommand cmdRes = new MySqlCommand(updateReservation, cn, tr))
                                 {
+                                    cmdRes.Parameters.AddWithValue("@status", AppStatus.ReservationTerminee);
                                     cmdRes.Parameters.AddWithValue("@reservation_id", reservationIdSelectionnee);
                                     cmdRes.ExecuteNonQuery();
                                 }
@@ -398,6 +399,7 @@ namespace venolocation.formee
 
                 MessageBox.Show("Contrat enregistré avec succès.");
                 LogHelper.AddLog("Enregistrement contrat client ID: " + clientId + " voiture ID: " + voitureId, Session.Username);
+
                 ChargerReservationsConfirmees();
                 ChargerVoituresDisponibles();
                 NouveauContrat();
@@ -414,6 +416,8 @@ namespace venolocation.formee
         {
             try
             {
+                this.SuspendLayout();
+
                 ChargerClients();
                 ChargerVoituresDisponibles();
                 ChargerReservationsConfirmees();
@@ -425,6 +429,10 @@ namespace venolocation.formee
             {
                 dbErreur.AddLog(ex.Message, Session.Username, "contrats", "contrats_Load");
                 MessageBox.Show("Erreur chargement formulaire : " + ex.Message);
+            }
+            finally
+            {
+                this.ResumeLayout();
             }
 
         }
@@ -462,27 +470,25 @@ namespace venolocation.formee
         {
             try
             {
-                using (MySqlConnection cn = new MySqlConnection(connectionString))
-                {
-                    cn.Open();
+                string query = @"
+                                SELECT 
+                                    client_id, 
+                                    nom, 
+                                    prenom, 
+                                    telephone, 
+                                    adresse, 
+                                    permis_num,
+                                    CONCAT(nom, ' ', prenom, ' - ', cin) AS client_display
+                                FROM clients
+                                ORDER BY nom, prenom
+                                LIMIT 500;";
 
-                    string query = @"
-                        SELECT client_id, nom, prenom, telephone, adresse, permis_num,
-                               CONCAT(nom, ' ', prenom, ' - ', cin) AS client_display
-                        FROM clients
-                        ORDER BY nom, prenom;";
+                dtClients = Dbexec.GetData(query);
 
-                    using (MySqlDataAdapter da = new MySqlDataAdapter(query, cn))
-                    {
-                        dtClients = new DataTable();
-                        da.Fill(dtClients);
-
-                        cbClient.DataSource = dtClients;
-                        cbClient.DisplayMember = "client_display";
-                        cbClient.ValueMember = "client_id";
-                        cbClient.SelectedIndex = -1;
-                    }
-                }
+                cbClient.DataSource = dtClients;
+                cbClient.DisplayMember = "client_display";
+                cbClient.ValueMember = "client_id";
+                cbClient.SelectedIndex = -1;
             }
             catch (Exception ex)
             {
@@ -495,48 +501,53 @@ namespace venolocation.formee
         {
             try
             {
-                using (MySqlConnection cn = new MySqlConnection(connectionString))
+                   string query = @"
+                    SELECT 
+                        voiture_id, 
+                        matricule, 
+                        marque, 
+                        modele, 
+                        carburant, 
+                        categorie,
+                        kilometrage, 
+                        prix_jour, 
+                        prix_heure
+                    FROM voitures
+                    WHERE etat = @etat OR etat IS NULL
+                    ORDER BY matricule
+                    LIMIT 500;";
+
+                MySqlParameter[] ps =
                 {
-                    cn.Open();
+            new MySqlParameter("@etat", AppStatus.VoitureDisponible)
+        };
 
-                    string query = @"
-                        SELECT voiture_id, matricule, marque, modele, carburant, categorie,
-                               kilometrage, prix_jour, prix_heure
-                        FROM voitures
-                        WHERE etat = 'Disponible' OR etat IS NULL
-                        ORDER BY matricule;";
+                dtVoitures = Dbexec.GetData(query, ps);
 
-                    using (MySqlDataAdapter da = new MySqlDataAdapter(query, cn))
-                    {
-                        dtVoitures = new DataTable();
-                        da.Fill(dtVoitures);
+                cbImmatriculation.DataSource = dtVoitures.Copy();
+                cbImmatriculation.DisplayMember = "matricule";
+                cbImmatriculation.ValueMember = "voiture_id";
+                cbImmatriculation.SelectedIndex = -1;
 
-                        cbImmatriculation.DataSource = dtVoitures.Copy();
-                        cbImmatriculation.DisplayMember = "matricule";
-                        cbImmatriculation.ValueMember = "voiture_id";
-                        cbImmatriculation.SelectedIndex = -1;
+                cbMarque.DataSource = dtVoitures.Copy();
+                cbMarque.DisplayMember = "marque";
+                cbMarque.ValueMember = "voiture_id";
+                cbMarque.SelectedIndex = -1;
 
-                        cbMarque.DataSource = dtVoitures.Copy();
-                        cbMarque.DisplayMember = "marque";
-                        cbMarque.ValueMember = "voiture_id";
-                        cbMarque.SelectedIndex = -1;
+                cbModele.DataSource = dtVoitures.Copy();
+                cbModele.DisplayMember = "modele";
+                cbModele.ValueMember = "voiture_id";
+                cbModele.SelectedIndex = -1;
 
-                        cbModele.DataSource = dtVoitures.Copy();
-                        cbModele.DisplayMember = "modele";
-                        cbModele.ValueMember = "voiture_id";
-                        cbModele.SelectedIndex = -1;
+                cbCarburant.DataSource = dtVoitures.Copy();
+                cbCarburant.DisplayMember = "carburant";
+                cbCarburant.ValueMember = "voiture_id";
+                cbCarburant.SelectedIndex = -1;
 
-                        cbCarburant.DataSource = dtVoitures.Copy();
-                        cbCarburant.DisplayMember = "carburant";
-                        cbCarburant.ValueMember = "voiture_id";
-                        cbCarburant.SelectedIndex = -1;
-
-                        cbCategorie.DataSource = dtVoitures.Copy();
-                        cbCategorie.DisplayMember = "categorie";
-                        cbCategorie.ValueMember = "voiture_id";
-                        cbCategorie.SelectedIndex = -1;
-                    }
-                }
+                cbCategorie.DataSource = dtVoitures.Copy();
+                cbCategorie.DisplayMember = "categorie";
+                cbCategorie.ValueMember = "voiture_id";
+                cbCategorie.SelectedIndex = -1;
             }
             catch (Exception ex)
             {
@@ -593,17 +604,8 @@ namespace venolocation.formee
         {
             try
             {
-                using (MySqlConnection cn = new MySqlConnection(connectionString))
-                {
-                    cn.Open();
-
-                    string query = "SELECT IFNULL(MAX(contrat_id), 0) + 1 FROM contrats";
-                    using (MySqlCommand cmd = new MySqlCommand(query, cn))
-                    {
-                        int prochainId = Convert.ToInt32(cmd.ExecuteScalar());
-                        return "CTR-" + prochainId.ToString("0000");
-                    }
-                }
+                int prochainId = Dbexec.ExecuteScalarInt("SELECT IFNULL(MAX(contrat_id), 0) + 1 FROM contrats");
+                return "CTR-" + prochainId.ToString("0000");
             }
             catch
             {

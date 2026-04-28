@@ -22,89 +22,141 @@ namespace venolocation.droit
             InitializeComponent();
         }
 
-        private void StyleGrid(DataGridView dgv)
-        {
 
-            dgv.EnableHeadersVisualStyles = false;
-            dgv.BorderStyle = BorderStyle.None;
-            dgv.CellBorderStyle = DataGridViewCellBorderStyle.SingleHorizontal;
-            dgv.ColumnHeadersBorderStyle = DataGridViewHeaderBorderStyle.None;
-            dgv.RowHeadersVisible = false;
-            dgv.SelectionMode = DataGridViewSelectionMode.FullRowSelect;
-            dgv.MultiSelect = false;
-            dgv.AllowUserToAddRows = false;
-            dgv.AllowUserToDeleteRows = false;
-            dgv.AllowUserToResizeRows = false;
-            dgv.ReadOnly = true;
-            dgv.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
-            dgv.BackgroundColor = Color.White;
-            dgv.GridColor = Color.FromArgb(230, 235, 240);
-
-            dgv.ColumnHeadersDefaultCellStyle.BackColor = Color.FromArgb(18, 73, 139);
-            dgv.ColumnHeadersDefaultCellStyle.ForeColor = Color.White;
-            dgv.ColumnHeadersDefaultCellStyle.Font = new Font("Segoe UI", 12F, FontStyle.Bold);
-            dgv.ColumnHeadersDefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter;
-            dgv.ColumnHeadersHeight = 38;
-
-            dgv.DefaultCellStyle.BackColor = Color.White;
-            dgv.DefaultCellStyle.ForeColor = Color.FromArgb(40, 40, 40);
-            dgv.DefaultCellStyle.Font = new Font("Segoe UI", 11F, FontStyle.Regular);
-            dgv.DefaultCellStyle.SelectionBackColor = Color.FromArgb(220, 235, 252);
-            dgv.DefaultCellStyle.SelectionForeColor = Color.Black;
-            dgv.DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleLeft;
-
-            dgv.AlternatingRowsDefaultCellStyle.BackColor = Color.FromArgb(245, 249, 253);
-            dgv.RowTemplate.Height = 34;
-        }
         private void LoadContracts()
         {
-
-            if (cb_statut.SelectedItem == null) return;
-
-            string selectedStatus = cb_statut.SelectedItem.ToString();
-            string query ;
-            string filter = " WHERE 1=1 ";
-
-            
-            if (cb_client.SelectedValue != null && Convert.ToInt32(cb_client.SelectedValue) > 0)
-                filter += $" AND client_id = {cb_client.SelectedValue}";
-
-            
-            if (cb_voiture.SelectedValue != null && Convert.ToInt32(cb_voiture.SelectedValue) > 0)
-                filter += $" AND voiture_id = {cb_voiture.SelectedValue}";
-
-
-          
-            string dateStart = dtp_debut.Value.ToString("yyyy-MM-dd");
-            string dateEnd = dtp_fin.Value.ToString("yyyy-MM-dd");
-
-          
-            filter += $" AND DATE(date_contrat) >= '{dateStart}' AND DATE(date_retour_prevu) <= '{dateEnd}'";
-
-
-
-
-            if (selectedStatus == "En cours")
-            {
-                query = "SELECT contrat_id, client_id, voiture_id, status, date_contrat, date_retour_prevu, total FROM contrats" + filter;
-            }
-            else if (selectedStatus == "--- Tout ---")
-            {
-                
-                query = $@"SELECT contrat_id, client_id, voiture_id, status, date_contrat, date_retour_prevu, total FROM contrats {filter}
-                          UNION 
-                          SELECT contrat_id, client_id, voiture_id, status, date_contrat, date_retour_prevu, total FROM old_contrats {filter}";
-            }
-            else
-            {
-                
-                query = $"SELECT contrat_id, client_id, voiture_id, status, date_contrat, date_retour_prevu, total FROM old_contrats {filter} AND status = '{selectedStatus}'";
-            }
+            if (cb_statut.SelectedItem == null)
+                return;
 
             try
             {
-                dgvHistory.DataSource = Dbexec.GetData(query);
-                StyleGrid(dgvHistory);
+                string selectedStatus = cb_statut.SelectedItem.ToString();
+
+                string query;
+                List<MySqlParameter> ps = new List<MySqlParameter>();
+
+                string filter = " WHERE 1=1 ";
+
+                if (cb_client.SelectedValue != null && Convert.ToInt32(cb_client.SelectedValue) > 0)
+                {
+                    filter += " AND client_id = @client_id ";
+                    ps.Add(new MySqlParameter("@client_id", Convert.ToInt32(cb_client.SelectedValue)));
+                }
+
+                if (cb_voiture.SelectedValue != null && Convert.ToInt32(cb_voiture.SelectedValue) > 0)
+                {
+                    filter += " AND voiture_id = @voiture_id ";
+                    ps.Add(new MySqlParameter("@voiture_id", Convert.ToInt32(cb_voiture.SelectedValue)));
+                }
+
+                filter += " AND DATE(date_contrat) >= @date_debut AND DATE(date_retour_prevu) <= @date_fin ";
+                ps.Add(new MySqlParameter("@date_debut", dtp_debut.Value.Date));
+                ps.Add(new MySqlParameter("@date_fin", dtp_fin.Value.Date));
+
+                if (selectedStatus == AppStatus.ContratEnCours)
+                {
+                    query = @"
+                                SELECT 
+                                    contrat_id AS 'ID',
+                                    client_id AS 'Client ID',
+                                    voiture_id AS 'Voiture ID',
+                                    status AS 'Statut',
+                                    DATE_FORMAT(date_contrat, '%d/%m/%Y') AS 'Date contrat',
+                                    DATE_FORMAT(date_retour_prevu, '%d/%m/%Y') AS 'Retour prévu',
+                                    total AS 'Total'
+                                FROM contrats " + filter + @"
+                                ORDER BY contrat_id DESC
+                                LIMIT 300;";
+                }
+                else if (selectedStatus == "--- Tout ---")
+                {
+                    query = @"
+                            SELECT 
+                                c.contrat_id AS 'ID',
+                                c.client_id AS 'Client ID',
+                                c.voiture_id AS 'Voiture ID',
+                                c.status AS 'Statut',
+                                DATE_FORMAT(c.date_contrat, '%d/%m/%Y') AS 'Date contrat',
+                                DATE_FORMAT(c.date_retour_prevu, '%d/%m/%Y') AS 'Retour prévu',
+                                c.total AS 'Total'
+                            FROM contrats c
+                            WHERE 1=1 ";
+
+                    if (cb_client.SelectedValue != null && Convert.ToInt32(cb_client.SelectedValue) > 0)
+                        query += " AND c.client_id = @client_id ";
+
+                    if (cb_voiture.SelectedValue != null && Convert.ToInt32(cb_voiture.SelectedValue) > 0)
+                        query += " AND c.voiture_id = @voiture_id ";
+
+                    query += @" 
+                                AND DATE(c.date_contrat) >= @date_debut 
+                                AND DATE(c.date_retour_prevu) <= @date_fin
+
+                            UNION ALL
+
+                            SELECT 
+                                o.contrat_id AS 'ID',
+                                o.client_id AS 'Client ID',
+                                o.voiture_id AS 'Voiture ID',
+                                o.status AS 'Statut',
+                                DATE_FORMAT(o.date_contrat, '%d/%m/%Y') AS 'Date contrat',
+                                DATE_FORMAT(o.date_retour_prevu, '%d/%m/%Y') AS 'Retour prévu',
+                                o.total AS 'Total'
+                            FROM old_contrats o
+                            WHERE 1=1 ";
+
+                    if (cb_client.SelectedValue != null && Convert.ToInt32(cb_client.SelectedValue) > 0)
+                        query += " AND o.client_id = @client_id ";
+
+                    if (cb_voiture.SelectedValue != null && Convert.ToInt32(cb_voiture.SelectedValue) > 0)
+                        query += " AND o.voiture_id = @voiture_id ";
+
+                    query += @"
+                                    AND DATE(o.date_contrat) >= @date_debut 
+                                    AND DATE(o.date_retour_prevu) <= @date_fin
+                                    AND NOT EXISTS (
+                                        SELECT 1 
+                                        FROM contrats c2 
+                                        WHERE c2.contrat_id = o.contrat_id
+                                    )
+
+                                ORDER BY ID DESC
+                                LIMIT 300;";
+                }
+            
+                else
+                {
+                    filter += " AND status = @status ";
+                    ps.Add(new MySqlParameter("@status", selectedStatus));
+
+                    query = @"
+                            SELECT 
+                            contrat_id AS 'ID',
+                            client_id AS 'Client ID',
+                            voiture_id AS 'Voiture ID',
+                            status AS 'Statut',
+                            DATE_FORMAT(date_contrat, '%d/%m/%Y') AS 'Date contrat',
+                            DATE_FORMAT(date_retour_prevu, '%d/%m/%Y') AS 'Retour prévu',
+                            total AS 'Total'
+                            FROM old_contrats " + filter + @"
+                            ORDER BY contrat_id DESC
+                            LIMIT 300;";
+                }
+
+                dgvHistory.DataSource = Dbexec.GetData(query, ps.ToArray());
+
+                GridStyleHelper_1.Apply(dgvHistory);
+
+                if (dgvHistory.Columns.Count > 0)
+                {
+                    dgvHistory.Columns["ID"].FillWeight = 10;
+                    dgvHistory.Columns["Client ID"].FillWeight = 15;
+                    dgvHistory.Columns["Voiture ID"].FillWeight = 15;
+                    dgvHistory.Columns["Statut"].FillWeight = 18;
+                    dgvHistory.Columns["Date contrat"].FillWeight = 18;
+                    dgvHistory.Columns["Retour prévu"].FillWeight = 18;
+                    dgvHistory.Columns["Total"].FillWeight = 15;
+                }
             }
             catch (Exception ex)
             {
@@ -117,19 +169,27 @@ namespace venolocation.droit
         {
             try
             {
-                
-                DataTable dtClients = Dbexec.GetData("SELECT client_id, nom FROM clients");
+                DataTable dtClients = Dbexec.GetData(@"
+                                                        SELECT client_id, nom
+                                                        FROM clients
+                                                        ORDER BY nom
+                                                        LIMIT 500;");
+
                 DataRow drClient = dtClients.NewRow();
-                drClient["client_id"] = 0; 
+                drClient["client_id"] = 0;
                 drClient["nom"] = "--- Tout ---";
-                dtClients.Rows.InsertAt(drClient, 0); 
+                dtClients.Rows.InsertAt(drClient, 0);
 
                 cb_client.DataSource = dtClients;
                 cb_client.DisplayMember = "nom";
                 cb_client.ValueMember = "client_id";
 
-               
-                DataTable dtCars = Dbexec.GetData("SELECT voiture_id, matricule FROM voitures");
+                DataTable dtCars = Dbexec.GetData(@"
+                                                    SELECT voiture_id, matricule
+                                                    FROM voitures
+                                                    ORDER BY matricule
+                                                    LIMIT 500;");
+
                 DataRow drCar = dtCars.NewRow();
                 drCar["voiture_id"] = 0;
                 drCar["matricule"] = "--- Tout ---";
@@ -139,10 +199,8 @@ namespace venolocation.droit
                 cb_voiture.DisplayMember = "matricule";
                 cb_voiture.ValueMember = "voiture_id";
 
-                
                 cb_client.SelectedIndex = 0;
                 cb_voiture.SelectedIndex = 0;
-
             }
             catch (Exception ex)
             {
@@ -152,63 +210,47 @@ namespace venolocation.droit
         }
         private void historique_contrats_Load(object sender, EventArgs e)
         {
-            FillCombos();            
-            cb_statut.SelectedIndex = 0;
-            dtp_debut.Value = DateTime.Now.AddMonths(-1);
-            dtp_fin.Value = DateTime.Now.AddMonths(1);
+            try
+            {
+                this.SuspendLayout();
 
-            LoadContracts();
+                FillCombos();
+
+                cb_statut.Items.Clear();
+                cb_statut.Items.Add("--- Tout ---");
+                cb_statut.Items.Add(AppStatus.ContratEnCours);
+                cb_statut.Items.Add(AppStatus.ContratTermine);
+                cb_statut.Items.Add(AppStatus.ContratAnnule);
+                cb_statut.SelectedIndex = 0;
+
+                dtp_debut.Value = DateTime.Now.AddMonths(-1);
+                dtp_fin.Value = DateTime.Now.AddMonths(1);
+
+                LoadContracts();
+            }
+            catch (Exception ex)
+            {
+                dbErreur.AddLog(ex.Message, Session.Username, "historique_contrats", "historique_contrats_Load");
+                MessageBox.Show("Erreur lors du chargement du formulaire : " + ex.Message);
+            }
+            finally
+            {
+                this.ResumeLayout();
+            }
         }
 
         private void btnannuller_Click(object sender, EventArgs e)
         {
-            if (dgvHistory.CurrentRow != null)
-            {
-                string status = dgvHistory.CurrentRow.Cells["status"].Value.ToString();
-                if (status != "En cours")
-                {
-                    MessageBox.Show("Vous ne pouvez pas annuler un contrat déjà terminé ou annulé.", "Action Interdite", MessageBoxButtons.OK, MessageBoxIcon.Warning);
-                    return;
-                }
-
-                int idContrat = Convert.ToInt32(dgvHistory.CurrentRow.Cells["contrat_id"].Value);
-                int idVoiture = Convert.ToInt32(dgvHistory.CurrentRow.Cells["voiture_id"].Value);
-
-                DialogResult res = MessageBox.Show("Êtes-vous sûr de vouloir annuler ce contrat ?", "Confirmation", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
-                if (res == DialogResult.Yes)
-                {
-                    try
-                    {
-                        string archiveQuery = @"INSERT INTO old_contrats (contrat_id, client_id, voiture_id, date_contrat, date_retour_prevu, status, total) 
-                                               SELECT contrat_id, client_id, voiture_id, date_contrat, date_retour_prevu, 'Annulé', total 
-                                               FROM contrats WHERE contrat_id = @id";
-                        Dbexec.ExecuteQuery(archiveQuery, new MySqlParameter[] { new MySqlParameter("@id", idContrat) });
-
-                        Dbexec.ExecuteQuery("DELETE FROM contrats WHERE contrat_id = @id", new MySqlParameter[] { new MySqlParameter("@id", idContrat) });
-
-                        Dbexec.ExecuteQuery("UPDATE voitures SET etat = 'Disponible' WHERE voiture_id = @vid", new MySqlParameter[] { new MySqlParameter("@vid", idVoiture) });
-                        
-                        
-                        
-                        LogHelper.AddLog("Annulation contrat ID: " + idContrat, Session.Username);
-                        MessageBox.Show("Contrat annulé avec succès et véhicule libéré.", "Succès", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                        LoadContracts();
-                    }
-                    catch (Exception ex)
-                    {
-                        dbErreur.AddLog(ex.Message, Session.Username, "historique_contrats", "btnannuller_Click");
-                        MessageBox.Show("Echec de l'opération : " + ex.Message, "Erreur", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                    }
-                }
-            }
+           
+            
         }
 
         private void dgvHistory_SelectionChanged(object sender, EventArgs e)
         {
-            if (dgvHistory.CurrentRow != null && dgvHistory.CurrentRow.Cells["status"].Value != null)
+            if (dgvHistory.CurrentRow != null && dgvHistory.CurrentRow.Cells["Statut"].Value != null)
             {
-                string status = dgvHistory.CurrentRow.Cells["status"].Value.ToString();
-                btnAnnuler.Enabled = (status == "En cours");
+                string status = dgvHistory.CurrentRow.Cells["Statut"].Value.ToString();
+                btnAnnuler.Enabled = (status == AppStatus.ContratEnCours);
             }
         }
 
@@ -222,44 +264,71 @@ namespace venolocation.droit
 
         private void btnAnnuler_Click(object sender, EventArgs e)
         {
-            if (dgvHistory.CurrentRow != null)
+            AnnulerContratSelectionne();
+        }
+
+        private void AnnulerContratSelectionne()
+        {
+            if (dgvHistory.CurrentRow == null)
+                return;
+
+            string status = dgvHistory.CurrentRow.Cells["Statut"].Value.ToString();
+
+            if (status != AppStatus.ContratEnCours)
             {
-                string status = dgvHistory.CurrentRow.Cells["status"].Value.ToString();
-                if (status != "En cours")
+                MessageBox.Show("Vous ne pouvez pas annuler un contrat déjà terminé ou annulé.", "Action Interdite", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                return;
+            }
+
+            int idContrat = Convert.ToInt32(dgvHistory.CurrentRow.Cells["ID"].Value);
+            int idVoiture = Convert.ToInt32(dgvHistory.CurrentRow.Cells["Voiture ID"].Value);
+
+            DialogResult res = MessageBox.Show("Êtes-vous sûr de vouloir annuler ce contrat ?", "Confirmation", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+            if (res != DialogResult.Yes)
+                return;
+
+            try
+            {
+                string archiveQuery = @"
+                            INSERT INTO old_contrats 
+                            (contrat_id, client_id, voiture_id, date_contrat, date_retour_prevu, status, total)
+                            SELECT 
+                                contrat_id, client_id, voiture_id, date_contrat, date_retour_prevu, @status_annule, total
+                            FROM contrats 
+                            WHERE contrat_id = @id";
+
+                MySqlParameter[] psArchive =
                 {
-                    MessageBox.Show("Vous ne pouvez pas annuler un contrat déjà terminé ou annulé.", "Action Interdite", MessageBoxButtons.OK, MessageBoxIcon.Warning);
-                    return;
-                }
+                                new MySqlParameter("@status_annule", AppStatus.ContratAnnule),
+                                new MySqlParameter("@id", idContrat)
+                   };
 
-                int idContrat = Convert.ToInt32(dgvHistory.CurrentRow.Cells["contrat_id"].Value);
-                int idVoiture = Convert.ToInt32(dgvHistory.CurrentRow.Cells["voiture_id"].Value);
+                Dbexec.ExecuteQuery(archiveQuery, psArchive);
 
-                DialogResult res = MessageBox.Show("Êtes-vous sûr de vouloir annuler ce contrat ?", "Confirmation", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
-                if (res == DialogResult.Yes)
-                {
-                    try
+                Dbexec.ExecuteQuery(
+                    "DELETE FROM contrats WHERE contrat_id = @id",
+                    new MySqlParameter[]
                     {
-                        string archiveQuery = @"INSERT INTO old_contrats (contrat_id, client_id, voiture_id, date_contrat, date_retour_prevu, status, total) 
-                                               SELECT contrat_id, client_id, voiture_id, date_contrat, date_retour_prevu, 'Annulé', total 
-                                               FROM contrats WHERE contrat_id = @id";
-                        Dbexec.ExecuteQuery(archiveQuery, new MySqlParameter[] { new MySqlParameter("@id", idContrat) });
+                new MySqlParameter("@id", idContrat)
+                    });
 
-                        Dbexec.ExecuteQuery("DELETE FROM contrats WHERE contrat_id = @id", new MySqlParameter[] { new MySqlParameter("@id", idContrat) });
-
-                        Dbexec.ExecuteQuery("UPDATE voitures SET etat = 'Disponible' WHERE voiture_id = @vid", new MySqlParameter[] { new MySqlParameter("@vid", idVoiture) });
-
-
-
-                        LogHelper.AddLog("Annulation contrat ID: " + idContrat, Session.Username);
-                        MessageBox.Show("Contrat annulé avec succès et véhicule libéré.", "Succès", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                        LoadContracts();
-                    }
-                    catch (Exception ex)
+                Dbexec.ExecuteQuery(
+                    "UPDATE voitures SET etat = @etat WHERE voiture_id = @vid",
+                    new MySqlParameter[]
                     {
-                        dbErreur.AddLog(ex.Message, Session.Username, "historique_contrats", "btnannuller_Click");
-                        MessageBox.Show("Echec de l'opération : " + ex.Message, "Erreur", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                    }
-                }
+                new MySqlParameter("@etat", AppStatus.VoitureDisponible),
+                new MySqlParameter("@vid", idVoiture)
+                    });
+
+                LogHelper.AddLog("Annulation contrat ID: " + idContrat, Session.Username);
+                MessageBox.Show("Contrat annulé avec succès et véhicule libéré.", "Succès", MessageBoxButtons.OK, MessageBoxIcon.Information);
+
+                LoadContracts();
+            }
+            catch (Exception ex)
+            {
+                dbErreur.AddLog(ex.Message, Session.Username, "historique_contrats", "AnnulerContratSelectionne");
+                MessageBox.Show("Echec de l'opération : " + ex.Message, "Erreur", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
     }

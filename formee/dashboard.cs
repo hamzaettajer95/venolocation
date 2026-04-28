@@ -28,63 +28,74 @@ namespace venolocation.formee
 
         private void dashboard_Load(object sender, EventArgs e)
         {
-            timer1.Start();
-            lbldate.Text = DateTime.Now.ToString("dddd dd/MM/yyyy");
+            try
+            {
+                this.SuspendLayout();
 
+                timer1.Start();
+                lbldate.Text = DateTime.Now.ToString("dddd dd/MM/yyyy");
+
+                ChargerToutesLesDonnees();
+            }
+            catch (Exception ex)
+            {
+                dbErreur.AddLog(ex.Message, Session.Username, "dashboard", "dashboard_Load");
+                MessageBox.Show("Erreur chargement dashboard : " + ex.Message);
+            }
+            finally
+            {
+                this.ResumeLayout();
+            }
+
+        }
+        private void ChargerToutesLesDonnees()
+        {
             ChargerStatistiquesDashboard();
             ChargerRetoursPrevusAujourdhui();
             ChargerAlertesDocumentsExpires();
             ChargerDernieresOperations();
-
         }
 
         private void ChargerStatistiquesDashboard()
         {
             try
             {
-                using (MySqlConnection cn = new MySqlConnection(connectionString))
-                {
-                    cn.Open();
-
-                    // Voitures disponibles
-                    using (MySqlCommand cmd = new MySqlCommand(
-                        "SELECT COUNT(*) FROM voitures WHERE etat = 'Disponible' OR etat IS NULL", cn))
+                lblVoituresDisponibles.Text = Dbexec.ExecuteScalarInt(
+                    @"SELECT COUNT(*) 
+                      FROM voitures 
+                      WHERE etat = @etat OR etat IS NULL",
+                    new MySqlParameter[]
                     {
-                        lblVoituresDisponibles.Text = cmd.ExecuteScalar().ToString();
-                    }
+                        new MySqlParameter("@etat", AppStatus.VoitureDisponible)
+                    }).ToString();
 
-                    // Voitures louées
-                    using (MySqlCommand cmd = new MySqlCommand(
-                        "SELECT COUNT(*) FROM voitures WHERE etat = 'En location'", cn))
+                lblVoituresLouees.Text = Dbexec.ExecuteScalarInt(
+                    @"SELECT COUNT(*) 
+                      FROM voitures 
+                      WHERE etat = @etat",
+                    new MySqlParameter[]
                     {
-                        lblVoituresLouees.Text = cmd.ExecuteScalar().ToString();
-                    }
+                        new MySqlParameter("@etat", AppStatus.VoitureEnLocation)
+                    }).ToString();
 
-                    // Réservations confirmées  pour aujourd'hui ou futures
-                    using (MySqlCommand cmd = new MySqlCommand(
-                        @"SELECT COUNT(*) 
-                  FROM reservations 
-                  WHERE status IN ( 'Confirmée')", cn))
+                lblReservations.Text = Dbexec.ExecuteScalarInt(
+                    @"SELECT COUNT(*) 
+                      FROM reservations 
+                      WHERE status = @status",
+                    new MySqlParameter[]
                     {
-                        lblReservations.Text = cmd.ExecuteScalar().ToString();
-                    }
+                        new MySqlParameter("@status", AppStatus.ReservationConfirmee)
+                    }).ToString();
 
-                    // Recette du jour
-                    using (MySqlCommand cmd = new MySqlCommand(
-                            @"SELECT IFNULL(SUM(montant),0) 
-                              FROM recettes 
-                              WHERE DATE(date_recette) = CURDATE()", cn))
-                    {
-                        decimal totalJour = Convert.ToDecimal(cmd.ExecuteScalar());
+                decimal totalJour = Dbexec.ExecuteScalarDecimal(
+                    @"SELECT IFNULL(SUM(montant), 0)
+                      FROM recettes
+                      WHERE DATE(date_recette) = CURDATE()");
 
-                        //MessageBox.Show(totalJour.ToString());
-                        lblRecetteJour.Text = totalJour.ToString();
-                    }
-                }
+                lblRecetteJour.Text = totalJour.ToString("0.00");
             }
             catch (Exception ex)
             {
-               
                 dbErreur.AddLog(ex.Message, Session.Username, "dashboard", "ChargerStatistiquesDashboard");
                 MessageBox.Show("Erreur dashboard : " + ex.Message);
             }
@@ -94,11 +105,7 @@ namespace venolocation.formee
         {
             try
             {
-                using (MySqlConnection cn = new MySqlConnection(connectionString))
-                {
-                    cn.Open();
-
-                    string query = @"
+                string query = @"
                 SELECT 
                     CONCAT(cl.nom, ' ', cl.prenom) AS Client,
                     CONCAT(v.matricule, ' - ', v.marque, ' ', v.modele) AS Véhicule,
@@ -107,19 +114,18 @@ namespace venolocation.formee
                 INNER JOIN clients cl ON cl.client_id = c.client_id
                 INNER JOIN voitures v ON v.voiture_id = c.voiture_id
                 WHERE c.date_retour_prevu = CURDATE()
-                  AND c.status <> 'Terminé'
-                ORDER BY c.heure_retour_prevu ASC;";
+                  AND c.status <> @status_termine
+                ORDER BY c.heure_retour_prevu ASC
+                LIMIT 50;";
 
-                    using (MySqlDataAdapter da = new MySqlDataAdapter(query, cn))
-                    {
-                        DataTable dt = new DataTable();
-                        da.Fill(dt);
-                        dgvRetoursPrevus.DataSource = dt;
-                        dgvRetoursPrevus.DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter;
-                    }
-                }
+                MySqlParameter[] ps =
+                {
+                    new MySqlParameter("@status_termine", AppStatus.ContratTermine)
+                };
 
-                StyleGrid(dgvRetoursPrevus);
+                dgvRetoursPrevus.DataSource = Dbexec.GetData(query, ps);
+
+                GridStyleHelper_1.ApplyCompact(dgvRetoursPrevus);
             }
             catch (Exception ex)
             {
@@ -130,34 +136,27 @@ namespace venolocation.formee
 
         private void ChargerAlertesDocumentsExpires()
         {
-            
-
             try
             {
-                using (MySqlConnection cn = new MySqlConnection(connectionString))
-                {
-                    cn.Open();
-
-                    string query = @"
+                string query = @"
                 SELECT 
                     type AS Type,
                     voiture AS Voiture,
                     DATE_FORMAT(date_alerte, '%d/%m/%Y') AS Date,
                     statut AS Statut
                 FROM alerte
-                WHERE vue = 0
-                ORDER BY date_alerte DESC, id DESC;";
+                WHERE vue = @vue
+                ORDER BY date_alerte DESC, id DESC
+                LIMIT 50;";
 
-                    using (MySqlDataAdapter da = new MySqlDataAdapter(query, cn))
-                    {
-                        DataTable dt = new DataTable();
-                        da.Fill(dt);
-                        dgvAlertes.DataSource = dt;
-                        dgvAlertes.DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter;
-                    }
-                }
+                MySqlParameter[] ps =
+                {
+                    new MySqlParameter("@vue", 0)
+                };
 
-                StyleGrid(dgvAlertes);
+                dgvAlertes.DataSource = Dbexec.GetData(query, ps);
+
+                GridStyleHelper_1.ApplyCompact(dgvAlertes);
             }
             catch (Exception ex)
             {
@@ -170,35 +169,27 @@ namespace venolocation.formee
         {
             try
             {
-                using (MySqlConnection cn = new MySqlConnection(connectionString))
+                string query = @"
+                SELECT 
+                    utilisateur AS Utilisateur,
+                    message AS Opération,
+                    DATE_FORMAT(date, '%d/%m/%Y %H:%i:%s') AS Date
+                FROM logs
+                ORDER BY id DESC
+                LIMIT 20;";
+
+                dgvDernieresOperations.DataSource = Dbexec.GetData(query);
+
+                GridStyleHelper_1.ApplyCompact(dgvDernieresOperations);
+
+                if (dgvDernieresOperations.Columns.Count > 0)
                 {
-                    cn.Open();
+                    dgvDernieresOperations.Columns["Utilisateur"].FillWeight = 25;
+                    dgvDernieresOperations.Columns["Opération"].FillWeight = 50;
+                    dgvDernieresOperations.Columns["Date"].FillWeight = 25;
 
-                    string query = @"
-                    SELECT 
-                        utilisateur AS Utilisateur,
-                        message AS Opération,
-                        DATE_FORMAT(date, '%d/%m/%Y %H:%i:%s') AS Date
-                    FROM logs
-                    ORDER BY id DESC
-                    LIMIT 20;";
-
-                    using (MySqlDataAdapter da = new MySqlDataAdapter(query, cn))
-                    {
-                        DataTable dt = new DataTable();
-                        da.Fill(dt);
-                        dgvDernieresOperations.DataSource = dt;
-                        dgvDernieresOperations.DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter;
-                        dgvDernieresOperations.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
-                        dgvDernieresOperations.ColumnHeadersDefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter;
-
-                        dgvDernieresOperations.Columns["Utilisateur"].FillWeight = 25;
-                        dgvDernieresOperations.Columns["Opération"].FillWeight = 50;
-                        dgvDernieresOperations.Columns["Date"].FillWeight = 25;
-                    }
+                    GridStyleHelper_1.AlignLeft(dgvDernieresOperations, "Opération");
                 }
-
-                StyleGrid(dgvDernieresOperations);
             }
             catch (Exception ex)
             {
@@ -207,40 +198,8 @@ namespace venolocation.formee
             }
         }
 
-        private void StyleGrid(DataGridView dgv)
-        {
-           
-            dgv.EnableHeadersVisualStyles = false;
-            dgv.BorderStyle = BorderStyle.None;
-            dgv.CellBorderStyle = DataGridViewCellBorderStyle.SingleHorizontal;
-            dgv.ColumnHeadersBorderStyle = DataGridViewHeaderBorderStyle.None;
-            dgv.RowHeadersVisible = false;
-            dgv.SelectionMode = DataGridViewSelectionMode.FullRowSelect;
-            dgv.MultiSelect = false;
-            dgv.AllowUserToAddRows = false;
-            dgv.AllowUserToDeleteRows = false;
-            dgv.AllowUserToResizeRows = false;
-            dgv.ReadOnly = true;
-            dgv.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
-            dgv.BackgroundColor = Color.White;
-            dgv.GridColor = Color.FromArgb(230, 235, 240);
 
-            dgv.ColumnHeadersDefaultCellStyle.BackColor = Color.FromArgb(18, 73, 139);
-            dgv.ColumnHeadersDefaultCellStyle.ForeColor = Color.White;
-            dgv.ColumnHeadersDefaultCellStyle.Font = new Font("Segoe UI", 12F, FontStyle.Bold);
-            dgv.ColumnHeadersDefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter;
-            dgv.ColumnHeadersHeight = 38;
-
-            dgv.DefaultCellStyle.BackColor = Color.White;
-            dgv.DefaultCellStyle.ForeColor = Color.FromArgb(40, 40, 40);
-            dgv.DefaultCellStyle.Font = new Font("Segoe UI", 11F, FontStyle.Regular);
-            dgv.DefaultCellStyle.SelectionBackColor = Color.FromArgb(220, 235, 252);
-            dgv.DefaultCellStyle.SelectionForeColor = Color.Black;
-            dgv.DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleLeft;
-
-            dgv.AlternatingRowsDefaultCellStyle.BackColor = Color.FromArgb(245, 249, 253);
-            dgv.RowTemplate.Height = 34;
-        }
+       
 
         private void cmsUser_Opening(object sender, CancelEventArgs e)
         {
@@ -308,10 +267,20 @@ namespace venolocation.formee
 
         private void dashboard_Activated(object sender, EventArgs e)
         {
-            ChargerStatistiquesDashboard();
-            ChargerRetoursPrevusAujourdhui();
-            ChargerAlertesDocumentsExpires();
-            ChargerDernieresOperations();
+            try
+            {
+                this.SuspendLayout();
+                ChargerToutesLesDonnees();
+            }
+            catch (Exception ex)
+            {
+                dbErreur.AddLog(ex.Message, Session.Username, "dashboard", "dashboard_Activated");
+                MessageBox.Show("Erreur actualisation dashboard : " + ex.Message);
+            }
+            finally
+            {
+                this.ResumeLayout();
+            }
         }
 
         private void btnHistorique_Click(object sender, EventArgs e)

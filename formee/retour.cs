@@ -20,51 +20,66 @@ namespace venolocation.formee
         {
             InitializeComponent();
         }
-        string connectionString = dashboard.connection_string;
+        
         private int contratId = -1;
         private int voitureId = -1;
         private int kilometrageSortie = 0;
+
+
         private void retour_Load(object sender, EventArgs e)
         {
-            ChargerVoituresEnLocation();
+            try
+            {
+                this.SuspendLayout();
 
-            txtInfoContrat.ReadOnly = true;
-            txtInfoContrat.Clear();
+                ChargerVoituresEnLocation();
 
-            txtDescriptionAccident.Clear();
-            txtMontantReparation.Clear();
-            txtKilometrageRetour.Clear();
+                txtInfoContrat.ReadOnly = true;
+                txtInfoContrat.Clear();
 
-            btnRetourSimple.Enabled = false;
-            btnAccident.Enabled = false;
+                txtDescriptionAccident.Clear();
+                txtMontantReparation.Clear();
+                txtKilometrageRetour.Clear();
+
+                btnRetourSimple.Enabled = false;
+                btnAccident.Enabled = false;
+            }
+            catch (Exception ex)
+            {
+                dbErreur.AddLog(ex.Message, Session.Username, "retour", "retour_Load");
+                MessageBox.Show("Erreur chargement formulaire : " + ex.Message,
+                    "Erreur", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+            finally
+            {
+                this.ResumeLayout();
+            }
         }
         private void ChargerVoituresEnLocation()
         {
             try
             {
-                using (MySqlConnection cn = new MySqlConnection(connectionString))
+                string query = @"
+                                SELECT DISTINCT 
+                                    v.voiture_id,
+                                    CONCAT(v.matricule, ' - ', v.marque, ' ', v.modele) AS voiture
+                                FROM contrats c
+                                INNER JOIN voitures v ON v.voiture_id = c.voiture_id
+                                WHERE c.status <> @status_termine
+                                ORDER BY v.matricule
+                                LIMIT 500;";
+                
+                MySqlParameter[] ps =
                 {
-                    cn.Open();
+                    new MySqlParameter("@status_termine", AppStatus.ContratTermine)
+                };
 
-                    string query = @"
-                        SELECT DISTINCT v.voiture_id,
-                               CONCAT(v.matricule, ' - ', v.marque, ' ', v.modele) AS voiture
-                        FROM contrats c
-                        INNER JOIN voitures v ON v.voiture_id = c.voiture_id
-                        WHERE c.status <> 'Terminé'
-                        ORDER BY v.matricule;";
+                DataTable dt = Dbexec.GetData(query, ps);
 
-                    using (MySqlDataAdapter da = new MySqlDataAdapter(query, cn))
-                    {
-                        DataTable dt = new DataTable();
-                        da.Fill(dt);
-
-                        cbVoiture.DataSource = dt;
-                        cbVoiture.DisplayMember = "voiture";
-                        cbVoiture.ValueMember = "voiture_id";
-                        cbVoiture.SelectedIndex = -1;
-                    }
-                }
+                cbVoiture.DataSource = dt;
+                cbVoiture.DisplayMember = "voiture";
+                cbVoiture.ValueMember = "voiture_id";
+                cbVoiture.SelectedIndex = -1;
             }
             catch (Exception ex)
             {
@@ -120,86 +135,83 @@ namespace venolocation.formee
         {
             try
             {
-                using (MySqlConnection cn = new MySqlConnection(connectionString))
+                string query = @"
+                            SELECT 
+                                c.contrat_id,
+                                c.voiture_id,
+                                c.client_id,
+                                c.date_contrat,
+                                c.heure_debut,
+                                c.date_retour_prevu,
+                                c.heure_retour_prevu,
+                                c.kilometrage_sortie,
+                                c.kilometrage_retour,
+                                c.prix_jour,
+                                c.prix_heure,
+                                c.avance,
+                                c.total,
+                                c.status,
+                                cl.nom,
+                                cl.prenom,
+                                v.matricule,
+                                v.marque,
+                                v.modele
+                            FROM contrats c
+                            INNER JOIN clients cl ON cl.client_id = c.client_id
+                            INNER JOIN voitures v ON v.voiture_id = c.voiture_id
+                            WHERE c.voiture_id = @voiture_id
+                              AND c.status <> @status_termine
+                            ORDER BY c.contrat_id DESC
+                            LIMIT 1;";
+
+                MySqlParameter[] ps =
                 {
-                    cn.Open();
+                    new MySqlParameter("@voiture_id", selectedVoitureId),
+                    new MySqlParameter("@status_termine", AppStatus.ContratTermine)
+                };
 
-                    string query = @"
-                        SELECT 
-                            c.contrat_id,
-                            c.voiture_id,
-                            c.client_id,
-                            c.date_contrat,
-                            c.heure_debut,
-                            c.date_retour_prevu,
-                            c.heure_retour_prevu,
-                            c.kilometrage_sortie,
-                            c.kilometrage_retour,
-                            c.prix_jour,
-                            c.prix_heure,
-                            c.avance,
-                            c.total,
-                            c.status,
-                            cl.nom,
-                            cl.prenom,
-                            v.matricule,
-                            v.marque,
-                            v.modele
-                        FROM contrats c
-                        INNER JOIN clients cl ON cl.client_id = c.client_id
-                        INNER JOIN voitures v ON v.voiture_id = c.voiture_id
-                        WHERE c.voiture_id = @voiture_id
-                          AND c.status <> 'Terminé'
-                        ORDER BY c.contrat_id DESC
-                        LIMIT 1;";
+                DataTable dt = Dbexec.GetData(query, ps);
 
-                    using (MySqlCommand cmd = new MySqlCommand(query, cn))
-                    {
-                        cmd.Parameters.AddWithValue("@voiture_id", selectedVoitureId);
+                if (dt.Rows.Count > 0)
+                {
+                    DataRow dr = dt.Rows[0];
 
-                        using (MySqlDataReader dr = cmd.ExecuteReader())
-                        {
-                            if (dr.Read())
-                            {
-                                contratId = Convert.ToInt32(dr["contrat_id"]);
-                                voitureId = Convert.ToInt32(dr["voiture_id"]);
-                                kilometrageSortie = dr["kilometrage_sortie"] == DBNull.Value
-                                    ? 0
-                                    : Convert.ToInt32(dr["kilometrage_sortie"]);
+                    contratId = Convert.ToInt32(dr["contrat_id"]);
+                    voitureId = Convert.ToInt32(dr["voiture_id"]);
+                    kilometrageSortie = dr["kilometrage_sortie"] == DBNull.Value
+                        ? 0
+                        : Convert.ToInt32(dr["kilometrage_sortie"]);
 
-                                StringBuilder sb = new StringBuilder();
-                                sb.AppendLine("N° Contrat : " + dr["contrat_id"].ToString());
-                                sb.AppendLine("Client : " + dr["nom"].ToString() + " " + dr["prenom"].ToString());
-                                sb.AppendLine("Voiture : " + dr["matricule"].ToString() + " - " + dr["marque"].ToString() + " " + dr["modele"].ToString());
-                                sb.AppendLine("Date contrat : " + Convert.ToDateTime(dr["date_contrat"]).ToString("dd/MM/yyyy"));
-                                sb.AppendLine("Heure début : " + dr["heure_debut"].ToString());
-                                sb.AppendLine("Date retour prévu : " + Convert.ToDateTime(dr["date_retour_prevu"]).ToString("dd/MM/yyyy"));
-                                sb.AppendLine("Heure retour prévu : " + dr["heure_retour_prevu"].ToString());
-                                sb.AppendLine("Kilométrage sortie : " + kilometrageSortie);
-                                sb.AppendLine("Prix/Jour : " + dr["prix_jour"].ToString() + " DH");
-                                sb.AppendLine("Prix/Heure : " + dr["prix_heure"].ToString() + " DH");
-                                sb.AppendLine("Avance : " + dr["avance"].ToString() + " DH");
-                                sb.AppendLine("Total : " + dr["total"].ToString() + " DH");
-                                sb.AppendLine("Status : " + dr["status"].ToString());
+                    StringBuilder sb = new StringBuilder();
+                    sb.AppendLine("N° Contrat : " + dr["contrat_id"].ToString());
+                    sb.AppendLine("Client : " + dr["nom"].ToString() + " " + dr["prenom"].ToString());
+                    sb.AppendLine("Voiture : " + dr["matricule"].ToString() + " - " + dr["marque"].ToString() + " " + dr["modele"].ToString());
+                    sb.AppendLine("Date contrat : " + Convert.ToDateTime(dr["date_contrat"]).ToString("dd/MM/yyyy"));
+                    sb.AppendLine("Heure début : " + dr["heure_debut"].ToString());
+                    sb.AppendLine("Date retour prévu : " + Convert.ToDateTime(dr["date_retour_prevu"]).ToString("dd/MM/yyyy"));
+                    sb.AppendLine("Heure retour prévu : " + dr["heure_retour_prevu"].ToString());
+                    sb.AppendLine("Kilométrage sortie : " + kilometrageSortie);
+                    sb.AppendLine("Prix/Jour : " + dr["prix_jour"].ToString() + " DH");
+                    sb.AppendLine("Prix/Heure : " + dr["prix_heure"].ToString() + " DH");
+                    sb.AppendLine("Avance : " + dr["avance"].ToString() + " DH");
+                    sb.AppendLine("Total : " + dr["total"].ToString() + " DH");
+                    sb.AppendLine("Status : " + dr["status"].ToString());
 
-                                txtInfoContrat.Text = sb.ToString();
+                    txtInfoContrat.Text = sb.ToString();
 
-                                btnRetourSimple.Enabled = true;
-                                btnAccident.Enabled = true;
-                            }
-                            else
-                            {
-                                contratId = -1;
-                                kilometrageSortie = 0;
-                                txtInfoContrat.Clear();
-                                btnRetourSimple.Enabled = false;
-                                btnAccident.Enabled = false;
+                    btnRetourSimple.Enabled = true;
+                    btnAccident.Enabled = true;
+                }
+                else
+                {
+                    contratId = -1;
+                    kilometrageSortie = 0;
+                    txtInfoContrat.Clear();
+                    btnRetourSimple.Enabled = false;
+                    btnAccident.Enabled = false;
 
-                                MessageBox.Show("Aucun contrat en cours pour cette voiture.",
-                                    "Information", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                            }
-                        }
-                    }
+                    MessageBox.Show("Aucun contrat en cours pour cette voiture.",
+                        "Information", MessageBoxButtons.OK, MessageBoxIcon.Information);
                 }
             }
             catch (Exception ex)
@@ -209,6 +221,7 @@ namespace venolocation.formee
                     "Erreur", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
+        
 
 
         private bool ValiderKilometrage(out int kmRetour)
@@ -294,7 +307,7 @@ namespace venolocation.formee
 
             try
             {
-                using (MySqlConnection cn = new MySqlConnection(connectionString))
+                using (MySqlConnection cn = Dbexec.GetConnection())
                 {
                     cn.Open();
 
@@ -303,9 +316,9 @@ namespace venolocation.formee
                         try
                         {
                             string updateContrat = @"
-                                UPDATE contrats
-                                SET kilometrage_retour = @kilometrage_retour
-                                WHERE contrat_id = @contrat_id;";
+                                    UPDATE contrats
+                                    SET kilometrage_retour = @kilometrage_retour
+                                    WHERE contrat_id = @contrat_id;";
 
                             using (MySqlCommand cmd = new MySqlCommand(updateContrat, cn, tr))
                             {
@@ -315,6 +328,7 @@ namespace venolocation.formee
                             }
 
                             tr.Commit();
+
                             LogHelper.AddLog("Retour voiture: " + cbVoiture.Text, Session.Username);
                             MessageBox.Show("Retour simple enregistré avec succès.",
                                 "Succès", MessageBoxButtons.OK, MessageBoxIcon.Information);
@@ -342,6 +356,7 @@ namespace venolocation.formee
 
         private void btnAccident_Click_1(object sender, EventArgs e)
         {
+         
             if (!ValiderKilometrage(out int kmRetour))
                 return;
 
@@ -367,6 +382,7 @@ namespace venolocation.formee
                     return;
                 }
             }
+
             decimal montantpaye = 0;
 
             if (!string.IsNullOrWhiteSpace(txtMontantpaye.Text))
@@ -391,7 +407,7 @@ namespace venolocation.formee
 
             try
             {
-                using (MySqlConnection cn = new MySqlConnection(connectionString))
+                using (MySqlConnection cn = Dbexec.GetConnection())
                 {
                     cn.Open();
 
@@ -400,9 +416,9 @@ namespace venolocation.formee
                         try
                         {
                             string updateContrat = @"
-                                UPDATE contrats
-                                SET kilometrage_retour = @kilometrage_retour
-                                WHERE contrat_id = @contrat_id;";
+                                    UPDATE contrats
+                                    SET kilometrage_retour = @kilometrage_retour
+                                    WHERE contrat_id = @contrat_id;";
 
                             using (MySqlCommand cmd1 = new MySqlCommand(updateContrat, cn, tr))
                             {
@@ -413,9 +429,9 @@ namespace venolocation.formee
 
                             string insertAccident = @"
                                 INSERT INTO accidents
-                                (contrat_id, date_accident, description, montant_reparation,montant_paye, nom_utilisateur)
+                                (contrat_id, date_accident, description, montant_reparation, montant_paye, nom_utilisateur)
                                 VALUES
-                                (@contrat_id, @date_accident, @description, @montant_reparation,@montant_paye, @nom_utilisateur);";
+                                (@contrat_id, @date_accident, @description, @montant_reparation, @montant_paye, @nom_utilisateur);";
 
                             using (MySqlCommand cmd2 = new MySqlCommand(insertAccident, cn, tr))
                             {
@@ -427,22 +443,28 @@ namespace venolocation.formee
                                 cmd2.Parameters.AddWithValue("@nom_utilisateur", Session.Username);
                                 cmd2.ExecuteNonQuery();
                             }
-                            string insertrecette = @"
-                                INSERT INTO recettes
-                                (contrat_id, montant, type, date_recette, nom_utilisateur)
-                                VALUES
-                                (@contrat_id, @montant, @type, @date_recette, @nom_utilisateur);";
 
-                            using (MySqlCommand cmd3 = new MySqlCommand(insertrecette, cn, tr))
+                            if (montantpaye > 0)
                             {
-                                cmd3.Parameters.AddWithValue("@contrat_id", contratId);
-                                cmd3.Parameters.AddWithValue("@montant", montantpaye);
-                                cmd3.Parameters.AddWithValue("@type", "Accident");
-                                cmd3.Parameters.AddWithValue("@date_recette", DateTime.Now.Date);
-                                cmd3.Parameters.AddWithValue("@nom_utilisateur", Session.Username);
-                                cmd3.ExecuteNonQuery();
+                                string insertrecette = @"
+                                    INSERT INTO recettes
+                                    (contrat_id, montant, type, date_recette, nom_utilisateur)
+                                    VALUES
+                                    (@contrat_id, @montant, @type, @date_recette, @nom_utilisateur);";
+
+                                using (MySqlCommand cmd3 = new MySqlCommand(insertrecette, cn, tr))
+                                {
+                                    cmd3.Parameters.AddWithValue("@contrat_id", contratId);
+                                    cmd3.Parameters.AddWithValue("@montant", montantpaye);
+                                    cmd3.Parameters.AddWithValue("@type", "Accident");
+                                    cmd3.Parameters.AddWithValue("@date_recette", DateTime.Now.Date);
+                                    cmd3.Parameters.AddWithValue("@nom_utilisateur", Session.Username);
+                                    cmd3.ExecuteNonQuery();
+                                }
                             }
+
                             tr.Commit();
+
                             LogHelper.AddLog("Retour avec accident voiture: " + cbVoiture.Text, Session.Username);
                             MessageBox.Show("Retour avec accident enregistré avec succès.",
                                 "Succès", MessageBoxButtons.OK, MessageBoxIcon.Information);
@@ -467,4 +489,5 @@ namespace venolocation.formee
             }
         }
     }
+    
 }

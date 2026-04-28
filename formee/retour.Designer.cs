@@ -40,16 +40,16 @@
             this.txtInfoContrat = new Guna.UI2.WinForms.Guna2TextBox();
             this.label3 = new System.Windows.Forms.Label();
             this.groupBox2 = new System.Windows.Forms.GroupBox();
+            this.txtMontantpaye = new Guna.UI2.WinForms.Guna2TextBox();
+            this.btnAccident = new Guna.UI2.WinForms.Guna2Button();
+            this.label6 = new System.Windows.Forms.Label();
             this.txtMontantReparation = new Guna.UI2.WinForms.Guna2TextBox();
             this.label5 = new System.Windows.Forms.Label();
             this.label4 = new System.Windows.Forms.Label();
             this.txtDescriptionAccident = new Guna.UI2.WinForms.Guna2TextBox();
             this.txtKilometrageRetour = new Guna.UI2.WinForms.Guna2TextBox();
             this.btnRetourSimple = new Guna.UI2.WinForms.Guna2Button();
-            this.btnAccident = new Guna.UI2.WinForms.Guna2Button();
-            this.txtMontantpaye = new Guna.UI2.WinForms.Guna2TextBox();
-            this.label6 = new System.Windows.Forms.Label();
-            this.cbVoiture = new System.Windows.Forms.ComboBox();
+            this.cbVoiture = new Guna.UI2.WinForms.Guna2ComboBox();
             this.guna2GradientPanel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.iconPictureBox1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.guna2CirclePictureBox1)).BeginInit();
@@ -157,7 +157,7 @@
             this.groupBox1.Font = new System.Drawing.Font("Segoe UI", 10.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.groupBox1.Location = new System.Drawing.Point(6, 199);
             this.groupBox1.Name = "groupBox1";
-            this.groupBox1.Size = new System.Drawing.Size(652, 199);
+            this.groupBox1.Size = new System.Drawing.Size(652, 209);
             this.groupBox1.TabIndex = 41;
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "Info Contrat";
@@ -181,7 +181,7 @@
             this.txtInfoContrat.Name = "txtInfoContrat";
             this.txtInfoContrat.PlaceholderText = "information du contrat";
             this.txtInfoContrat.SelectedText = "";
-            this.txtInfoContrat.Size = new System.Drawing.Size(501, 174);
+            this.txtInfoContrat.Size = new System.Drawing.Size(501, 190);
             this.txtInfoContrat.TabIndex = 0;
             // 
             // label3
@@ -211,6 +211,57 @@
             this.groupBox2.TabIndex = 44;
             this.groupBox2.TabStop = false;
             this.groupBox2.Text = "Accident";
+            // 
+            // txtMontantpaye
+            // 
+            this.txtMontantpaye.Cursor = System.Windows.Forms.Cursors.IBeam;
+            this.txtMontantpaye.DefaultText = "";
+            this.txtMontantpaye.DisabledState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(208)))), ((int)(((byte)(208)))), ((int)(((byte)(208)))));
+            this.txtMontantpaye.DisabledState.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(226)))), ((int)(((byte)(226)))), ((int)(((byte)(226)))));
+            this.txtMontantpaye.DisabledState.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(138)))), ((int)(((byte)(138)))), ((int)(((byte)(138)))));
+            this.txtMontantpaye.DisabledState.PlaceholderForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(138)))), ((int)(((byte)(138)))), ((int)(((byte)(138)))));
+            this.txtMontantpaye.FocusedState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(94)))), ((int)(((byte)(148)))), ((int)(((byte)(255)))));
+            this.txtMontantpaye.Font = new System.Drawing.Font("Segoe UI Semibold", 12F, System.Drawing.FontStyle.Bold);
+            this.txtMontantpaye.ForeColor = System.Drawing.Color.Black;
+            this.txtMontantpaye.HoverState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(94)))), ((int)(((byte)(148)))), ((int)(((byte)(255)))));
+            this.txtMontantpaye.Location = new System.Drawing.Point(179, 153);
+            this.txtMontantpaye.Margin = new System.Windows.Forms.Padding(4, 6, 4, 6);
+            this.txtMontantpaye.Name = "txtMontantpaye";
+            this.txtMontantpaye.PlaceholderText = "Montant payé";
+            this.txtMontantpaye.SelectedText = "";
+            this.txtMontantpaye.Size = new System.Drawing.Size(430, 43);
+            this.txtMontantpaye.TabIndex = 52;
+            // 
+            // btnAccident
+            // 
+            this.btnAccident.BorderRadius = 10;
+            this.btnAccident.DisabledState.BorderColor = System.Drawing.Color.DarkGray;
+            this.btnAccident.DisabledState.CustomBorderColor = System.Drawing.Color.DarkGray;
+            this.btnAccident.DisabledState.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(169)))), ((int)(((byte)(169)))), ((int)(((byte)(169)))));
+            this.btnAccident.DisabledState.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(141)))), ((int)(((byte)(141)))), ((int)(((byte)(141)))));
+            this.btnAccident.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(235)))), ((int)(((byte)(46)))), ((int)(((byte)(46)))));
+            this.btnAccident.Font = new System.Drawing.Font("Segoe UI", 16.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnAccident.ForeColor = System.Drawing.Color.White;
+            this.btnAccident.HoverState.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(210)))), ((int)(((byte)(35)))), ((int)(((byte)(35)))));
+            this.btnAccident.Image = global::venolocation.Properties.Resources.fender_bender;
+            this.btnAccident.ImageAlign = System.Windows.Forms.HorizontalAlignment.Left;
+            this.btnAccident.ImageSize = new System.Drawing.Size(35, 35);
+            this.btnAccident.Location = new System.Drawing.Point(872, 136);
+            this.btnAccident.Name = "btnAccident";
+            this.btnAccident.Size = new System.Drawing.Size(272, 60);
+            this.btnAccident.TabIndex = 48;
+            this.btnAccident.Text = "    Accident";
+            this.btnAccident.Click += new System.EventHandler(this.btnAccident_Click_1);
+            // 
+            // label6
+            // 
+            this.label6.AutoSize = true;
+            this.label6.Font = new System.Drawing.Font("Segoe UI", 10.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label6.Location = new System.Drawing.Point(18, 162);
+            this.label6.Name = "label6";
+            this.label6.Size = new System.Drawing.Size(132, 25);
+            this.label6.TabIndex = 51;
+            this.label6.Text = "Montant Payé";
             // 
             // txtMontantReparation
             // 
@@ -316,66 +367,21 @@
             this.btnRetourSimple.Text = "   Retour simple";
             this.btnRetourSimple.Click += new System.EventHandler(this.btnRetourSimple_Click_1);
             // 
-            // btnAccident
-            // 
-            this.btnAccident.BorderRadius = 10;
-            this.btnAccident.DisabledState.BorderColor = System.Drawing.Color.DarkGray;
-            this.btnAccident.DisabledState.CustomBorderColor = System.Drawing.Color.DarkGray;
-            this.btnAccident.DisabledState.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(169)))), ((int)(((byte)(169)))), ((int)(((byte)(169)))));
-            this.btnAccident.DisabledState.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(141)))), ((int)(((byte)(141)))), ((int)(((byte)(141)))));
-            this.btnAccident.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(235)))), ((int)(((byte)(46)))), ((int)(((byte)(46)))));
-            this.btnAccident.Font = new System.Drawing.Font("Segoe UI", 16.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnAccident.ForeColor = System.Drawing.Color.White;
-            this.btnAccident.HoverState.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(210)))), ((int)(((byte)(35)))), ((int)(((byte)(35)))));
-            this.btnAccident.Image = global::venolocation.Properties.Resources.fender_bender;
-            this.btnAccident.ImageAlign = System.Windows.Forms.HorizontalAlignment.Left;
-            this.btnAccident.ImageSize = new System.Drawing.Size(35, 35);
-            this.btnAccident.Location = new System.Drawing.Point(872, 136);
-            this.btnAccident.Name = "btnAccident";
-            this.btnAccident.Size = new System.Drawing.Size(272, 60);
-            this.btnAccident.TabIndex = 48;
-            this.btnAccident.Text = "    Accident";
-            this.btnAccident.Click += new System.EventHandler(this.btnAccident_Click_1);
-            // 
-            // txtMontantpaye
-            // 
-            this.txtMontantpaye.Cursor = System.Windows.Forms.Cursors.IBeam;
-            this.txtMontantpaye.DefaultText = "";
-            this.txtMontantpaye.DisabledState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(208)))), ((int)(((byte)(208)))), ((int)(((byte)(208)))));
-            this.txtMontantpaye.DisabledState.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(226)))), ((int)(((byte)(226)))), ((int)(((byte)(226)))));
-            this.txtMontantpaye.DisabledState.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(138)))), ((int)(((byte)(138)))), ((int)(((byte)(138)))));
-            this.txtMontantpaye.DisabledState.PlaceholderForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(138)))), ((int)(((byte)(138)))), ((int)(((byte)(138)))));
-            this.txtMontantpaye.FocusedState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(94)))), ((int)(((byte)(148)))), ((int)(((byte)(255)))));
-            this.txtMontantpaye.Font = new System.Drawing.Font("Segoe UI Semibold", 12F, System.Drawing.FontStyle.Bold);
-            this.txtMontantpaye.ForeColor = System.Drawing.Color.Black;
-            this.txtMontantpaye.HoverState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(94)))), ((int)(((byte)(148)))), ((int)(((byte)(255)))));
-            this.txtMontantpaye.Location = new System.Drawing.Point(179, 153);
-            this.txtMontantpaye.Margin = new System.Windows.Forms.Padding(4, 6, 4, 6);
-            this.txtMontantpaye.Name = "txtMontantpaye";
-            this.txtMontantpaye.PlaceholderText = "Montant payé";
-            this.txtMontantpaye.SelectedText = "";
-            this.txtMontantpaye.Size = new System.Drawing.Size(430, 43);
-            this.txtMontantpaye.TabIndex = 52;
-            // 
-            // label6
-            // 
-            this.label6.AutoSize = true;
-            this.label6.Font = new System.Drawing.Font("Segoe UI", 10.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label6.Location = new System.Drawing.Point(18, 162);
-            this.label6.Name = "label6";
-            this.label6.Size = new System.Drawing.Size(132, 25);
-            this.label6.TabIndex = 51;
-            this.label6.Text = "Montant Payé";
-            // 
             // cbVoiture
             // 
-            this.cbVoiture.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.cbVoiture.Font = new System.Drawing.Font("Segoe UI Semibold", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.cbVoiture.FormattingEnabled = true;
-            this.cbVoiture.Location = new System.Drawing.Point(331, 30);
+            this.cbVoiture.BackColor = System.Drawing.Color.Transparent;
+            this.cbVoiture.BorderRadius = 8;
+            this.cbVoiture.DrawMode = System.Windows.Forms.DrawMode.OwnerDrawFixed;
+            this.cbVoiture.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.cbVoiture.FocusedColor = System.Drawing.Color.FromArgb(((int)(((byte)(94)))), ((int)(((byte)(148)))), ((int)(((byte)(255)))));
+            this.cbVoiture.FocusedState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(94)))), ((int)(((byte)(148)))), ((int)(((byte)(255)))));
+            this.cbVoiture.Font = new System.Drawing.Font("Segoe UI", 10F);
+            this.cbVoiture.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(68)))), ((int)(((byte)(88)))), ((int)(((byte)(112)))));
+            this.cbVoiture.ItemHeight = 30;
+            this.cbVoiture.Location = new System.Drawing.Point(350, 28);
             this.cbVoiture.Name = "cbVoiture";
-            this.cbVoiture.Size = new System.Drawing.Size(355, 36);
-            this.cbVoiture.TabIndex = 5;
+            this.cbVoiture.Size = new System.Drawing.Size(409, 36);
+            this.cbVoiture.TabIndex = 6;
             // 
             // retour
             // 
@@ -433,6 +439,6 @@
         private Guna.UI2.WinForms.Guna2Button btnRetourSimple;
         private Guna.UI2.WinForms.Guna2TextBox txtMontantpaye;
         private System.Windows.Forms.Label label6;
-        private System.Windows.Forms.ComboBox cbVoiture;
+        private Guna.UI2.WinForms.Guna2ComboBox cbVoiture;
     }
 }
