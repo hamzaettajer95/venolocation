@@ -34,7 +34,7 @@ namespace venolocation.formee
 
                 timer1.Start();
                 lbldate.Text = DateTime.Now.ToString("dddd dd/MM/yyyy");
-
+                Dbexec.ExecuteQuery("CALL sp_generer_alertes();");
                 ChargerToutesLesDonnees();
             }
             catch (Exception ex)
@@ -139,15 +139,16 @@ namespace venolocation.formee
             try
             {
                 string query = @"
-                SELECT 
-                    type AS Type,
-                    voiture AS Voiture,
-                    DATE_FORMAT(date_alerte, '%d/%m/%Y') AS Date,
-                    statut AS Statut
-                FROM alerte
-                WHERE vue = @vue
-                ORDER BY date_alerte DESC, id DESC
-                LIMIT 50;";
+                        SELECT 
+                            type AS 'Type',
+                            voiture AS 'Voiture',
+                            message AS 'Message',
+                            DATE_FORMAT(date_alerte, '%d/%m/%Y') AS 'Date',
+                            statut AS 'Statut'
+                        FROM alerte
+                        WHERE vue = b'0'
+                        ORDER BY date_alerte DESC, id DESC
+                        LIMIT 50;";
 
                 MySqlParameter[] ps =
                 {
@@ -155,8 +156,9 @@ namespace venolocation.formee
                 };
 
                 dgvAlertes.DataSource = Dbexec.GetData(query, ps);
-
+                
                 GridStyleHelper_1.ApplyCompact(dgvAlertes);
+                ColorierStatutAlertes();
             }
             catch (Exception ex)
             {
@@ -164,7 +166,38 @@ namespace venolocation.formee
                 MessageBox.Show("Erreur alertes : " + ex.Message);
             }
         }
+        private void ColorierStatutAlertes()
+        {
+            if (!dgvAlertes.Columns.Contains("Statut"))
+                return;
 
+            foreach (DataGridViewRow row in dgvAlertes.Rows)
+            {
+                if (row.IsNewRow || row.Cells["Statut"].Value == null)
+                    continue;
+
+                string statut = row.Cells["Statut"].Value.ToString().Trim().ToLower();
+                DataGridViewCell cell = row.Cells["Statut"];
+
+                cell.Style.Font = new Font("Segoe UI", 10F, FontStyle.Bold);
+                cell.Style.Alignment = DataGridViewContentAlignment.MiddleCenter;
+
+                if (statut == "rouge")
+                {
+                    cell.Style.BackColor = Color.FromArgb(252, 220, 220);
+                    cell.Style.ForeColor = Color.FromArgb(200, 55, 55);
+                    cell.Style.SelectionBackColor = Color.FromArgb(245, 205, 205);
+                    cell.Style.SelectionForeColor = Color.FromArgb(200, 55, 55);
+                }
+                else if (statut == "orange")
+                {
+                    cell.Style.BackColor = Color.FromArgb(255, 239, 213);
+                    cell.Style.ForeColor = Color.FromArgb(212, 133, 0);
+                    cell.Style.SelectionBackColor = Color.FromArgb(250, 228, 190);
+                    cell.Style.SelectionForeColor = Color.FromArgb(212, 133, 0);
+                }
+            }
+        }
         private void ChargerDernieresOperations()
         {
             try
@@ -335,6 +368,12 @@ namespace venolocation.formee
         private void btndeveloppeur_Click(object sender, EventArgs e)
         {
             droit.developpeur de = new droit.developpeur();
+            de.ShowDialog();
+        }
+
+        private void btnecheances_Click(object sender, EventArgs e)
+        {
+            voiture_echeance de = new voiture_echeance();
             de.ShowDialog();
         }
     }

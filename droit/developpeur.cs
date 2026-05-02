@@ -16,5 +16,10 @@ namespace venolocation.droit
         {
             InitializeComponent();
         }
+
+        private void guna2Panel4_Paint(object sender, PaintEventArgs e)
+        {
+
+        }
     }
 }

@@ -67,6 +67,7 @@
             this.btnAjouter = new Guna.UI2.WinForms.Guna2Button();
             this.btnModifier = new Guna.UI2.WinForms.Guna2Button();
             this.btnSupprimer = new Guna.UI2.WinForms.Guna2Button();
+            this.btnAfficherEcheance = new Guna.UI2.WinForms.Guna2Button();
             this.gbListe.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgvVoitures)).BeginInit();
             this.gbInfoGauche.SuspendLayout();
@@ -468,7 +469,7 @@
             this.btnAjouter.Image = global::venolocation.Properties.Resources.save;
             this.btnAjouter.ImageAlign = System.Windows.Forms.HorizontalAlignment.Left;
             this.btnAjouter.ImageSize = new System.Drawing.Size(30, 30);
-            this.btnAjouter.Location = new System.Drawing.Point(110, 405);
+            this.btnAjouter.Location = new System.Drawing.Point(45, 405);
             this.btnAjouter.Name = "btnAjouter";
             this.btnAjouter.Size = new System.Drawing.Size(279, 54);
             this.btnAjouter.TabIndex = 7;
@@ -488,7 +489,7 @@
             this.btnModifier.Image = global::venolocation.Properties.Resources.edit;
             this.btnModifier.ImageAlign = System.Windows.Forms.HorizontalAlignment.Left;
             this.btnModifier.ImageSize = new System.Drawing.Size(30, 30);
-            this.btnModifier.Location = new System.Drawing.Point(532, 405);
+            this.btnModifier.Location = new System.Drawing.Point(423, 405);
             this.btnModifier.Name = "btnModifier";
             this.btnModifier.Size = new System.Drawing.Size(279, 54);
             this.btnModifier.TabIndex = 8;
@@ -508,12 +509,32 @@
             this.btnSupprimer.Image = global::venolocation.Properties.Resources.delete;
             this.btnSupprimer.ImageAlign = System.Windows.Forms.HorizontalAlignment.Left;
             this.btnSupprimer.ImageSize = new System.Drawing.Size(30, 30);
-            this.btnSupprimer.Location = new System.Drawing.Point(954, 405);
+            this.btnSupprimer.Location = new System.Drawing.Point(801, 405);
             this.btnSupprimer.Name = "btnSupprimer";
             this.btnSupprimer.Size = new System.Drawing.Size(279, 54);
             this.btnSupprimer.TabIndex = 9;
             this.btnSupprimer.Text = "Supprimer";
             this.btnSupprimer.Click += new System.EventHandler(this.btnSupprimer_Click_1);
+            // 
+            // btnAfficherEcheance
+            // 
+            this.btnAfficherEcheance.BorderRadius = 8;
+            this.btnAfficherEcheance.DisabledState.BorderColor = System.Drawing.Color.DarkGray;
+            this.btnAfficherEcheance.DisabledState.CustomBorderColor = System.Drawing.Color.DarkGray;
+            this.btnAfficherEcheance.DisabledState.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(169)))), ((int)(((byte)(169)))), ((int)(((byte)(169)))));
+            this.btnAfficherEcheance.DisabledState.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(141)))), ((int)(((byte)(141)))), ((int)(((byte)(141)))));
+            this.btnAfficherEcheance.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(107)))), ((int)(((byte)(114)))), ((int)(((byte)(128)))));
+            this.btnAfficherEcheance.Font = new System.Drawing.Font("Segoe UI", 10.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnAfficherEcheance.ForeColor = System.Drawing.Color.White;
+            this.btnAfficherEcheance.Image = global::venolocation.Properties.Resources.check1;
+            this.btnAfficherEcheance.ImageAlign = System.Windows.Forms.HorizontalAlignment.Left;
+            this.btnAfficherEcheance.ImageSize = new System.Drawing.Size(30, 30);
+            this.btnAfficherEcheance.Location = new System.Drawing.Point(1179, 405);
+            this.btnAfficherEcheance.Name = "btnAfficherEcheance";
+            this.btnAfficherEcheance.Size = new System.Drawing.Size(237, 54);
+            this.btnAfficherEcheance.TabIndex = 10;
+            this.btnAfficherEcheance.Text = "Afficher Echeance";
+            this.btnAfficherEcheance.Click += new System.EventHandler(this.btnAfficherEcheance_Click);
             // 
             // voiture
             // 
@@ -521,6 +542,7 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(245)))), ((int)(((byte)(247)))), ((int)(((byte)(251)))));
             this.ClientSize = new System.Drawing.Size(1454, 860);
+            this.Controls.Add(this.btnAfficherEcheance);
             this.Controls.Add(this.btnSupprimer);
             this.Controls.Add(this.btnModifier);
             this.Controls.Add(this.btnAjouter);
@@ -589,6 +611,7 @@
         private Guna.UI2.WinForms.Guna2Button btnAjouter;
         private Guna.UI2.WinForms.Guna2Button btnModifier;
         private Guna.UI2.WinForms.Guna2Button btnSupprimer;
+        private Guna.UI2.WinForms.Guna2Button btnAfficherEcheance;
     }
 }
 

@@ -525,6 +525,7 @@
             this.btnImporterDb.Size = new System.Drawing.Size(102, 102);
             this.btnImporterDb.TabIndex = 12;
             this.btnImporterDb.Text = "Importer";
+            this.btnImporterDb.Click += new System.EventHandler(this.btnImporterDb_Click);
             // 
             // btnExporterDb
             // 
@@ -546,6 +547,7 @@
             this.btnExporterDb.Size = new System.Drawing.Size(102, 102);
             this.btnExporterDb.TabIndex = 13;
             this.btnExporterDb.Text = "Exporter";
+            this.btnExporterDb.Click += new System.EventHandler(this.btnExporterDb_Click);
             // 
             // btnRestaurerDb
             // 
@@ -566,7 +568,8 @@
             this.btnRestaurerDb.Name = "btnRestaurerDb";
             this.btnRestaurerDb.Size = new System.Drawing.Size(102, 102);
             this.btnRestaurerDb.TabIndex = 11;
-            this.btnRestaurerDb.Text = "Restaurer";
+            this.btnRestaurerDb.Text = "Backup";
+            this.btnRestaurerDb.Click += new System.EventHandler(this.btnRestaurerDb_Click);
             // 
             // btnSauvegarderDb
             // 
@@ -588,6 +591,7 @@
             this.btnSauvegarderDb.Size = new System.Drawing.Size(119, 102);
             this.btnSauvegarderDb.TabIndex = 10;
             this.btnSauvegarderDb.Text = "Archivier";
+            this.btnSauvegarderDb.Click += new System.EventHandler(this.btnSauvegarderDb_Click);
             // 
             // guna2Panel1
             // 
@@ -624,6 +628,7 @@
             this.btnCopierBase.Size = new System.Drawing.Size(102, 102);
             this.btnCopierBase.TabIndex = 15;
             this.btnCopierBase.Text = "Copier logs";
+            this.btnCopierBase.Click += new System.EventHandler(this.btnCopierBase_Click_1);
             // 
             // btnViderLogs
             // 
@@ -646,6 +651,7 @@
             this.btnViderLogs.Size = new System.Drawing.Size(102, 102);
             this.btnViderLogs.TabIndex = 14;
             this.btnViderLogs.Text = "Vider logs";
+            this.btnViderLogs.Click += new System.EventHandler(this.btnViderLogs_Click);
             // 
             // btnSupprimerDonnees
             // 
@@ -669,6 +675,7 @@
             this.btnSupprimerDonnees.Size = new System.Drawing.Size(205, 102);
             this.btnSupprimerDonnees.TabIndex = 14;
             this.btnSupprimerDonnees.Text = "        Supprimer les     données";
+            this.btnSupprimerDonnees.Click += new System.EventHandler(this.btnSupprimerDonnees_Click);
             // 
             // iconPictureBox4
             // 

@@ -102,6 +102,7 @@
             this.ProfilToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStripSeparator1 = new System.Windows.Forms.ToolStripSeparator();
             this.deconnecterToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.btnecheances = new FontAwesome.Sharp.IconButton();
             this.panelTop.SuspendLayout();
             this.panel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
@@ -246,6 +247,7 @@
             this.flowMenu.Controls.Add(this.btretour);
             this.flowMenu.Controls.Add(this.btnalerte);
             this.flowMenu.Controls.Add(this.btnentretient);
+            this.flowMenu.Controls.Add(this.btnecheances);
             this.flowMenu.Dock = System.Windows.Forms.DockStyle.Fill;
             this.flowMenu.FlowDirection = System.Windows.Forms.FlowDirection.TopDown;
             this.flowMenu.Location = new System.Drawing.Point(0, 0);
@@ -1173,6 +1175,30 @@
             this.deconnecterToolStripMenuItem.Text = "Déconnecter";
             this.deconnecterToolStripMenuItem.Click += new System.EventHandler(this.deconnecterToolStripMenuItem_Click);
             // 
+            // btnecheances
+            // 
+            this.btnecheances.BackColor = System.Drawing.Color.White;
+            this.btnecheances.FlatAppearance.BorderSize = 0;
+            this.btnecheances.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnecheances.Font = new System.Drawing.Font("Segoe UI", 10.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnecheances.ForeColor = System.Drawing.Color.Black;
+            this.btnecheances.IconChar = FontAwesome.Sharp.IconChar.List12;
+            this.btnecheances.IconColor = System.Drawing.Color.Gray;
+            this.btnecheances.IconFont = FontAwesome.Sharp.IconFont.Auto;
+            this.btnecheances.IconSize = 40;
+            this.btnecheances.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.btnecheances.Location = new System.Drawing.Point(13, 744);
+            this.btnecheances.Margin = new System.Windows.Forms.Padding(3, 3, 3, 30);
+            this.btnecheances.Name = "btnecheances";
+            this.btnecheances.Padding = new System.Windows.Forms.Padding(12, 0, 0, 0);
+            this.btnecheances.Size = new System.Drawing.Size(180, 55);
+            this.btnecheances.TabIndex = 8;
+            this.btnecheances.Text = "échéances  ";
+            this.btnecheances.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.btnecheances.TextImageRelation = System.Windows.Forms.TextImageRelation.TextBeforeImage;
+            this.btnecheances.UseVisualStyleBackColor = false;
+            this.btnecheances.Click += new System.EventHandler(this.btnecheances_Click);
+            // 
             // dashboard
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 17F);
@@ -1293,6 +1319,7 @@
             private System.Windows.Forms.PictureBox pictureBox4;
             private System.Windows.Forms.PictureBox pictureBox5;
         private FontAwesome.Sharp.IconButton btnentretient;
+        private FontAwesome.Sharp.IconButton btnecheances;
     }
 }
 

@@ -70,13 +70,16 @@ namespace venolocation.formee
 
                 lblCount.Text = dgvAlertes.Rows.Count + " alertes";
 
-                GridStyleHelper_1.ApplyCompact(dgvAlertes);
+                ConfigurerGridAlertes();
 
-                if (dgvAlertes.Columns.Contains("colMessage"))
-                    dgvAlertes.Columns["colMessage"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleLeft;
-
-                if (dgvAlertes.Columns.Contains("colVoiture"))
-                    dgvAlertes.Columns["colVoiture"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleLeft;
+                foreach (DataGridViewRow r in dgvAlertes.Rows)
+                {
+                    if (r.Cells["colVue"].Value != null)
+                    {
+                        bool vue = Convert.ToBoolean(r.Cells["colVue"].Value);
+                        ApplyRowStyle(r, vue);
+                    }
+                }
             }
             catch (Exception ex)
             {
@@ -144,7 +147,28 @@ namespace venolocation.formee
                 MessageBox.Show("Erreur lors du changement de statut : " + ex.Message);
             }
         }
+        private void ConfigurerGridAlertes()
+        {
+            GridStyleHelper_1.ApplyCompact(dgvAlertes);
 
+            dgvAlertes.ReadOnly = false;
+
+            foreach (DataGridViewColumn col in dgvAlertes.Columns)
+            {
+                col.ReadOnly = true;
+            }
+
+            if (dgvAlertes.Columns.Contains("colVue"))
+            {
+                dgvAlertes.Columns["colVue"].ReadOnly = false;
+            }
+
+            if (dgvAlertes.Columns.Contains("colMessage"))
+                dgvAlertes.Columns["colMessage"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleLeft;
+
+            if (dgvAlertes.Columns.Contains("colVoiture"))
+                dgvAlertes.Columns["colVoiture"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleLeft;
+        }
         private void UpdateVueInDatabase(int id, bool vue)
         {
             try

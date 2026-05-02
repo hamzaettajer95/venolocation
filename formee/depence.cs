@@ -24,13 +24,14 @@ namespace venolocation.formee
         private DataTable ChargerDepencesFiltres()
         {
             string query = @"
-                        SELECT 
-                            depense_id AS 'ID',
-                            type AS 'Type',
-                            montant AS 'Montant',
-                            DATE_FORMAT(date_depense, '%d/%m/%Y %H:%i:%s') AS 'Date'
-                        FROM depenses
-                        WHERE 1=1 ";
+                SELECT 
+                    depense_id AS 'ID',
+                    type AS 'Type',
+                    description AS 'Description',
+                    montant AS 'Montant',
+                    DATE_FORMAT(date_depense, '%d/%m/%Y %H:%i:%s') AS 'Date'
+                FROM depenses
+                WHERE 1=1 ";
 
             List<MySqlParameter> ps = new List<MySqlParameter>();
 
@@ -94,12 +95,14 @@ namespace venolocation.formee
 
                 if (dgvDepence.Columns.Count > 0)
                 {
-                    dgvDepence.Columns["ID"].FillWeight = 10;
-                    dgvDepence.Columns["Type"].FillWeight = 35;
-                    dgvDepence.Columns["Montant"].FillWeight = 20;
-                    dgvDepence.Columns["Date"].FillWeight = 25;
+                    dgvDepence.Columns["ID"].FillWeight = 8;
+                    dgvDepence.Columns["Type"].FillWeight = 22;
+                    dgvDepence.Columns["Description"].FillWeight = 40;
+                    dgvDepence.Columns["Montant"].FillWeight = 15;
+                    dgvDepence.Columns["Date"].FillWeight = 20;
 
                     GridStyleHelper_1.AlignLeft(dgvDepence, "Type");
+                    GridStyleHelper_1.AlignLeft(dgvDepence, "Description");
                 }
 
                 decimal total = 0;
@@ -109,7 +112,12 @@ namespace venolocation.formee
                         total += Convert.ToDecimal(row["Montant"]);
                 }
 
-                lbl_totale.Text = total.ToString("N2") + " DH";
+                lbl_totale.Text ="Le totale : "+ total.ToString("N2") + " DH";
+
+                txt_type.Clear();
+                txt_description.Clear();
+                txt_montant.Clear();
+                txt_type.Focus();
             }
             catch (Exception ex)
             {
@@ -156,14 +164,16 @@ namespace venolocation.formee
                 }
 
                 string query = @"
-                                INSERT INTO depenses (type, montant, date_depense) 
-                                VALUES (@type, @montant, NOW())";
+                            INSERT INTO depenses (type, description, montant, date_depense, nom_utilisateur) 
+                            VALUES (@type, @description, @montant, NOW(), @user)";
 
                 MySqlParameter[] ps =
-                {
-                    new MySqlParameter("@type", txt_type.Text.Trim()),
-                    new MySqlParameter("@montant", montant)
-                };
+                        {
+                            new MySqlParameter("@type", txt_type.Text.Trim()),
+                            new MySqlParameter("@description", string.IsNullOrWhiteSpace(txt_description.Text) ? (object)DBNull.Value : txt_description.Text.Trim()),
+                            new MySqlParameter("@montant", montant),
+                            new MySqlParameter("@user", Session.Username)
+                        };
 
                 if (Dbexec.ExecuteQuery(query, ps) > 0)
                 {

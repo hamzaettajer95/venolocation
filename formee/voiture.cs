@@ -410,5 +410,29 @@ namespace venolocation.formee
 
             txtImmatriculation.Focus();
         }
+
+        private void btnAfficherEcheance_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                if (dgvVoitures.CurrentRow == null)
+                {
+                    MessageService.Warning("Sélectionnez une voiture.");
+                    return;
+                }
+
+                int voitureId = Convert.ToInt32(dgvVoitures.CurrentRow.Cells["ID"].Value);
+
+                voiture_echeance frm = new voiture_echeance(voitureId);
+                frm.ShowDialog();
+
+               // LogHelper.AddLog("Affichage échéances voiture ID: " + voitureId, Session.Username);
+            }
+            catch (Exception ex)
+            {
+                dbErreur.AddLog(ex.Message, Session.Username, "voiture", "btnAfficherEcheance_Click");
+                MessageService.Error("Erreur lors de l'ouverture des échéances.");
+            }
+        }
     }
 }
