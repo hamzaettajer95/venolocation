@@ -57,6 +57,7 @@
             this.btretour = new FontAwesome.Sharp.IconButton();
             this.btnalerte = new FontAwesome.Sharp.IconButton();
             this.btnentretient = new FontAwesome.Sharp.IconButton();
+            this.btnecheances = new FontAwesome.Sharp.IconButton();
             this.panelRight = new System.Windows.Forms.Panel();
             this.btndeveloppeur = new FontAwesome.Sharp.IconButton();
             this.btnSetting = new FontAwesome.Sharp.IconButton();
@@ -102,7 +103,6 @@
             this.ProfilToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStripSeparator1 = new System.Windows.Forms.ToolStripSeparator();
             this.deconnecterToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.btnecheances = new FontAwesome.Sharp.IconButton();
             this.panelTop.SuspendLayout();
             this.panel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
@@ -149,9 +149,9 @@
             this.panel1.Controls.Add(this.btnUserMenu);
             this.panel1.Controls.Add(this.lblUser);
             this.panel1.Dock = System.Windows.Forms.DockStyle.Right;
-            this.panel1.Location = new System.Drawing.Point(1492, 0);
+            this.panel1.Location = new System.Drawing.Point(1440, 0);
             this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(205, 70);
+            this.panel1.Size = new System.Drawing.Size(257, 70);
             this.panel1.TabIndex = 6;
             // 
             // pictureBox1
@@ -173,7 +173,7 @@
             this.btnUserMenu.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnUserMenu.Font = new System.Drawing.Font("Segoe UI", 10.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnUserMenu.ForeColor = System.Drawing.Color.White;
-            this.btnUserMenu.Location = new System.Drawing.Point(172, 17);
+            this.btnUserMenu.Location = new System.Drawing.Point(224, 17);
             this.btnUserMenu.Name = "btnUserMenu";
             this.btnUserMenu.Size = new System.Drawing.Size(30, 30);
             this.btnUserMenu.TabIndex = 5;
@@ -188,9 +188,9 @@
             this.lblUser.ForeColor = System.Drawing.Color.White;
             this.lblUser.Location = new System.Drawing.Point(78, 20);
             this.lblUser.Name = "lblUser";
-            this.lblUser.Size = new System.Drawing.Size(71, 28);
+            this.lblUser.Size = new System.Drawing.Size(64, 28);
             this.lblUser.TabIndex = 1;
-            this.lblUser.Text = "admin";
+            this.lblUser.Text = "Login";
             // 
             // lbldate
             // 
@@ -448,6 +448,30 @@
             this.btnentretient.TextImageRelation = System.Windows.Forms.TextImageRelation.TextBeforeImage;
             this.btnentretient.UseVisualStyleBackColor = false;
             this.btnentretient.Click += new System.EventHandler(this.btnentretient_Click);
+            // 
+            // btnecheances
+            // 
+            this.btnecheances.BackColor = System.Drawing.Color.White;
+            this.btnecheances.FlatAppearance.BorderSize = 0;
+            this.btnecheances.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnecheances.Font = new System.Drawing.Font("Segoe UI", 10.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnecheances.ForeColor = System.Drawing.Color.Black;
+            this.btnecheances.IconChar = FontAwesome.Sharp.IconChar.List12;
+            this.btnecheances.IconColor = System.Drawing.Color.Gray;
+            this.btnecheances.IconFont = FontAwesome.Sharp.IconFont.Auto;
+            this.btnecheances.IconSize = 40;
+            this.btnecheances.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.btnecheances.Location = new System.Drawing.Point(13, 744);
+            this.btnecheances.Margin = new System.Windows.Forms.Padding(3, 3, 3, 30);
+            this.btnecheances.Name = "btnecheances";
+            this.btnecheances.Padding = new System.Windows.Forms.Padding(12, 0, 0, 0);
+            this.btnecheances.Size = new System.Drawing.Size(180, 55);
+            this.btnecheances.TabIndex = 8;
+            this.btnecheances.Text = "échéances  ";
+            this.btnecheances.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.btnecheances.TextImageRelation = System.Windows.Forms.TextImageRelation.TextBeforeImage;
+            this.btnecheances.UseVisualStyleBackColor = false;
+            this.btnecheances.Click += new System.EventHandler(this.btnecheances_Click);
             // 
             // panelRight
             // 
@@ -948,7 +972,7 @@
             this.lblVoituresDisponibles.Name = "lblVoituresDisponibles";
             this.lblVoituresDisponibles.Size = new System.Drawing.Size(87, 62);
             this.lblVoituresDisponibles.TabIndex = 1;
-            this.lblVoituresDisponibles.Text = "22";
+            this.lblVoituresDisponibles.Text = ".";
             this.lblVoituresDisponibles.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
             // label1
@@ -998,7 +1022,7 @@
             this.lblVoituresLouees.Name = "lblVoituresLouees";
             this.lblVoituresLouees.Size = new System.Drawing.Size(87, 62);
             this.lblVoituresLouees.TabIndex = 3;
-            this.lblVoituresLouees.Text = "22";
+            this.lblVoituresLouees.Text = ".";
             this.lblVoituresLouees.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
             // label3
@@ -1048,7 +1072,7 @@
             this.lblReservations.Name = "lblReservations";
             this.lblReservations.Size = new System.Drawing.Size(99, 62);
             this.lblReservations.TabIndex = 5;
-            this.lblReservations.Text = "22";
+            this.lblReservations.Text = ".";
             this.lblReservations.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
             // label5
@@ -1098,7 +1122,7 @@
             this.lblRecetteJour.Name = "lblRecetteJour";
             this.lblRecetteJour.Size = new System.Drawing.Size(183, 62);
             this.lblRecetteJour.TabIndex = 7;
-            this.lblRecetteJour.Text = "222222";
+            this.lblRecetteJour.Text = "..";
             this.lblRecetteJour.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
             // label7
@@ -1142,7 +1166,7 @@
             this.cmsUser.Margin = new System.Windows.Forms.Padding(0, 10, 0, 10);
             this.cmsUser.Name = "cmsUser";
             this.cmsUser.ShowCheckMargin = true;
-            this.cmsUser.Size = new System.Drawing.Size(224, 152);
+            this.cmsUser.Size = new System.Drawing.Size(287, 152);
             this.cmsUser.Text = "Menu";
             this.cmsUser.Opening += new System.ComponentModel.CancelEventHandler(this.cmsUser_Opening);
             // 
@@ -1154,8 +1178,8 @@
             this.ProfilToolStripMenuItem.Margin = new System.Windows.Forms.Padding(0, 20, 0, 10);
             this.ProfilToolStripMenuItem.Name = "ProfilToolStripMenuItem";
             this.ProfilToolStripMenuItem.Padding = new System.Windows.Forms.Padding(0, 0, 0, 10);
-            this.ProfilToolStripMenuItem.Size = new System.Drawing.Size(223, 50);
-            this.ProfilToolStripMenuItem.Text = "Profil";
+            this.ProfilToolStripMenuItem.Size = new System.Drawing.Size(286, 50);
+            this.ProfilToolStripMenuItem.Text = "Login";
             this.ProfilToolStripMenuItem.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this.ProfilToolStripMenuItem.Click += new System.EventHandler(this.ProfilToolStripMenuItem_Click);
             // 
@@ -1163,41 +1187,17 @@
             // 
             this.toolStripSeparator1.ForeColor = System.Drawing.Color.Black;
             this.toolStripSeparator1.Name = "toolStripSeparator1";
-            this.toolStripSeparator1.Size = new System.Drawing.Size(220, 6);
+            this.toolStripSeparator1.Size = new System.Drawing.Size(283, 6);
             // 
             // deconnecterToolStripMenuItem
             // 
             this.deconnecterToolStripMenuItem.BackColor = System.Drawing.Color.White;
-            this.deconnecterToolStripMenuItem.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.deconnecterToolStripMenuItem.Font = new System.Drawing.Font("Elephant", 16.2F);
             this.deconnecterToolStripMenuItem.Margin = new System.Windows.Forms.Padding(0, 10, 0, 10);
             this.deconnecterToolStripMenuItem.Name = "deconnecterToolStripMenuItem";
-            this.deconnecterToolStripMenuItem.Size = new System.Drawing.Size(223, 42);
+            this.deconnecterToolStripMenuItem.Size = new System.Drawing.Size(286, 42);
             this.deconnecterToolStripMenuItem.Text = "Déconnecter";
             this.deconnecterToolStripMenuItem.Click += new System.EventHandler(this.deconnecterToolStripMenuItem_Click);
-            // 
-            // btnecheances
-            // 
-            this.btnecheances.BackColor = System.Drawing.Color.White;
-            this.btnecheances.FlatAppearance.BorderSize = 0;
-            this.btnecheances.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnecheances.Font = new System.Drawing.Font("Segoe UI", 10.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnecheances.ForeColor = System.Drawing.Color.Black;
-            this.btnecheances.IconChar = FontAwesome.Sharp.IconChar.List12;
-            this.btnecheances.IconColor = System.Drawing.Color.Gray;
-            this.btnecheances.IconFont = FontAwesome.Sharp.IconFont.Auto;
-            this.btnecheances.IconSize = 40;
-            this.btnecheances.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btnecheances.Location = new System.Drawing.Point(13, 744);
-            this.btnecheances.Margin = new System.Windows.Forms.Padding(3, 3, 3, 30);
-            this.btnecheances.Name = "btnecheances";
-            this.btnecheances.Padding = new System.Windows.Forms.Padding(12, 0, 0, 0);
-            this.btnecheances.Size = new System.Drawing.Size(180, 55);
-            this.btnecheances.TabIndex = 8;
-            this.btnecheances.Text = "échéances  ";
-            this.btnecheances.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btnecheances.TextImageRelation = System.Windows.Forms.TextImageRelation.TextBeforeImage;
-            this.btnecheances.UseVisualStyleBackColor = false;
-            this.btnecheances.Click += new System.EventHandler(this.btnecheances_Click);
             // 
             // dashboard
             // 

@@ -53,12 +53,9 @@ namespace venolocation.formee
                         Session.Role = role;
                         LogHelper.AddLog("Connexion réussie.", Session.Username);
 
-                        formee.dashboard da = new dashboard();
-                        da.ShowDialog();
-                        
+                        this.DialogResult = DialogResult.OK;
                         this.Close();
 
-                     
                     }
                     else
                     {

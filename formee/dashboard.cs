@@ -34,8 +34,10 @@ namespace venolocation.formee
 
                 timer1.Start();
                 lbldate.Text = DateTime.Now.ToString("dddd dd/MM/yyyy");
+                
                 Dbexec.ExecuteQuery("CALL sp_generer_alertes();");
-                ChargerToutesLesDonnees();
+                //ChargerToutesLesDonnees();
+                deconnecte();
             }
             catch (Exception ex)
             {
@@ -346,10 +348,63 @@ namespace venolocation.formee
             df.ShowDialog();
         }
 
+        void deconnecte()
+        {
+            flowMenu.Enabled = false;
+            btnAccidents.Enabled=false;
+            btnSituation.Enabled=false;
+            btnRecettes.Enabled = false;
+            btnDepence.Enabled = false;
+            btnReparation.Enabled = false;
+            btnSetting.Enabled = false;
+            btnHistorique.Enabled = false;
+            dgvAlertes.DataSource = null;
+            dgvDernieresOperations.DataSource = null;
+            dgvRetoursPrevus.DataSource = null;
+
+        }
+
+        void connecter()
+        {
+            lblUser.Text = Session.Username;
+            if(Session.Role=="Admin")
+            {
+                btnSituation.Enabled = true;
+                btnRecettes.Enabled = true;
+                btnDepence.Enabled = true;
+                btnSetting.Enabled = true;
+            }
+            // Employé
+            flowMenu.Enabled = true;
+            btnAccidents.Enabled = true;            
+            btnReparation.Enabled = true;            
+            btnHistorique.Enabled = true;
+        }
+
+        void developpeur()
+        {
+            Session.Role = "Développeur";
+            Session.Username = "Développeur";
+            lblUser.Text = Session.Username;
+
+            btnSituation.Enabled = true;
+            btnRecettes.Enabled = true;
+            btnDepence.Enabled = true;
+            btnSetting.Enabled = true;
+            flowMenu.Enabled = true;
+            btnAccidents.Enabled = true;
+            btnReparation.Enabled = true;
+            btnHistorique.Enabled = true;
+            LogHelper.AddLog("Connexion réussie.", Session.Username);
+        }
+
         private void deconnecterToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            panelRight.Enabled=false;
-            flowMenu.Enabled=false;
+            deconnecte();
+            btndeveloppeur.Enabled = true;
+
+            
+            
             LogHelper.AddLog(" Quitter Connexion.", Session.Username);
         }
 
@@ -361,14 +416,26 @@ namespace venolocation.formee
 
         private void ProfilToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            login lo = new login();
-            lo.ShowDialog();
+            login frm = new login();
+
+            if (frm.ShowDialog() == DialogResult.OK)
+            {
+                ChargerToutesLesDonnees();
+                connecter();
+            }
         }
 
         private void btndeveloppeur_Click(object sender, EventArgs e)
         {
             droit.developpeur de = new droit.developpeur();
             de.ShowDialog();
+            if (de.mode_dev == true)
+            {
+               
+                developpeur();
+                ChargerToutesLesDonnees();
+            }
+            
         }
 
         private void btnecheances_Click(object sender, EventArgs e)

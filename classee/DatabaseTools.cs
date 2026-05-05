@@ -238,6 +238,40 @@ namespace venolocation.classee
                 return file;
             }
 
+        public static string CopierErreurTxt(string dossier)
+        {
+            DataTable dt = Dbexec.GetData(@"
+                        SELECT 
+                            id,
+                            message,
+                            utilisateur,
+                            form_name,
+                            action_name,
+                            DATE_FORMAT(created_at, '%d/%m/%Y %H:%i:%s') AS date_erreur
+                        FROM erreur
+                        ORDER BY id ASC;");
+
+            string file = Path.Combine(dossier, "Erreur_" + DateTime.Now.ToString("yyyyMMdd_HHmmss") + ".txt");
+
+            StringBuilder sb = new StringBuilder();
+            sb.AppendLine("ID |             MESSAGE         | UTILISATEUR | Forme name |  Action namee | DATE");
+            sb.AppendLine("-----------------------------------------------");
+
+            foreach (DataRow row in dt.Rows)
+            {
+                sb.AppendLine(
+                    row["id"] + " | " +
+                    row["message"] + " | " +
+                    row["utilisateur"] + " | " +
+                    row["action_name"] + " | " +
+                    row["date_erreur"]
+                );
+            }
+
+            File.WriteAllText(file, sb.ToString(), Encoding.UTF8);
+            return file;
+        }
+
         public static string BackupDatabase(string dossier)
         {
             MySqlConnectionStringBuilder b = GetBuilder();

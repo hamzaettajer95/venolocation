@@ -33,6 +33,10 @@
             this.label2 = new System.Windows.Forms.Label();
             this.label1 = new System.Windows.Forms.Label();
             this.guna2Panel1 = new Guna.UI2.WinForms.Guna2Panel();
+            this.guna2TextBox3 = new Guna.UI2.WinForms.Guna2TextBox();
+            this.guna2TextBox2 = new Guna.UI2.WinForms.Guna2TextBox();
+            this.guna2TextBox1 = new Guna.UI2.WinForms.Guna2TextBox();
+            this.txtCodeActivation = new Guna.UI2.WinForms.Guna2TextBox();
             this.label10 = new System.Windows.Forms.Label();
             this.label8 = new System.Windows.Forms.Label();
             this.label7 = new System.Windows.Forms.Label();
@@ -43,20 +47,6 @@
             this.label11 = new System.Windows.Forms.Label();
             this.label3 = new System.Windows.Forms.Label();
             this.guna2Panel3 = new Guna.UI2.WinForms.Guna2Panel();
-            this.label4 = new System.Windows.Forms.Label();
-            this.guna2Panel4 = new Guna.UI2.WinForms.Guna2Panel();
-            this.txtCodeActivation = new Guna.UI2.WinForms.Guna2TextBox();
-            this.guna2TextBox1 = new Guna.UI2.WinForms.Guna2TextBox();
-            this.guna2TextBox2 = new Guna.UI2.WinForms.Guna2TextBox();
-            this.guna2TextBox3 = new Guna.UI2.WinForms.Guna2TextBox();
-            this.pnlTesterConnexion = new Guna.UI2.WinForms.Guna2Panel();
-            this.label9 = new System.Windows.Forms.Label();
-            this.pnlJournalErreurs = new Guna.UI2.WinForms.Guna2Panel();
-            this.label13 = new System.Windows.Forms.Label();
-            this.pnlExporterLogs = new Guna.UI2.WinForms.Guna2Panel();
-            this.label14 = new System.Windows.Forms.Label();
-            this.pnlCopierConfiguration = new Guna.UI2.WinForms.Guna2Panel();
-            this.label15 = new System.Windows.Forms.Label();
             this.pnlAPropos = new Guna.UI2.WinForms.Guna2Panel();
             this.label16 = new System.Windows.Forms.Label();
             this.pnlSauvegarderConfig = new Guna.UI2.WinForms.Guna2Panel();
@@ -65,10 +55,20 @@
             this.label18 = new System.Windows.Forms.Label();
             this.pnlModeDebug = new Guna.UI2.WinForms.Guna2Panel();
             this.label19 = new System.Windows.Forms.Label();
-            this.label20 = new System.Windows.Forms.Label();
-            this.label21 = new System.Windows.Forms.Label();
-            this.lblDerniereVerification = new System.Windows.Forms.Label();
+            this.pnlCopierConfiguration = new Guna.UI2.WinForms.Guna2Panel();
+            this.label15 = new System.Windows.Forms.Label();
+            this.pnlExporterLogs = new Guna.UI2.WinForms.Guna2Panel();
+            this.label14 = new System.Windows.Forms.Label();
+            this.pnlJournalErreurs = new Guna.UI2.WinForms.Guna2Panel();
+            this.label13 = new System.Windows.Forms.Label();
+            this.pnlTesterConnexion = new Guna.UI2.WinForms.Guna2Panel();
+            this.label9 = new System.Windows.Forms.Label();
+            this.label4 = new System.Windows.Forms.Label();
+            this.guna2Panel4 = new Guna.UI2.WinForms.Guna2Panel();
             this.btnContacterDeveloppeur = new Guna.UI2.WinForms.Guna2Button();
+            this.lblDerniereVerification = new System.Windows.Forms.Label();
+            this.label21 = new System.Windows.Forms.Label();
+            this.label20 = new System.Windows.Forms.Label();
             this.pictureBox8 = new System.Windows.Forms.PictureBox();
             this.iconPictureBox14 = new FontAwesome.Sharp.IconPictureBox();
             this.iconPictureBox15 = new FontAwesome.Sharp.IconPictureBox();
@@ -83,28 +83,28 @@
             this.iconPictureBox23 = new FontAwesome.Sharp.IconPictureBox();
             this.iconPictureBox24 = new FontAwesome.Sharp.IconPictureBox();
             this.iconPictureBox25 = new FontAwesome.Sharp.IconPictureBox();
-            this.iconPictureBox9 = new FontAwesome.Sharp.IconPictureBox();
             this.iconPictureBox8 = new FontAwesome.Sharp.IconPictureBox();
             this.iconPictureBox7 = new FontAwesome.Sharp.IconPictureBox();
             this.iconPictureBox6 = new FontAwesome.Sharp.IconPictureBox();
             this.iconPictureBox4 = new FontAwesome.Sharp.IconPictureBox();
+            this.pictureBox2 = new System.Windows.Forms.PictureBox();
             this.iconPictureBox2 = new FontAwesome.Sharp.IconPictureBox();
             this.iconPictureBox3 = new FontAwesome.Sharp.IconPictureBox();
             this.iconPictureBox1 = new FontAwesome.Sharp.IconPictureBox();
-            this.pictureBox2 = new System.Windows.Forms.PictureBox();
+            this.iconPictureBox5 = new FontAwesome.Sharp.IconPictureBox();
             this.pnlHeader.SuspendLayout();
             this.guna2Panel1.SuspendLayout();
             this.guna2Panel2.SuspendLayout();
             this.guna2Panel3.SuspendLayout();
-            this.guna2Panel4.SuspendLayout();
-            this.pnlTesterConnexion.SuspendLayout();
-            this.pnlJournalErreurs.SuspendLayout();
-            this.pnlExporterLogs.SuspendLayout();
-            this.pnlCopierConfiguration.SuspendLayout();
             this.pnlAPropos.SuspendLayout();
             this.pnlSauvegarderConfig.SuspendLayout();
             this.pnlOutilsBD.SuspendLayout();
             this.pnlModeDebug.SuspendLayout();
+            this.pnlCopierConfiguration.SuspendLayout();
+            this.pnlExporterLogs.SuspendLayout();
+            this.pnlJournalErreurs.SuspendLayout();
+            this.pnlTesterConnexion.SuspendLayout();
+            this.guna2Panel4.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox8)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.iconPictureBox14)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.iconPictureBox15)).BeginInit();
@@ -119,15 +119,15 @@
             ((System.ComponentModel.ISupportInitialize)(this.iconPictureBox23)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.iconPictureBox24)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.iconPictureBox25)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.iconPictureBox9)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.iconPictureBox8)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.iconPictureBox7)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.iconPictureBox6)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.iconPictureBox4)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.iconPictureBox2)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.iconPictureBox3)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.iconPictureBox1)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.iconPictureBox5)).BeginInit();
             this.SuspendLayout();
             // 
             // pnlHeader
@@ -187,6 +187,94 @@
             this.guna2Panel1.Name = "guna2Panel1";
             this.guna2Panel1.Size = new System.Drawing.Size(636, 365);
             this.guna2Panel1.TabIndex = 2;
+            // 
+            // guna2TextBox3
+            // 
+            this.guna2TextBox3.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(210)))), ((int)(((byte)(218)))), ((int)(((byte)(226)))));
+            this.guna2TextBox3.BorderRadius = 8;
+            this.guna2TextBox3.Cursor = System.Windows.Forms.Cursors.IBeam;
+            this.guna2TextBox3.DefaultText = "";
+            this.guna2TextBox3.DisabledState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(208)))), ((int)(((byte)(208)))), ((int)(((byte)(208)))));
+            this.guna2TextBox3.DisabledState.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(226)))), ((int)(((byte)(226)))), ((int)(((byte)(226)))));
+            this.guna2TextBox3.DisabledState.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(138)))), ((int)(((byte)(138)))), ((int)(((byte)(138)))));
+            this.guna2TextBox3.DisabledState.PlaceholderForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(138)))), ((int)(((byte)(138)))), ((int)(((byte)(138)))));
+            this.guna2TextBox3.FocusedState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(94)))), ((int)(((byte)(148)))), ((int)(((byte)(255)))));
+            this.guna2TextBox3.Font = new System.Drawing.Font("Segoe UI Semibold", 10.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.guna2TextBox3.HoverState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(94)))), ((int)(((byte)(148)))), ((int)(((byte)(255)))));
+            this.guna2TextBox3.Location = new System.Drawing.Point(221, 266);
+            this.guna2TextBox3.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            this.guna2TextBox3.Name = "guna2TextBox3";
+            this.guna2TextBox3.PlaceholderText = "Veno Location ";
+            this.guna2TextBox3.ReadOnly = true;
+            this.guna2TextBox3.SelectedText = "";
+            this.guna2TextBox3.Size = new System.Drawing.Size(300, 46);
+            this.guna2TextBox3.TabIndex = 18;
+            // 
+            // guna2TextBox2
+            // 
+            this.guna2TextBox2.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(210)))), ((int)(((byte)(218)))), ((int)(((byte)(226)))));
+            this.guna2TextBox2.BorderRadius = 8;
+            this.guna2TextBox2.Cursor = System.Windows.Forms.Cursors.IBeam;
+            this.guna2TextBox2.DefaultText = "";
+            this.guna2TextBox2.DisabledState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(208)))), ((int)(((byte)(208)))), ((int)(((byte)(208)))));
+            this.guna2TextBox2.DisabledState.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(226)))), ((int)(((byte)(226)))), ((int)(((byte)(226)))));
+            this.guna2TextBox2.DisabledState.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(138)))), ((int)(((byte)(138)))), ((int)(((byte)(138)))));
+            this.guna2TextBox2.DisabledState.PlaceholderForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(138)))), ((int)(((byte)(138)))), ((int)(((byte)(138)))));
+            this.guna2TextBox2.FocusedState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(94)))), ((int)(((byte)(148)))), ((int)(((byte)(255)))));
+            this.guna2TextBox2.Font = new System.Drawing.Font("Segoe UI Semibold", 10.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.guna2TextBox2.HoverState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(94)))), ((int)(((byte)(148)))), ((int)(((byte)(255)))));
+            this.guna2TextBox2.Location = new System.Drawing.Point(221, 207);
+            this.guna2TextBox2.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            this.guna2TextBox2.Name = "guna2TextBox2";
+            this.guna2TextBox2.PlaceholderText = "hamza00etajer@gmail.com";
+            this.guna2TextBox2.ReadOnly = true;
+            this.guna2TextBox2.SelectedText = "";
+            this.guna2TextBox2.Size = new System.Drawing.Size(300, 46);
+            this.guna2TextBox2.TabIndex = 17;
+            // 
+            // guna2TextBox1
+            // 
+            this.guna2TextBox1.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(210)))), ((int)(((byte)(218)))), ((int)(((byte)(226)))));
+            this.guna2TextBox1.BorderRadius = 8;
+            this.guna2TextBox1.Cursor = System.Windows.Forms.Cursors.IBeam;
+            this.guna2TextBox1.DefaultText = "";
+            this.guna2TextBox1.DisabledState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(208)))), ((int)(((byte)(208)))), ((int)(((byte)(208)))));
+            this.guna2TextBox1.DisabledState.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(226)))), ((int)(((byte)(226)))), ((int)(((byte)(226)))));
+            this.guna2TextBox1.DisabledState.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(138)))), ((int)(((byte)(138)))), ((int)(((byte)(138)))));
+            this.guna2TextBox1.DisabledState.PlaceholderForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(138)))), ((int)(((byte)(138)))), ((int)(((byte)(138)))));
+            this.guna2TextBox1.FocusedState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(94)))), ((int)(((byte)(148)))), ((int)(((byte)(255)))));
+            this.guna2TextBox1.Font = new System.Drawing.Font("Segoe UI Semibold", 10.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.guna2TextBox1.HoverState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(94)))), ((int)(((byte)(148)))), ((int)(((byte)(255)))));
+            this.guna2TextBox1.Location = new System.Drawing.Point(221, 148);
+            this.guna2TextBox1.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            this.guna2TextBox1.Name = "guna2TextBox1";
+            this.guna2TextBox1.PlaceholderText = "+212 6 40 33 55 96";
+            this.guna2TextBox1.ReadOnly = true;
+            this.guna2TextBox1.SelectedText = "";
+            this.guna2TextBox1.Size = new System.Drawing.Size(300, 46);
+            this.guna2TextBox1.TabIndex = 16;
+            // 
+            // txtCodeActivation
+            // 
+            this.txtCodeActivation.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(210)))), ((int)(((byte)(218)))), ((int)(((byte)(226)))));
+            this.txtCodeActivation.BorderRadius = 8;
+            this.txtCodeActivation.Cursor = System.Windows.Forms.Cursors.IBeam;
+            this.txtCodeActivation.DefaultText = "";
+            this.txtCodeActivation.DisabledState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(208)))), ((int)(((byte)(208)))), ((int)(((byte)(208)))));
+            this.txtCodeActivation.DisabledState.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(226)))), ((int)(((byte)(226)))), ((int)(((byte)(226)))));
+            this.txtCodeActivation.DisabledState.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(138)))), ((int)(((byte)(138)))), ((int)(((byte)(138)))));
+            this.txtCodeActivation.DisabledState.PlaceholderForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(138)))), ((int)(((byte)(138)))), ((int)(((byte)(138)))));
+            this.txtCodeActivation.FocusedState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(94)))), ((int)(((byte)(148)))), ((int)(((byte)(255)))));
+            this.txtCodeActivation.Font = new System.Drawing.Font("Segoe UI Semibold", 10.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txtCodeActivation.HoverState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(94)))), ((int)(((byte)(148)))), ((int)(((byte)(255)))));
+            this.txtCodeActivation.Location = new System.Drawing.Point(221, 89);
+            this.txtCodeActivation.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            this.txtCodeActivation.Name = "txtCodeActivation";
+            this.txtCodeActivation.PlaceholderText = "ETTAJER HAMZA";
+            this.txtCodeActivation.ReadOnly = true;
+            this.txtCodeActivation.SelectedText = "";
+            this.txtCodeActivation.Size = new System.Drawing.Size(300, 46);
+            this.txtCodeActivation.TabIndex = 15;
             // 
             // label10
             // 
@@ -271,7 +359,7 @@
             // 
             this.label11.AutoSize = true;
             this.label11.Font = new System.Drawing.Font("Segoe UI", 10.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label11.Location = new System.Drawing.Point(216, 238);
+            this.label11.Location = new System.Drawing.Point(188, 238);
             this.label11.Name = "label11";
             this.label11.Size = new System.Drawing.Size(192, 25);
             this.label11.TabIndex = 12;
@@ -309,227 +397,6 @@
             this.guna2Panel3.Name = "guna2Panel3";
             this.guna2Panel3.Size = new System.Drawing.Size(1236, 300);
             this.guna2Panel3.TabIndex = 4;
-            // 
-            // label4
-            // 
-            this.label4.AutoSize = true;
-            this.label4.BackColor = System.Drawing.Color.Transparent;
-            this.label4.Font = new System.Drawing.Font("Segoe UI", 13.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label4.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(24)))), ((int)(((byte)(86)))), ((int)(((byte)(197)))));
-            this.label4.Location = new System.Drawing.Point(56, 16);
-            this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(239, 31);
-            this.label4.TabIndex = 8;
-            this.label4.Text = "Options développeur";
-            // 
-            // guna2Panel4
-            // 
-            this.guna2Panel4.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(242)))), ((int)(((byte)(248)))), ((int)(((byte)(255)))));
-            this.guna2Panel4.BorderColor = System.Drawing.Color.Gray;
-            this.guna2Panel4.BorderRadius = 16;
-            this.guna2Panel4.BorderThickness = 1;
-            this.guna2Panel4.Controls.Add(this.btnContacterDeveloppeur);
-            this.guna2Panel4.Controls.Add(this.lblDerniereVerification);
-            this.guna2Panel4.Controls.Add(this.label21);
-            this.guna2Panel4.Controls.Add(this.label20);
-            this.guna2Panel4.Controls.Add(this.pictureBox8);
-            this.guna2Panel4.Location = new System.Drawing.Point(12, 803);
-            this.guna2Panel4.Name = "guna2Panel4";
-            this.guna2Panel4.Size = new System.Drawing.Size(1236, 74);
-            this.guna2Panel4.TabIndex = 5;
-            this.guna2Panel4.Paint += new System.Windows.Forms.PaintEventHandler(this.guna2Panel4_Paint);
-            // 
-            // txtCodeActivation
-            // 
-            this.txtCodeActivation.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(210)))), ((int)(((byte)(218)))), ((int)(((byte)(226)))));
-            this.txtCodeActivation.BorderRadius = 8;
-            this.txtCodeActivation.Cursor = System.Windows.Forms.Cursors.IBeam;
-            this.txtCodeActivation.DefaultText = "";
-            this.txtCodeActivation.DisabledState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(208)))), ((int)(((byte)(208)))), ((int)(((byte)(208)))));
-            this.txtCodeActivation.DisabledState.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(226)))), ((int)(((byte)(226)))), ((int)(((byte)(226)))));
-            this.txtCodeActivation.DisabledState.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(138)))), ((int)(((byte)(138)))), ((int)(((byte)(138)))));
-            this.txtCodeActivation.DisabledState.PlaceholderForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(138)))), ((int)(((byte)(138)))), ((int)(((byte)(138)))));
-            this.txtCodeActivation.FocusedState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(94)))), ((int)(((byte)(148)))), ((int)(((byte)(255)))));
-            this.txtCodeActivation.Font = new System.Drawing.Font("Segoe UI Semibold", 10.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtCodeActivation.HoverState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(94)))), ((int)(((byte)(148)))), ((int)(((byte)(255)))));
-            this.txtCodeActivation.Location = new System.Drawing.Point(221, 89);
-            this.txtCodeActivation.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
-            this.txtCodeActivation.Name = "txtCodeActivation";
-            this.txtCodeActivation.PlaceholderText = "ETTAJER HAMZA";
-            this.txtCodeActivation.ReadOnly = true;
-            this.txtCodeActivation.SelectedText = "";
-            this.txtCodeActivation.Size = new System.Drawing.Size(300, 46);
-            this.txtCodeActivation.TabIndex = 15;
-            // 
-            // guna2TextBox1
-            // 
-            this.guna2TextBox1.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(210)))), ((int)(((byte)(218)))), ((int)(((byte)(226)))));
-            this.guna2TextBox1.BorderRadius = 8;
-            this.guna2TextBox1.Cursor = System.Windows.Forms.Cursors.IBeam;
-            this.guna2TextBox1.DefaultText = "";
-            this.guna2TextBox1.DisabledState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(208)))), ((int)(((byte)(208)))), ((int)(((byte)(208)))));
-            this.guna2TextBox1.DisabledState.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(226)))), ((int)(((byte)(226)))), ((int)(((byte)(226)))));
-            this.guna2TextBox1.DisabledState.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(138)))), ((int)(((byte)(138)))), ((int)(((byte)(138)))));
-            this.guna2TextBox1.DisabledState.PlaceholderForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(138)))), ((int)(((byte)(138)))), ((int)(((byte)(138)))));
-            this.guna2TextBox1.FocusedState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(94)))), ((int)(((byte)(148)))), ((int)(((byte)(255)))));
-            this.guna2TextBox1.Font = new System.Drawing.Font("Segoe UI Semibold", 10.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.guna2TextBox1.HoverState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(94)))), ((int)(((byte)(148)))), ((int)(((byte)(255)))));
-            this.guna2TextBox1.Location = new System.Drawing.Point(221, 148);
-            this.guna2TextBox1.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
-            this.guna2TextBox1.Name = "guna2TextBox1";
-            this.guna2TextBox1.PlaceholderText = "+212 6 40 33 55 96";
-            this.guna2TextBox1.ReadOnly = true;
-            this.guna2TextBox1.SelectedText = "";
-            this.guna2TextBox1.Size = new System.Drawing.Size(300, 46);
-            this.guna2TextBox1.TabIndex = 16;
-            // 
-            // guna2TextBox2
-            // 
-            this.guna2TextBox2.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(210)))), ((int)(((byte)(218)))), ((int)(((byte)(226)))));
-            this.guna2TextBox2.BorderRadius = 8;
-            this.guna2TextBox2.Cursor = System.Windows.Forms.Cursors.IBeam;
-            this.guna2TextBox2.DefaultText = "";
-            this.guna2TextBox2.DisabledState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(208)))), ((int)(((byte)(208)))), ((int)(((byte)(208)))));
-            this.guna2TextBox2.DisabledState.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(226)))), ((int)(((byte)(226)))), ((int)(((byte)(226)))));
-            this.guna2TextBox2.DisabledState.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(138)))), ((int)(((byte)(138)))), ((int)(((byte)(138)))));
-            this.guna2TextBox2.DisabledState.PlaceholderForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(138)))), ((int)(((byte)(138)))), ((int)(((byte)(138)))));
-            this.guna2TextBox2.FocusedState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(94)))), ((int)(((byte)(148)))), ((int)(((byte)(255)))));
-            this.guna2TextBox2.Font = new System.Drawing.Font("Segoe UI Semibold", 10.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.guna2TextBox2.HoverState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(94)))), ((int)(((byte)(148)))), ((int)(((byte)(255)))));
-            this.guna2TextBox2.Location = new System.Drawing.Point(221, 207);
-            this.guna2TextBox2.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
-            this.guna2TextBox2.Name = "guna2TextBox2";
-            this.guna2TextBox2.PlaceholderText = "hamza00etajer@gmail.com";
-            this.guna2TextBox2.ReadOnly = true;
-            this.guna2TextBox2.SelectedText = "";
-            this.guna2TextBox2.Size = new System.Drawing.Size(300, 46);
-            this.guna2TextBox2.TabIndex = 17;
-            // 
-            // guna2TextBox3
-            // 
-            this.guna2TextBox3.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(210)))), ((int)(((byte)(218)))), ((int)(((byte)(226)))));
-            this.guna2TextBox3.BorderRadius = 8;
-            this.guna2TextBox3.Cursor = System.Windows.Forms.Cursors.IBeam;
-            this.guna2TextBox3.DefaultText = "";
-            this.guna2TextBox3.DisabledState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(208)))), ((int)(((byte)(208)))), ((int)(((byte)(208)))));
-            this.guna2TextBox3.DisabledState.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(226)))), ((int)(((byte)(226)))), ((int)(((byte)(226)))));
-            this.guna2TextBox3.DisabledState.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(138)))), ((int)(((byte)(138)))), ((int)(((byte)(138)))));
-            this.guna2TextBox3.DisabledState.PlaceholderForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(138)))), ((int)(((byte)(138)))), ((int)(((byte)(138)))));
-            this.guna2TextBox3.FocusedState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(94)))), ((int)(((byte)(148)))), ((int)(((byte)(255)))));
-            this.guna2TextBox3.Font = new System.Drawing.Font("Segoe UI Semibold", 10.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.guna2TextBox3.HoverState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(94)))), ((int)(((byte)(148)))), ((int)(((byte)(255)))));
-            this.guna2TextBox3.Location = new System.Drawing.Point(221, 266);
-            this.guna2TextBox3.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
-            this.guna2TextBox3.Name = "guna2TextBox3";
-            this.guna2TextBox3.PlaceholderText = "Veno Location ";
-            this.guna2TextBox3.ReadOnly = true;
-            this.guna2TextBox3.SelectedText = "";
-            this.guna2TextBox3.Size = new System.Drawing.Size(300, 46);
-            this.guna2TextBox3.TabIndex = 18;
-            // 
-            // pnlTesterConnexion
-            // 
-            this.pnlTesterConnexion.BackColor = System.Drawing.Color.White;
-            this.pnlTesterConnexion.BorderColor = System.Drawing.Color.Gray;
-            this.pnlTesterConnexion.BorderRadius = 16;
-            this.pnlTesterConnexion.BorderThickness = 1;
-            this.pnlTesterConnexion.Controls.Add(this.iconPictureBox6);
-            this.pnlTesterConnexion.Controls.Add(this.label9);
-            this.pnlTesterConnexion.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(247)))), ((int)(((byte)(250)))), ((int)(((byte)(255)))));
-            this.pnlTesterConnexion.Location = new System.Drawing.Point(62, 73);
-            this.pnlTesterConnexion.Name = "pnlTesterConnexion";
-            this.pnlTesterConnexion.Size = new System.Drawing.Size(222, 92);
-            this.pnlTesterConnexion.TabIndex = 10;
-            // 
-            // label9
-            // 
-            this.label9.AutoSize = true;
-            this.label9.BackColor = System.Drawing.Color.Transparent;
-            this.label9.Font = new System.Drawing.Font("Segoe UI Semibold", 10.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label9.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(40)))), ((int)(((byte)(98)))), ((int)(((byte)(220)))));
-            this.label9.Location = new System.Drawing.Point(35, 57);
-            this.label9.Name = "label9";
-            this.label9.Size = new System.Drawing.Size(157, 23);
-            this.label9.TabIndex = 1;
-            this.label9.Text = "Tester la connexion";
-            // 
-            // pnlJournalErreurs
-            // 
-            this.pnlJournalErreurs.BackColor = System.Drawing.Color.White;
-            this.pnlJournalErreurs.BorderColor = System.Drawing.Color.Gray;
-            this.pnlJournalErreurs.BorderRadius = 16;
-            this.pnlJournalErreurs.BorderThickness = 1;
-            this.pnlJournalErreurs.Controls.Add(this.iconPictureBox7);
-            this.pnlJournalErreurs.Controls.Add(this.label13);
-            this.pnlJournalErreurs.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(245)))), ((int)(((byte)(252)))), ((int)(((byte)(246)))));
-            this.pnlJournalErreurs.Location = new System.Drawing.Point(345, 73);
-            this.pnlJournalErreurs.Name = "pnlJournalErreurs";
-            this.pnlJournalErreurs.Size = new System.Drawing.Size(222, 92);
-            this.pnlJournalErreurs.TabIndex = 11;
-            // 
-            // label13
-            // 
-            this.label13.AutoSize = true;
-            this.label13.BackColor = System.Drawing.Color.Transparent;
-            this.label13.Font = new System.Drawing.Font("Segoe UI Semibold", 10.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label13.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(38)))), ((int)(((byte)(166)))), ((int)(((byte)(91)))));
-            this.label13.Location = new System.Drawing.Point(35, 57);
-            this.label13.Name = "label13";
-            this.label13.Size = new System.Drawing.Size(155, 23);
-            this.label13.TabIndex = 1;
-            this.label13.Text = "Journal des erreurs";
-            // 
-            // pnlExporterLogs
-            // 
-            this.pnlExporterLogs.BackColor = System.Drawing.Color.White;
-            this.pnlExporterLogs.BorderColor = System.Drawing.Color.Gray;
-            this.pnlExporterLogs.BorderRadius = 16;
-            this.pnlExporterLogs.BorderThickness = 1;
-            this.pnlExporterLogs.Controls.Add(this.iconPictureBox8);
-            this.pnlExporterLogs.Controls.Add(this.label14);
-            this.pnlExporterLogs.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(250)))), ((int)(((byte)(244)))));
-            this.pnlExporterLogs.Location = new System.Drawing.Point(628, 73);
-            this.pnlExporterLogs.Name = "pnlExporterLogs";
-            this.pnlExporterLogs.Size = new System.Drawing.Size(222, 92);
-            this.pnlExporterLogs.TabIndex = 11;
-            // 
-            // label14
-            // 
-            this.label14.AutoSize = true;
-            this.label14.BackColor = System.Drawing.Color.Transparent;
-            this.label14.Font = new System.Drawing.Font("Segoe UI Semibold", 10.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label14.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(243)))), ((int)(((byte)(130)))), ((int)(((byte)(26)))));
-            this.label14.Location = new System.Drawing.Point(45, 57);
-            this.label14.Name = "label14";
-            this.label14.Size = new System.Drawing.Size(136, 23);
-            this.label14.TabIndex = 1;
-            this.label14.Text = "Exporter les logs";
-            // 
-            // pnlCopierConfiguration
-            // 
-            this.pnlCopierConfiguration.BackColor = System.Drawing.Color.White;
-            this.pnlCopierConfiguration.BorderColor = System.Drawing.Color.Gray;
-            this.pnlCopierConfiguration.BorderRadius = 16;
-            this.pnlCopierConfiguration.BorderThickness = 1;
-            this.pnlCopierConfiguration.Controls.Add(this.iconPictureBox9);
-            this.pnlCopierConfiguration.Controls.Add(this.label15);
-            this.pnlCopierConfiguration.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(243)))), ((int)(((byte)(252)))), ((int)(((byte)(253)))));
-            this.pnlCopierConfiguration.Location = new System.Drawing.Point(911, 73);
-            this.pnlCopierConfiguration.Name = "pnlCopierConfiguration";
-            this.pnlCopierConfiguration.Size = new System.Drawing.Size(222, 92);
-            this.pnlCopierConfiguration.TabIndex = 11;
-            // 
-            // label15
-            // 
-            this.label15.AutoSize = true;
-            this.label15.BackColor = System.Drawing.Color.Transparent;
-            this.label15.Font = new System.Drawing.Font("Segoe UI Semibold", 10.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label15.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(30)))), ((int)(((byte)(168)))), ((int)(((byte)(185)))));
-            this.label15.Location = new System.Drawing.Point(35, 57);
-            this.label15.Name = "label15";
-            this.label15.Size = new System.Drawing.Size(168, 23);
-            this.label15.TabIndex = 1;
-            this.label15.Text = "Copier configuration";
             // 
             // pnlAPropos
             // 
@@ -583,11 +450,11 @@
             this.label17.BackColor = System.Drawing.Color.Transparent;
             this.label17.Font = new System.Drawing.Font("Segoe UI Semibold", 10.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label17.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(60)))), ((int)(((byte)(110)))), ((int)(((byte)(220)))));
-            this.label17.Location = new System.Drawing.Point(34, 57);
+            this.label17.Location = new System.Drawing.Point(33, 57);
             this.label17.Name = "label17";
-            this.label17.Size = new System.Drawing.Size(159, 23);
+            this.label17.Size = new System.Drawing.Size(163, 23);
             this.label17.TabIndex = 1;
-            this.label17.Text = "Sauvegarder config";
+            this.label17.Text = "Restaurer config DB";
             // 
             // pnlOutilsBD
             // 
@@ -609,11 +476,11 @@
             this.label18.BackColor = System.Drawing.Color.Transparent;
             this.label18.Font = new System.Drawing.Font("Segoe UI Semibold", 10.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label18.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(225)))), ((int)(((byte)(48)))), ((int)(((byte)(65)))));
-            this.label18.Location = new System.Drawing.Point(73, 57);
+            this.label18.Location = new System.Drawing.Point(26, 57);
             this.label18.Name = "label18";
-            this.label18.Size = new System.Drawing.Size(81, 23);
+            this.label18.Size = new System.Drawing.Size(178, 23);
             this.label18.TabIndex = 1;
-            this.label18.Text = "Outils BD";
+            this.label18.Text = "Afficher configuration";
             // 
             // pnlModeDebug
             // 
@@ -644,38 +511,139 @@
             this.label19.TabIndex = 1;
             this.label19.Text = "Mode debug";
             // 
-            // label20
+            // pnlCopierConfiguration
             // 
-            this.label20.AutoSize = true;
-            this.label20.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label20.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(28)))), ((int)(((byte)(94)))), ((int)(((byte)(214)))));
-            this.label20.Location = new System.Drawing.Point(108, 8);
-            this.label20.Name = "label20";
-            this.label20.Size = new System.Drawing.Size(188, 28);
-            this.label20.TabIndex = 11;
-            this.label20.Text = "Support technique";
+            this.pnlCopierConfiguration.BackColor = System.Drawing.Color.White;
+            this.pnlCopierConfiguration.BorderColor = System.Drawing.Color.Gray;
+            this.pnlCopierConfiguration.BorderRadius = 16;
+            this.pnlCopierConfiguration.BorderThickness = 1;
+            this.pnlCopierConfiguration.Controls.Add(this.iconPictureBox5);
+            this.pnlCopierConfiguration.Controls.Add(this.label15);
+            this.pnlCopierConfiguration.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(243)))), ((int)(((byte)(252)))), ((int)(((byte)(253)))));
+            this.pnlCopierConfiguration.Location = new System.Drawing.Point(911, 73);
+            this.pnlCopierConfiguration.Name = "pnlCopierConfiguration";
+            this.pnlCopierConfiguration.Size = new System.Drawing.Size(222, 92);
+            this.pnlCopierConfiguration.TabIndex = 11;
             // 
-            // label21
+            // label15
             // 
-            this.label21.AutoSize = true;
-            this.label21.Font = new System.Drawing.Font("Segoe UI", 10.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label21.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(90)))), ((int)(((byte)(98)))), ((int)(((byte)(108)))));
-            this.label21.Location = new System.Drawing.Point(108, 36);
-            this.label21.Name = "label21";
-            this.label21.Size = new System.Drawing.Size(345, 25);
-            this.label21.TabIndex = 15;
-            this.label21.Text = "Besoin d\'aide ou un problème technique ?";
+            this.label15.AutoSize = true;
+            this.label15.BackColor = System.Drawing.Color.Transparent;
+            this.label15.Font = new System.Drawing.Font("Segoe UI Semibold", 10.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label15.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(30)))), ((int)(((byte)(168)))), ((int)(((byte)(185)))));
+            this.label15.Location = new System.Drawing.Point(12, 57);
+            this.label15.Name = "label15";
+            this.label15.Size = new System.Drawing.Size(186, 23);
+            this.label15.TabIndex = 1;
+            this.label15.Text = "Sauvegarder config DB";
             // 
-            // lblDerniereVerification
+            // pnlExporterLogs
             // 
-            this.lblDerniereVerification.AutoSize = true;
-            this.lblDerniereVerification.Font = new System.Drawing.Font("Segoe UI", 10.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblDerniereVerification.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(90)))), ((int)(((byte)(98)))), ((int)(((byte)(108)))));
-            this.lblDerniereVerification.Location = new System.Drawing.Point(875, 36);
-            this.lblDerniereVerification.Name = "lblDerniereVerification";
-            this.lblDerniereVerification.Size = new System.Drawing.Size(350, 25);
-            this.lblDerniereVerification.TabIndex = 16;
-            this.lblDerniereVerification.Text = "Dernière vérification : 25/05/2026 14:32:18";
+            this.pnlExporterLogs.BackColor = System.Drawing.Color.White;
+            this.pnlExporterLogs.BorderColor = System.Drawing.Color.Gray;
+            this.pnlExporterLogs.BorderRadius = 16;
+            this.pnlExporterLogs.BorderThickness = 1;
+            this.pnlExporterLogs.Controls.Add(this.iconPictureBox8);
+            this.pnlExporterLogs.Controls.Add(this.label14);
+            this.pnlExporterLogs.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(250)))), ((int)(((byte)(244)))));
+            this.pnlExporterLogs.Location = new System.Drawing.Point(628, 73);
+            this.pnlExporterLogs.Name = "pnlExporterLogs";
+            this.pnlExporterLogs.Size = new System.Drawing.Size(222, 92);
+            this.pnlExporterLogs.TabIndex = 11;
+            // 
+            // label14
+            // 
+            this.label14.AutoSize = true;
+            this.label14.BackColor = System.Drawing.Color.Transparent;
+            this.label14.Font = new System.Drawing.Font("Segoe UI Semibold", 10.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label14.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(243)))), ((int)(((byte)(130)))), ((int)(((byte)(26)))));
+            this.label14.Location = new System.Drawing.Point(45, 57);
+            this.label14.Name = "label14";
+            this.label14.Size = new System.Drawing.Size(151, 23);
+            this.label14.TabIndex = 1;
+            this.label14.Text = "Exporter les erreur";
+            // 
+            // pnlJournalErreurs
+            // 
+            this.pnlJournalErreurs.BackColor = System.Drawing.Color.White;
+            this.pnlJournalErreurs.BorderColor = System.Drawing.Color.Gray;
+            this.pnlJournalErreurs.BorderRadius = 16;
+            this.pnlJournalErreurs.BorderThickness = 1;
+            this.pnlJournalErreurs.Controls.Add(this.iconPictureBox7);
+            this.pnlJournalErreurs.Controls.Add(this.label13);
+            this.pnlJournalErreurs.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(245)))), ((int)(((byte)(252)))), ((int)(((byte)(246)))));
+            this.pnlJournalErreurs.Location = new System.Drawing.Point(345, 73);
+            this.pnlJournalErreurs.Name = "pnlJournalErreurs";
+            this.pnlJournalErreurs.Size = new System.Drawing.Size(222, 92);
+            this.pnlJournalErreurs.TabIndex = 11;
+            // 
+            // label13
+            // 
+            this.label13.AutoSize = true;
+            this.label13.BackColor = System.Drawing.Color.Transparent;
+            this.label13.Font = new System.Drawing.Font("Segoe UI Semibold", 10.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label13.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(38)))), ((int)(((byte)(166)))), ((int)(((byte)(91)))));
+            this.label13.Location = new System.Drawing.Point(35, 57);
+            this.label13.Name = "label13";
+            this.label13.Size = new System.Drawing.Size(155, 23);
+            this.label13.TabIndex = 1;
+            this.label13.Text = "Journal des erreurs";
+            // 
+            // pnlTesterConnexion
+            // 
+            this.pnlTesterConnexion.BackColor = System.Drawing.Color.White;
+            this.pnlTesterConnexion.BorderColor = System.Drawing.Color.Gray;
+            this.pnlTesterConnexion.BorderRadius = 16;
+            this.pnlTesterConnexion.BorderThickness = 1;
+            this.pnlTesterConnexion.Controls.Add(this.iconPictureBox6);
+            this.pnlTesterConnexion.Controls.Add(this.label9);
+            this.pnlTesterConnexion.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(247)))), ((int)(((byte)(250)))), ((int)(((byte)(255)))));
+            this.pnlTesterConnexion.Location = new System.Drawing.Point(62, 73);
+            this.pnlTesterConnexion.Name = "pnlTesterConnexion";
+            this.pnlTesterConnexion.Size = new System.Drawing.Size(222, 92);
+            this.pnlTesterConnexion.TabIndex = 10;
+            this.pnlTesterConnexion.Paint += new System.Windows.Forms.PaintEventHandler(this.pnlTesterConnexion_Paint);
+            // 
+            // label9
+            // 
+            this.label9.AutoSize = true;
+            this.label9.BackColor = System.Drawing.Color.Transparent;
+            this.label9.Font = new System.Drawing.Font("Segoe UI Semibold", 10.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label9.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(40)))), ((int)(((byte)(98)))), ((int)(((byte)(220)))));
+            this.label9.Location = new System.Drawing.Point(35, 57);
+            this.label9.Name = "label9";
+            this.label9.Size = new System.Drawing.Size(157, 23);
+            this.label9.TabIndex = 1;
+            this.label9.Text = "Tester la connexion";
+            // 
+            // label4
+            // 
+            this.label4.AutoSize = true;
+            this.label4.BackColor = System.Drawing.Color.Transparent;
+            this.label4.Font = new System.Drawing.Font("Segoe UI", 13.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label4.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(24)))), ((int)(((byte)(86)))), ((int)(((byte)(197)))));
+            this.label4.Location = new System.Drawing.Point(56, 16);
+            this.label4.Name = "label4";
+            this.label4.Size = new System.Drawing.Size(239, 31);
+            this.label4.TabIndex = 8;
+            this.label4.Text = "Options développeur";
+            // 
+            // guna2Panel4
+            // 
+            this.guna2Panel4.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(242)))), ((int)(((byte)(248)))), ((int)(((byte)(255)))));
+            this.guna2Panel4.BorderColor = System.Drawing.Color.Gray;
+            this.guna2Panel4.BorderRadius = 16;
+            this.guna2Panel4.BorderThickness = 1;
+            this.guna2Panel4.Controls.Add(this.btnContacterDeveloppeur);
+            this.guna2Panel4.Controls.Add(this.lblDerniereVerification);
+            this.guna2Panel4.Controls.Add(this.label21);
+            this.guna2Panel4.Controls.Add(this.label20);
+            this.guna2Panel4.Controls.Add(this.pictureBox8);
+            this.guna2Panel4.Location = new System.Drawing.Point(12, 803);
+            this.guna2Panel4.Name = "guna2Panel4";
+            this.guna2Panel4.Size = new System.Drawing.Size(1236, 74);
+            this.guna2Panel4.TabIndex = 5;
+            this.guna2Panel4.Paint += new System.Windows.Forms.PaintEventHandler(this.guna2Panel4_Paint);
             // 
             // btnContacterDeveloppeur
             // 
@@ -696,6 +664,39 @@
             this.btnContacterDeveloppeur.Size = new System.Drawing.Size(253, 45);
             this.btnContacterDeveloppeur.TabIndex = 17;
             this.btnContacterDeveloppeur.Text = "Contacter le développeur";
+            // 
+            // lblDerniereVerification
+            // 
+            this.lblDerniereVerification.AutoSize = true;
+            this.lblDerniereVerification.Font = new System.Drawing.Font("Segoe UI", 10.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblDerniereVerification.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(90)))), ((int)(((byte)(98)))), ((int)(((byte)(108)))));
+            this.lblDerniereVerification.Location = new System.Drawing.Point(875, 36);
+            this.lblDerniereVerification.Name = "lblDerniereVerification";
+            this.lblDerniereVerification.Size = new System.Drawing.Size(350, 25);
+            this.lblDerniereVerification.TabIndex = 16;
+            this.lblDerniereVerification.Text = "Dernière vérification : 25/05/2026 14:32:18";
+            // 
+            // label21
+            // 
+            this.label21.AutoSize = true;
+            this.label21.Font = new System.Drawing.Font("Segoe UI", 10.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label21.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(90)))), ((int)(((byte)(98)))), ((int)(((byte)(108)))));
+            this.label21.Location = new System.Drawing.Point(108, 36);
+            this.label21.Name = "label21";
+            this.label21.Size = new System.Drawing.Size(345, 25);
+            this.label21.TabIndex = 15;
+            this.label21.Text = "Besoin d\'aide ou un problème technique ?";
+            // 
+            // label20
+            // 
+            this.label20.AutoSize = true;
+            this.label20.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label20.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(28)))), ((int)(((byte)(94)))), ((int)(((byte)(214)))));
+            this.label20.Location = new System.Drawing.Point(108, 8);
+            this.label20.Name = "label20";
+            this.label20.Size = new System.Drawing.Size(188, 28);
+            this.label20.TabIndex = 11;
+            this.label20.Text = "Support technique";
             // 
             // pictureBox8
             // 
@@ -767,7 +768,7 @@
             // 
             this.iconPictureBox10.BackColor = System.Drawing.Color.Transparent;
             this.iconPictureBox10.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(21)))), ((int)(((byte)(101)))), ((int)(((byte)(192)))));
-            this.iconPictureBox10.IconChar = FontAwesome.Sharp.IconChar.FloppyDisk;
+            this.iconPictureBox10.IconChar = FontAwesome.Sharp.IconChar.Repeat;
             this.iconPictureBox10.IconColor = System.Drawing.Color.FromArgb(((int)(((byte)(21)))), ((int)(((byte)(101)))), ((int)(((byte)(192)))));
             this.iconPictureBox10.IconFont = FontAwesome.Sharp.IconFont.Auto;
             this.iconPictureBox10.IconSize = 42;
@@ -885,20 +886,6 @@
             this.iconPictureBox25.TabIndex = 19;
             this.iconPictureBox25.TabStop = false;
             // 
-            // iconPictureBox9
-            // 
-            this.iconPictureBox9.BackColor = System.Drawing.Color.Transparent;
-            this.iconPictureBox9.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(21)))), ((int)(((byte)(101)))), ((int)(((byte)(192)))));
-            this.iconPictureBox9.IconChar = FontAwesome.Sharp.IconChar.Copy;
-            this.iconPictureBox9.IconColor = System.Drawing.Color.FromArgb(((int)(((byte)(21)))), ((int)(((byte)(101)))), ((int)(((byte)(192)))));
-            this.iconPictureBox9.IconFont = FontAwesome.Sharp.IconFont.Auto;
-            this.iconPictureBox9.IconSize = 42;
-            this.iconPictureBox9.Location = new System.Drawing.Point(92, 12);
-            this.iconPictureBox9.Name = "iconPictureBox9";
-            this.iconPictureBox9.Size = new System.Drawing.Size(42, 42);
-            this.iconPictureBox9.TabIndex = 11;
-            this.iconPictureBox9.TabStop = false;
-            // 
             // iconPictureBox8
             // 
             this.iconPictureBox8.BackColor = System.Drawing.Color.Transparent;
@@ -954,6 +941,17 @@
             this.iconPictureBox4.TabIndex = 9;
             this.iconPictureBox4.TabStop = false;
             // 
+            // pictureBox2
+            // 
+            this.pictureBox2.Image = global::venolocation.Properties.Resources.web_development_glyph_04_512;
+            this.pictureBox2.Location = new System.Drawing.Point(193, 66);
+            this.pictureBox2.Name = "pictureBox2";
+            this.pictureBox2.Size = new System.Drawing.Size(176, 159);
+            this.pictureBox2.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
+            this.pictureBox2.TabIndex = 14;
+            this.pictureBox2.TabStop = false;
+            this.pictureBox2.Click += new System.EventHandler(this.pictureBox2_Click);
+            // 
             // iconPictureBox2
             // 
             this.iconPictureBox2.BackColor = System.Drawing.Color.White;
@@ -993,15 +991,19 @@
             this.iconPictureBox1.TabIndex = 5;
             this.iconPictureBox1.TabStop = false;
             // 
-            // pictureBox2
+            // iconPictureBox5
             // 
-            this.pictureBox2.Image = global::venolocation.Properties.Resources.web_development_glyph_04_512;
-            this.pictureBox2.Location = new System.Drawing.Point(193, 66);
-            this.pictureBox2.Name = "pictureBox2";
-            this.pictureBox2.Size = new System.Drawing.Size(176, 159);
-            this.pictureBox2.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
-            this.pictureBox2.TabIndex = 14;
-            this.pictureBox2.TabStop = false;
+            this.iconPictureBox5.BackColor = System.Drawing.Color.Transparent;
+            this.iconPictureBox5.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(21)))), ((int)(((byte)(101)))), ((int)(((byte)(192)))));
+            this.iconPictureBox5.IconChar = FontAwesome.Sharp.IconChar.FloppyDisk;
+            this.iconPictureBox5.IconColor = System.Drawing.Color.FromArgb(((int)(((byte)(21)))), ((int)(((byte)(101)))), ((int)(((byte)(192)))));
+            this.iconPictureBox5.IconFont = FontAwesome.Sharp.IconFont.Auto;
+            this.iconPictureBox5.IconSize = 42;
+            this.iconPictureBox5.Location = new System.Drawing.Point(92, 12);
+            this.iconPictureBox5.Name = "iconPictureBox5";
+            this.iconPictureBox5.Size = new System.Drawing.Size(42, 42);
+            this.iconPictureBox5.TabIndex = 13;
+            this.iconPictureBox5.TabStop = false;
             // 
             // developpeur
             // 
@@ -1021,6 +1023,7 @@
             this.Name = "developpeur";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Développeur";
+            this.Load += new System.EventHandler(this.developpeur_Load);
             this.pnlHeader.ResumeLayout(false);
             this.pnlHeader.PerformLayout();
             this.guna2Panel1.ResumeLayout(false);
@@ -1029,16 +1032,6 @@
             this.guna2Panel2.PerformLayout();
             this.guna2Panel3.ResumeLayout(false);
             this.guna2Panel3.PerformLayout();
-            this.guna2Panel4.ResumeLayout(false);
-            this.guna2Panel4.PerformLayout();
-            this.pnlTesterConnexion.ResumeLayout(false);
-            this.pnlTesterConnexion.PerformLayout();
-            this.pnlJournalErreurs.ResumeLayout(false);
-            this.pnlJournalErreurs.PerformLayout();
-            this.pnlExporterLogs.ResumeLayout(false);
-            this.pnlExporterLogs.PerformLayout();
-            this.pnlCopierConfiguration.ResumeLayout(false);
-            this.pnlCopierConfiguration.PerformLayout();
             this.pnlAPropos.ResumeLayout(false);
             this.pnlAPropos.PerformLayout();
             this.pnlSauvegarderConfig.ResumeLayout(false);
@@ -1047,6 +1040,16 @@
             this.pnlOutilsBD.PerformLayout();
             this.pnlModeDebug.ResumeLayout(false);
             this.pnlModeDebug.PerformLayout();
+            this.pnlCopierConfiguration.ResumeLayout(false);
+            this.pnlCopierConfiguration.PerformLayout();
+            this.pnlExporterLogs.ResumeLayout(false);
+            this.pnlExporterLogs.PerformLayout();
+            this.pnlJournalErreurs.ResumeLayout(false);
+            this.pnlJournalErreurs.PerformLayout();
+            this.pnlTesterConnexion.ResumeLayout(false);
+            this.pnlTesterConnexion.PerformLayout();
+            this.guna2Panel4.ResumeLayout(false);
+            this.guna2Panel4.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox8)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.iconPictureBox14)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.iconPictureBox15)).EndInit();
@@ -1061,15 +1064,15 @@
             ((System.ComponentModel.ISupportInitialize)(this.iconPictureBox23)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.iconPictureBox24)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.iconPictureBox25)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.iconPictureBox9)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.iconPictureBox8)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.iconPictureBox7)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.iconPictureBox6)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.iconPictureBox4)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.iconPictureBox2)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.iconPictureBox3)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.iconPictureBox1)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.iconPictureBox5)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -1133,11 +1136,11 @@
         private FontAwesome.Sharp.IconPictureBox iconPictureBox23;
         private FontAwesome.Sharp.IconPictureBox iconPictureBox24;
         private FontAwesome.Sharp.IconPictureBox iconPictureBox25;
-        private FontAwesome.Sharp.IconPictureBox iconPictureBox9;
         private FontAwesome.Sharp.IconPictureBox iconPictureBox8;
         private FontAwesome.Sharp.IconPictureBox iconPictureBox7;
         private FontAwesome.Sharp.IconPictureBox iconPictureBox6;
         private System.Windows.Forms.PictureBox pictureBox1;
         private System.Windows.Forms.PictureBox pictureBox2;
+        private FontAwesome.Sharp.IconPictureBox iconPictureBox5;
     }
 }

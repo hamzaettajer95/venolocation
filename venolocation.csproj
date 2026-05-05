@@ -123,6 +123,12 @@
     <Compile Include="classee\LogHelper.cs" />
     <Compile Include="classee\MessageService.cs" />
     <Compile Include="classee\Session.cs" />
+    <Compile Include="dev\debug.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="dev\debug.Designer.cs">
+      <DependentUpon>debug.cs</DependentUpon>
+    </Compile>
     <Compile Include="droit\accident.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -257,6 +263,9 @@
     <Compile Include="settin\utilisateur.Designer.cs">
       <DependentUpon>utilisateur.cs</DependentUpon>
     </Compile>
+    <EmbeddedResource Include="dev\debug.resx">
+      <DependentUpon>debug.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="droit\accident.resx">
       <DependentUpon>accident.cs</DependentUpon>
     </EmbeddedResource>
