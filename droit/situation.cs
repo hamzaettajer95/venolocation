@@ -32,7 +32,7 @@ namespace venolocation.droit
         {
             InitializeComponent();
         }
-        private Timer tmrHorloge;
+       
         private const int capaciteParking = 30;
         private void situation_Load(object sender, EventArgs e)
         {

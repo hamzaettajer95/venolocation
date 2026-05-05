@@ -7,8 +7,13 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
-using venolocation.classee;
+
 using MySql.Data.MySqlClient;
+
+using Org.BouncyCastle.Tls;
+
+using venolocation.classee;
+using venolocation.settin;
 
 namespace venolocation.formee
 {
@@ -18,36 +23,131 @@ namespace venolocation.formee
         {
             InitializeComponent();
         }
-        public static string connection_string=Properties.Settings.Default.conx;
+        public static string connection_string= DbConfig.GetConnectionString();
 
         private readonly string connectionString = connection_string;
         private void timer1_Tick(object sender, EventArgs e)
         {
             lblDateTime.Text = DateTime.Now.ToString("HH:mm:ss");
         }
+        void mise_a_jour()
+        {
+            string updateUrl = Properties.Settings.Default.updateUrl;
 
+            UpdateInfo update = UpdateHelper.CheckForUpdate(updateUrl);
+
+            if (update != null && update.IsNewVersion)
+            {
+                update frm = new settin.update(update);
+                frm.ShowDialog();
+
+                if (update.Obligatoire && frm.UpdateInstalled == false)
+                {
+                    MessageBox.Show(
+                        "Cette mise à jour est obligatoire. Le logiciel va se fermer.",
+                        "Mise à jour obligatoire",
+                        MessageBoxButtons.OK,
+                        MessageBoxIcon.Warning
+                    );
+
+                    Application.Exit();
+                    return;
+                }
+            }
+
+           
+        }
+        private string GetConnectionStringFromTextBox()
+        {
+            string server = Properties.Settings.Default.db_server;
+            string database = Properties.Settings.Default.db_name;
+            string user = Properties.Settings.Default.db_user;
+            string password = Properties.Settings.Default.db_password;
+            string portText = Properties.Settings.Default.db_port;
+
+            uint port = 3306;
+
+            if (!string.IsNullOrWhiteSpace(portText))
+            {
+                if (!uint.TryParse(portText, out port))
+                {
+                    port = 3306;
+                }
+            }
+
+            MySqlConnectionStringBuilder builder = new MySqlConnectionStringBuilder
+            {
+                Server = server,
+                Database = database,
+                UserID = user,
+                Password = password,
+                Port = port
+            };
+
+            return builder.ConnectionString;
+        }
+        bool verifier_connection()
+        {
+           
+                try
+                {
+                
+                     string connectionString = GetConnectionStringFromTextBox();
+
+                    using (MySqlConnection con = new MySqlConnection(connectionString))
+                    {
+                        con.Open();
+                    }
+
+                    return true;
+                }
+                catch (Exception ex)
+                {
+                    dbErreur.AddLog(ex.Message, Session.Username, "dashboard", "erreur connection");
+                    MessageBox.Show(
+                        "Erreur de connexion : " + ex.Message,
+                        "Connexion",
+                        MessageBoxButtons.OK,
+                        MessageBoxIcon.Error
+                    );
+
+                    return false;
+                }
+            
+        }
         private void dashboard_Load(object sender, EventArgs e)
         {
-            try
+            if (verifier_connection())
             {
-                this.SuspendLayout();
 
-                timer1.Start();
-                lbldate.Text = DateTime.Now.ToString("dddd dd/MM/yyyy");
-                
-                Dbexec.ExecuteQuery("CALL sp_generer_alertes();");
-                //ChargerToutesLesDonnees();
-                deconnecte();
+                try
+                {
+                    this.SuspendLayout();
+                    mise_a_jour();
+                    timer1.Start();
+                    lbldate.Text = DateTime.Now.ToString("dddd dd/MM/yyyy");
+                    deconnecte();
+                    Dbexec.ExecuteQuery("CALL sp_generer_alertes();");
+                    //ChargerToutesLesDonnees();
+                    test_serial();
+
+                }
+                catch (Exception ex)
+                {
+                    dbErreur.AddLog(ex.Message, Session.Username, "dashboard", "dashboard_Load");
+                    MessageBox.Show("Erreur chargement dashboard : " + ex.Message);
+                }
+                finally
+                {
+                    this.ResumeLayout();
+                }
             }
-            catch (Exception ex)
+            else
             {
-                dbErreur.AddLog(ex.Message, Session.Username, "dashboard", "dashboard_Load");
-                MessageBox.Show("Erreur chargement dashboard : " + ex.Message);
+                dev.server ser = new dev.server();
+                ser.ShowDialog();
             }
-            finally
-            {
-                this.ResumeLayout();
-            }
+
 
         }
         private void ChargerToutesLesDonnees()
@@ -302,6 +402,8 @@ namespace venolocation.formee
 
         private void dashboard_Activated(object sender, EventArgs e)
         {
+            if (Session.Username == "")
+                return;
             try
             {
                 this.SuspendLayout();
@@ -403,8 +505,9 @@ namespace venolocation.formee
             deconnecte();
             btndeveloppeur.Enabled = true;
 
-            
-            
+            Session.Username = "";
+            Session.Role = "";
+
             LogHelper.AddLog(" Quitter Connexion.", Session.Username);
         }
 
@@ -442,6 +545,29 @@ namespace venolocation.formee
         {
             voiture_echeance de = new voiture_echeance();
             de.ShowDialog();
+        }
+
+
+        void test_serial()
+        {
+            string programName = "venolocation";
+
+            string driveUrl = Properties.Settings.Default.url_drive;
+
+            bool active = ActivationHelper.CheckActivationFromDrive(programName, driveUrl);
+
+            if (!active)
+            {
+                MessageBox.Show(
+                    "Le logiciel va se fermer.",
+                    "Activation requise",
+                    MessageBoxButtons.OK,
+                    MessageBoxIcon.Warning
+                );
+
+                deconnecte();
+            }
+          
         }
     }
 }

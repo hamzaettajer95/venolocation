@@ -7,10 +7,12 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
-
+using System.IO;
+using System.Security.Cryptography;
 using MySql.Data.MySqlClient;
 
 using venolocation.classee;
+using venolocation.dev;
 
 namespace venolocation.droit
 {
@@ -22,6 +24,7 @@ namespace venolocation.droit
         }
 
         public bool mode_dev { get; private set; } = false;
+        private int devClickCount = 0;
         private void guna2Panel4_Paint(object sender, PaintEventArgs e)
         {
 
@@ -85,92 +88,9 @@ namespace venolocation.droit
             }
         }
 
-        private void CopierConfiguration()
-        {
-            try
-            {
-                MySqlConnectionStringBuilder b = new MySqlConnectionStringBuilder(Properties.Settings.Default.conx);
-
-                string config =
-                    "Application : VenoLocation" + Environment.NewLine +
-                   
-                    "Serveur : " + b.Server + Environment.NewLine +
-                    "Base de données : " + b.Database + Environment.NewLine +
-                    "Utilisateur DB : " + b.UserID + Environment.NewLine +
-                    "Utilisateur session : " + Session.Username + Environment.NewLine +
-                    "Date : " + DateTime.Now.ToString("dd/MM/yyyy HH:mm:ss");
-
-                Clipboard.SetText(config);
-
-                LogHelper.AddLog("Copie configuration développeur", Session.Username);
-                MessageBox.Show("Configuration copiée dans le presse-papiers.", "Succès", MessageBoxButtons.OK, MessageBoxIcon.Information);
-            }
-            catch (Exception ex)
-            {
-                dbErreur.AddLog(ex.Message, Session.Username, "developpeur", "CopierConfiguration");
-                MessageBox.Show("Erreur copie configuration : " + ex.Message, "Erreur", MessageBoxButtons.OK, MessageBoxIcon.Error);
-            }
-        }
-
+     
        
-        private void OutilsBD()
-        {
-            try
-            {
-                string msg =
-                    "Outils base de données disponibles :" + Environment.NewLine +
-                    "- Tester connexion" + Environment.NewLine +
-                    "- Exporter logs" + Environment.NewLine +
-                    "- Backup depuis paramètres" + Environment.NewLine +
-                    "- Import/Export depuis paramètres";
-
-                //LogHelper.AddLog("Ouverture outils BD développeur", Session.Username);
-                MessageBox.Show(msg, "Outils BD", MessageBoxButtons.OK, MessageBoxIcon.Information);
-            }
-            catch (Exception ex)
-            {
-                dbErreur.AddLog(ex.Message, Session.Username, "developpeur", "OutilsBD");
-                MessageBox.Show("Erreur outils BD : " + ex.Message, "Erreur", MessageBoxButtons.OK, MessageBoxIcon.Error);
-            }
-        }
-
-        private void SauvegarderConfig()
-        {
-            try
-            {
-                Properties.Settings.Default.Save();
-
-                LogHelper.AddLog("Sauvegarde configuration développeur", Session.Username);
-                MessageBox.Show("Configuration sauvegardée.", "Succès", MessageBoxButtons.OK, MessageBoxIcon.Information);
-            }
-            catch (Exception ex)
-            {
-                dbErreur.AddLog(ex.Message, Session.Username, "developpeur", "SauvegarderConfig");
-                MessageBox.Show("Erreur sauvegarde configuration : " + ex.Message, "Erreur", MessageBoxButtons.OK, MessageBoxIcon.Error);
-            }
-        }
-
-        private void APropos()
-        {
-            try
-            {
-                //string msg =
-                //    "VenoLocation" + Environment.NewLine +
-                //    "Gestion de location de voitures" + Environment.NewLine +
-                //    "Version : " + txtVersionDev.Text + Environment.NewLine +
-                //    "Développeur : " + txtNomDev.Text + Environment.NewLine +
-                //    "Téléphone : " + txtTelephoneDev.Text + Environment.NewLine +
-                //    "Email : " + txtEmailDev.Text + Environment.NewLine +
-                //    "© 2026 VenoLocation";
-
-                //MessageBox.Show(msg, "À propos", MessageBoxButtons.OK, MessageBoxIcon.Information);
-            }
-            catch (Exception ex)
-            {
-                dbErreur.AddLog(ex.Message, Session.Username, "developpeur", "APropos");
-                MessageBox.Show("Erreur à propos : " + ex.Message, "Erreur", MessageBoxButtons.OK, MessageBoxIcon.Error);
-            }
-        }
+      
         private void developpeur_Load(object sender, EventArgs e)
         {
             try
@@ -248,7 +168,7 @@ namespace venolocation.droit
                     if (save.ShowDialog() != DialogResult.OK)
                         return;
 
-                    string connectionString = Properties.Settings.Default.conx;
+                    string connectionString = DbConfig.GetConnectionString();
 
                     string contenu =
                         "Application|VenoLocation" + Environment.NewLine +
@@ -290,38 +210,19 @@ namespace venolocation.droit
         }
         private void pnlOutilsBD_Click(object sender, EventArgs e)
         {
-            if (mode_dev == false)
-            {
-                MessageBox.Show("Mode Développeur", "Erreur", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                return;
-            }
-
-            try
-            {
-                string connectionString = Properties.Settings.Default.conx;
-
-                Clipboard.SetText(connectionString);
-
-                MessageBox.Show(
-                    "ConnectionString actuelle :\n\n" +
-                    connectionString + "\n\n" +
-                    "Elle a été copiée dans le presse-papiers.",
-                    "Configuration",
-                    MessageBoxButtons.OK,
-                    MessageBoxIcon.Information
-                );
-            }
-            catch (Exception ex)
-            {
-                dbErreur.AddLog(ex.Message, Session.Username, "developpeur", "AfficherConfiguration");
-                MessageBox.Show("Erreur affichage configuration : " + ex.Message);
-            }
+           server se = new server();
+            se.ShowDialog();
         }
         private void pnlSauvegarderConfig_Click(object sender, EventArgs e)
         {
             if (mode_dev == false)
             {
-                MessageBox.Show("Mode Développeur", "Erreur", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                MessageBox.Show(
+                    "Mode Développeur requis.",
+                    "Erreur",
+                    MessageBoxButtons.OK,
+                    MessageBoxIcon.Information
+                );
                 return;
             }
 
@@ -331,11 +232,12 @@ namespace venolocation.droit
                 {
                     open.Title = "Restaurer la configuration";
                     open.Filter = "Fichier configuration (*.txt)|*.txt";
+                    open.Multiselect = false;
 
                     if (open.ShowDialog() != DialogResult.OK)
                         return;
 
-                    string[] lignes = System.IO.File.ReadAllLines(open.FileName, System.Text.Encoding.UTF8);
+                    string[] lignes = File.ReadAllLines(open.FileName, Encoding.UTF8);
 
                     string connectionString = "";
 
@@ -350,7 +252,12 @@ namespace venolocation.droit
 
                     if (string.IsNullOrWhiteSpace(connectionString))
                     {
-                        MessageBox.Show("ConnectionString introuvable dans le fichier.", "Erreur", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                        MessageBox.Show(
+                            "ConnectionString introuvable dans le fichier.",
+                            "Erreur",
+                            MessageBoxButtons.OK,
+                            MessageBoxIcon.Error
+                        );
                         return;
                     }
 
@@ -368,7 +275,10 @@ namespace venolocation.droit
                     Properties.Settings.Default.conx = connectionString;
                     Properties.Settings.Default.Save();
 
-                    LogHelper.AddLog("Restauration configuration base de données depuis fichier : " + open.FileName, Session.Username);
+                    LogHelper.AddLog(
+                        "Restauration configuration base de données depuis fichier : " + open.FileName,
+                        Session.Username
+                    );
 
                     MessageBox.Show(
                         "Configuration restaurée avec succès.\n\nRedémarrez l'application pour appliquer la nouvelle connexion.",
@@ -380,8 +290,19 @@ namespace venolocation.droit
             }
             catch (Exception ex)
             {
-                dbErreur.AddLog(ex.Message, Session.Username, "developpeur", "RestaurerConfiguration");
-                MessageBox.Show("Erreur restauration configuration : " + ex.Message, "Erreur", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                dbErreur.AddLog(
+                    ex.Message,
+                    Session.Username,
+                    "developpeur",
+                    "RestaurerConfiguration"
+                );
+
+                MessageBox.Show(
+                    "Erreur restauration configuration : " + ex.Message,
+                    "Erreur",
+                    MessageBoxButtons.OK,
+                    MessageBoxIcon.Error
+                );
             }
         }
         private void pnlAPropos_Click(object sender, EventArgs e)
@@ -395,21 +316,129 @@ namespace venolocation.droit
 
         private void pictureBox2_Click(object sender, EventArgs e)
         {
-            DialogResult dialogResult = MessageBox.Show("Vous etes déja un Développeur", "Développeur", MessageBoxButtons.YesNo);
-            if (dialogResult == DialogResult.Yes)
-            {
-                //textBox1.Visible = true;
-                //button1.Visible = true;
-                //label5.Visible = true;
 
+            devClickCount++;
+
+            if (devClickCount >= 5)
+            {
+                devClickCount = 0;
+
+                txtDevCode.Visible = true;
+                txtDevCode.Clear();
+                txtDevCode.Focus();
+
+            }
+        }
+
+        private void OuvrirPanelSecretDeveloppeur()
+        {
+            txtDevCode.Visible = true;
+
+            if (string.IsNullOrWhiteSpace(txtDevCode.Text))
+                return;
+
+            
+
+            
+            bool codeOk = txtDevCode.Text == "HAMZA_DEV_2026";
+
+            if (codeOk)
+            {
                 mode_dev = true;
                 Session.Username = "Développeur";
-            }
-            else if (dialogResult == DialogResult.No)
-            {
-                return;
-            }
 
+                MessageBox.Show(
+                    "Accès développeur autorisé.",
+                    "Développeur",
+                    MessageBoxButtons.OK,
+                    MessageBoxIcon.Information
+                );
+            }
+            else
+            {
+                mode_dev = false;
+
+                MessageBox.Show(
+                    "Accès développeur refusé.",
+                    "Sécurité",
+                    MessageBoxButtons.OK,
+                    MessageBoxIcon.Warning
+                );
+            }
+        }
+
+        private void txtDevCode_KeyDown(object sender, KeyEventArgs e)
+        {
+            if (e.KeyCode != Keys.Enter)
+                return;
+
+            e.SuppressKeyPress = true;
+            
+            VerifierCodeDeveloppeur();
+        }
+
+        private string Sha256(string text)
+        {
+            using (SHA256 sha = SHA256.Create())
+            {
+                byte[] bytes = Encoding.UTF8.GetBytes(text);
+                byte[] hash = sha.ComputeHash(bytes);
+
+                StringBuilder sb = new StringBuilder();
+
+                foreach (byte b in hash)
+                {
+                    sb.Append(b.ToString("x2"));
+                }
+
+                return sb.ToString();
+            }
+        }
+        private void VerifierCodeDeveloppeur()
+        {
+            string codeSaisi = txtDevCode.Text.Trim();
+
+            if (string.IsNullOrWhiteSpace(codeSaisi))
+                return;
+
+            string hashCodeCorrect = "7e64b08cec1897f828ae51040afd75e53c5b1a28dbcb4fb9cd3d22c4acfdca56";
+
+            bool codeOk = Sha256(codeSaisi) == hashCodeCorrect;
+
+            if (codeOk)
+            {
+                mode_dev = true;
+                Session.Username = "Développeur";
+
+                txtDevCode.Visible = false;
+                txtDevCode.Clear();
+
+                MessageBox.Show(
+                    "Accès développeur autorisé.",
+                    "Développeur",
+                    MessageBoxButtons.OK,
+                    MessageBoxIcon.Information
+                );
+            }
+            else
+            {
+                mode_dev = false;
+
+                txtDevCode.Clear();
+                txtDevCode.Focus();
+
+                MessageBox.Show(
+                    "Accès développeur refusé.",
+                    "Sécurité",
+                    MessageBoxButtons.OK,
+                    MessageBoxIcon.Warning
+                );
+            }
+        }
+
+        private void btnContacterDeveloppeur_Click(object sender, EventArgs e)
+        {
+           
         }
     }
 }

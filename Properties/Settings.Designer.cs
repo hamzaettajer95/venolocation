@@ -34,5 +34,161 @@ namespace venolocation.Properties {
                 this["conx"] = value;
             }
         }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("10081995HAMZAETTAJER")]
+        public string serial {
+            get {
+                return ((string)(this["serial"]));
+            }
+            set {
+                this["serial"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("https://drive.google.com/uc?export=download&id=1HGQdt1AlZEDPr3H-2Dv4hpI_tXmzcz3F")]
+        public string url_drive {
+            get {
+                return ((string)(this["url_drive"]));
+            }
+            set {
+                this["url_drive"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("1.0.2")]
+        public string verssion {
+            get {
+                return ((string)(this["verssion"]));
+            }
+            set {
+                this["verssion"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("https://drive.google.com/uc?export=download&id=1f67x5Xsuk9yd__ORJqM0RlslAAaabIXw")]
+        public string updateUrl {
+            get {
+                return ((string)(this["updateUrl"]));
+            }
+            set {
+                this["updateUrl"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("")]
+        public string nom_societe {
+            get {
+                return ((string)(this["nom_societe"]));
+            }
+            set {
+                this["nom_societe"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("")]
+        public string telephone_societe {
+            get {
+                return ((string)(this["telephone_societe"]));
+            }
+            set {
+                this["telephone_societe"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("")]
+        public string adresse_societe {
+            get {
+                return ((string)(this["adresse_societe"]));
+            }
+            set {
+                this["adresse_societe"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("")]
+        public string email_societe {
+            get {
+                return ((string)(this["email_societe"]));
+            }
+            set {
+                this["email_societe"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("127.0.0.1")]
+        public string db_server {
+            get {
+                return ((string)(this["db_server"]));
+            }
+            set {
+                this["db_server"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("db_location")]
+        public string db_name {
+            get {
+                return ((string)(this["db_name"]));
+            }
+            set {
+                this["db_name"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("root")]
+        public string db_user {
+            get {
+                return ((string)(this["db_user"]));
+            }
+            set {
+                this["db_user"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("")]
+        public string db_password {
+            get {
+                return ((string)(this["db_password"]));
+            }
+            set {
+                this["db_password"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("3306")]
+        public string db_port {
+            get {
+                return ((string)(this["db_port"]));
+            }
+            set {
+                this["db_port"] = value;
+            }
+        }
     }
 }

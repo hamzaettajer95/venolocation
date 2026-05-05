@@ -17,7 +17,7 @@ namespace venolocation.classee
      
             private static MySqlConnectionStringBuilder GetBuilder()
             {
-                return new MySqlConnectionStringBuilder(Properties.Settings.Default.conx);
+                return new MySqlConnectionStringBuilder(DbConfig.GetConnectionString());
             }
 
             public static void ArchiverContrats(int annee)

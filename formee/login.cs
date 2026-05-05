@@ -76,6 +76,8 @@ namespace venolocation.formee
 
         private void btnClose_Click(object sender, EventArgs e)
         {
+            Session.Username = "";
+            Session.Role = "";
             this.Close();
         }
     }

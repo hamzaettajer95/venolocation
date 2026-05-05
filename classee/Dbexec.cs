@@ -13,7 +13,7 @@ namespace venolocation.classee
     {
 
 
-        private static readonly string connString = Properties.Settings.Default.conx;
+        private static readonly string connString = DbConfig.GetConnectionString();
 
         public static MySqlConnection GetConnection()
         {

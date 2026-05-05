@@ -24,7 +24,13 @@ namespace venolocation.droit
         {
             InitializeComponent();
         }
-
+        private void ChargerParametresGeneraux()
+        {
+            txtNomSociete.Text = Properties.Settings.Default.nom_societe;
+            txtTelephone.Text = Properties.Settings.Default.telephone_societe;
+            txtAdresse.Text = Properties.Settings.Default.adresse_societe;
+            txtEmailSociete.Text = Properties.Settings.Default.email_societe;
+        }
         private void ChargerUtilisateurs()
         {
             try
@@ -67,8 +73,7 @@ namespace venolocation.droit
 
         private void CacherTousLesPanels()
         {
-            cardLicence.Enabled = false;
-            cardUpdate.Enabled = false;
+            
             cardDatabase.Enabled = false;
             cardUsers.Enabled = false;
             cardGeneral.Enabled = false;
@@ -84,7 +89,7 @@ namespace venolocation.droit
             try
             {
                 this.SuspendLayout();
-
+                ChargerParametresGeneraux();
                 ChargerUtilisateurs();
             }
             catch (Exception ex)
@@ -100,14 +105,42 @@ namespace venolocation.droit
 
         private void btnMenuLicence_Click(object sender, EventArgs e)
         {
-            CacherTousLesPanels();
-            cardLicence.Enabled = true;
+            settin.activation ac = new activation();
+            ac.ShowDialog();
         }
-
+        
         private void btnMenuUpdate_Click(object sender, EventArgs e)
         {
-            CacherTousLesPanels();
-            cardUpdate.Enabled = true;
+            string updateUrl = Properties.Settings.Default.updateUrl ;
+
+            UpdateInfo updateInfo = UpdateHelper.CheckForUpdate(updateUrl);
+
+            if (updateInfo == null)
+            {
+                MessageBox.Show(
+                    "Impossible de vérifier la mise à jour.",
+                    "Mise à jour",
+                    MessageBoxButtons.OK,
+                    MessageBoxIcon.Warning
+                );
+
+                return;
+            }
+
+            if (!updateInfo.IsNewVersion)
+            {
+                MessageBox.Show(
+                    "Votre logiciel est déjà à jour.",
+                    "Mise à jour",
+                    MessageBoxButtons.OK,
+                    MessageBoxIcon.Information
+                );
+
+                return;
+            }
+
+            update frm = new update(updateInfo);
+            frm.ShowDialog();
         }
 
         private void btnMenuDatabase_Click(object sender, EventArgs e)
@@ -165,7 +198,7 @@ namespace venolocation.droit
                 frm.ShowDialog();
 
                 ChargerUtilisateurs();
-                LogHelper.AddLog("Ouverture formulaire modification utilisateur : " + loginUser, Session.Username);
+                //LogHelper.AddLog("Ouverture formulaire modification utilisateur : " + loginUser, Session.Username);
             }
             catch (Exception ex)
             {
@@ -438,6 +471,37 @@ namespace venolocation.droit
                 dbErreur.AddLog(ex.Message, Session.Username, "setting", "btnImporter_Click");
                 MessageService.Error("Erreur import : " + ex.Message);
             }
+        }
+
+        private void btnEnregistrerParams_Click(object sender, EventArgs e)
+        {
+            if (string.IsNullOrWhiteSpace(txtNomSociete.Text))
+            {
+                MessageBox.Show(
+                    "Veuillez saisir le nom de la société.",
+                    "Paramètres",
+                    MessageBoxButtons.OK,
+                    MessageBoxIcon.Warning
+                );
+
+                txtNomSociete.Focus();
+                return;
+            }
+
+            Properties.Settings.Default.nom_societe = txtNomSociete.Text.Trim();
+            Properties.Settings.Default.telephone_societe = txtTelephone.Text.Trim();
+            Properties.Settings.Default.adresse_societe = txtAdresse.Text.Trim();
+            Properties.Settings.Default.email_societe = txtEmailSociete.Text.Trim();
+
+            Properties.Settings.Default.Save();
+
+            MessageBox.Show(
+                "Paramètres enregistrés avec succès.",
+                "Paramètres",
+                MessageBoxButtons.OK,
+                MessageBoxIcon.Information
+            );
+            LogHelper.AddLog("Paramètres enregistrés avec succès. " , Session.Username);
         }
     }
 }
