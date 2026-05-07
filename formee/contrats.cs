@@ -2,10 +2,10 @@
 using System.Data;
 using System.Drawing;
 using System.Windows.Forms;
-
-using MySql.Data.MySqlClient;
-
+using System.Drawing.Printing;
 using venolocation.classee;
+using MySql.Data.MySqlClient;
+using System.IO;
 
 namespace venolocation.formee
 {
@@ -24,6 +24,9 @@ namespace venolocation.formee
             InitializeComponent();
         }
 
+
+
+      
 
         private void ChargerReservationsConfirmees()
         {
@@ -412,12 +415,13 @@ namespace venolocation.formee
 
         }
 
+      
+
         private void contrats_Load(object sender, EventArgs e)
         {
             try
             {
                 this.SuspendLayout();
-
                 ChargerClients();
                 ChargerVoituresDisponibles();
                 ChargerReservationsConfirmees();
@@ -656,5 +660,58 @@ namespace venolocation.formee
                 MessageBox.Show("Erreur chargement réservation : " + ex.Message);
             }
         }
+
+        private void tnImprimer_Click(object sender, EventArgs e)
+        {
+            FactureData data = new FactureData
+            {
+                NumeroFacture = "FAC-" + DateTime.Now.Year + "-0001",
+                DateFacture = DateTime.Now.ToString("dd/MM/yyyy"),
+                Reference = cbReservation.Text,
+
+                NomSociete = Properties.Settings.Default.nom_societe,
+                AdresseSociete = Properties.Settings.Default.adresse_societe,
+                TelephoneSociete = Properties.Settings.Default.telephone_societe,
+                EmailSociete = Properties.Settings.Default.email_societe,
+
+                LogoPath = Path.Combine(Application.StartupPath, "images", "logo.png"),
+                EtatVoitureImagePath = Path.Combine(Application.StartupPath, "images", "etat_voiture.png"),
+
+                ClientNom = txtNom.Text,
+                ClientTelephone = txtTelephone.Text,
+                ClientCin = cbClient.Text, 
+                ClientAdresse = txtAdresse.Text,
+                ClientPermis = txtPermis.Text,
+
+                Marque = cbMarque.Text,
+                Modele = cbModele.Text,
+                Immatriculation = cbImmatriculation.Text,
+                Carburant = cbCarburant.Text,
+                Couleur = "",
+                KilometrageDepart = txtKilometrage.Text,
+                KilometrageRetour = "",
+
+                DateDepart = dtDateDebut.Value.ToString("dd/MM/yyyy"),
+                HeureDepart = cbHeureDebut.Text,
+                DateRetour = dtDateFin.Value.ToString("dd/MM/yyyy"),
+                HeureRetour = cbHeureRetour.Text,
+                NombreJours = txtNombreJours.Text,
+                PrixJour = txtPrixJour.Text,
+
+                Total = txtTtl.ToString(),
+                Avance = txtNombreJours.Text,
+                Reste = txtRestePayer.Text,
+                ModePaiement = cbModePaiement.Text,
+
+                NiveauCarburant = "1/2",
+                Observations = txtRemarques.Text
+            };
+
+            FacturePrinter.PrintPreview(data);
+
+        }
+
+        
+    
     }
 }

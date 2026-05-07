@@ -98,6 +98,7 @@
             this.lblFooterDuree = new System.Windows.Forms.Label();
             this.lblContratNumero = new System.Windows.Forms.Label();
             this.lblFooterContrat = new System.Windows.Forms.Label();
+            this.printDocument1 = new System.Drawing.Printing.PrintDocument();
             this.pnlHeader.SuspendLayout();
             this.pnlClient.SuspendLayout();
             this.pnlVoiture.SuspendLayout();
@@ -761,6 +762,7 @@
             this.tnImprimer.TabIndex = 9;
             this.tnImprimer.Text = "Imprimer";
             this.tnImprimer.UseVisualStyleBackColor = false;
+            this.tnImprimer.Click += new System.EventHandler(this.tnImprimer_Click);
             // 
             // btnEnregistrer
             // 
@@ -1039,5 +1041,6 @@
         private System.Windows.Forms.ComboBox cbHeureRetour;
         private System.Windows.Forms.ComboBox cbReservation;
         private System.Windows.Forms.Label label21;
+        private System.Drawing.Printing.PrintDocument printDocument1;
     }
 }

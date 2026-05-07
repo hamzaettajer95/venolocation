@@ -145,20 +145,17 @@ namespace venolocation.droit
 
         private void btnMenuDatabase_Click(object sender, EventArgs e)
         {
-            CacherTousLesPanels();
-            cardDatabase.Enabled = true;
+            
         }
 
         private void btnMenuUsers_Click(object sender, EventArgs e)
         {
-            CacherTousLesPanels();
-            cardUsers.Enabled = true;
+          
         }
 
         private void btnMenuGeneral_Click(object sender, EventArgs e)
         {
-            CacherTousLesPanels();
-            cardGeneral.Enabled = true;
+           
         }
 
         private void btnAjouterUser_Click(object sender, EventArgs e)
@@ -502,6 +499,23 @@ namespace venolocation.droit
                 MessageBoxIcon.Information
             );
             LogHelper.AddLog("Paramètres enregistrés avec succès. " , Session.Username);
+        }
+
+        private void btnMenuSecurity_Click(object sender, EventArgs e)
+        {
+           
+        }
+
+        private void btnMenuSecurity_Click_1(object sender, EventArgs e)
+        {
+            aff_logs a = new aff_logs();
+            a.ShowDialog();
+        }
+
+        private void btn_erreur_Click(object sender, EventArgs e)
+        {
+            affi_erreur af = new affi_erreur();
+            af.ShowDialog();
         }
     }
 }

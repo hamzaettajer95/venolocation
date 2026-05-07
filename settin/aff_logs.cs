@@ -7,8 +7,6 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
-using venolocation.classee;
-using MySql.Data.MySqlClient;
 
 using MySql.Data.MySqlClient;
 
@@ -16,13 +14,13 @@ using venolocation.classee;
 
 namespace venolocation.settin
 {
-    public partial class affi_erreur : Form
+    public partial class aff_logs : Form
     {
-        public affi_erreur()
+        public aff_logs()
         {
             InitializeComponent();
         }
-        void LoadErreur()
+        void LoadLogs()
         {
             try
             {
@@ -30,7 +28,7 @@ namespace venolocation.settin
                 {
                     cn.Open();
 
-                    string q = @"SELECT * FROM erreur ORDER BY id DESC";
+                    string q = @"SELECT * FROM logs ORDER BY id DESC";
 
                     MySqlDataAdapter da = new MySqlDataAdapter(q, cn);
                     DataTable dt = new DataTable();
@@ -42,22 +40,22 @@ namespace venolocation.settin
             }
             catch (Exception ex)
             {
-                dbErreur.AddLog(ex.Message, Session.Username, "Erreur", "Affi_erreur_load");
+                dbErreur.AddLog(ex.Message, Session.Username, "Afficher Logs", "Chargement Logs");
                 MessageService.Error(AppMessages.UnexpectedError);
             }
 
         }
-        private void affi_erreur_Load(object sender, EventArgs e)
+        private void aff_logs_Load(object sender, EventArgs e)
         {
             try
             {
                 this.SuspendLayout();
 
-                LoadErreur();
+                LoadLogs();
             }
             catch (Exception ex)
             {
-                dbErreur.AddLog(ex.Message, Session.Username, "Erreur", "Erreur_Load");
+                dbErreur.AddLog(ex.Message, Session.Username, "Logs", "Logs_Load");
                 MessageService.Error(AppMessages.UnexpectedError);
             }
             finally

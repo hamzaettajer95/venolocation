@@ -121,6 +121,9 @@
   <data name="logo_png" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\logo_png.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
+  <data name="icons8-error-100" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\icons8-error-100.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
   <data name="updated (1)" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\updated (1).png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
@@ -178,6 +181,9 @@
   <data name="save-data" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\save-data.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
+  <data name="web-development-glyph-04-512" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\web-development-glyph-04-512.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
   <data name="certificate" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\certificate.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
@@ -223,7 +229,7 @@
   <data name="user-interface" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\user-interface.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
-  <data name="web-development-glyph-04-512" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\web-development-glyph-04-512.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  <data name="log-file" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\log-file.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
 </root>

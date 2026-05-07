@@ -193,6 +193,16 @@ namespace venolocation.Properties {
         /// <summary>
         ///   Recherche une ressource localisée de type System.Drawing.Bitmap.
         /// </summary>
+        internal static System.Drawing.Bitmap icons8_error_100 {
+            get {
+                object obj = ResourceManager.GetObject("icons8-error-100", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Recherche une ressource localisée de type System.Drawing.Bitmap.
+        /// </summary>
         internal static System.Drawing.Bitmap image__366_ {
             get {
                 object obj = ResourceManager.GetObject("image (366)", resourceCulture);
@@ -226,6 +236,16 @@ namespace venolocation.Properties {
         internal static System.Drawing.Bitmap insurance1 {
             get {
                 object obj = ResourceManager.GetObject("insurance1", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Recherche une ressource localisée de type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap log_file {
+            get {
+                object obj = ResourceManager.GetObject("log-file", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }

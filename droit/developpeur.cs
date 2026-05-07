@@ -126,16 +126,29 @@ namespace venolocation.droit
         {
             if (mode_dev == false)
             {
-                MessageBox.Show("Mode Développeur", "Erreur", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                MessageBox.Show(
+                    "Accès réservé au développeur.",
+                    "Accès refusé",
+                    MessageBoxButtons.OK,
+                    MessageBoxIcon.Warning
+                );
                 return;
             }
-            TesterConnexion();
+            //TesterConnexion();
+
+            pro_seti_defaut p = new pro_seti_defaut();
+            p.ShowDialog();
         }
         private void pnlJournalErreurs_Click(object sender, EventArgs e)
         {
             if (mode_dev == false)
             {
-                MessageBox.Show("Mode Développeur", "Erreur", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                MessageBox.Show(
+                    "Accès réservé au développeur.",
+                    "Accès refusé",
+                    MessageBoxButtons.OK,
+                    MessageBoxIcon.Warning
+                );
                 return;
             }
             settin.affi_erreur er = new settin.affi_erreur();
@@ -145,7 +158,12 @@ namespace venolocation.droit
         {
             if (mode_dev == false)
             {
-                MessageBox.Show("Mode Développeur", "Erreur", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                MessageBox.Show(
+                    "Accès réservé au développeur.",
+                    "Accès refusé",
+                    MessageBoxButtons.OK,
+                    MessageBoxIcon.Warning
+                );
                 return;
             }
             Exportererreur();
@@ -154,7 +172,12 @@ namespace venolocation.droit
         {
             if (mode_dev == false)
             {
-                MessageBox.Show("Mode Développeur", "Erreur", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                MessageBox.Show(
+                    "Accès réservé au développeur.",
+                    "Accès refusé",
+                    MessageBoxButtons.OK,
+                    MessageBoxIcon.Warning
+                );
                 return;
             }
             try
@@ -202,7 +225,12 @@ namespace venolocation.droit
         {
             if (mode_dev == false)
             {
-                MessageBox.Show("Mode Développeur", "Erreur", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                MessageBox.Show(
+                    "Accès réservé au développeur.",
+                    "Accès refusé",
+                    MessageBoxButtons.OK,
+                    MessageBoxIcon.Warning
+                );
                 return;
             }
             dev.debug de = new dev.debug();
@@ -309,9 +337,16 @@ namespace venolocation.droit
         {
             if (mode_dev == false)
             {
-                MessageBox.Show("Mode Développeur", "Erreur", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                MessageBox.Show(
+                    "Accès réservé au développeur.",
+                    "Accès refusé",
+                    MessageBoxButtons.OK,
+                    MessageBoxIcon.Warning
+                );
                 return;
             }
+
+            TesterConnexion();
         }
 
         private void pictureBox2_Click(object sender, EventArgs e)
@@ -439,6 +474,11 @@ namespace venolocation.droit
         private void btnContacterDeveloppeur_Click(object sender, EventArgs e)
         {
            
+        }
+
+        private void label15_Click(object sender, EventArgs e)
+        {
+
         }
     }
 }

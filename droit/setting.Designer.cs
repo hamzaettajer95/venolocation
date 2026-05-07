@@ -62,6 +62,8 @@
             this.btnEnregistrerParams = new Guna.UI2.WinForms.Guna2Button();
             this.iconPictureBox6 = new FontAwesome.Sharp.IconPictureBox();
             this.iconPictureBox5 = new FontAwesome.Sharp.IconPictureBox();
+            this.btn_erreur = new Guna.UI2.WinForms.Guna2Button();
+            this.btnMenuSecurity = new Guna.UI2.WinForms.Guna2Button();
             this.btnImporterDb = new Guna.UI2.WinForms.Guna2TileButton();
             this.btnExporterDb = new Guna.UI2.WinForms.Guna2TileButton();
             this.btnRestaurerDb = new Guna.UI2.WinForms.Guna2TileButton();
@@ -71,7 +73,6 @@
             this.btnSupprimerDonnees = new Guna.UI2.WinForms.Guna2Button();
             this.iconPictureBox4 = new FontAwesome.Sharp.IconPictureBox();
             this.pictureBox1 = new System.Windows.Forms.PictureBox();
-            this.btnMenuSecurity = new Guna.UI2.WinForms.Guna2Button();
             this.btnMenuGeneral = new Guna.UI2.WinForms.Guna2Button();
             this.btnMenuUsers = new Guna.UI2.WinForms.Guna2Button();
             this.btnMenuDatabase = new Guna.UI2.WinForms.Guna2Button();
@@ -426,6 +427,8 @@
             this.cardDatabase.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(226)))), ((int)(((byte)(232)))), ((int)(((byte)(240)))));
             this.cardDatabase.BorderRadius = 14;
             this.cardDatabase.BorderThickness = 1;
+            this.cardDatabase.Controls.Add(this.btn_erreur);
+            this.cardDatabase.Controls.Add(this.btnMenuSecurity);
             this.cardDatabase.Controls.Add(this.btnImporterDb);
             this.cardDatabase.Controls.Add(this.btnExporterDb);
             this.cardDatabase.Controls.Add(this.btnRestaurerDb);
@@ -448,7 +451,7 @@
             this.guna2Panel1.Controls.Add(this.btnViderLogs);
             this.guna2Panel1.Controls.Add(this.btnSupprimerDonnees);
             this.guna2Panel1.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(192)))), ((int)(((byte)(192)))));
-            this.guna2Panel1.Location = new System.Drawing.Point(6, 300);
+            this.guna2Panel1.Location = new System.Drawing.Point(12, 347);
             this.guna2Panel1.Name = "guna2Panel1";
             this.guna2Panel1.Size = new System.Drawing.Size(482, 113);
             this.guna2Panel1.TabIndex = 12;
@@ -473,7 +476,6 @@
             this.pnlMenu.Controls.Add(this.label4);
             this.pnlMenu.Controls.Add(this.label3);
             this.pnlMenu.Controls.Add(this.pictureBox1);
-            this.pnlMenu.Controls.Add(this.btnMenuSecurity);
             this.pnlMenu.Controls.Add(this.btnMenuGeneral);
             this.pnlMenu.Controls.Add(this.btnMenuUsers);
             this.pnlMenu.Controls.Add(this.btnMenuDatabase);
@@ -593,6 +595,56 @@
             this.iconPictureBox5.TabIndex = 9;
             this.iconPictureBox5.TabStop = false;
             // 
+            // btn_erreur
+            // 
+            this.btn_erreur.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(226)))), ((int)(((byte)(232)))), ((int)(((byte)(240)))));
+            this.btn_erreur.BorderRadius = 12;
+            this.btn_erreur.BorderThickness = 1;
+            this.btn_erreur.DisabledState.BorderColor = System.Drawing.Color.DarkGray;
+            this.btn_erreur.DisabledState.CustomBorderColor = System.Drawing.Color.DarkGray;
+            this.btn_erreur.DisabledState.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(169)))), ((int)(((byte)(169)))), ((int)(((byte)(169)))));
+            this.btn_erreur.DisabledState.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(141)))), ((int)(((byte)(141)))), ((int)(((byte)(141)))));
+            this.btn_erreur.FillColor = System.Drawing.Color.White;
+            this.btn_erreur.Font = new System.Drawing.Font("Segoe UI", 10.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btn_erreur.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(45)))), ((int)(((byte)(55)))), ((int)(((byte)(72)))));
+            this.btn_erreur.HoverState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(128)))), ((int)(((byte)(128)))), ((int)(((byte)(255)))));
+            this.btn_erreur.HoverState.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(239)))), ((int)(((byte)(246)))), ((int)(((byte)(255)))));
+            this.btn_erreur.Image = global::venolocation.Properties.Resources.icons8_error_100;
+            this.btn_erreur.ImageAlign = System.Windows.Forms.HorizontalAlignment.Left;
+            this.btn_erreur.ImageSize = new System.Drawing.Size(42, 42);
+            this.btn_erreur.Location = new System.Drawing.Point(252, 189);
+            this.btn_erreur.Name = "btn_erreur";
+            this.btn_erreur.Size = new System.Drawing.Size(207, 126);
+            this.btn_erreur.TabIndex = 15;
+            this.btn_erreur.Text = "Afficher Erreur";
+            this.btn_erreur.TextAlign = System.Windows.Forms.HorizontalAlignment.Left;
+            this.btn_erreur.Click += new System.EventHandler(this.btn_erreur_Click);
+            // 
+            // btnMenuSecurity
+            // 
+            this.btnMenuSecurity.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(226)))), ((int)(((byte)(232)))), ((int)(((byte)(240)))));
+            this.btnMenuSecurity.BorderRadius = 12;
+            this.btnMenuSecurity.BorderThickness = 1;
+            this.btnMenuSecurity.DisabledState.BorderColor = System.Drawing.Color.DarkGray;
+            this.btnMenuSecurity.DisabledState.CustomBorderColor = System.Drawing.Color.DarkGray;
+            this.btnMenuSecurity.DisabledState.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(169)))), ((int)(((byte)(169)))), ((int)(((byte)(169)))));
+            this.btnMenuSecurity.DisabledState.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(141)))), ((int)(((byte)(141)))), ((int)(((byte)(141)))));
+            this.btnMenuSecurity.FillColor = System.Drawing.Color.White;
+            this.btnMenuSecurity.Font = new System.Drawing.Font("Segoe UI", 10.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnMenuSecurity.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(45)))), ((int)(((byte)(55)))), ((int)(((byte)(72)))));
+            this.btnMenuSecurity.HoverState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(128)))), ((int)(((byte)(128)))), ((int)(((byte)(255)))));
+            this.btnMenuSecurity.HoverState.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(239)))), ((int)(((byte)(246)))), ((int)(((byte)(255)))));
+            this.btnMenuSecurity.Image = global::venolocation.Properties.Resources.log_file;
+            this.btnMenuSecurity.ImageAlign = System.Windows.Forms.HorizontalAlignment.Left;
+            this.btnMenuSecurity.ImageSize = new System.Drawing.Size(42, 42);
+            this.btnMenuSecurity.Location = new System.Drawing.Point(25, 181);
+            this.btnMenuSecurity.Name = "btnMenuSecurity";
+            this.btnMenuSecurity.Size = new System.Drawing.Size(205, 134);
+            this.btnMenuSecurity.TabIndex = 14;
+            this.btnMenuSecurity.Text = "Afficher Logs";
+            this.btnMenuSecurity.TextAlign = System.Windows.Forms.HorizontalAlignment.Left;
+            this.btnMenuSecurity.Click += new System.EventHandler(this.btnMenuSecurity_Click_1);
+            // 
             // btnImporterDb
             // 
             this.btnImporterDb.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(226)))), ((int)(((byte)(232)))), ((int)(((byte)(240)))));
@@ -608,7 +660,7 @@
             this.btnImporterDb.HoverState.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(255)))), ((int)(((byte)(192)))));
             this.btnImporterDb.Image = global::venolocation.Properties.Resources.reload;
             this.btnImporterDb.ImageSize = new System.Drawing.Size(39, 39);
-            this.btnImporterDb.Location = new System.Drawing.Point(383, 138);
+            this.btnImporterDb.Location = new System.Drawing.Point(385, 73);
             this.btnImporterDb.Name = "btnImporterDb";
             this.btnImporterDb.Size = new System.Drawing.Size(102, 102);
             this.btnImporterDb.TabIndex = 12;
@@ -630,7 +682,7 @@
             this.btnExporterDb.HoverState.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(255)))), ((int)(((byte)(192)))));
             this.btnExporterDb.Image = global::venolocation.Properties.Resources.data;
             this.btnExporterDb.ImageSize = new System.Drawing.Size(39, 39);
-            this.btnExporterDb.Location = new System.Drawing.Point(260, 138);
+            this.btnExporterDb.Location = new System.Drawing.Point(262, 73);
             this.btnExporterDb.Name = "btnExporterDb";
             this.btnExporterDb.Size = new System.Drawing.Size(102, 102);
             this.btnExporterDb.TabIndex = 13;
@@ -652,7 +704,7 @@
             this.btnRestaurerDb.HoverState.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(255)))), ((int)(((byte)(192)))));
             this.btnRestaurerDb.Image = global::venolocation.Properties.Resources.refresh_data__1_;
             this.btnRestaurerDb.ImageSize = new System.Drawing.Size(39, 39);
-            this.btnRestaurerDb.Location = new System.Drawing.Point(142, 138);
+            this.btnRestaurerDb.Location = new System.Drawing.Point(144, 73);
             this.btnRestaurerDb.Name = "btnRestaurerDb";
             this.btnRestaurerDb.Size = new System.Drawing.Size(102, 102);
             this.btnRestaurerDb.TabIndex = 11;
@@ -674,7 +726,7 @@
             this.btnSauvegarderDb.HoverState.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(255)))), ((int)(((byte)(192)))));
             this.btnSauvegarderDb.Image = global::venolocation.Properties.Resources.save_data;
             this.btnSauvegarderDb.ImageSize = new System.Drawing.Size(39, 39);
-            this.btnSauvegarderDb.Location = new System.Drawing.Point(10, 138);
+            this.btnSauvegarderDb.Location = new System.Drawing.Point(12, 73);
             this.btnSauvegarderDb.Name = "btnSauvegarderDb";
             this.btnSauvegarderDb.Size = new System.Drawing.Size(119, 102);
             this.btnSauvegarderDb.TabIndex = 10;
@@ -774,30 +826,6 @@
             this.pictureBox1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
             this.pictureBox1.TabIndex = 6;
             this.pictureBox1.TabStop = false;
-            // 
-            // btnMenuSecurity
-            // 
-            this.btnMenuSecurity.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(226)))), ((int)(((byte)(232)))), ((int)(((byte)(240)))));
-            this.btnMenuSecurity.BorderRadius = 12;
-            this.btnMenuSecurity.BorderThickness = 1;
-            this.btnMenuSecurity.DisabledState.BorderColor = System.Drawing.Color.DarkGray;
-            this.btnMenuSecurity.DisabledState.CustomBorderColor = System.Drawing.Color.DarkGray;
-            this.btnMenuSecurity.DisabledState.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(169)))), ((int)(((byte)(169)))), ((int)(((byte)(169)))));
-            this.btnMenuSecurity.DisabledState.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(141)))), ((int)(((byte)(141)))), ((int)(((byte)(141)))));
-            this.btnMenuSecurity.FillColor = System.Drawing.Color.White;
-            this.btnMenuSecurity.Font = new System.Drawing.Font("Segoe UI", 10.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnMenuSecurity.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(45)))), ((int)(((byte)(55)))), ((int)(((byte)(72)))));
-            this.btnMenuSecurity.HoverState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(128)))), ((int)(((byte)(128)))), ((int)(((byte)(255)))));
-            this.btnMenuSecurity.HoverState.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(239)))), ((int)(((byte)(246)))), ((int)(((byte)(255)))));
-            this.btnMenuSecurity.Image = global::venolocation.Properties.Resources.shield;
-            this.btnMenuSecurity.ImageAlign = System.Windows.Forms.HorizontalAlignment.Left;
-            this.btnMenuSecurity.ImageSize = new System.Drawing.Size(35, 35);
-            this.btnMenuSecurity.Location = new System.Drawing.Point(12, 525);
-            this.btnMenuSecurity.Name = "btnMenuSecurity";
-            this.btnMenuSecurity.Size = new System.Drawing.Size(241, 58);
-            this.btnMenuSecurity.TabIndex = 5;
-            this.btnMenuSecurity.Text = "Sécurité";
-            this.btnMenuSecurity.TextAlign = System.Windows.Forms.HorizontalAlignment.Left;
             // 
             // btnMenuGeneral
             // 
@@ -983,7 +1011,6 @@
         private System.Windows.Forms.Label label2;
         private FontAwesome.Sharp.IconPictureBox iconPictureBox1;
         private System.Windows.Forms.Label label1;
-        private Guna.UI2.WinForms.Guna2Button btnMenuSecurity;
         private Guna.UI2.WinForms.Guna2Button btnMenuGeneral;
         private Guna.UI2.WinForms.Guna2Button btnMenuUsers;
         private Guna.UI2.WinForms.Guna2Button btnMenuDatabase;
@@ -1022,5 +1049,7 @@
         private System.Windows.Forms.Label label11;
         private Guna.UI2.WinForms.Guna2TextBox txtTelephone;
         private Guna.UI2.WinForms.Guna2Button btnEnregistrerParams;
+        private Guna.UI2.WinForms.Guna2Button btn_erreur;
+        private Guna.UI2.WinForms.Guna2Button btnMenuSecurity;
     }
 }

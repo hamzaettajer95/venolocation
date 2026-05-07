@@ -120,6 +120,8 @@
     <Compile Include="classee\DbConfig.cs" />
     <Compile Include="classee\dbErreur.cs" />
     <Compile Include="classee\Dbexec.cs" />
+    <Compile Include="classee\FactureData.cs" />
+    <Compile Include="classee\FacturePrinter.cs" />
     <Compile Include="classee\GridStyleHelper_1.cs" />
     <Compile Include="classee\GridStyleHelper_2.cs" />
     <Compile Include="classee\LogHelper.cs" />
@@ -132,6 +134,12 @@
     </Compile>
     <Compile Include="dev\debug.Designer.cs">
       <DependentUpon>debug.cs</DependentUpon>
+    </Compile>
+    <Compile Include="dev\pro_seti_defaut.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="dev\pro_seti_defaut.Designer.cs">
+      <DependentUpon>pro_seti_defaut.cs</DependentUpon>
     </Compile>
     <Compile Include="dev\server.cs">
       <SubType>Form</SubType>
@@ -267,6 +275,12 @@
     <Compile Include="settin\affi_erreur.Designer.cs">
       <DependentUpon>affi_erreur.cs</DependentUpon>
     </Compile>
+    <Compile Include="settin\aff_logs.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="settin\aff_logs.Designer.cs">
+      <DependentUpon>aff_logs.cs</DependentUpon>
+    </Compile>
     <Compile Include="settin\frmChoixTables.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -287,6 +301,9 @@
     </Compile>
     <EmbeddedResource Include="dev\debug.resx">
       <DependentUpon>debug.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="dev\pro_seti_defaut.resx">
+      <DependentUpon>pro_seti_defaut.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="dev\server.resx">
       <DependentUpon>server.cs</DependentUpon>
@@ -363,6 +380,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="settin\affi_erreur.resx">
       <DependentUpon>affi_erreur.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="settin\aff_logs.resx">
+      <DependentUpon>aff_logs.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="settin\frmChoixTables.resx">
       <DependentUpon>frmChoixTables.cs</DependentUpon>
@@ -446,6 +466,8 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="logo_ico.ico" />
+    <None Include="Resources\log-file.png" />
+    <None Include="Resources\icons8-error-100.png" />
     <None Include="Resources\web-development-glyph-04-512.png" />
     <None Include="Resources\question.png" />
     <None Include="Resources\serveur.png" />
