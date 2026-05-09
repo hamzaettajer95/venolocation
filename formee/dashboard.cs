@@ -103,7 +103,8 @@ namespace venolocation.formee
                 }
                 catch (Exception ex)
                 {
-                    dbErreur.AddLog(ex.Message, Session.Username, "dashboard", "erreur connection");
+                ErrorReporter.SendError(ex, "dashboard", "erreur connection");
+                dbErreur.AddLog(ex.Message, Session.Username, "dashboard", "erreur connection");
                     MessageBox.Show(
                         "Erreur de connexion : " + ex.Message,
                         "Connexion",
@@ -130,10 +131,11 @@ namespace venolocation.formee
                     Dbexec.ExecuteQuery("CALL sp_generer_alertes();");
                     //ChargerToutesLesDonnees();
                     test_serial();
-
+                    MakePanelClickable(panel1, panel1_Click);
                 }
                 catch (Exception ex)
                 {
+                    ErrorReporter.SendError(ex, "dashboard", "erreur connection");
                     dbErreur.AddLog(ex.Message, Session.Username, "dashboard", "dashboard_Load");
                     MessageBox.Show("Erreur chargement dashboard : " + ex.Message);
                 }
@@ -198,6 +200,7 @@ namespace venolocation.formee
             }
             catch (Exception ex)
             {
+                ErrorReporter.SendError(ex, "dashboard", "ChargerStatistiquesDashboard");
                 dbErreur.AddLog(ex.Message, Session.Username, "dashboard", "ChargerStatistiquesDashboard");
                 MessageBox.Show("Erreur dashboard : " + ex.Message);
             }
@@ -231,6 +234,7 @@ namespace venolocation.formee
             }
             catch (Exception ex)
             {
+                ErrorReporter.SendError(ex, "dashboard", "ChargerStatistiquesDashboard");
                 dbErreur.AddLog(ex.Message, Session.Username, "dashboard", "ChargerRetoursPrevusAujourdhui");
                 MessageBox.Show("Erreur retours prévus : " + ex.Message);
             }
@@ -264,6 +268,7 @@ namespace venolocation.formee
             }
             catch (Exception ex)
             {
+                ErrorReporter.SendError(ex, "dashboard", "ChargerStatistiquesDashboard");
                 dbErreur.AddLog(ex.Message, Session.Username, "dashboard", "ChargerAlertesDocumentsExpires");
                 MessageBox.Show("Erreur alertes : " + ex.Message);
             }
@@ -328,6 +333,7 @@ namespace venolocation.formee
             }
             catch (Exception ex)
             {
+                ErrorReporter.SendError(ex, "dashboard", "ChargerDernieresOperations");
                 dbErreur.AddLog(ex.Message, Session.Username, "dashboard", "ChargerDernieresOperations");
                 MessageBox.Show("Erreur dernières opérations : " + ex.Message);
             }
@@ -411,6 +417,7 @@ namespace venolocation.formee
             }
             catch (Exception ex)
             {
+                ErrorReporter.SendError(ex, "dashboard", "dashboard_Activated");
                 dbErreur.AddLog(ex.Message, Session.Username, "dashboard", "dashboard_Activated");
                 MessageBox.Show("Erreur actualisation dashboard : " + ex.Message);
             }
@@ -568,6 +575,28 @@ namespace venolocation.formee
                 deconnecte();
             }
           
+        }
+        void panel1_Click(object sender, EventArgs e)
+        {
+            login frm = new login();
+
+            if (frm.ShowDialog() == DialogResult.OK)
+            {
+                ChargerToutesLesDonnees();
+                connecter();
+            }
+        }
+
+        private void MakePanelClickable(Panel pnl, EventHandler clickEvent)
+        {
+            pnl.Cursor = Cursors.Hand;
+            pnl.Click += clickEvent;
+
+            foreach (Control c in pnl.Controls)
+            {
+                c.Cursor = Cursors.Hand;
+                c.Click += clickEvent;
+            }
         }
     }
 }

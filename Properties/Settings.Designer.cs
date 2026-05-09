@@ -190,5 +190,41 @@ namespace venolocation.Properties {
                 this["db_port"] = value;
             }
         }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("True")]
+        public bool telegram_error_enabled {
+            get {
+                return ((bool)(this["telegram_error_enabled"]));
+            }
+            set {
+                this["telegram_error_enabled"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("")]
+        public string telegram_bot_token {
+            get {
+                return ((string)(this["telegram_bot_token"]));
+            }
+            set {
+                this["telegram_bot_token"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("")]
+        public string telegram_chat_id {
+            get {
+                return ((string)(this["telegram_chat_id"]));
+            }
+            set {
+                this["telegram_chat_id"] = value;
+            }
+        }
     }
 }

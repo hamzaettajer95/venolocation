@@ -87,6 +87,7 @@ namespace venolocation.formee
                                         DATE_FORMAT(permis_date, '%d/%m/%Y') AS 'Date permis',
                                         nom_utilisateur AS 'Utilisateur'
                                     FROM clients
+                                    WHERE actif = 1
                                     ORDER BY client_id DESC
                                     LIMIT 300;";
 
@@ -280,11 +281,11 @@ namespace venolocation.formee
                 int clientId = Convert.ToInt32(dgvClients.CurrentRow.Cells["ID"].Value);
                 string cin = dgvClients.CurrentRow.Cells["CIN"].Value?.ToString();
 
-                string q = "DELETE FROM clients WHERE client_id = @id";
+                string q = "UPDATE clients SET actif = 0 WHERE client_id = @client_id;";
 
                 MySqlParameter[] ps =
                 {
-                    new MySqlParameter("@id", clientId)
+                    new MySqlParameter("@client_id", clientId)
                 };
 
                 Dbexec.ExecuteQuery(q, ps);

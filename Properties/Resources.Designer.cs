@@ -113,6 +113,16 @@ namespace venolocation.Properties {
         /// <summary>
         ///   Recherche une ressource localisée de type System.Drawing.Bitmap.
         /// </summary>
+        internal static System.Drawing.Bitmap check3 {
+            get {
+                object obj = ResourceManager.GetObject("check3", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Recherche une ressource localisée de type System.Drawing.Bitmap.
+        /// </summary>
         internal static System.Drawing.Bitmap cleaner {
             get {
                 object obj = ResourceManager.GetObject("cleaner", resourceCulture);

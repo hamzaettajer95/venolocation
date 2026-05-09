@@ -120,6 +120,7 @@
     <Compile Include="classee\DbConfig.cs" />
     <Compile Include="classee\dbErreur.cs" />
     <Compile Include="classee\Dbexec.cs" />
+    <Compile Include="classee\ErrorReporter.cs" />
     <Compile Include="classee\FactureData.cs" />
     <Compile Include="classee\FacturePrinter.cs" />
     <Compile Include="classee\GridStyleHelper_1.cs" />
@@ -146,6 +147,12 @@
     </Compile>
     <Compile Include="dev\server.Designer.cs">
       <DependentUpon>server.cs</DependentUpon>
+    </Compile>
+    <Compile Include="dev\test_telegrame.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="dev\test_telegrame.Designer.cs">
+      <DependentUpon>test_telegrame.cs</DependentUpon>
     </Compile>
     <Compile Include="droit\accident.cs">
       <SubType>Form</SubType>
@@ -308,6 +315,9 @@
     <EmbeddedResource Include="dev\server.resx">
       <DependentUpon>server.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="dev\test_telegrame.resx">
+      <DependentUpon>test_telegrame.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="droit\accident.resx">
       <DependentUpon>accident.cs</DependentUpon>
     </EmbeddedResource>
@@ -466,6 +476,7 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="logo_ico.ico" />
+    <None Include="Resources\check3.png" />
     <None Include="Resources\log-file.png" />
     <None Include="Resources\icons8-error-100.png" />
     <None Include="Resources\web-development-glyph-04-512.png" />

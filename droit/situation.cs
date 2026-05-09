@@ -47,6 +47,7 @@ namespace venolocation.droit
             }
             catch (Exception ex)
             {
+                ErrorReporter.SendError(ex, "situation", "situation_Load");
                 dbErreur.AddLog(ex.Message, Session.Username, "situation", "situation_Load");
                 MessageService.Error("Erreur lors du chargement du formulaire situation.");
             }
@@ -69,6 +70,7 @@ namespace venolocation.droit
             }
             catch (Exception ex)
             {
+                ErrorReporter.SendError(ex, "situation", "btnActualiser_Click");
                 dbErreur.AddLog(ex.Message, Session.Username, "situation", "btnActualiser_Click");
                 MessageService.Error("Erreur lors de l'actualisation.");
             }
@@ -202,6 +204,7 @@ namespace venolocation.droit
             }
             catch (Exception ex)
             {
+                ErrorReporter.SendError(ex, "situation", "ChargerStatistiques");
                 dbErreur.AddLog(ex.Message, Session.Username, "situation", "ChargerStatistiques");
                 MessageService.Error("Erreur lors du chargement des statistiques.");
             }
@@ -216,6 +219,7 @@ namespace venolocation.droit
             }
             catch (Exception ex)
             {
+                ErrorReporter.SendError(ex, "situation", "InitialiserCharts");
                 dbErreur.AddLog(ex.Message, Session.Username, "situation", "InitialiserCharts");
             }
         }
@@ -323,6 +327,7 @@ namespace venolocation.droit
             }
             catch (Exception ex)
             {
+                ErrorReporter.SendError(ex, "situation", "ChargerChartRevenusMois");
                 dbErreur.AddLog(ex.Message, Session.Username, "situation", "ChargerChartRevenusMois");
                 MessageService.Error("Erreur chargement chart revenus.");
             }
@@ -346,6 +351,7 @@ namespace venolocation.droit
             }
             catch (Exception ex)
             {
+                ErrorReporter.SendError(ex, "situation", "ChargerTopVehicules");
                 dbErreur.AddLog(ex.Message, Session.Username, "situation", "ChargerTopVehicules");
                 MessageService.Error("Erreur chargement Top véhicules.");
             }
@@ -373,6 +379,7 @@ namespace venolocation.droit
             }
             catch (Exception ex)
             {
+                ErrorReporter.SendError(ex, "situation", "ChargerDernieresLocations");
                 dbErreur.AddLog(ex.Message, Session.Username, "situation", "ChargerDernieresLocations");
                 MessageService.Error("Erreur chargement dernières locations.");
             }
@@ -395,6 +402,7 @@ namespace venolocation.droit
             }
             catch (Exception ex)
             {
+                ErrorReporter.SendError(ex, "situation", "ChargerActivites");
                 dbErreur.AddLog(ex.Message, Session.Username, "situation", "ChargerActivites");
                 MessageService.Error("Erreur chargement activités.");
             }
@@ -439,6 +447,7 @@ namespace venolocation.droit
             }
             catch (Exception ex)
             {
+                ErrorReporter.SendError(ex, "situation", "AppliquerStylesGrids");
                 dbErreur.AddLog(ex.Message, Session.Username, "situation", "AppliquerStylesGrids");
             }
         }

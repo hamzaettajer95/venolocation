@@ -30,18 +30,15 @@
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(retour));
             this.guna2GradientPanel1 = new Guna.UI2.WinForms.Guna2GradientPanel();
-            this.iconPictureBox1 = new FontAwesome.Sharp.IconPictureBox();
             this.label1 = new System.Windows.Forms.Label();
-            this.guna2CirclePictureBox1 = new Guna.UI2.WinForms.Guna2CirclePictureBox();
             this.label2 = new System.Windows.Forms.Label();
             this.panel1 = new System.Windows.Forms.Panel();
-            this.btnValider = new Guna.UI2.WinForms.Guna2Button();
+            this.cbVoiture = new Guna.UI2.WinForms.Guna2ComboBox();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
             this.txtInfoContrat = new Guna.UI2.WinForms.Guna2TextBox();
             this.label3 = new System.Windows.Forms.Label();
             this.groupBox2 = new System.Windows.Forms.GroupBox();
             this.txtMontantpaye = new Guna.UI2.WinForms.Guna2TextBox();
-            this.btnAccident = new Guna.UI2.WinForms.Guna2Button();
             this.label6 = new System.Windows.Forms.Label();
             this.txtMontantReparation = new Guna.UI2.WinForms.Guna2TextBox();
             this.label5 = new System.Windows.Forms.Label();
@@ -49,13 +46,16 @@
             this.txtDescriptionAccident = new Guna.UI2.WinForms.Guna2TextBox();
             this.txtKilometrageRetour = new Guna.UI2.WinForms.Guna2TextBox();
             this.btnRetourSimple = new Guna.UI2.WinForms.Guna2Button();
-            this.cbVoiture = new Guna.UI2.WinForms.Guna2ComboBox();
+            this.btnAccident = new Guna.UI2.WinForms.Guna2Button();
+            this.btnValider = new Guna.UI2.WinForms.Guna2Button();
+            this.iconPictureBox1 = new FontAwesome.Sharp.IconPictureBox();
+            this.guna2CirclePictureBox1 = new Guna.UI2.WinForms.Guna2CirclePictureBox();
             this.guna2GradientPanel1.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.iconPictureBox1)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.guna2CirclePictureBox1)).BeginInit();
             this.panel1.SuspendLayout();
             this.groupBox1.SuspendLayout();
             this.groupBox2.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.iconPictureBox1)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.guna2CirclePictureBox1)).BeginInit();
             this.SuspendLayout();
             // 
             // guna2GradientPanel1
@@ -71,19 +71,6 @@
             this.guna2GradientPanel1.Size = new System.Drawing.Size(1211, 91);
             this.guna2GradientPanel1.TabIndex = 1;
             // 
-            // iconPictureBox1
-            // 
-            this.iconPictureBox1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(60)))), ((int)(((byte)(136)))), ((int)(((byte)(232)))));
-            this.iconPictureBox1.IconChar = FontAwesome.Sharp.IconChar.CarSide;
-            this.iconPictureBox1.IconColor = System.Drawing.Color.White;
-            this.iconPictureBox1.IconFont = FontAwesome.Sharp.IconFont.Auto;
-            this.iconPictureBox1.IconSize = 55;
-            this.iconPictureBox1.Location = new System.Drawing.Point(21, 18);
-            this.iconPictureBox1.Name = "iconPictureBox1";
-            this.iconPictureBox1.Size = new System.Drawing.Size(55, 55);
-            this.iconPictureBox1.TabIndex = 2;
-            this.iconPictureBox1.TabStop = false;
-            // 
             // label1
             // 
             this.label1.AutoSize = true;
@@ -95,19 +82,6 @@
             this.label1.Size = new System.Drawing.Size(277, 50);
             this.label1.TabIndex = 1;
             this.label1.Text = "Retour Voiture";
-            // 
-            // guna2CirclePictureBox1
-            // 
-            this.guna2CirclePictureBox1.BackColor = System.Drawing.Color.Transparent;
-            this.guna2CirclePictureBox1.Image = global::venolocation.Properties.Resources.insurance;
-            this.guna2CirclePictureBox1.ImageRotate = 0F;
-            this.guna2CirclePictureBox1.Location = new System.Drawing.Point(1119, 8);
-            this.guna2CirclePictureBox1.Name = "guna2CirclePictureBox1";
-            this.guna2CirclePictureBox1.ShadowDecoration.Mode = Guna.UI2.WinForms.Enums.ShadowMode.Circle;
-            this.guna2CirclePictureBox1.Size = new System.Drawing.Size(80, 74);
-            this.guna2CirclePictureBox1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
-            this.guna2CirclePictureBox1.TabIndex = 0;
-            this.guna2CirclePictureBox1.TabStop = false;
             // 
             // label2
             // 
@@ -130,25 +104,21 @@
             this.panel1.Size = new System.Drawing.Size(1211, 83);
             this.panel1.TabIndex = 40;
             // 
-            // btnValider
+            // cbVoiture
             // 
-            this.btnValider.BorderRadius = 8;
-            this.btnValider.DisabledState.BorderColor = System.Drawing.Color.DarkGray;
-            this.btnValider.DisabledState.CustomBorderColor = System.Drawing.Color.DarkGray;
-            this.btnValider.DisabledState.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(169)))), ((int)(((byte)(169)))), ((int)(((byte)(169)))));
-            this.btnValider.DisabledState.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(141)))), ((int)(((byte)(141)))), ((int)(((byte)(141)))));
-            this.btnValider.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(230)))), ((int)(((byte)(238)))), ((int)(((byte)(245)))));
-            this.btnValider.Font = new System.Drawing.Font("Segoe UI", 13.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnValider.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(65)))), ((int)(((byte)(92)))), ((int)(((byte)(120)))));
-            this.btnValider.Image = global::venolocation.Properties.Resources.icons8_approval_100;
-            this.btnValider.ImageAlign = System.Windows.Forms.HorizontalAlignment.Left;
-            this.btnValider.ImageSize = new System.Drawing.Size(32, 32);
-            this.btnValider.Location = new System.Drawing.Point(884, 22);
-            this.btnValider.Name = "btnValider";
-            this.btnValider.Size = new System.Drawing.Size(210, 42);
-            this.btnValider.TabIndex = 4;
-            this.btnValider.Text = "Validé";
-            this.btnValider.Click += new System.EventHandler(this.btnValider_Click_1);
+            this.cbVoiture.BackColor = System.Drawing.Color.Transparent;
+            this.cbVoiture.BorderRadius = 8;
+            this.cbVoiture.DrawMode = System.Windows.Forms.DrawMode.OwnerDrawFixed;
+            this.cbVoiture.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.cbVoiture.FocusedColor = System.Drawing.Color.FromArgb(((int)(((byte)(94)))), ((int)(((byte)(148)))), ((int)(((byte)(255)))));
+            this.cbVoiture.FocusedState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(94)))), ((int)(((byte)(148)))), ((int)(((byte)(255)))));
+            this.cbVoiture.Font = new System.Drawing.Font("Segoe UI", 10F);
+            this.cbVoiture.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(68)))), ((int)(((byte)(88)))), ((int)(((byte)(112)))));
+            this.cbVoiture.ItemHeight = 30;
+            this.cbVoiture.Location = new System.Drawing.Point(350, 28);
+            this.cbVoiture.Name = "cbVoiture";
+            this.cbVoiture.Size = new System.Drawing.Size(409, 36);
+            this.cbVoiture.TabIndex = 6;
             // 
             // groupBox1
             // 
@@ -180,6 +150,7 @@
             this.txtInfoContrat.Multiline = true;
             this.txtInfoContrat.Name = "txtInfoContrat";
             this.txtInfoContrat.PlaceholderText = "information du contrat";
+            this.txtInfoContrat.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
             this.txtInfoContrat.SelectedText = "";
             this.txtInfoContrat.Size = new System.Drawing.Size(501, 190);
             this.txtInfoContrat.TabIndex = 0;
@@ -231,27 +202,6 @@
             this.txtMontantpaye.SelectedText = "";
             this.txtMontantpaye.Size = new System.Drawing.Size(430, 43);
             this.txtMontantpaye.TabIndex = 52;
-            // 
-            // btnAccident
-            // 
-            this.btnAccident.BorderRadius = 10;
-            this.btnAccident.DisabledState.BorderColor = System.Drawing.Color.DarkGray;
-            this.btnAccident.DisabledState.CustomBorderColor = System.Drawing.Color.DarkGray;
-            this.btnAccident.DisabledState.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(169)))), ((int)(((byte)(169)))), ((int)(((byte)(169)))));
-            this.btnAccident.DisabledState.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(141)))), ((int)(((byte)(141)))), ((int)(((byte)(141)))));
-            this.btnAccident.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(235)))), ((int)(((byte)(46)))), ((int)(((byte)(46)))));
-            this.btnAccident.Font = new System.Drawing.Font("Segoe UI", 16.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnAccident.ForeColor = System.Drawing.Color.White;
-            this.btnAccident.HoverState.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(210)))), ((int)(((byte)(35)))), ((int)(((byte)(35)))));
-            this.btnAccident.Image = global::venolocation.Properties.Resources.fender_bender;
-            this.btnAccident.ImageAlign = System.Windows.Forms.HorizontalAlignment.Left;
-            this.btnAccident.ImageSize = new System.Drawing.Size(35, 35);
-            this.btnAccident.Location = new System.Drawing.Point(872, 136);
-            this.btnAccident.Name = "btnAccident";
-            this.btnAccident.Size = new System.Drawing.Size(272, 60);
-            this.btnAccident.TabIndex = 48;
-            this.btnAccident.Text = "    Accident";
-            this.btnAccident.Click += new System.EventHandler(this.btnAccident_Click_1);
             // 
             // label6
             // 
@@ -367,21 +317,72 @@
             this.btnRetourSimple.Text = "   Retour simple";
             this.btnRetourSimple.Click += new System.EventHandler(this.btnRetourSimple_Click_1);
             // 
-            // cbVoiture
+            // btnAccident
             // 
-            this.cbVoiture.BackColor = System.Drawing.Color.Transparent;
-            this.cbVoiture.BorderRadius = 8;
-            this.cbVoiture.DrawMode = System.Windows.Forms.DrawMode.OwnerDrawFixed;
-            this.cbVoiture.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this.cbVoiture.FocusedColor = System.Drawing.Color.FromArgb(((int)(((byte)(94)))), ((int)(((byte)(148)))), ((int)(((byte)(255)))));
-            this.cbVoiture.FocusedState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(94)))), ((int)(((byte)(148)))), ((int)(((byte)(255)))));
-            this.cbVoiture.Font = new System.Drawing.Font("Segoe UI", 10F);
-            this.cbVoiture.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(68)))), ((int)(((byte)(88)))), ((int)(((byte)(112)))));
-            this.cbVoiture.ItemHeight = 30;
-            this.cbVoiture.Location = new System.Drawing.Point(350, 28);
-            this.cbVoiture.Name = "cbVoiture";
-            this.cbVoiture.Size = new System.Drawing.Size(409, 36);
-            this.cbVoiture.TabIndex = 6;
+            this.btnAccident.BorderRadius = 10;
+            this.btnAccident.DisabledState.BorderColor = System.Drawing.Color.DarkGray;
+            this.btnAccident.DisabledState.CustomBorderColor = System.Drawing.Color.DarkGray;
+            this.btnAccident.DisabledState.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(169)))), ((int)(((byte)(169)))), ((int)(((byte)(169)))));
+            this.btnAccident.DisabledState.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(141)))), ((int)(((byte)(141)))), ((int)(((byte)(141)))));
+            this.btnAccident.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(235)))), ((int)(((byte)(46)))), ((int)(((byte)(46)))));
+            this.btnAccident.Font = new System.Drawing.Font("Segoe UI", 16.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnAccident.ForeColor = System.Drawing.Color.White;
+            this.btnAccident.HoverState.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(210)))), ((int)(((byte)(35)))), ((int)(((byte)(35)))));
+            this.btnAccident.Image = global::venolocation.Properties.Resources.fender_bender;
+            this.btnAccident.ImageAlign = System.Windows.Forms.HorizontalAlignment.Left;
+            this.btnAccident.ImageSize = new System.Drawing.Size(35, 35);
+            this.btnAccident.Location = new System.Drawing.Point(872, 136);
+            this.btnAccident.Name = "btnAccident";
+            this.btnAccident.Size = new System.Drawing.Size(272, 60);
+            this.btnAccident.TabIndex = 48;
+            this.btnAccident.Text = "    Accident";
+            this.btnAccident.Click += new System.EventHandler(this.btnAccident_Click_1);
+            // 
+            // btnValider
+            // 
+            this.btnValider.BorderRadius = 8;
+            this.btnValider.DisabledState.BorderColor = System.Drawing.Color.DarkGray;
+            this.btnValider.DisabledState.CustomBorderColor = System.Drawing.Color.DarkGray;
+            this.btnValider.DisabledState.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(169)))), ((int)(((byte)(169)))), ((int)(((byte)(169)))));
+            this.btnValider.DisabledState.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(141)))), ((int)(((byte)(141)))), ((int)(((byte)(141)))));
+            this.btnValider.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(230)))), ((int)(((byte)(238)))), ((int)(((byte)(245)))));
+            this.btnValider.Font = new System.Drawing.Font("Segoe UI", 13.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnValider.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(65)))), ((int)(((byte)(92)))), ((int)(((byte)(120)))));
+            this.btnValider.Image = global::venolocation.Properties.Resources.icons8_approval_100;
+            this.btnValider.ImageAlign = System.Windows.Forms.HorizontalAlignment.Left;
+            this.btnValider.ImageSize = new System.Drawing.Size(32, 32);
+            this.btnValider.Location = new System.Drawing.Point(884, 22);
+            this.btnValider.Name = "btnValider";
+            this.btnValider.Size = new System.Drawing.Size(210, 42);
+            this.btnValider.TabIndex = 4;
+            this.btnValider.Text = "Validé";
+            this.btnValider.Click += new System.EventHandler(this.btnValider_Click_1);
+            // 
+            // iconPictureBox1
+            // 
+            this.iconPictureBox1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(60)))), ((int)(((byte)(136)))), ((int)(((byte)(232)))));
+            this.iconPictureBox1.IconChar = FontAwesome.Sharp.IconChar.CarSide;
+            this.iconPictureBox1.IconColor = System.Drawing.Color.White;
+            this.iconPictureBox1.IconFont = FontAwesome.Sharp.IconFont.Auto;
+            this.iconPictureBox1.IconSize = 55;
+            this.iconPictureBox1.Location = new System.Drawing.Point(21, 18);
+            this.iconPictureBox1.Name = "iconPictureBox1";
+            this.iconPictureBox1.Size = new System.Drawing.Size(55, 55);
+            this.iconPictureBox1.TabIndex = 2;
+            this.iconPictureBox1.TabStop = false;
+            // 
+            // guna2CirclePictureBox1
+            // 
+            this.guna2CirclePictureBox1.BackColor = System.Drawing.Color.Transparent;
+            this.guna2CirclePictureBox1.Image = global::venolocation.Properties.Resources.insurance;
+            this.guna2CirclePictureBox1.ImageRotate = 0F;
+            this.guna2CirclePictureBox1.Location = new System.Drawing.Point(1119, 8);
+            this.guna2CirclePictureBox1.Name = "guna2CirclePictureBox1";
+            this.guna2CirclePictureBox1.ShadowDecoration.Mode = Guna.UI2.WinForms.Enums.ShadowMode.Circle;
+            this.guna2CirclePictureBox1.Size = new System.Drawing.Size(80, 74);
+            this.guna2CirclePictureBox1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
+            this.guna2CirclePictureBox1.TabIndex = 0;
+            this.guna2CirclePictureBox1.TabStop = false;
             // 
             // retour
             // 
@@ -405,13 +406,13 @@
             this.Load += new System.EventHandler(this.retour_Load);
             this.guna2GradientPanel1.ResumeLayout(false);
             this.guna2GradientPanel1.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.iconPictureBox1)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.guna2CirclePictureBox1)).EndInit();
             this.panel1.ResumeLayout(false);
             this.panel1.PerformLayout();
             this.groupBox1.ResumeLayout(false);
             this.groupBox2.ResumeLayout(false);
             this.groupBox2.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.iconPictureBox1)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.guna2CirclePictureBox1)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 

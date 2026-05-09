@@ -62,6 +62,7 @@ namespace venolocation.formee
             }
             catch (Exception ex)
             {
+                ErrorReporter.SendError(ex, "voiture_echeance", "voiture_echeance_Load");
                 dbErreur.AddLog(ex.Message, Session.Username, "voiture_echeance", "voiture_echeance_Load");
                 MessageService.Error("Erreur chargement formulaire échéances.");
             }
@@ -142,7 +143,7 @@ namespace venolocation.formee
                         catch (Exception ex)
                         {
                             tr.Rollback();
-
+                            ErrorReporter.SendError(ex, "retour", "retour_Load");
                             dbErreur.AddLog(ex.Message, Session.Username, "voiture_echeance", "btnAjouter_Click_Transaction");
                             MessageService.Error("Erreur lors de l'ajout de l'échéance.");
                         }
@@ -151,6 +152,7 @@ namespace venolocation.formee
             }
             catch (Exception ex)
             {
+                ErrorReporter.SendError(ex, "voiture_echeance", "btnAjouter_Click");
                 dbErreur.AddLog(ex.Message, Session.Username, "voiture_echeance", "btnAjouter_Click");
                 MessageService.Error("Erreur connexion base de données.");
             }
@@ -286,6 +288,8 @@ namespace venolocation.formee
                         catch (Exception ex)
                         {
                             tr.Rollback();
+                            ErrorReporter.SendError(ex, "voiture_echeance", "btnModifier_Click_Transaction");
+                            
                             dbErreur.AddLog(ex.Message, Session.Username, "voiture_echeance", "btnModifier_Click_Transaction");
                             MessageService.Error("Erreur lors de la modification.");
                         }
@@ -294,6 +298,7 @@ namespace venolocation.formee
             }
             catch (Exception ex)
             {
+                ErrorReporter.SendError(ex, "voiture_echeance", "btnModifier_Click");
                 dbErreur.AddLog(ex.Message, Session.Username, "voiture_echeance", "btnModifier_Click");
                 MessageService.Error("Erreur connexion base de données.");
             }
@@ -351,6 +356,7 @@ namespace venolocation.formee
                         catch (Exception ex)
                         {
                             tr.Rollback();
+                            ErrorReporter.SendError(ex, "voiture_echeance", "btnSupprimer_Click_Transaction");
                             dbErreur.AddLog(ex.Message, Session.Username, "voiture_echeance", "btnSupprimer_Click_Transaction");
                             MessageService.Error("Erreur lors de la suppression.");
                         }
@@ -359,6 +365,7 @@ namespace venolocation.formee
             }
             catch (Exception ex)
             {
+                ErrorReporter.SendError(ex, "voiture_echeance", "btnSupprimer_Click");
                 dbErreur.AddLog(ex.Message, Session.Username, "voiture_echeance", "btnSupprimer_Click");
                 MessageService.Error("Erreur connexion base de données.");
             }
@@ -472,6 +479,7 @@ namespace venolocation.formee
             }
             catch (Exception ex)
             {
+                ErrorReporter.SendError(ex, "voiture_echeance", "ChargerVoitures");
                 dbErreur.AddLog(ex.Message, Session.Username, "voiture_echeance", "ChargerVoitures");
                 MessageService.Error("Erreur chargement voitures.");
             }
@@ -482,36 +490,36 @@ namespace venolocation.formee
             try
             {
                 string query = @"
-        SELECT 
-            e.echeance_id AS 'ID',
-            e.voiture_id AS 'Voiture ID',
-            CONCAT(v.matricule, ' - ', v.marque, ' ', v.modele) AS 'Véhicule',
-            e.type_echeance AS 'TypeValue',
-            CASE
-                WHEN e.type_echeance = 'assurance' THEN 'Assurance'
-                WHEN e.type_echeance = 'visite_technique' THEN 'Visite technique'
-                WHEN e.type_echeance = 'vignette' THEN 'Vignette'
-                ELSE e.type_echeance
-            END AS 'Type',
-            e.numero_document AS 'Document',
-            DATE_FORMAT(e.date_debut, '%d/%m/%Y') AS 'Début',
-            DATE_FORMAT(e.date_fin, '%d/%m/%Y') AS 'Fin',
-            DATEDIFF(e.date_fin, CURDATE()) AS 'Jours',
-            e.montant AS 'Montant',
-            e.remarque AS 'Remarque',
-            e.statut AS 'StatutValue',
-            CASE
-                WHEN e.statut = 'active' THEN 'Active'
-                WHEN e.statut = 'expiree' THEN 'Expirée'
-                WHEN e.statut = 'a_renouveler' THEN 'À renouveler'
-                ELSE e.statut
-            END AS 'Statut',
-            DATE_FORMAT(e.created_at, '%d/%m/%Y %H:%i:%s') AS 'Créé le'
-        FROM voiture_echeances e
-        INNER JOIN voitures v ON v.voiture_id = e.voiture_id
-        WHERE (@voiture_id = 0 OR e.voiture_id = @voiture_id)
-        ORDER BY e.date_fin ASC, e.echeance_id DESC
-        LIMIT 300;";
+                        SELECT 
+                            e.echeance_id AS 'ID',
+                            e.voiture_id AS 'Voiture ID',
+                            CONCAT(v.matricule, ' - ', v.marque, ' ', v.modele) AS 'Véhicule',
+                            e.type_echeance AS 'TypeValue',
+                            CASE
+                                WHEN e.type_echeance = 'assurance' THEN 'Assurance'
+                                WHEN e.type_echeance = 'visite_technique' THEN 'Visite technique'
+                                WHEN e.type_echeance = 'vignette' THEN 'Vignette'
+                                ELSE e.type_echeance
+                            END AS 'Type',
+                            e.numero_document AS 'Document',
+                            DATE_FORMAT(e.date_debut, '%d/%m/%Y') AS 'Début',
+                            DATE_FORMAT(e.date_fin, '%d/%m/%Y') AS 'Fin',
+                            DATEDIFF(e.date_fin, CURDATE()) AS 'Jours',
+                            e.montant AS 'Montant',
+                            e.remarque AS 'Remarque',
+                            e.statut AS 'StatutValue',
+                            CASE
+                                WHEN e.statut = 'active' THEN 'Active'
+                                WHEN e.statut = 'expiree' THEN 'Expirée'
+                                WHEN e.statut = 'a_renouveler' THEN 'À renouveler'
+                                ELSE e.statut
+                            END AS 'Statut',
+                            DATE_FORMAT(e.created_at, '%d/%m/%Y %H:%i:%s') AS 'Créé le'
+                        FROM voiture_echeances e
+                        INNER JOIN voitures v ON v.voiture_id = e.voiture_id
+                        WHERE (@voiture_id = 0 OR e.voiture_id = @voiture_id)
+                        ORDER BY e.date_fin ASC, e.echeance_id DESC
+                        LIMIT 300;";
 
                 MySqlParameter[] ps =
                 {
@@ -555,6 +563,7 @@ namespace venolocation.formee
             }
             catch (Exception ex)
             {
+                ErrorReporter.SendError(ex, "voiture_echeance", "ChargerEcheances");
                 dbErreur.AddLog(ex.Message, Session.Username, "voiture_echeance", "ChargerEcheances");
                 MessageService.Error("Erreur chargement échéances.");
             }

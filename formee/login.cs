@@ -59,6 +59,7 @@ namespace venolocation.formee
                     }
                     else
                     {
+                        
                         LogHelper.AddLog("Échec de connexion.", txtUsername.Text.Trim());
                         MessageBox.Show("Nom d'utilisateur ou mot de passe incorrect.");
                     }
@@ -68,6 +69,7 @@ namespace venolocation.formee
             }
             catch (Exception ex)
             {
+                ErrorReporter.SendError(ex, "login", "btnLogin_Click");
                 dbErreur.AddLog(ex.Message, txtUsername.Text.Trim(), "login", "btnLogin_Click");
                 MessageBox.Show(ex.Message);
             }

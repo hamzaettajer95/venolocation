@@ -134,6 +134,7 @@
             // 
             this.panelTop.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(36)))), ((int)(((byte)(52)))), ((int)(((byte)(71)))));
             this.panelTop.Controls.Add(this.panel1);
+            this.panelTop.Controls.Add(this.btnUserMenu);
             this.panelTop.Controls.Add(this.lbldate);
             this.panelTop.Controls.Add(this.lblDateTime);
             this.panelTop.Controls.Add(this.lblTitle);
@@ -146,12 +147,11 @@
             // panel1
             // 
             this.panel1.Controls.Add(this.pictureBox1);
-            this.panel1.Controls.Add(this.btnUserMenu);
             this.panel1.Controls.Add(this.lblUser);
             this.panel1.Dock = System.Windows.Forms.DockStyle.Right;
-            this.panel1.Location = new System.Drawing.Point(1440, 0);
+            this.panel1.Location = new System.Drawing.Point(1454, 0);
             this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(257, 70);
+            this.panel1.Size = new System.Drawing.Size(213, 70);
             this.panel1.TabIndex = 6;
             // 
             // pictureBox1
@@ -166,16 +166,16 @@
             // 
             // btnUserMenu
             // 
-            this.btnUserMenu.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.btnUserMenu.BackColor = System.Drawing.Color.Transparent;
             this.btnUserMenu.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.btnUserMenu.Dock = System.Windows.Forms.DockStyle.Right;
             this.btnUserMenu.FlatAppearance.BorderSize = 0;
             this.btnUserMenu.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnUserMenu.Font = new System.Drawing.Font("Segoe UI", 10.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnUserMenu.Font = new System.Drawing.Font("Segoe UI", 13.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnUserMenu.ForeColor = System.Drawing.Color.White;
-            this.btnUserMenu.Location = new System.Drawing.Point(224, 17);
+            this.btnUserMenu.Location = new System.Drawing.Point(1667, 0);
             this.btnUserMenu.Name = "btnUserMenu";
-            this.btnUserMenu.Size = new System.Drawing.Size(30, 30);
+            this.btnUserMenu.Size = new System.Drawing.Size(30, 70);
             this.btnUserMenu.TabIndex = 5;
             this.btnUserMenu.Text = "▼";
             this.btnUserMenu.UseVisualStyleBackColor = false;

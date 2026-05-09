@@ -10,6 +10,8 @@ using System.Windows.Forms;
 
 using MySql.Data.MySqlClient;
 
+using venolocation.classee;
+
 namespace venolocation.dev
 {
     public partial class server : Form
@@ -80,6 +82,7 @@ namespace venolocation.dev
             }
             catch (Exception ex)
             {
+                ErrorReporter.SendError(ex, "serveur", "Erreur de connexion");
                 MessageBox.Show(
                     "Erreur de connexion : " + ex.Message,
                     "Connexion",

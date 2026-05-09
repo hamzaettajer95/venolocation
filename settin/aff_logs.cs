@@ -40,6 +40,7 @@ namespace venolocation.settin
             }
             catch (Exception ex)
             {
+                ErrorReporter.SendError(ex, "Afficher Logs", "Chargement Logs");
                 dbErreur.AddLog(ex.Message, Session.Username, "Afficher Logs", "Chargement Logs");
                 MessageService.Error(AppMessages.UnexpectedError);
             }
@@ -55,6 +56,7 @@ namespace venolocation.settin
             }
             catch (Exception ex)
             {
+                ErrorReporter.SendError(ex, "Afficher Logs", "Chargement Logs");
                 dbErreur.AddLog(ex.Message, Session.Username, "Logs", "Logs_Load");
                 MessageService.Error(AppMessages.UnexpectedError);
             }

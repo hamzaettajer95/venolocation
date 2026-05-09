@@ -58,6 +58,7 @@ namespace venolocation.droit
             }
             catch (Exception ex)
             {
+                ErrorReporter.SendError(ex, "developpeur", "TesterConnexion");
                 dbErreur.AddLog(ex.Message, Session.Username, "developpeur", "TesterConnexion");
                 MessageBox.Show("Échec de connexion : " + ex.Message, "Erreur", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
@@ -83,6 +84,7 @@ namespace venolocation.droit
             }
             catch (Exception ex)
             {
+                ErrorReporter.SendError(ex, "developpeur", "ExporterLogs");
                 dbErreur.AddLog(ex.Message, Session.Username, "developpeur", "ExporterLogs");
                 MessageBox.Show("Erreur export logs : " + ex.Message, "Erreur", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
@@ -109,6 +111,7 @@ namespace venolocation.droit
             }
             catch (Exception ex)
             {
+                ErrorReporter.SendError(ex, "developpeur", "developpeur_Load");
                 dbErreur.AddLog(ex.Message, Session.Username, "developpeur", "developpeur_Load");
                 MessageBox.Show("Erreur chargement développeur : " + ex.Message);
             }
@@ -217,6 +220,7 @@ namespace venolocation.droit
             }
             catch (Exception ex)
             {
+                ErrorReporter.SendError(ex, "developpeur", "CopierConfiguration");
                 dbErreur.AddLog(ex.Message, Session.Username, "developpeur", "CopierConfiguration");
                 MessageBox.Show("Erreur copie configuration : " + ex.Message, "Erreur", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
@@ -318,6 +322,8 @@ namespace venolocation.droit
             }
             catch (Exception ex)
             {
+                ErrorReporter.SendError(ex, "developpeur","RestaurerConfiguration");
+
                 dbErreur.AddLog(
                     ex.Message,
                     Session.Username,
@@ -473,10 +479,16 @@ namespace venolocation.droit
 
         private void btnContacterDeveloppeur_Click(object sender, EventArgs e)
         {
-           
+            dev.test_telegrame t = new test_telegrame();
+            t.ShowDialog();
         }
 
         private void label15_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void pnlHeader_Paint(object sender, PaintEventArgs e)
         {
 
         }

@@ -44,5 +44,14 @@
     <Setting Name="db_port" Type="System.String" Scope="User">
       <Value Profile="(Default)">3306</Value>
     </Setting>
+    <Setting Name="telegram_error_enabled" Type="System.Boolean" Scope="User">
+      <Value Profile="(Default)">True</Value>
+    </Setting>
+    <Setting Name="telegram_bot_token" Type="System.String" Scope="User">
+      <Value Profile="(Default)" />
+    </Setting>
+    <Setting Name="telegram_chat_id" Type="System.String" Scope="User">
+      <Value Profile="(Default)" />
+    </Setting>
   </Settings>
 </SettingsFile>

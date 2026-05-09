@@ -65,6 +65,7 @@ namespace venolocation.formee
             }
             catch (Exception ex)
             {
+                ErrorReporter.SendError(ex, "contrats", "ChargerReservationsConfirmees");
                 dbErreur.AddLog(ex.Message, Session.Username, "contrats", "ChargerReservationsConfirmees");
                 MessageBox.Show("Erreur chargement réservations confirmées : " + ex.Message);
             }
@@ -409,6 +410,7 @@ namespace venolocation.formee
             }
             catch (Exception ex)
             {
+                ErrorReporter.SendError(ex, "contrats", "btnEnregistrer_Click_1");
                 dbErreur.AddLog(ex.Message, Session.Username, "contrats", "btnEnregistrer_Click_1");
                 MessageBox.Show("Erreur enregistrement contrat : " + ex.Message);
             }
@@ -431,6 +433,7 @@ namespace venolocation.formee
             }
             catch (Exception ex)
             {
+                ErrorReporter.SendError(ex, "contrats", "contrats_Load");
                 dbErreur.AddLog(ex.Message, Session.Username, "contrats", "contrats_Load");
                 MessageBox.Show("Erreur chargement formulaire : " + ex.Message);
             }
@@ -496,6 +499,7 @@ namespace venolocation.formee
             }
             catch (Exception ex)
             {
+                ErrorReporter.SendError(ex, "contrats", "ChargerClients");
                 dbErreur.AddLog(ex.Message, Session.Username, "contrats", "ChargerClients");
                 MessageBox.Show("Erreur chargement clients : " + ex.Message);
             }
@@ -523,8 +527,8 @@ namespace venolocation.formee
 
                 MySqlParameter[] ps =
                 {
-            new MySqlParameter("@etat", AppStatus.VoitureDisponible)
-        };
+                    new MySqlParameter("@etat", AppStatus.VoitureDisponible)
+                };
 
                 dtVoitures = Dbexec.GetData(query, ps);
 
@@ -555,6 +559,7 @@ namespace venolocation.formee
             }
             catch (Exception ex)
             {
+                ErrorReporter.SendError(ex, "contrats", "ChargerVoituresDisponibles");
                 dbErreur.AddLog(ex.Message, Session.Username, "contrats", "ChargerVoituresDisponibles");
                 MessageBox.Show("Erreur chargement voitures : " + ex.Message);
             }
@@ -656,6 +661,7 @@ namespace venolocation.formee
             }
             catch (Exception ex)
             {
+                ErrorReporter.SendError(ex, "contrats", "cbReservation_SelectedIndexChanged");
                 dbErreur.AddLog(ex.Message, Session.Username, "contrats", "cbReservation_SelectedIndexChanged");
                 MessageBox.Show("Erreur chargement réservation : " + ex.Message);
             }

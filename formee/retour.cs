@@ -46,6 +46,7 @@ namespace venolocation.formee
             }
             catch (Exception ex)
             {
+                ErrorReporter.SendError(ex, "retour", "retour_Load");
                 dbErreur.AddLog(ex.Message, Session.Username, "retour", "retour_Load");
                 MessageBox.Show("Erreur chargement formulaire : " + ex.Message,
                     "Erreur", MessageBoxButtons.OK, MessageBoxIcon.Error);
@@ -83,6 +84,7 @@ namespace venolocation.formee
             }
             catch (Exception ex)
             {
+                ErrorReporter.SendError(ex, "retour", "ChargerVoituresEnLocation");
                 dbErreur.AddLog(ex.Message, Session.Username, "retour", "ChargerVoituresEnLocation");
                 MessageBox.Show("Erreur chargement voitures : " + ex.Message,
                     "Erreur", MessageBoxButtons.OK, MessageBoxIcon.Error);
@@ -216,6 +218,7 @@ namespace venolocation.formee
             }
             catch (Exception ex)
             {
+                ErrorReporter.SendError(ex, "retour", "ChargerContratEnCours");
                 dbErreur.AddLog(ex.Message, Session.Username, "retour", "ChargerContratEnCours");
                 MessageBox.Show("Erreur chargement contrat : " + ex.Message,
                     "Erreur", MessageBoxButtons.OK, MessageBoxIcon.Error);
@@ -338,6 +341,7 @@ namespace venolocation.formee
                         catch (Exception ex)
                         {
                             tr.Rollback();
+                            ErrorReporter.SendError(ex, "retour", "btnRetourSimple_Click_1_Transaction");
                             dbErreur.AddLog(ex.Message, Session.Username, "retour", "btnRetourSimple_Click_1_Transaction");
                             MessageBox.Show("Erreur enregistrement retour : " + ex.Message,
                                 "Erreur", MessageBoxButtons.OK, MessageBoxIcon.Error);
@@ -347,6 +351,7 @@ namespace venolocation.formee
             }
             catch (Exception ex)
             {
+                ErrorReporter.SendError(ex, "retour", "btnRetourSimple_Click_1");
                 dbErreur.AddLog(ex.Message, Session.Username, "retour", "btnRetourSimple_Click_1");
                 MessageBox.Show("Erreur connexion : " + ex.Message,
                     "Erreur", MessageBoxButtons.OK, MessageBoxIcon.Error);
@@ -474,6 +479,7 @@ namespace venolocation.formee
                         catch (Exception ex)
                         {
                             tr.Rollback();
+                            ErrorReporter.SendError(ex, "retour", "btnAccident_Click_1_Transaction");
                             dbErreur.AddLog(ex.Message, Session.Username, "retour", "btnAccident_Click_1_Transaction");
                             MessageBox.Show("Erreur retour avec accident : " + ex.Message,
                                 "Erreur", MessageBoxButtons.OK, MessageBoxIcon.Error);
@@ -483,6 +489,7 @@ namespace venolocation.formee
             }
             catch (Exception ex)
             {
+                ErrorReporter.SendError(ex, "retour", "btnAccident_Click_1");
                 dbErreur.AddLog(ex.Message, Session.Username, "retour", "btnAccident_Click_1");
                 MessageBox.Show("Erreur connexion : " + ex.Message,
                     "Erreur", MessageBoxButtons.OK, MessageBoxIcon.Error);

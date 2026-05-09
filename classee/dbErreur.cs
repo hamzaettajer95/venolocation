@@ -32,8 +32,12 @@ namespace venolocation.classee
                         cmd.Parameters.AddWithValue("@action_name", actionName);
 
                         cmd.ExecuteNonQuery();
+                        
                     }
+
                 }
+
+                
             }
             catch
             {

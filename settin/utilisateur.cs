@@ -96,6 +96,7 @@ namespace venolocation.settin
             }
             catch (Exception ex)
             {
+                ErrorReporter.SendError(ex, "ajouter_utilisateur", "ajouter_utilisateur_Load");
                 dbErreur.AddLog(ex.Message, Session.Username, "ajouter_utilisateur", "ajouter_utilisateur_Load");
                 MessageService.Error("Erreur chargement formulaire utilisateur.");
             }
@@ -193,6 +194,7 @@ namespace venolocation.settin
             }
             catch (Exception ex)
             {
+                ErrorReporter.SendError(ex, "ajouter_utilisateur", "btnEnregistrerUser_Click");
                 dbErreur.AddLog(ex.Message, Session.Username, "ajouter_utilisateur", "btnEnregistrerUser_Click");
                 MessageService.Error("Erreur lors de l'enregistrement de l'utilisateur.");
             }

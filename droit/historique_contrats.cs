@@ -160,6 +160,7 @@ namespace venolocation.droit
             }
             catch (Exception ex)
             {
+                ErrorReporter.SendError(ex, "historique_contrats", "LoadContracts");
                 dbErreur.AddLog(ex.Message, Session.Username, "historique_contrats", "LoadContracts");
                 MessageBox.Show("Erreur lors de la récupération des données : " + ex.Message);
             }
@@ -204,6 +205,7 @@ namespace venolocation.droit
             }
             catch (Exception ex)
             {
+                ErrorReporter.SendError(ex, "historique_contrats", "FillCombos");
                 dbErreur.AddLog(ex.Message, Session.Username, "historique_contrats", "FillCombos");
                 MessageBox.Show("Erreur lors du chargement des listes : " + ex.Message, "Erreur", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
@@ -230,6 +232,7 @@ namespace venolocation.droit
             }
             catch (Exception ex)
             {
+                ErrorReporter.SendError(ex, "historique_contrats", "historique_contrats_Load");
                 dbErreur.AddLog(ex.Message, Session.Username, "historique_contrats", "historique_contrats_Load");
                 MessageBox.Show("Erreur lors du chargement du formulaire : " + ex.Message);
             }
@@ -327,6 +330,7 @@ namespace venolocation.droit
             }
             catch (Exception ex)
             {
+                ErrorReporter.SendError(ex, "historique_contrats", "AnnulerContratSelectionne");
                 dbErreur.AddLog(ex.Message, Session.Username, "historique_contrats", "AnnulerContratSelectionne");
                 MessageBox.Show("Echec de l'opération : " + ex.Message, "Erreur", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }

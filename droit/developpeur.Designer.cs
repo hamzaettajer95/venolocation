@@ -49,6 +49,7 @@
             this.label3 = new System.Windows.Forms.Label();
             this.guna2Panel3 = new Guna.UI2.WinForms.Guna2Panel();
             this.pnlAPropos = new Guna.UI2.WinForms.Guna2Panel();
+            this.label11 = new System.Windows.Forms.Label();
             this.pnlSauvegarderConfig = new Guna.UI2.WinForms.Guna2Panel();
             this.label17 = new System.Windows.Forms.Label();
             this.pnlOutilsBD = new Guna.UI2.WinForms.Guna2Panel();
@@ -70,6 +71,7 @@
             this.label21 = new System.Windows.Forms.Label();
             this.label20 = new System.Windows.Forms.Label();
             this.pictureBox8 = new System.Windows.Forms.PictureBox();
+            this.iconPictureBox9 = new FontAwesome.Sharp.IconPictureBox();
             this.iconPictureBox10 = new FontAwesome.Sharp.IconPictureBox();
             this.iconPictureBox11 = new FontAwesome.Sharp.IconPictureBox();
             this.iconPictureBox12 = new FontAwesome.Sharp.IconPictureBox();
@@ -87,8 +89,6 @@
             this.iconPictureBox2 = new FontAwesome.Sharp.IconPictureBox();
             this.iconPictureBox3 = new FontAwesome.Sharp.IconPictureBox();
             this.iconPictureBox1 = new FontAwesome.Sharp.IconPictureBox();
-            this.iconPictureBox9 = new FontAwesome.Sharp.IconPictureBox();
-            this.label11 = new System.Windows.Forms.Label();
             iconPictureBox6 = new FontAwesome.Sharp.IconPictureBox();
             this.pnlHeader.SuspendLayout();
             this.guna2Panel1.SuspendLayout();
@@ -104,6 +104,7 @@
             this.pnlTesterConnexion.SuspendLayout();
             this.guna2Panel4.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox8)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.iconPictureBox9)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.iconPictureBox10)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.iconPictureBox11)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.iconPictureBox12)).BeginInit();
@@ -122,7 +123,6 @@
             ((System.ComponentModel.ISupportInitialize)(this.iconPictureBox2)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.iconPictureBox3)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.iconPictureBox1)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.iconPictureBox9)).BeginInit();
             this.SuspendLayout();
             // 
             // pnlHeader
@@ -137,6 +137,7 @@
             this.pnlHeader.Name = "pnlHeader";
             this.pnlHeader.Size = new System.Drawing.Size(1260, 120);
             this.pnlHeader.TabIndex = 1;
+            this.pnlHeader.Paint += new System.Windows.Forms.PaintEventHandler(this.pnlHeader_Paint);
             // 
             // label2
             // 
@@ -420,6 +421,18 @@
             this.pnlAPropos.Size = new System.Drawing.Size(222, 92);
             this.pnlAPropos.TabIndex = 13;
             // 
+            // label11
+            // 
+            this.label11.AutoSize = true;
+            this.label11.BackColor = System.Drawing.Color.Transparent;
+            this.label11.Font = new System.Drawing.Font("Segoe UI Semibold", 10.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label11.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(40)))), ((int)(((byte)(98)))), ((int)(((byte)(220)))));
+            this.label11.Location = new System.Drawing.Point(33, 57);
+            this.label11.Name = "label11";
+            this.label11.Size = new System.Drawing.Size(157, 23);
+            this.label11.TabIndex = 11;
+            this.label11.Text = "Tester la connexion";
+            // 
             // pnlSauvegarderConfig
             // 
             this.pnlSauvegarderConfig.BackColor = System.Drawing.Color.White;
@@ -604,11 +617,11 @@
             this.label9.BackColor = System.Drawing.Color.Transparent;
             this.label9.Font = new System.Drawing.Font("Segoe UI Semibold", 10.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label9.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(40)))), ((int)(((byte)(98)))), ((int)(((byte)(220)))));
-            this.label9.Location = new System.Drawing.Point(35, 57);
+            this.label9.Location = new System.Drawing.Point(47, 57);
             this.label9.Name = "label9";
-            this.label9.Size = new System.Drawing.Size(159, 23);
+            this.label9.Size = new System.Drawing.Size(134, 23);
             this.label9.TabIndex = 1;
-            this.label9.Text = "Modifier parametre";
+            this.label9.Text = "Modifier Setting";
             // 
             // label4
             // 
@@ -702,6 +715,20 @@
             this.pictureBox8.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
             this.pictureBox8.TabIndex = 1;
             this.pictureBox8.TabStop = false;
+            // 
+            // iconPictureBox9
+            // 
+            this.iconPictureBox9.BackColor = System.Drawing.Color.Transparent;
+            this.iconPictureBox9.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(21)))), ((int)(((byte)(101)))), ((int)(((byte)(192)))));
+            this.iconPictureBox9.IconChar = FontAwesome.Sharp.IconChar.Database;
+            this.iconPictureBox9.IconColor = System.Drawing.Color.FromArgb(((int)(((byte)(21)))), ((int)(((byte)(101)))), ((int)(((byte)(192)))));
+            this.iconPictureBox9.IconFont = FontAwesome.Sharp.IconFont.Auto;
+            this.iconPictureBox9.IconSize = 42;
+            this.iconPictureBox9.Location = new System.Drawing.Point(90, 12);
+            this.iconPictureBox9.Name = "iconPictureBox9";
+            this.iconPictureBox9.Size = new System.Drawing.Size(42, 42);
+            this.iconPictureBox9.TabIndex = 12;
+            this.iconPictureBox9.TabStop = false;
             // 
             // iconPictureBox10
             // 
@@ -944,32 +971,6 @@
             this.iconPictureBox1.TabIndex = 5;
             this.iconPictureBox1.TabStop = false;
             // 
-            // iconPictureBox9
-            // 
-            this.iconPictureBox9.BackColor = System.Drawing.Color.Transparent;
-            this.iconPictureBox9.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(21)))), ((int)(((byte)(101)))), ((int)(((byte)(192)))));
-            this.iconPictureBox9.IconChar = FontAwesome.Sharp.IconChar.Database;
-            this.iconPictureBox9.IconColor = System.Drawing.Color.FromArgb(((int)(((byte)(21)))), ((int)(((byte)(101)))), ((int)(((byte)(192)))));
-            this.iconPictureBox9.IconFont = FontAwesome.Sharp.IconFont.Auto;
-            this.iconPictureBox9.IconSize = 42;
-            this.iconPictureBox9.Location = new System.Drawing.Point(90, 12);
-            this.iconPictureBox9.Name = "iconPictureBox9";
-            this.iconPictureBox9.Size = new System.Drawing.Size(42, 42);
-            this.iconPictureBox9.TabIndex = 12;
-            this.iconPictureBox9.TabStop = false;
-            // 
-            // label11
-            // 
-            this.label11.AutoSize = true;
-            this.label11.BackColor = System.Drawing.Color.Transparent;
-            this.label11.Font = new System.Drawing.Font("Segoe UI Semibold", 10.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label11.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(40)))), ((int)(((byte)(98)))), ((int)(((byte)(220)))));
-            this.label11.Location = new System.Drawing.Point(33, 57);
-            this.label11.Name = "label11";
-            this.label11.Size = new System.Drawing.Size(157, 23);
-            this.label11.TabIndex = 11;
-            this.label11.Text = "Tester la connexion";
-            // 
             // developpeur
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
@@ -1016,6 +1017,7 @@
             this.guna2Panel4.ResumeLayout(false);
             this.guna2Panel4.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox8)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.iconPictureBox9)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.iconPictureBox10)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.iconPictureBox11)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.iconPictureBox12)).EndInit();
@@ -1034,7 +1036,6 @@
             ((System.ComponentModel.ISupportInitialize)(this.iconPictureBox2)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.iconPictureBox3)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.iconPictureBox1)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.iconPictureBox9)).EndInit();
             this.ResumeLayout(false);
 
         }
