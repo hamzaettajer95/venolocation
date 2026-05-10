@@ -105,7 +105,7 @@ namespace venolocation.classee
                         return false;
                     }
                 }
-
+                
                 return false;
             }
             catch
@@ -171,12 +171,7 @@ namespace venolocation.classee
                 }
 
                 
-                bool isValid = CheckLicense(
-                    keyPath,
-                    programName,
-                    processorIdPc,
-                    serialLocal
-                );
+                bool isValid = CheckLicense(keyPath,programName,processorIdPc,serialLocal);
 
                 if (!isValid)
                 {
@@ -186,7 +181,7 @@ namespace venolocation.classee
                         MessageBoxButtons.OK,
                         MessageBoxIcon.Error
                     );
-
+                   
                     return false;
                 }
 

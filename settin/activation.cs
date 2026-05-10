@@ -7,6 +7,9 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using System.Xml;
+
+using Guna.UI2.WinForms;
 
 using venolocation.classee;
 
@@ -33,7 +36,7 @@ namespace venolocation.settin
 
         private void AfficherLicenceInactive()
         {
-            pnlLicenceStatus.BackColor = Color.FromArgb(255, 225, 225);
+            pnlLicenceStatus.BackColor = Color.FromArgb(255, 246, 246);
             pnlLicenceStatus.ForeColor = Color.DarkRed;
 
             lblLicenceStatus.Text = "Licence inactive";
@@ -45,9 +48,9 @@ namespace venolocation.settin
         }
         void test_serial()
         {
-            string programName = "venolocation";
+            string programName = Properties.Settings.Default.name_programe;
 
-            string driveUrl = Properties.Settings.Default.url_drive;
+            string driveUrl = Properties.Settings.Default.url_licence;
 
             bool active = ActivationHelper.CheckActivationFromDrive(programName, driveUrl);
 
@@ -58,12 +61,58 @@ namespace venolocation.settin
 
             }
             else
+            {
                 AfficherLicenceActive();
+                classee.ErrorReporter.SendTestMessage("Ce Client active ce programme avec le serial : "+txtActivation.Text);
+            }
+                
 
         }
         private void activation_Load(object sender, EventArgs e)
         {
+            txtActivation.Text = Properties.Settings.Default.serial;
             test_serial();
+        }
+
+        private void cardLicence_Paint(object sender, PaintEventArgs e)
+        {
+
+        }
+
+        private void btnActiver_Click(object sender, EventArgs e)
+        {
+            Properties.Settings.Default.serial=txtActivation.Text;
+            Properties.Settings.Default.Save();
+            test_serial();
+        }
+
+        private bool isFormatting = false;
+        private void txtActivation_TextChanged(object sender, EventArgs e)
+        {
+            //if (isFormatting)
+            //    return;
+
+            //isFormatting = true;
+
+            
+            //string text = txtActivation.Text.Replace("-", "").ToUpper();
+
+            //StringBuilder sb = new StringBuilder();
+
+            //for (int i = 0; i < text.Length; i++)
+            //{
+            //    if (i > 0 && i % 5 == 0)
+            //    {
+            //        sb.Append("-");
+            //    }
+
+            //    sb.Append(text[i]);
+            //}
+
+            //txtActivation.Text = sb.ToString();
+            //txtActivation.SelectionStart = txtActivation.Text.Length;
+
+            //isFormatting = false;
         }
     }
 }

@@ -8,7 +8,7 @@
     <Setting Name="serial" Type="System.String" Scope="User">
       <Value Profile="(Default)">10081995HAMZAETTAJER</Value>
     </Setting>
-    <Setting Name="url_drive" Type="System.String" Scope="User">
+    <Setting Name="url_licence" Type="System.String" Scope="User">
       <Value Profile="(Default)">https://drive.google.com/uc?export=download&amp;id=1HGQdt1AlZEDPr3H-2Dv4hpI_tXmzcz3F</Value>
     </Setting>
     <Setting Name="verssion" Type="System.String" Scope="User">
@@ -52,6 +52,9 @@
     </Setting>
     <Setting Name="telegram_chat_id" Type="System.String" Scope="User">
       <Value Profile="(Default)" />
+    </Setting>
+    <Setting Name="name_programe" Type="System.String" Scope="User">
+      <Value Profile="(Default)">venolocation</Value>
     </Setting>
   </Settings>
 </SettingsFile>

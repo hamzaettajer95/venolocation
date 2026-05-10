@@ -58,9 +58,14 @@ namespace venolocation.droit
             }
             catch (Exception ex)
             {
+
                 ErrorReporter.SendError(ex, "developpeur", "TesterConnexion");
                 dbErreur.AddLog(ex.Message, Session.Username, "developpeur", "TesterConnexion");
                 MessageBox.Show("Échec de connexion : " + ex.Message, "Erreur", MessageBoxButtons.OK, MessageBoxIcon.Error);
+
+                server s = new dev.server();
+                s.ShowDialog();
+
             }
         }
 
@@ -242,7 +247,17 @@ namespace venolocation.droit
         }
         private void pnlOutilsBD_Click(object sender, EventArgs e)
         {
-           server se = new server();
+            if (mode_dev == false)
+            {
+                MessageBox.Show(
+                    "Accès réservé au développeur.",
+                    "Accès refusé",
+                    MessageBoxButtons.OK,
+                    MessageBoxIcon.Warning
+                );
+                return;
+            }
+            server se = new server();
             se.ShowDialog();
         }
         private void pnlSauvegarderConfig_Click(object sender, EventArgs e)

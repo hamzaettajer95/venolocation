@@ -42,8 +42,8 @@
             this.panelTop = new System.Windows.Forms.Panel();
             this.panel1 = new System.Windows.Forms.Panel();
             this.pictureBox1 = new System.Windows.Forms.PictureBox();
-            this.btnUserMenu = new System.Windows.Forms.Button();
             this.lblUser = new System.Windows.Forms.Label();
+            this.btnUserMenu = new System.Windows.Forms.Button();
             this.lbldate = new System.Windows.Forms.Label();
             this.lblDateTime = new System.Windows.Forms.Label();
             this.lblTitle = new System.Windows.Forms.Label();
@@ -103,6 +103,7 @@
             this.ProfilToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStripSeparator1 = new System.Windows.Forms.ToolStripSeparator();
             this.deconnecterToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.btnavtiveLicence = new Guna.UI2.WinForms.Guna2Button();
             this.panelTop.SuspendLayout();
             this.panel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
@@ -133,6 +134,7 @@
             // panelTop
             // 
             this.panelTop.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(36)))), ((int)(((byte)(52)))), ((int)(((byte)(71)))));
+            this.panelTop.Controls.Add(this.btnavtiveLicence);
             this.panelTop.Controls.Add(this.panel1);
             this.panelTop.Controls.Add(this.btnUserMenu);
             this.panelTop.Controls.Add(this.lbldate);
@@ -164,6 +166,17 @@
             this.pictureBox1.TabIndex = 4;
             this.pictureBox1.TabStop = false;
             // 
+            // lblUser
+            // 
+            this.lblUser.AutoSize = true;
+            this.lblUser.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblUser.ForeColor = System.Drawing.Color.White;
+            this.lblUser.Location = new System.Drawing.Point(78, 20);
+            this.lblUser.Name = "lblUser";
+            this.lblUser.Size = new System.Drawing.Size(64, 28);
+            this.lblUser.TabIndex = 1;
+            this.lblUser.Text = "Login";
+            // 
             // btnUserMenu
             // 
             this.btnUserMenu.BackColor = System.Drawing.Color.Transparent;
@@ -180,17 +193,6 @@
             this.btnUserMenu.Text = "▼";
             this.btnUserMenu.UseVisualStyleBackColor = false;
             this.btnUserMenu.Click += new System.EventHandler(this.btnUserMenu_Click);
-            // 
-            // lblUser
-            // 
-            this.lblUser.AutoSize = true;
-            this.lblUser.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblUser.ForeColor = System.Drawing.Color.White;
-            this.lblUser.Location = new System.Drawing.Point(78, 20);
-            this.lblUser.Name = "lblUser";
-            this.lblUser.Size = new System.Drawing.Size(64, 28);
-            this.lblUser.TabIndex = 1;
-            this.lblUser.Text = "Login";
             // 
             // lbldate
             // 
@@ -1199,6 +1201,33 @@
             this.deconnecterToolStripMenuItem.Text = "Déconnecter";
             this.deconnecterToolStripMenuItem.Click += new System.EventHandler(this.deconnecterToolStripMenuItem_Click);
             // 
+            // btnavtiveLicence
+            // 
+            this.btnavtiveLicence.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(191)))), ((int)(((byte)(219)))), ((int)(((byte)(254)))));
+            this.btnavtiveLicence.BorderRadius = 12;
+            this.btnavtiveLicence.BorderThickness = 1;
+            this.btnavtiveLicence.DisabledState.BorderColor = System.Drawing.Color.DarkGray;
+            this.btnavtiveLicence.DisabledState.CustomBorderColor = System.Drawing.Color.DarkGray;
+            this.btnavtiveLicence.DisabledState.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(169)))), ((int)(((byte)(169)))), ((int)(((byte)(169)))));
+            this.btnavtiveLicence.DisabledState.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(141)))), ((int)(((byte)(141)))), ((int)(((byte)(141)))));
+            this.btnavtiveLicence.Dock = System.Windows.Forms.DockStyle.Right;
+            this.btnavtiveLicence.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(38)))), ((int)(((byte)(166)))), ((int)(((byte)(91)))));
+            this.btnavtiveLicence.Font = new System.Drawing.Font("Segoe UI", 10.8F, System.Drawing.FontStyle.Bold);
+            this.btnavtiveLicence.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(45)))), ((int)(((byte)(55)))), ((int)(((byte)(72)))));
+            this.btnavtiveLicence.HoverState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(128)))), ((int)(((byte)(128)))), ((int)(((byte)(255)))));
+            this.btnavtiveLicence.HoverState.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(239)))), ((int)(((byte)(246)))), ((int)(((byte)(255)))));
+            this.btnavtiveLicence.Image = global::venolocation.Properties.Resources.certificate;
+            this.btnavtiveLicence.ImageAlign = System.Windows.Forms.HorizontalAlignment.Left;
+            this.btnavtiveLicence.ImageSize = new System.Drawing.Size(35, 35);
+            this.btnavtiveLicence.Location = new System.Drawing.Point(1172, 0);
+            this.btnavtiveLicence.Name = "btnavtiveLicence";
+            this.btnavtiveLicence.Size = new System.Drawing.Size(282, 70);
+            this.btnavtiveLicence.TabIndex = 20;
+            this.btnavtiveLicence.Text = "    Activé Logiciel";
+            this.btnavtiveLicence.TextAlign = System.Windows.Forms.HorizontalAlignment.Left;
+            this.btnavtiveLicence.Visible = false;
+            this.btnavtiveLicence.Click += new System.EventHandler(this.btnavtiveLicence_Click);
+            // 
             // dashboard
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 17F);
@@ -1320,6 +1349,7 @@
             private System.Windows.Forms.PictureBox pictureBox5;
         private FontAwesome.Sharp.IconButton btnentretient;
         private FontAwesome.Sharp.IconButton btnecheances;
+        private Guna.UI2.WinForms.Guna2Button btnavtiveLicence;
     }
 }
 

@@ -9,6 +9,7 @@ using System.Threading.Tasks;
 using System.Windows.Forms;
 
 using venolocation.classee;
+using venolocation.formee;
 
 namespace venolocation.dev
 {
@@ -28,6 +29,8 @@ namespace venolocation.dev
         private void btnRetourSimple_Click(object sender, EventArgs e)
         {
             classee.ErrorReporter.SendTestMessage(txtmessage.Text);
+            LogHelper.AddLog("envoye message au developpeur " , Session.Username);
+            txtmessage.Clear();
         }
     }
 }

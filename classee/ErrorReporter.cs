@@ -27,13 +27,14 @@ namespace venolocation.classee
                     if (string.IsNullOrWhiteSpace(token) || string.IsNullOrWhiteSpace(chatId))
                         return;
 
-                    string message =
+                string message =
                         "🚨 ERREUR LOGICIEL" + Environment.NewLine +
                         Environment.NewLine +
-                        "Programme : venolocation" + Environment.NewLine +
+                        "Programme : "+Properties.Settings.Default.name_programe + Environment.NewLine +
                         "Version : " + Properties.Settings.Default.verssion + Environment.NewLine +
                         "Utilisateur : " + Session.Username + Environment.NewLine +
-                        "PC : " + Environment.MachineName + Environment.NewLine +
+                        "PC Name : " + Environment.MachineName + Environment.NewLine +
+                        "ID_prosesseur : " +  ActivationHelper.GetProcessorId() + Environment.NewLine +
                         "Date : " + DateTime.Now.ToString("dd/MM/yyyy HH:mm:ss") + Environment.NewLine +
                         Environment.NewLine +
                         "Form : " + formName + Environment.NewLine +
@@ -71,22 +72,23 @@ namespace venolocation.classee
                         return;
                     }
 
-                    string message =
-                        messa + Environment.NewLine +
-                        Environment.NewLine +
-                        "Programme : venolocation" + Environment.NewLine +
-                        "Version : " + Properties.Settings.Default.verssion + Environment.NewLine +
-                        "Utilisateur : " + Session.Username + Environment.NewLine +
-                        "Date : " + DateTime.Now.ToString("dd/MM/yyyy HH:mm:ss");
+                string message =
+                     "Message LOGICIEL" + Environment.NewLine +
+                     Environment.NewLine +
+                     "Programme : " + Properties.Settings.Default.name_programe + Environment.NewLine +
+                     "Version : " + Properties.Settings.Default.verssion + Environment.NewLine +
+                     "Utilisateur : " + Session.Username + Environment.NewLine +
+                     "PC Name : " + Environment.MachineName + Environment.NewLine +
+                     "ID_prosesseur : " + ActivationHelper.GetProcessorId() + Environment.NewLine +
+                     "Date : " + DateTime.Now.ToString("dd/MM/yyyy HH:mm:ss") + Environment.NewLine +
+                     Environment.NewLine +
+                     
+                     "Message : " + messa;
+                    
 
-                    SendTelegramMessageAsync(token, chatId, message);
+                SendTelegramMessageAsync(token, chatId, message);
 
-                    MessageBox.Show(
-                        "Message de test envoyé. ",
-                        "Ressage",
-                        MessageBoxButtons.OK,
-                        MessageBoxIcon.Information
-                    );
+                   
                 }
                 catch (Exception ex)
                 {

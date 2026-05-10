@@ -557,24 +557,28 @@ namespace venolocation.formee
 
         void test_serial()
         {
-            string programName = "venolocation";
+            string programName = Properties.Settings.Default.name_programe;
 
-            string driveUrl = Properties.Settings.Default.url_drive;
+            string driveUrl = Properties.Settings.Default.url_licence;
 
             bool active = ActivationHelper.CheckActivationFromDrive(programName, driveUrl);
 
             if (!active)
             {
-                MessageBox.Show(
-                    "Le logiciel va se fermer.",
-                    "Activation requise",
-                    MessageBoxButtons.OK,
-                    MessageBoxIcon.Warning
-                );
-
+                classee.ErrorReporter.SendTestMessage("Probleme de l'activation !!!");
+                btnavtiveLicence.Visible = true;
                 deconnecte();
+                panel1.Enabled = false;
+                btnUserMenu.Enabled = false;
             }
-          
+            else
+            {
+                btnUserMenu.Enabled = true;
+                panel1.Enabled = true;
+                btnavtiveLicence.Visible = false;
+            }
+                
+
         }
         void panel1_Click(object sender, EventArgs e)
         {
@@ -597,6 +601,13 @@ namespace venolocation.formee
                 c.Cursor = Cursors.Hand;
                 c.Click += clickEvent;
             }
+        }
+
+        private void btnavtiveLicence_Click(object sender, EventArgs e)
+        {
+            settin.activation acti = new activation();
+            acti.ShowDialog();
+            btnavtiveLicence.Visible = false;
         }
     }
 }

@@ -59,7 +59,8 @@
             dataGridViewCellStyle2.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
             dataGridViewCellStyle2.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
             this.dgvSettings.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle2;
-            this.dgvSettings.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.dgvSettings.ColumnHeadersHeight = 4;
+            this.dgvSettings.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.EnableResizing;
             dataGridViewCellStyle3.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
             dataGridViewCellStyle3.BackColor = System.Drawing.Color.White;
             dataGridViewCellStyle3.Font = new System.Drawing.Font("Microsoft Sans Serif", 7.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
@@ -88,7 +89,7 @@
             this.dgvSettings.ThemeStyle.HeaderStyle.BorderStyle = System.Windows.Forms.DataGridViewHeaderBorderStyle.None;
             this.dgvSettings.ThemeStyle.HeaderStyle.Font = new System.Drawing.Font("Microsoft Sans Serif", 7.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.dgvSettings.ThemeStyle.HeaderStyle.ForeColor = System.Drawing.Color.White;
-            this.dgvSettings.ThemeStyle.HeaderStyle.HeaightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.dgvSettings.ThemeStyle.HeaderStyle.HeaightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.EnableResizing;
             this.dgvSettings.ThemeStyle.HeaderStyle.Height = 4;
             this.dgvSettings.ThemeStyle.ReadOnly = true;
             this.dgvSettings.ThemeStyle.RowsStyle.BackColor = System.Drawing.Color.White;
@@ -116,7 +117,7 @@
             this.btnFermer.Name = "btnFermer";
             this.btnFermer.Size = new System.Drawing.Size(205, 44);
             this.btnFermer.TabIndex = 16;
-            this.btnFermer.Text = "btnFermer";
+            this.btnFermer.Text = "Fermer";
             this.btnFermer.Click += new System.EventHandler(this.btnFermer_Click);
             // 
             // btnActualiser
@@ -135,7 +136,7 @@
             this.btnActualiser.Name = "btnActualiser";
             this.btnActualiser.Size = new System.Drawing.Size(205, 44);
             this.btnActualiser.TabIndex = 15;
-            this.btnActualiser.Text = "btnActualiser";
+            this.btnActualiser.Text = "Actualiser";
             this.btnActualiser.Click += new System.EventHandler(this.btnActualiser_Click);
             // 
             // btnEnregistrer
@@ -154,7 +155,7 @@
             this.btnEnregistrer.Name = "btnEnregistrer";
             this.btnEnregistrer.Size = new System.Drawing.Size(205, 44);
             this.btnEnregistrer.TabIndex = 14;
-            this.btnEnregistrer.Text = "btnEnregistrer";
+            this.btnEnregistrer.Text = "Enregistrer";
             this.btnEnregistrer.Click += new System.EventHandler(this.btnEnregistrer_Click);
             // 
             // txtValeur

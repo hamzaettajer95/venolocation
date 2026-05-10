@@ -50,12 +50,12 @@ namespace venolocation.Properties {
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.Configuration.DefaultSettingValueAttribute("https://drive.google.com/uc?export=download&id=1HGQdt1AlZEDPr3H-2Dv4hpI_tXmzcz3F")]
-        public string url_drive {
+        public string url_licence {
             get {
-                return ((string)(this["url_drive"]));
+                return ((string)(this["url_licence"]));
             }
             set {
-                this["url_drive"] = value;
+                this["url_licence"] = value;
             }
         }
         
@@ -224,6 +224,18 @@ namespace venolocation.Properties {
             }
             set {
                 this["telegram_chat_id"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("venolocation")]
+        public string name_programe {
+            get {
+                return ((string)(this["name_programe"]));
+            }
+            set {
+                this["name_programe"] = value;
             }
         }
     }
