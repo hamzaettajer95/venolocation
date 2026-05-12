@@ -10,9 +10,6 @@ using System.Windows.Forms;
 using venolocation.classee;
 using MySql.Data.MySqlClient;
 
-using MySql.Data.MySqlClient;
-
-using venolocation.classee;
 
 namespace venolocation.settin
 {

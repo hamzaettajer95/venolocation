@@ -86,11 +86,6 @@
             this.pnlRemarques = new System.Windows.Forms.Panel();
             this.txtRemarques = new System.Windows.Forms.TextBox();
             this.pnlActions = new System.Windows.Forms.Panel();
-            this.tnImprimer = new FontAwesome.Sharp.IconButton();
-            this.btnEnregistrer = new FontAwesome.Sharp.IconButton();
-            this.btnannuller = new FontAwesome.Sharp.IconButton();
-            this.btncalculer = new FontAwesome.Sharp.IconButton();
-            this.btnNouveau = new FontAwesome.Sharp.IconButton();
             this.pnlFooter = new System.Windows.Forms.Panel();
             this.lblTotal = new System.Windows.Forms.Label();
             this.lblFooterTotal = new System.Windows.Forms.Label();
@@ -99,6 +94,14 @@
             this.lblContratNumero = new System.Windows.Forms.Label();
             this.lblFooterContrat = new System.Windows.Forms.Label();
             this.printDocument1 = new System.Drawing.Printing.PrintDocument();
+            this.tnImprimer = new FontAwesome.Sharp.IconButton();
+            this.btnEnregistrer = new FontAwesome.Sharp.IconButton();
+            this.btnannuller = new FontAwesome.Sharp.IconButton();
+            this.btncalculer = new FontAwesome.Sharp.IconButton();
+            this.btnNouveau = new FontAwesome.Sharp.IconButton();
+            this.pictureBoxEtatVoiture = new System.Windows.Forms.PictureBox();
+            this.pictureBoxLogo = new System.Windows.Forms.PictureBox();
+            this.pictureBoxEtatVoiture2 = new System.Windows.Forms.PictureBox();
             this.pnlHeader.SuspendLayout();
             this.pnlClient.SuspendLayout();
             this.pnlVoiture.SuspendLayout();
@@ -108,6 +111,9 @@
             this.pnlRemarques.SuspendLayout();
             this.pnlActions.SuspendLayout();
             this.pnlFooter.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBoxEtatVoiture)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBoxLogo)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBoxEtatVoiture2)).BeginInit();
             this.SuspendLayout();
             // 
             // pnlHeader
@@ -607,6 +613,9 @@
             // pnlPaiement
             // 
             this.pnlPaiement.BackColor = System.Drawing.Color.White;
+            this.pnlPaiement.Controls.Add(this.pictureBoxEtatVoiture2);
+            this.pnlPaiement.Controls.Add(this.pictureBoxEtatVoiture);
+            this.pnlPaiement.Controls.Add(this.pictureBoxLogo);
             this.pnlPaiement.Controls.Add(this.cbModePaiement);
             this.pnlPaiement.Controls.Add(this.label20);
             this.pnlPaiement.Controls.Add(this.txtRestePayer);
@@ -745,6 +754,86 @@
             this.pnlActions.Size = new System.Drawing.Size(610, 120);
             this.pnlActions.TabIndex = 6;
             // 
+            // pnlFooter
+            // 
+            this.pnlFooter.BackColor = System.Drawing.Color.AliceBlue;
+            this.pnlFooter.Controls.Add(this.lblTotal);
+            this.pnlFooter.Controls.Add(this.lblFooterTotal);
+            this.pnlFooter.Controls.Add(this.lblDuree);
+            this.pnlFooter.Controls.Add(this.lblFooterDuree);
+            this.pnlFooter.Controls.Add(this.lblContratNumero);
+            this.pnlFooter.Controls.Add(this.lblFooterContrat);
+            this.pnlFooter.Location = new System.Drawing.Point(12, 806);
+            this.pnlFooter.Name = "pnlFooter";
+            this.pnlFooter.Size = new System.Drawing.Size(1260, 60);
+            this.pnlFooter.TabIndex = 7;
+            // 
+            // lblTotal
+            // 
+            this.lblTotal.AutoSize = true;
+            this.lblTotal.Font = new System.Drawing.Font("Segoe UI", 11F);
+            this.lblTotal.ForeColor = System.Drawing.Color.MidnightBlue;
+            this.lblTotal.Location = new System.Drawing.Point(1047, 17);
+            this.lblTotal.Name = "lblTotal";
+            this.lblTotal.Size = new System.Drawing.Size(77, 25);
+            this.lblTotal.TabIndex = 5;
+            this.lblTotal.Text = "0,00 DH";
+            // 
+            // lblFooterTotal
+            // 
+            this.lblFooterTotal.AutoSize = true;
+            this.lblFooterTotal.Font = new System.Drawing.Font("Segoe UI", 11F, System.Drawing.FontStyle.Bold);
+            this.lblFooterTotal.ForeColor = System.Drawing.Color.RoyalBlue;
+            this.lblFooterTotal.Location = new System.Drawing.Point(978, 17);
+            this.lblFooterTotal.Name = "lblFooterTotal";
+            this.lblFooterTotal.Size = new System.Drawing.Size(60, 25);
+            this.lblFooterTotal.TabIndex = 4;
+            this.lblFooterTotal.Text = "Total:";
+            // 
+            // lblDuree
+            // 
+            this.lblDuree.AutoSize = true;
+            this.lblDuree.Font = new System.Drawing.Font("Segoe UI", 11F);
+            this.lblDuree.ForeColor = System.Drawing.Color.MidnightBlue;
+            this.lblDuree.Location = new System.Drawing.Point(688, 17);
+            this.lblDuree.Name = "lblDuree";
+            this.lblDuree.Size = new System.Drawing.Size(61, 25);
+            this.lblDuree.TabIndex = 3;
+            this.lblDuree.Text = "1 jour";
+            // 
+            // lblFooterDuree
+            // 
+            this.lblFooterDuree.AutoSize = true;
+            this.lblFooterDuree.Font = new System.Drawing.Font("Segoe UI", 11F, System.Drawing.FontStyle.Bold);
+            this.lblFooterDuree.ForeColor = System.Drawing.Color.RoyalBlue;
+            this.lblFooterDuree.Location = new System.Drawing.Point(611, 17);
+            this.lblFooterDuree.Name = "lblFooterDuree";
+            this.lblFooterDuree.Size = new System.Drawing.Size(71, 25);
+            this.lblFooterDuree.TabIndex = 2;
+            this.lblFooterDuree.Text = "Durée:";
+            // 
+            // lblContratNumero
+            // 
+            this.lblContratNumero.AutoSize = true;
+            this.lblContratNumero.Font = new System.Drawing.Font("Segoe UI", 11F);
+            this.lblContratNumero.ForeColor = System.Drawing.Color.MidnightBlue;
+            this.lblContratNumero.Location = new System.Drawing.Point(164, 17);
+            this.lblContratNumero.Name = "lblContratNumero";
+            this.lblContratNumero.Size = new System.Drawing.Size(93, 25);
+            this.lblContratNumero.TabIndex = 1;
+            this.lblContratNumero.Text = "CTR-0001";
+            // 
+            // lblFooterContrat
+            // 
+            this.lblFooterContrat.AutoSize = true;
+            this.lblFooterContrat.Font = new System.Drawing.Font("Segoe UI", 11F, System.Drawing.FontStyle.Bold);
+            this.lblFooterContrat.ForeColor = System.Drawing.Color.RoyalBlue;
+            this.lblFooterContrat.Location = new System.Drawing.Point(34, 17);
+            this.lblFooterContrat.Name = "lblFooterContrat";
+            this.lblFooterContrat.Size = new System.Drawing.Size(117, 25);
+            this.lblFooterContrat.TabIndex = 0;
+            this.lblFooterContrat.Text = "Contrat N° :";
+            // 
             // tnImprimer
             // 
             this.tnImprimer.BackColor = System.Drawing.Color.Blue;
@@ -840,85 +929,38 @@
             this.btnNouveau.UseVisualStyleBackColor = false;
             this.btnNouveau.Click += new System.EventHandler(this.btnNouveau_Click_1);
             // 
-            // pnlFooter
+            // pictureBoxEtatVoiture
             // 
-            this.pnlFooter.BackColor = System.Drawing.Color.AliceBlue;
-            this.pnlFooter.Controls.Add(this.lblTotal);
-            this.pnlFooter.Controls.Add(this.lblFooterTotal);
-            this.pnlFooter.Controls.Add(this.lblDuree);
-            this.pnlFooter.Controls.Add(this.lblFooterDuree);
-            this.pnlFooter.Controls.Add(this.lblContratNumero);
-            this.pnlFooter.Controls.Add(this.lblFooterContrat);
-            this.pnlFooter.Location = new System.Drawing.Point(12, 806);
-            this.pnlFooter.Name = "pnlFooter";
-            this.pnlFooter.Size = new System.Drawing.Size(1260, 60);
-            this.pnlFooter.TabIndex = 7;
+            this.pictureBoxEtatVoiture.Image = global::venolocation.Properties.Resources.images2;
+            this.pictureBoxEtatVoiture.Location = new System.Drawing.Point(435, 12);
+            this.pictureBoxEtatVoiture.Name = "pictureBoxEtatVoiture";
+            this.pictureBoxEtatVoiture.Size = new System.Drawing.Size(80, 57);
+            this.pictureBoxEtatVoiture.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
+            this.pictureBoxEtatVoiture.TabIndex = 10;
+            this.pictureBoxEtatVoiture.TabStop = false;
+            this.pictureBoxEtatVoiture.Visible = false;
             // 
-            // lblTotal
+            // pictureBoxLogo
             // 
-            this.lblTotal.AutoSize = true;
-            this.lblTotal.Font = new System.Drawing.Font("Segoe UI", 11F);
-            this.lblTotal.ForeColor = System.Drawing.Color.MidnightBlue;
-            this.lblTotal.Location = new System.Drawing.Point(1047, 17);
-            this.lblTotal.Name = "lblTotal";
-            this.lblTotal.Size = new System.Drawing.Size(77, 25);
-            this.lblTotal.TabIndex = 5;
-            this.lblTotal.Text = "0,00 DH";
+            this.pictureBoxLogo.Image = global::venolocation.Properties.Resources.certificate;
+            this.pictureBoxLogo.Location = new System.Drawing.Point(300, 12);
+            this.pictureBoxLogo.Name = "pictureBoxLogo";
+            this.pictureBoxLogo.Size = new System.Drawing.Size(88, 57);
+            this.pictureBoxLogo.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
+            this.pictureBoxLogo.TabIndex = 9;
+            this.pictureBoxLogo.TabStop = false;
+            this.pictureBoxLogo.Visible = false;
             // 
-            // lblFooterTotal
+            // pictureBoxEtatVoiture2
             // 
-            this.lblFooterTotal.AutoSize = true;
-            this.lblFooterTotal.Font = new System.Drawing.Font("Segoe UI", 11F, System.Drawing.FontStyle.Bold);
-            this.lblFooterTotal.ForeColor = System.Drawing.Color.RoyalBlue;
-            this.lblFooterTotal.Location = new System.Drawing.Point(978, 17);
-            this.lblFooterTotal.Name = "lblFooterTotal";
-            this.lblFooterTotal.Size = new System.Drawing.Size(60, 25);
-            this.lblFooterTotal.TabIndex = 4;
-            this.lblFooterTotal.Text = "Total:";
-            // 
-            // lblDuree
-            // 
-            this.lblDuree.AutoSize = true;
-            this.lblDuree.Font = new System.Drawing.Font("Segoe UI", 11F);
-            this.lblDuree.ForeColor = System.Drawing.Color.MidnightBlue;
-            this.lblDuree.Location = new System.Drawing.Point(688, 17);
-            this.lblDuree.Name = "lblDuree";
-            this.lblDuree.Size = new System.Drawing.Size(61, 25);
-            this.lblDuree.TabIndex = 3;
-            this.lblDuree.Text = "1 jour";
-            // 
-            // lblFooterDuree
-            // 
-            this.lblFooterDuree.AutoSize = true;
-            this.lblFooterDuree.Font = new System.Drawing.Font("Segoe UI", 11F, System.Drawing.FontStyle.Bold);
-            this.lblFooterDuree.ForeColor = System.Drawing.Color.RoyalBlue;
-            this.lblFooterDuree.Location = new System.Drawing.Point(611, 17);
-            this.lblFooterDuree.Name = "lblFooterDuree";
-            this.lblFooterDuree.Size = new System.Drawing.Size(71, 25);
-            this.lblFooterDuree.TabIndex = 2;
-            this.lblFooterDuree.Text = "Durée:";
-            // 
-            // lblContratNumero
-            // 
-            this.lblContratNumero.AutoSize = true;
-            this.lblContratNumero.Font = new System.Drawing.Font("Segoe UI", 11F);
-            this.lblContratNumero.ForeColor = System.Drawing.Color.MidnightBlue;
-            this.lblContratNumero.Location = new System.Drawing.Point(164, 17);
-            this.lblContratNumero.Name = "lblContratNumero";
-            this.lblContratNumero.Size = new System.Drawing.Size(93, 25);
-            this.lblContratNumero.TabIndex = 1;
-            this.lblContratNumero.Text = "CTR-0001";
-            // 
-            // lblFooterContrat
-            // 
-            this.lblFooterContrat.AutoSize = true;
-            this.lblFooterContrat.Font = new System.Drawing.Font("Segoe UI", 11F, System.Drawing.FontStyle.Bold);
-            this.lblFooterContrat.ForeColor = System.Drawing.Color.RoyalBlue;
-            this.lblFooterContrat.Location = new System.Drawing.Point(34, 17);
-            this.lblFooterContrat.Name = "lblFooterContrat";
-            this.lblFooterContrat.Size = new System.Drawing.Size(117, 25);
-            this.lblFooterContrat.TabIndex = 0;
-            this.lblFooterContrat.Text = "Contrat N° :";
+            this.pictureBoxEtatVoiture2.Image = global::venolocation.Properties.Resources.images1;
+            this.pictureBoxEtatVoiture2.Location = new System.Drawing.Point(521, 12);
+            this.pictureBoxEtatVoiture2.Name = "pictureBoxEtatVoiture2";
+            this.pictureBoxEtatVoiture2.Size = new System.Drawing.Size(80, 57);
+            this.pictureBoxEtatVoiture2.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
+            this.pictureBoxEtatVoiture2.TabIndex = 11;
+            this.pictureBoxEtatVoiture2.TabStop = false;
+            this.pictureBoxEtatVoiture2.Visible = false;
             // 
             // contrats
             // 
@@ -959,6 +1001,9 @@
             this.pnlActions.ResumeLayout(false);
             this.pnlFooter.ResumeLayout(false);
             this.pnlFooter.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBoxEtatVoiture)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBoxLogo)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBoxEtatVoiture2)).EndInit();
             this.ResumeLayout(false);
 
             }
@@ -1042,5 +1087,8 @@
         private System.Windows.Forms.ComboBox cbReservation;
         private System.Windows.Forms.Label label21;
         private System.Drawing.Printing.PrintDocument printDocument1;
+        private System.Windows.Forms.PictureBox pictureBoxLogo;
+        private System.Windows.Forms.PictureBox pictureBoxEtatVoiture;
+        private System.Windows.Forms.PictureBox pictureBoxEtatVoiture2;
     }
 }

@@ -24,8 +24,10 @@ namespace venolocation.settin
 
         private void AfficherLicenceActive()
         {
+            pnlLicenceStatus.FillColor = Color.FromArgb(220, 255, 230);
             pnlLicenceStatus.BackColor = Color.FromArgb(220, 255, 230);
             pnlLicenceStatus.ForeColor = Color.Green;
+
 
             lblLicenceStatus.Text = "Licence active";
             lblLicenceStatus.ForeColor = Color.Green;
@@ -37,6 +39,7 @@ namespace venolocation.settin
         private void AfficherLicenceInactive()
         {
             pnlLicenceStatus.BackColor = Color.FromArgb(255, 246, 246);
+            pnlLicenceStatus.FillColor = Color.FromArgb(255, 246, 246);
             pnlLicenceStatus.ForeColor = Color.DarkRed;
 
             lblLicenceStatus.Text = "Licence inactive";
@@ -79,9 +82,16 @@ namespace venolocation.settin
 
         }
 
+        private string NettoyerCode(string code)
+        {
+            if (string.IsNullOrWhiteSpace(code))
+                return "";
+
+            return code.Replace("-", "").Trim().ToUpper();
+        }
         private void btnActiver_Click(object sender, EventArgs e)
         {
-            Properties.Settings.Default.serial=txtActivation.Text;
+            Properties.Settings.Default.serial=NettoyerCode(txtActivation.Text);
             Properties.Settings.Default.Save();
             test_serial();
         }
@@ -89,30 +99,30 @@ namespace venolocation.settin
         private bool isFormatting = false;
         private void txtActivation_TextChanged(object sender, EventArgs e)
         {
-            //if (isFormatting)
-            //    return;
+            if (isFormatting)
+                return;
 
-            //isFormatting = true;
+            isFormatting = true;
 
-            
-            //string text = txtActivation.Text.Replace("-", "").ToUpper();
 
-            //StringBuilder sb = new StringBuilder();
+            string text = txtActivation.Text.Replace("-", "").ToUpper();
 
-            //for (int i = 0; i < text.Length; i++)
-            //{
-            //    if (i > 0 && i % 5 == 0)
-            //    {
-            //        sb.Append("-");
-            //    }
+            StringBuilder sb = new StringBuilder();
 
-            //    sb.Append(text[i]);
-            //}
+            for (int i = 0; i < text.Length; i++)
+            {
+                if (i > 0 && i % 5 == 0)
+                {
+                    sb.Append("-");
+                }
 
-            //txtActivation.Text = sb.ToString();
-            //txtActivation.SelectionStart = txtActivation.Text.Length;
+                sb.Append(text[i]);
+            }
 
-            //isFormatting = false;
+            txtActivation.Text = sb.ToString();
+            txtActivation.SelectionStart = txtActivation.Text.Length;
+
+            isFormatting = false;
         }
     }
 }

@@ -20,32 +20,75 @@ namespace venolocation.classee
                 return new MySqlConnectionStringBuilder(DbConfig.GetConnectionString());
             }
 
-            public static void ArchiverContrats(int annee)
+        public static void ArchiverContrats(int annee)
+        {
+            string insertArchive = @"
+                    INSERT INTO contrats_archive
+                    (
+                        contrat_id, client_id, voiture_id, reservation_id,
+                        date_contrat, heure_debut, date_retour_prevu, heure_retour_prevu,
+                        kilometrage_sortie, kilometrage_retour, prix_jour, prix_heure,
+                        avance, total, status, nom_utilisateur, created_at, annee_archive
+                    )
+                    SELECT
+                        contrat_id, client_id, voiture_id, reservation_id,
+                        date_contrat, heure_debut, date_retour_prevu, heure_retour_prevu,
+                        kilometrage_sortie, kilometrage_retour, prix_jour, prix_heure,
+                        avance, total, status, nom_utilisateur, created_at, @annee
+                    FROM contrats c
+                    WHERE YEAR(c.date_contrat) = @annee
+                      AND c.status <> @status_en_cours
+                      AND NOT EXISTS (
+                          SELECT 1
+                          FROM contrats_archive a
+                          WHERE a.contrat_id = c.contrat_id
+                      );";
+
+            
+
+            string delete = @"
+                            DELETE FROM contrats
+                            WHERE YEAR(date_contrat) = @annee
+                              AND status <> @status_en_cours;";
+
+            ExecuterArchiveContrats(insertArchive, delete, annee);
+        }
+        private static void ExecuterArchiveContrats(string insertArchive, string delete, int annee)
+        {
+            using (MySqlConnection cn = Dbexec.GetConnection())
             {
-                string insert = @"
-                            INSERT INTO contrats_archive
-                            (
-                                contrat_id, client_id, voiture_id, reservation_id,
-                                date_contrat, heure_debut, date_retour_prevu, heure_retour_prevu,
-                                kilometrage_sortie, kilometrage_retour, prix_jour, prix_heure,
-                                avance, total, status, nom_utilisateur, created_at, annee_archive
-                            )
-                            SELECT
-                                contrat_id, client_id, voiture_id, reservation_id,
-                                date_contrat, heure_debut, date_retour_prevu, heure_retour_prevu,
-                                kilometrage_sortie, kilometrage_retour, prix_jour, prix_heure,
-                                avance, total, status, nom_utilisateur, created_at, @annee
-                            FROM contrats c
-                            WHERE YEAR(c.date_contrat) = @annee
-                              AND NOT EXISTS (
-                                  SELECT 1 FROM contrats_archive a
-                                  WHERE a.contrat_id = c.contrat_id
-                              );";
+                cn.Open();
 
-                string delete = "DELETE FROM contrats WHERE YEAR(date_contrat) = @annee;";
+                using (MySqlTransaction tr = cn.BeginTransaction())
+                {
+                    try
+                    {
+                        using (MySqlCommand cmdArchive = new MySqlCommand(insertArchive, cn, tr))
+                        {
+                            cmdArchive.Parameters.AddWithValue("@annee", annee);
+                            cmdArchive.Parameters.AddWithValue("@status_en_cours", AppStatus.ContratEnCours);
+                            cmdArchive.ExecuteNonQuery();
+                        }
 
-                ExecuterArchive(insert, delete, annee);
+                       
+
+                        using (MySqlCommand cmdDelete = new MySqlCommand(delete, cn, tr))
+                        {
+                            cmdDelete.Parameters.AddWithValue("@annee", annee);
+                            cmdDelete.Parameters.AddWithValue("@status_en_cours", AppStatus.ContratEnCours);
+                            cmdDelete.ExecuteNonQuery();
+                        }
+
+                        tr.Commit();
+                    }
+                    catch
+                    {
+                        tr.Rollback();
+                        throw;
+                    }
+                }
             }
+        }
 
         private static string GetMysqlToolPath(string toolName)
         {
@@ -90,8 +133,60 @@ namespace venolocation.classee
 
                 ExecuterArchive(insert, delete, annee);
             }
+        public static void RestaurerTousContratsDepuisOld()
+        {
+            string insert = @"
+                        INSERT INTO contrats
+                        (
+                            contrat_id, client_id, voiture_id, reservation_id,
+                            date_contrat, heure_debut, date_retour_prevu, heure_retour_prevu,
+                            kilometrage_sortie, kilometrage_retour, prix_jour, prix_heure,
+                            avance, total, status, nom_utilisateur, created_at
+                        )
+                        SELECT
+                            o.contrat_id, o.client_id, o.voiture_id, o.reservation_id,
+                            o.date_contrat, o.heure_debut, o.date_retour_prevu, o.heure_retour_prevu,
+                            o.kilometrage_sortie, o.kilometrage_retour, o.prix_jour, o.prix_heure,
+                            o.avance, o.total, o.status, o.nom_utilisateur, o.created_at
+                        FROM old_contrats o
+                        WHERE NOT EXISTS (
+                            SELECT 1
+                            FROM contrats c
+                            WHERE c.contrat_id = o.contrat_id
+                        );";
 
-            public static void ArchiverDepenses(int annee)
+            string deleteOld = @" DELETE FROM old_contrats;";
+
+            using (MySqlConnection cn = Dbexec.GetConnection())
+            {
+                cn.Open();
+
+                using (MySqlTransaction tr = cn.BeginTransaction())
+                {
+                    try
+                    {
+                        using (MySqlCommand cmdInsert = new MySqlCommand(insert, cn, tr))
+                        {
+                            cmdInsert.ExecuteNonQuery();
+                        }
+
+                        using (MySqlCommand cmdDelete = new MySqlCommand(deleteOld, cn, tr))
+                        {
+                            cmdDelete.ExecuteNonQuery();
+                        }
+
+                        tr.Commit();
+                    }
+                    catch
+                    {
+                        tr.Rollback();
+                        throw;
+                    }
+                }
+            }
+        }
+
+        public static void ArchiverDepenses(int annee)
             {
                 string insert = @"
                             INSERT INTO depenses_archive
@@ -149,14 +244,16 @@ namespace venolocation.classee
                         {
                             using (MySqlCommand cmdInsert = new MySqlCommand(insertQuery, cn, tr))
                             {
-                                cmdInsert.Parameters.AddWithValue("@annee", annee);
-                                cmdInsert.ExecuteNonQuery();
+                            cmdInsert.Parameters.AddWithValue("@annee", annee);
+                            //cmdInsert.Parameters.AddWithValue("@status_en_cours", AppStatus.ContratEnCours);
+                            cmdInsert.ExecuteNonQuery();
                             }
 
                             using (MySqlCommand cmdDelete = new MySqlCommand(deleteQuery, cn, tr))
                             {
-                                cmdDelete.Parameters.AddWithValue("@annee", annee);
-                                cmdDelete.ExecuteNonQuery();
+                            cmdDelete.Parameters.AddWithValue("@annee", annee);
+                            //cmdDelete.Parameters.AddWithValue("@status_en_cours", AppStatus.ContratEnCours);
+                            cmdDelete.ExecuteNonQuery();
                             }
 
                             tr.Commit();
@@ -350,6 +447,163 @@ namespace venolocation.classee
                     if (p.ExitCode != 0)
                         throw new Exception(p.StandardError.ReadToEnd());
                 }
+         }
+
+        private static void ExecuterRestaurationArchive(string insert, string deleteArchive, int annee)
+        {
+            using (MySqlConnection cn = Dbexec.GetConnection())
+            {
+                cn.Open();
+
+                using (MySqlTransaction tr = cn.BeginTransaction())
+                {
+                    try
+                    {
+                        using (MySqlCommand cmdInsert = new MySqlCommand(insert, cn, tr))
+                        {
+                            cmdInsert.Parameters.AddWithValue("@annee", annee);
+                            cmdInsert.ExecuteNonQuery();
+                        }
+
+                        using (MySqlCommand cmdDelete = new MySqlCommand(deleteArchive, cn, tr))
+                        {
+                            cmdDelete.Parameters.AddWithValue("@annee", annee);
+                            cmdDelete.ExecuteNonQuery();
+                        }
+
+                        tr.Commit();
+                    }
+                    catch
+                    {
+                        tr.Rollback();
+                        throw;
+                    }
+                }
             }
+        }
+
+
+        public static void RestaurerReservationsDepuisArchive(int annee)
+        {
+            string insert = @"
+                INSERT INTO reservations
+                (
+                    reservation_id, client_id, voiture_id,
+                    date_debut, heure_debut, date_fin, heure_fin,
+                    prix_total, status, nom_utilisateur, created_at
+                )
+                SELECT
+                    a.reservation_id, a.client_id, a.voiture_id,
+                    a.date_debut, a.heure_debut, a.date_fin, a.heure_fin,
+                    a.prix_total, a.status, a.nom_utilisateur, a.created_at
+                FROM reservations_archive a
+                WHERE a.annee_archive = @annee
+                  AND NOT EXISTS (
+                      SELECT 1
+                      FROM reservations r
+                      WHERE r.reservation_id = a.reservation_id
+                  );";
+
+            string deleteArchive = @"
+                DELETE a
+                FROM reservations_archive a
+                INNER JOIN reservations r ON r.reservation_id = a.reservation_id
+                WHERE a.annee_archive = @annee;";
+
+            ExecuterRestaurationArchive(insert, deleteArchive, annee);
+        }
+
+
+        public static void RestaurerContratsDepuisArchive(int annee)
+        {
+            string insert = @"
+        INSERT INTO contrats
+        (
+            contrat_id, client_id, voiture_id, reservation_id,
+            date_contrat, heure_debut, date_retour_prevu, heure_retour_prevu,
+            kilometrage_sortie, kilometrage_retour, prix_jour, prix_heure,
+            avance, total, status, nom_utilisateur, created_at
+        )
+        SELECT
+            a.contrat_id, a.client_id, a.voiture_id, a.reservation_id,
+            a.date_contrat, a.heure_debut, a.date_retour_prevu, a.heure_retour_prevu,
+            a.kilometrage_sortie, a.kilometrage_retour, a.prix_jour, a.prix_heure,
+            a.avance, a.total, a.status, a.nom_utilisateur, a.created_at
+        FROM contrats_archive a
+        WHERE a.annee_archive = @annee
+          AND NOT EXISTS (
+              SELECT 1
+              FROM contrats c
+              WHERE c.contrat_id = a.contrat_id
+          );";
+
+            string deleteArchive = @"
+        DELETE a
+        FROM contrats_archive a
+        INNER JOIN contrats c ON c.contrat_id = a.contrat_id
+        WHERE a.annee_archive = @annee;";
+
+            ExecuterRestaurationArchive(insert, deleteArchive, annee);
+        }
+
+        public static void RestaurerDepensesDepuisArchive(int annee)
+        {
+            string insert = @"
+        INSERT INTO depenses
+        (
+            depense_id, voiture_id, description, montant, type,
+            date_depense, echeance_id, reparation_id,
+            nom_utilisateur, created_at
+        )
+        SELECT
+            a.depense_id, a.voiture_id, a.description, a.montant, a.type,
+            a.date_depense, a.echeance_id, a.reparation_id,
+            a.nom_utilisateur, a.created_at
+        FROM depenses_archive a
+        WHERE a.annee_archive = @annee
+          AND NOT EXISTS (
+              SELECT 1
+              FROM depenses d
+              WHERE d.depense_id = a.depense_id
+          );";
+
+            string deleteArchive = @"
+        DELETE a
+        FROM depenses_archive a
+        INNER JOIN depenses d ON d.depense_id = a.depense_id
+        WHERE a.annee_archive = @annee;";
+
+            ExecuterRestaurationArchive(insert, deleteArchive, annee);
+        }
+
+
+        public static void RestaurerRecettesDepuisArchive(int annee)
+        {
+            string insert = @"
+        INSERT INTO recettes
+        (
+            recette_id, contrat_id, montant, type,
+            date_recette, nom_utilisateur, created_at
+        )
+        SELECT
+            a.recette_id, a.contrat_id, a.montant, a.type,
+            a.date_recette, a.nom_utilisateur, a.created_at
+        FROM recettes_archive a
+        WHERE a.annee_archive = @annee
+          AND NOT EXISTS (
+              SELECT 1
+              FROM recettes r
+              WHERE r.recette_id = a.recette_id
+          );";
+
+            string deleteArchive = @"
+        DELETE a
+        FROM recettes_archive a
+        INNER JOIN recettes r ON r.recette_id = a.recette_id
+        WHERE a.annee_archive = @annee;";
+
+            ExecuterRestaurationArchive(insert, deleteArchive, annee);
+        }
+
     }
 }

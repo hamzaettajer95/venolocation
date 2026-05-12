@@ -35,6 +35,7 @@
             this.pnlMain = new Guna.UI2.WinForms.Guna2Panel();
             this.pnlContent = new Guna.UI2.WinForms.Guna2Panel();
             this.cardGeneral = new Guna.UI2.WinForms.Guna2Panel();
+            this.btnEnregistrerParams = new Guna.UI2.WinForms.Guna2Button();
             this.label13 = new System.Windows.Forms.Label();
             this.txtEmailSociete = new Guna.UI2.WinForms.Guna2TextBox();
             this.label12 = new System.Windows.Forms.Label();
@@ -43,55 +44,55 @@
             this.txtTelephone = new Guna.UI2.WinForms.Guna2TextBox();
             this.label9 = new System.Windows.Forms.Label();
             this.txtNomSociete = new Guna.UI2.WinForms.Guna2TextBox();
+            this.iconPictureBox6 = new FontAwesome.Sharp.IconPictureBox();
             this.label7 = new System.Windows.Forms.Label();
             this.cardUsers = new Guna.UI2.WinForms.Guna2Panel();
             this.btnSupprimerUser = new Guna.UI2.WinForms.Guna2Button();
             this.btnModifierUser = new Guna.UI2.WinForms.Guna2Button();
             this.btnAjouterUser = new Guna.UI2.WinForms.Guna2Button();
             this.dgvUsers = new Guna.UI2.WinForms.Guna2DataGridView();
+            this.iconPictureBox5 = new FontAwesome.Sharp.IconPictureBox();
             this.label10 = new System.Windows.Forms.Label();
             this.cardDatabase = new Guna.UI2.WinForms.Guna2Panel();
-            this.guna2Panel1 = new Guna.UI2.WinForms.Guna2Panel();
-            this.label8 = new System.Windows.Forms.Label();
-            this.pnlMenu = new Guna.UI2.WinForms.Guna2Panel();
-            this.label4 = new System.Windows.Forms.Label();
-            this.label3 = new System.Windows.Forms.Label();
-            this.pnlHeader = new Guna.UI2.WinForms.Guna2Panel();
-            this.label2 = new System.Windows.Forms.Label();
-            this.label1 = new System.Windows.Forms.Label();
-            this.btnEnregistrerParams = new Guna.UI2.WinForms.Guna2Button();
-            this.iconPictureBox6 = new FontAwesome.Sharp.IconPictureBox();
-            this.iconPictureBox5 = new FontAwesome.Sharp.IconPictureBox();
             this.btn_erreur = new Guna.UI2.WinForms.Guna2Button();
             this.btnMenuSecurity = new Guna.UI2.WinForms.Guna2Button();
             this.btnImporterDb = new Guna.UI2.WinForms.Guna2TileButton();
             this.btnExporterDb = new Guna.UI2.WinForms.Guna2TileButton();
             this.btnRestaurerDb = new Guna.UI2.WinForms.Guna2TileButton();
             this.btnSauvegarderDb = new Guna.UI2.WinForms.Guna2TileButton();
+            this.guna2Panel1 = new Guna.UI2.WinForms.Guna2Panel();
             this.btnCopierBase = new Guna.UI2.WinForms.Guna2TileButton();
             this.btnViderLogs = new Guna.UI2.WinForms.Guna2TileButton();
             this.btnSupprimerDonnees = new Guna.UI2.WinForms.Guna2Button();
             this.iconPictureBox4 = new FontAwesome.Sharp.IconPictureBox();
+            this.label8 = new System.Windows.Forms.Label();
+            this.pnlMenu = new Guna.UI2.WinForms.Guna2Panel();
+            this.label4 = new System.Windows.Forms.Label();
+            this.label3 = new System.Windows.Forms.Label();
             this.pictureBox1 = new System.Windows.Forms.PictureBox();
             this.btnMenuGeneral = new Guna.UI2.WinForms.Guna2Button();
             this.btnMenuUsers = new Guna.UI2.WinForms.Guna2Button();
             this.btnMenuDatabase = new Guna.UI2.WinForms.Guna2Button();
             this.btnMenuUpdate = new Guna.UI2.WinForms.Guna2Button();
             this.btnMenuLicence = new Guna.UI2.WinForms.Guna2Button();
+            this.pnlHeader = new Guna.UI2.WinForms.Guna2Panel();
+            this.label2 = new System.Windows.Forms.Label();
             this.iconPictureBox1 = new FontAwesome.Sharp.IconPictureBox();
+            this.label1 = new System.Windows.Forms.Label();
+            this.guna2Button1 = new Guna.UI2.WinForms.Guna2Button();
             this.pnlMain.SuspendLayout();
             this.pnlContent.SuspendLayout();
             this.cardGeneral.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.iconPictureBox6)).BeginInit();
             this.cardUsers.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgvUsers)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.iconPictureBox5)).BeginInit();
             this.cardDatabase.SuspendLayout();
             this.guna2Panel1.SuspendLayout();
-            this.pnlMenu.SuspendLayout();
-            this.pnlHeader.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.iconPictureBox6)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.iconPictureBox5)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.iconPictureBox4)).BeginInit();
+            this.pnlMenu.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
+            this.pnlHeader.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.iconPictureBox1)).BeginInit();
             this.SuspendLayout();
             // 
@@ -139,6 +140,26 @@
             this.cardGeneral.Name = "cardGeneral";
             this.cardGeneral.Size = new System.Drawing.Size(1262, 311);
             this.cardGeneral.TabIndex = 4;
+            // 
+            // btnEnregistrerParams
+            // 
+            this.btnEnregistrerParams.BorderRadius = 8;
+            this.btnEnregistrerParams.DisabledState.BorderColor = System.Drawing.Color.DarkGray;
+            this.btnEnregistrerParams.DisabledState.CustomBorderColor = System.Drawing.Color.DarkGray;
+            this.btnEnregistrerParams.DisabledState.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(169)))), ((int)(((byte)(169)))), ((int)(((byte)(169)))));
+            this.btnEnregistrerParams.DisabledState.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(141)))), ((int)(((byte)(141)))), ((int)(((byte)(141)))));
+            this.btnEnregistrerParams.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(21)))), ((int)(((byte)(101)))), ((int)(((byte)(192)))));
+            this.btnEnregistrerParams.Font = new System.Drawing.Font("Segoe UI", 10.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnEnregistrerParams.ForeColor = System.Drawing.Color.White;
+            this.btnEnregistrerParams.Image = global::venolocation.Properties.Resources.save;
+            this.btnEnregistrerParams.ImageAlign = System.Windows.Forms.HorizontalAlignment.Left;
+            this.btnEnregistrerParams.ImageSize = new System.Drawing.Size(30, 30);
+            this.btnEnregistrerParams.Location = new System.Drawing.Point(518, 236);
+            this.btnEnregistrerParams.Name = "btnEnregistrerParams";
+            this.btnEnregistrerParams.Size = new System.Drawing.Size(194, 45);
+            this.btnEnregistrerParams.TabIndex = 19;
+            this.btnEnregistrerParams.Text = "Enregistrer";
+            this.btnEnregistrerParams.Click += new System.EventHandler(this.btnEnregistrerParams_Click);
             // 
             // label13
             // 
@@ -267,6 +288,19 @@
             this.txtNomSociete.SelectedText = "";
             this.txtNomSociete.Size = new System.Drawing.Size(430, 38);
             this.txtNomSociete.TabIndex = 10;
+            // 
+            // iconPictureBox6
+            // 
+            this.iconPictureBox6.BackColor = System.Drawing.Color.White;
+            this.iconPictureBox6.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(21)))), ((int)(((byte)(101)))), ((int)(((byte)(192)))));
+            this.iconPictureBox6.IconChar = FontAwesome.Sharp.IconChar.Sliders;
+            this.iconPictureBox6.IconColor = System.Drawing.Color.FromArgb(((int)(((byte)(21)))), ((int)(((byte)(101)))), ((int)(((byte)(192)))));
+            this.iconPictureBox6.IconFont = FontAwesome.Sharp.IconFont.Auto;
+            this.iconPictureBox6.Location = new System.Drawing.Point(22, 20);
+            this.iconPictureBox6.Name = "iconPictureBox6";
+            this.iconPictureBox6.Size = new System.Drawing.Size(32, 32);
+            this.iconPictureBox6.TabIndex = 9;
+            this.iconPictureBox6.TabStop = false;
             // 
             // label7
             // 
@@ -410,6 +444,19 @@
             this.dgvUsers.ThemeStyle.RowsStyle.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(231)))), ((int)(((byte)(229)))), ((int)(((byte)(255)))));
             this.dgvUsers.ThemeStyle.RowsStyle.SelectionForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(71)))), ((int)(((byte)(69)))), ((int)(((byte)(94)))));
             // 
+            // iconPictureBox5
+            // 
+            this.iconPictureBox5.BackColor = System.Drawing.Color.White;
+            this.iconPictureBox5.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(21)))), ((int)(((byte)(101)))), ((int)(((byte)(192)))));
+            this.iconPictureBox5.IconChar = FontAwesome.Sharp.IconChar.UserAlt;
+            this.iconPictureBox5.IconColor = System.Drawing.Color.FromArgb(((int)(((byte)(21)))), ((int)(((byte)(101)))), ((int)(((byte)(192)))));
+            this.iconPictureBox5.IconFont = FontAwesome.Sharp.IconFont.Auto;
+            this.iconPictureBox5.Location = new System.Drawing.Point(19, 15);
+            this.iconPictureBox5.Name = "iconPictureBox5";
+            this.iconPictureBox5.Size = new System.Drawing.Size(32, 32);
+            this.iconPictureBox5.TabIndex = 9;
+            this.iconPictureBox5.TabStop = false;
+            // 
             // label10
             // 
             this.label10.AutoSize = true;
@@ -427,6 +474,7 @@
             this.cardDatabase.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(226)))), ((int)(((byte)(232)))), ((int)(((byte)(240)))));
             this.cardDatabase.BorderRadius = 14;
             this.cardDatabase.BorderThickness = 1;
+            this.cardDatabase.Controls.Add(this.guna2Button1);
             this.cardDatabase.Controls.Add(this.btn_erreur);
             this.cardDatabase.Controls.Add(this.btnMenuSecurity);
             this.cardDatabase.Controls.Add(this.btnImporterDb);
@@ -441,159 +489,6 @@
             this.cardDatabase.Name = "cardDatabase";
             this.cardDatabase.Size = new System.Drawing.Size(500, 473);
             this.cardDatabase.TabIndex = 2;
-            // 
-            // guna2Panel1
-            // 
-            this.guna2Panel1.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(220)))), ((int)(((byte)(38)))), ((int)(((byte)(38)))));
-            this.guna2Panel1.BorderRadius = 16;
-            this.guna2Panel1.BorderThickness = 1;
-            this.guna2Panel1.Controls.Add(this.btnCopierBase);
-            this.guna2Panel1.Controls.Add(this.btnViderLogs);
-            this.guna2Panel1.Controls.Add(this.btnSupprimerDonnees);
-            this.guna2Panel1.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(192)))), ((int)(((byte)(192)))));
-            this.guna2Panel1.Location = new System.Drawing.Point(12, 347);
-            this.guna2Panel1.Name = "guna2Panel1";
-            this.guna2Panel1.Size = new System.Drawing.Size(482, 113);
-            this.guna2Panel1.TabIndex = 12;
-            // 
-            // label8
-            // 
-            this.label8.AutoSize = true;
-            this.label8.BackColor = System.Drawing.Color.Transparent;
-            this.label8.Font = new System.Drawing.Font("Segoe UI", 13.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label8.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(24)))), ((int)(((byte)(86)))), ((int)(((byte)(197)))));
-            this.label8.Location = new System.Drawing.Point(60, 18);
-            this.label8.Name = "label8";
-            this.label8.Size = new System.Drawing.Size(298, 31);
-            this.label8.TabIndex = 0;
-            this.label8.Text = "Activation de l\'application";
-            // 
-            // pnlMenu
-            // 
-            this.pnlMenu.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(226)))), ((int)(((byte)(232)))), ((int)(((byte)(240)))));
-            this.pnlMenu.BorderRadius = 12;
-            this.pnlMenu.BorderThickness = 1;
-            this.pnlMenu.Controls.Add(this.label4);
-            this.pnlMenu.Controls.Add(this.label3);
-            this.pnlMenu.Controls.Add(this.pictureBox1);
-            this.pnlMenu.Controls.Add(this.btnMenuGeneral);
-            this.pnlMenu.Controls.Add(this.btnMenuUsers);
-            this.pnlMenu.Controls.Add(this.btnMenuDatabase);
-            this.pnlMenu.Controls.Add(this.btnMenuUpdate);
-            this.pnlMenu.Controls.Add(this.btnMenuLicence);
-            this.pnlMenu.Dock = System.Windows.Forms.DockStyle.Left;
-            this.pnlMenu.FillColor = System.Drawing.Color.White;
-            this.pnlMenu.Location = new System.Drawing.Point(0, 110);
-            this.pnlMenu.Name = "pnlMenu";
-            this.pnlMenu.Size = new System.Drawing.Size(270, 793);
-            this.pnlMenu.TabIndex = 1;
-            // 
-            // label4
-            // 
-            this.label4.AutoSize = true;
-            this.label4.BackColor = System.Drawing.Color.Transparent;
-            this.label4.Font = new System.Drawing.Font("Segoe UI", 10.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label4.ForeColor = System.Drawing.Color.Black;
-            this.label4.Location = new System.Drawing.Point(38, 763);
-            this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(185, 25);
-            this.label4.TabIndex = 8;
-            this.label4.Text = "© 2026 VenoLocation";
-            // 
-            // label3
-            // 
-            this.label3.AutoSize = true;
-            this.label3.BackColor = System.Drawing.Color.Transparent;
-            this.label3.Font = new System.Drawing.Font("Segoe UI", 10.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label3.ForeColor = System.Drawing.Color.Black;
-            this.label3.Location = new System.Drawing.Point(3, 738);
-            this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(258, 25);
-            this.label3.TabIndex = 7;
-            this.label3.Text = "Gestion de location de voitures";
-            // 
-            // pnlHeader
-            // 
-            this.pnlHeader.BorderRadius = 16;
-            this.pnlHeader.Controls.Add(this.label2);
-            this.pnlHeader.Controls.Add(this.iconPictureBox1);
-            this.pnlHeader.Controls.Add(this.label1);
-            this.pnlHeader.Dock = System.Windows.Forms.DockStyle.Top;
-            this.pnlHeader.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(11)))), ((int)(((byte)(61)))), ((int)(((byte)(122)))));
-            this.pnlHeader.Location = new System.Drawing.Point(0, 0);
-            this.pnlHeader.Name = "pnlHeader";
-            this.pnlHeader.Size = new System.Drawing.Size(1532, 110);
-            this.pnlHeader.TabIndex = 0;
-            // 
-            // label2
-            // 
-            this.label2.AutoSize = true;
-            this.label2.BackColor = System.Drawing.Color.Transparent;
-            this.label2.Font = new System.Drawing.Font("Segoe UI", 10.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label2.ForeColor = System.Drawing.Color.White;
-            this.label2.Location = new System.Drawing.Point(87, 66);
-            this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(426, 25);
-            this.label2.TabIndex = 6;
-            this.label2.Text = "Configuration de l\'application et gestion du système";
-            // 
-            // label1
-            // 
-            this.label1.AutoSize = true;
-            this.label1.BackColor = System.Drawing.Color.Transparent;
-            this.label1.Font = new System.Drawing.Font("Segoe UI", 22.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label1.ForeColor = System.Drawing.Color.White;
-            this.label1.Location = new System.Drawing.Point(83, 19);
-            this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(218, 50);
-            this.label1.TabIndex = 4;
-            this.label1.Text = "Paramètres";
-            // 
-            // btnEnregistrerParams
-            // 
-            this.btnEnregistrerParams.BorderRadius = 8;
-            this.btnEnregistrerParams.DisabledState.BorderColor = System.Drawing.Color.DarkGray;
-            this.btnEnregistrerParams.DisabledState.CustomBorderColor = System.Drawing.Color.DarkGray;
-            this.btnEnregistrerParams.DisabledState.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(169)))), ((int)(((byte)(169)))), ((int)(((byte)(169)))));
-            this.btnEnregistrerParams.DisabledState.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(141)))), ((int)(((byte)(141)))), ((int)(((byte)(141)))));
-            this.btnEnregistrerParams.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(21)))), ((int)(((byte)(101)))), ((int)(((byte)(192)))));
-            this.btnEnregistrerParams.Font = new System.Drawing.Font("Segoe UI", 10.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnEnregistrerParams.ForeColor = System.Drawing.Color.White;
-            this.btnEnregistrerParams.Image = global::venolocation.Properties.Resources.save;
-            this.btnEnregistrerParams.ImageAlign = System.Windows.Forms.HorizontalAlignment.Left;
-            this.btnEnregistrerParams.ImageSize = new System.Drawing.Size(30, 30);
-            this.btnEnregistrerParams.Location = new System.Drawing.Point(518, 236);
-            this.btnEnregistrerParams.Name = "btnEnregistrerParams";
-            this.btnEnregistrerParams.Size = new System.Drawing.Size(194, 45);
-            this.btnEnregistrerParams.TabIndex = 19;
-            this.btnEnregistrerParams.Text = "Enregistrer";
-            this.btnEnregistrerParams.Click += new System.EventHandler(this.btnEnregistrerParams_Click);
-            // 
-            // iconPictureBox6
-            // 
-            this.iconPictureBox6.BackColor = System.Drawing.Color.White;
-            this.iconPictureBox6.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(21)))), ((int)(((byte)(101)))), ((int)(((byte)(192)))));
-            this.iconPictureBox6.IconChar = FontAwesome.Sharp.IconChar.Sliders;
-            this.iconPictureBox6.IconColor = System.Drawing.Color.FromArgb(((int)(((byte)(21)))), ((int)(((byte)(101)))), ((int)(((byte)(192)))));
-            this.iconPictureBox6.IconFont = FontAwesome.Sharp.IconFont.Auto;
-            this.iconPictureBox6.Location = new System.Drawing.Point(22, 20);
-            this.iconPictureBox6.Name = "iconPictureBox6";
-            this.iconPictureBox6.Size = new System.Drawing.Size(32, 32);
-            this.iconPictureBox6.TabIndex = 9;
-            this.iconPictureBox6.TabStop = false;
-            // 
-            // iconPictureBox5
-            // 
-            this.iconPictureBox5.BackColor = System.Drawing.Color.White;
-            this.iconPictureBox5.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(21)))), ((int)(((byte)(101)))), ((int)(((byte)(192)))));
-            this.iconPictureBox5.IconChar = FontAwesome.Sharp.IconChar.UserAlt;
-            this.iconPictureBox5.IconColor = System.Drawing.Color.FromArgb(((int)(((byte)(21)))), ((int)(((byte)(101)))), ((int)(((byte)(192)))));
-            this.iconPictureBox5.IconFont = FontAwesome.Sharp.IconFont.Auto;
-            this.iconPictureBox5.Location = new System.Drawing.Point(19, 15);
-            this.iconPictureBox5.Name = "iconPictureBox5";
-            this.iconPictureBox5.Size = new System.Drawing.Size(32, 32);
-            this.iconPictureBox5.TabIndex = 9;
-            this.iconPictureBox5.TabStop = false;
             // 
             // btn_erreur
             // 
@@ -612,9 +507,9 @@
             this.btn_erreur.Image = global::venolocation.Properties.Resources.icons8_error_100;
             this.btn_erreur.ImageAlign = System.Windows.Forms.HorizontalAlignment.Left;
             this.btn_erreur.ImageSize = new System.Drawing.Size(42, 42);
-            this.btn_erreur.Location = new System.Drawing.Point(252, 189);
+            this.btn_erreur.Location = new System.Drawing.Point(263, 181);
             this.btn_erreur.Name = "btn_erreur";
-            this.btn_erreur.Size = new System.Drawing.Size(207, 126);
+            this.btn_erreur.Size = new System.Drawing.Size(207, 98);
             this.btn_erreur.TabIndex = 15;
             this.btn_erreur.Text = "Afficher Erreur";
             this.btn_erreur.TextAlign = System.Windows.Forms.HorizontalAlignment.Left;
@@ -637,9 +532,9 @@
             this.btnMenuSecurity.Image = global::venolocation.Properties.Resources.log_file;
             this.btnMenuSecurity.ImageAlign = System.Windows.Forms.HorizontalAlignment.Left;
             this.btnMenuSecurity.ImageSize = new System.Drawing.Size(42, 42);
-            this.btnMenuSecurity.Location = new System.Drawing.Point(25, 181);
+            this.btnMenuSecurity.Location = new System.Drawing.Point(35, 181);
             this.btnMenuSecurity.Name = "btnMenuSecurity";
-            this.btnMenuSecurity.Size = new System.Drawing.Size(205, 134);
+            this.btnMenuSecurity.Size = new System.Drawing.Size(205, 98);
             this.btnMenuSecurity.TabIndex = 14;
             this.btnMenuSecurity.Text = "Afficher Logs";
             this.btnMenuSecurity.TextAlign = System.Windows.Forms.HorizontalAlignment.Left;
@@ -733,6 +628,20 @@
             this.btnSauvegarderDb.Text = "Archivier";
             this.btnSauvegarderDb.Click += new System.EventHandler(this.btnSauvegarderDb_Click);
             // 
+            // guna2Panel1
+            // 
+            this.guna2Panel1.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(220)))), ((int)(((byte)(38)))), ((int)(((byte)(38)))));
+            this.guna2Panel1.BorderRadius = 16;
+            this.guna2Panel1.BorderThickness = 1;
+            this.guna2Panel1.Controls.Add(this.btnCopierBase);
+            this.guna2Panel1.Controls.Add(this.btnViderLogs);
+            this.guna2Panel1.Controls.Add(this.btnSupprimerDonnees);
+            this.guna2Panel1.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(192)))), ((int)(((byte)(192)))));
+            this.guna2Panel1.Location = new System.Drawing.Point(12, 347);
+            this.guna2Panel1.Name = "guna2Panel1";
+            this.guna2Panel1.Size = new System.Drawing.Size(482, 113);
+            this.guna2Panel1.TabIndex = 12;
+            // 
             // btnCopierBase
             // 
             this.btnCopierBase.BackColor = System.Drawing.Color.Transparent;
@@ -815,6 +724,62 @@
             this.iconPictureBox4.Size = new System.Drawing.Size(32, 32);
             this.iconPictureBox4.TabIndex = 7;
             this.iconPictureBox4.TabStop = false;
+            // 
+            // label8
+            // 
+            this.label8.AutoSize = true;
+            this.label8.BackColor = System.Drawing.Color.Transparent;
+            this.label8.Font = new System.Drawing.Font("Segoe UI", 13.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label8.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(24)))), ((int)(((byte)(86)))), ((int)(((byte)(197)))));
+            this.label8.Location = new System.Drawing.Point(60, 18);
+            this.label8.Name = "label8";
+            this.label8.Size = new System.Drawing.Size(298, 31);
+            this.label8.TabIndex = 0;
+            this.label8.Text = "Activation de l\'application";
+            // 
+            // pnlMenu
+            // 
+            this.pnlMenu.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(226)))), ((int)(((byte)(232)))), ((int)(((byte)(240)))));
+            this.pnlMenu.BorderRadius = 12;
+            this.pnlMenu.BorderThickness = 1;
+            this.pnlMenu.Controls.Add(this.label4);
+            this.pnlMenu.Controls.Add(this.label3);
+            this.pnlMenu.Controls.Add(this.pictureBox1);
+            this.pnlMenu.Controls.Add(this.btnMenuGeneral);
+            this.pnlMenu.Controls.Add(this.btnMenuUsers);
+            this.pnlMenu.Controls.Add(this.btnMenuDatabase);
+            this.pnlMenu.Controls.Add(this.btnMenuUpdate);
+            this.pnlMenu.Controls.Add(this.btnMenuLicence);
+            this.pnlMenu.Dock = System.Windows.Forms.DockStyle.Left;
+            this.pnlMenu.FillColor = System.Drawing.Color.White;
+            this.pnlMenu.Location = new System.Drawing.Point(0, 110);
+            this.pnlMenu.Name = "pnlMenu";
+            this.pnlMenu.Size = new System.Drawing.Size(270, 793);
+            this.pnlMenu.TabIndex = 1;
+            // 
+            // label4
+            // 
+            this.label4.AutoSize = true;
+            this.label4.BackColor = System.Drawing.Color.Transparent;
+            this.label4.Font = new System.Drawing.Font("Segoe UI", 10.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label4.ForeColor = System.Drawing.Color.Black;
+            this.label4.Location = new System.Drawing.Point(38, 763);
+            this.label4.Name = "label4";
+            this.label4.Size = new System.Drawing.Size(185, 25);
+            this.label4.TabIndex = 8;
+            this.label4.Text = "© 2026 VenoLocation";
+            // 
+            // label3
+            // 
+            this.label3.AutoSize = true;
+            this.label3.BackColor = System.Drawing.Color.Transparent;
+            this.label3.Font = new System.Drawing.Font("Segoe UI", 10.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label3.ForeColor = System.Drawing.Color.Black;
+            this.label3.Location = new System.Drawing.Point(3, 738);
+            this.label3.Name = "label3";
+            this.label3.Size = new System.Drawing.Size(258, 25);
+            this.label3.TabIndex = 7;
+            this.label3.Text = "Gestion de location de voitures";
             // 
             // pictureBox1
             // 
@@ -952,6 +917,31 @@
             this.btnMenuLicence.TextAlign = System.Windows.Forms.HorizontalAlignment.Left;
             this.btnMenuLicence.Click += new System.EventHandler(this.btnMenuLicence_Click);
             // 
+            // pnlHeader
+            // 
+            this.pnlHeader.BorderRadius = 16;
+            this.pnlHeader.Controls.Add(this.label2);
+            this.pnlHeader.Controls.Add(this.iconPictureBox1);
+            this.pnlHeader.Controls.Add(this.label1);
+            this.pnlHeader.Dock = System.Windows.Forms.DockStyle.Top;
+            this.pnlHeader.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(11)))), ((int)(((byte)(61)))), ((int)(((byte)(122)))));
+            this.pnlHeader.Location = new System.Drawing.Point(0, 0);
+            this.pnlHeader.Name = "pnlHeader";
+            this.pnlHeader.Size = new System.Drawing.Size(1532, 110);
+            this.pnlHeader.TabIndex = 0;
+            // 
+            // label2
+            // 
+            this.label2.AutoSize = true;
+            this.label2.BackColor = System.Drawing.Color.Transparent;
+            this.label2.Font = new System.Drawing.Font("Segoe UI", 10.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label2.ForeColor = System.Drawing.Color.White;
+            this.label2.Location = new System.Drawing.Point(87, 66);
+            this.label2.Name = "label2";
+            this.label2.Size = new System.Drawing.Size(426, 25);
+            this.label2.TabIndex = 6;
+            this.label2.Text = "Configuration de l\'application et gestion du système";
+            // 
             // iconPictureBox1
             // 
             this.iconPictureBox1.BackColor = System.Drawing.Color.Transparent;
@@ -964,6 +954,37 @@
             this.iconPictureBox1.Size = new System.Drawing.Size(55, 55);
             this.iconPictureBox1.TabIndex = 5;
             this.iconPictureBox1.TabStop = false;
+            // 
+            // label1
+            // 
+            this.label1.AutoSize = true;
+            this.label1.BackColor = System.Drawing.Color.Transparent;
+            this.label1.Font = new System.Drawing.Font("Segoe UI", 22.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label1.ForeColor = System.Drawing.Color.White;
+            this.label1.Location = new System.Drawing.Point(83, 19);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(218, 50);
+            this.label1.TabIndex = 4;
+            this.label1.Text = "Paramètres";
+            // 
+            // guna2Button1
+            // 
+            this.guna2Button1.BorderRadius = 10;
+            this.guna2Button1.DisabledState.BorderColor = System.Drawing.Color.DarkGray;
+            this.guna2Button1.DisabledState.CustomBorderColor = System.Drawing.Color.DarkGray;
+            this.guna2Button1.DisabledState.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(169)))), ((int)(((byte)(169)))), ((int)(((byte)(169)))));
+            this.guna2Button1.DisabledState.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(141)))), ((int)(((byte)(141)))), ((int)(((byte)(141)))));
+            this.guna2Button1.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(239)))), ((int)(((byte)(68)))), ((int)(((byte)(68)))));
+            this.guna2Button1.Font = new System.Drawing.Font("Segoe UI", 10.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.guna2Button1.ForeColor = System.Drawing.Color.White;
+            this.guna2Button1.ImageAlign = System.Windows.Forms.HorizontalAlignment.Left;
+            this.guna2Button1.ImageSize = new System.Drawing.Size(30, 30);
+            this.guna2Button1.Location = new System.Drawing.Point(152, 297);
+            this.guna2Button1.Name = "guna2Button1";
+            this.guna2Button1.Size = new System.Drawing.Size(206, 44);
+            this.guna2Button1.TabIndex = 16;
+            this.guna2Button1.Text = "Annuller archivage";
+            this.guna2Button1.Click += new System.EventHandler(this.guna2Button1_Click);
             // 
             // setting
             // 
@@ -983,20 +1004,20 @@
             this.pnlContent.ResumeLayout(false);
             this.cardGeneral.ResumeLayout(false);
             this.cardGeneral.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.iconPictureBox6)).EndInit();
             this.cardUsers.ResumeLayout(false);
             this.cardUsers.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgvUsers)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.iconPictureBox5)).EndInit();
             this.cardDatabase.ResumeLayout(false);
             this.cardDatabase.PerformLayout();
             this.guna2Panel1.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.iconPictureBox4)).EndInit();
             this.pnlMenu.ResumeLayout(false);
             this.pnlMenu.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
             this.pnlHeader.ResumeLayout(false);
             this.pnlHeader.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.iconPictureBox6)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.iconPictureBox5)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.iconPictureBox4)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.iconPictureBox1)).EndInit();
             this.ResumeLayout(false);
 
@@ -1051,5 +1072,6 @@
         private Guna.UI2.WinForms.Guna2Button btnEnregistrerParams;
         private Guna.UI2.WinForms.Guna2Button btn_erreur;
         private Guna.UI2.WinForms.Guna2Button btnMenuSecurity;
+        private Guna.UI2.WinForms.Guna2Button guna2Button1;
     }
 }

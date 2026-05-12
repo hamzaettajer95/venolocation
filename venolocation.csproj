@@ -122,7 +122,8 @@
     <Compile Include="classee\Dbexec.cs" />
     <Compile Include="classee\ErrorReporter.cs" />
     <Compile Include="classee\FactureData.cs" />
-    <Compile Include="classee\FacturePrinter.cs" />
+    <Compile Include="classee\FactureEtatVehiculeData.cs" />
+    <Compile Include="classee\FactureEtatVehiculePrinter.cs" />
     <Compile Include="classee\GridStyleHelper_1.cs" />
     <Compile Include="classee\GridStyleHelper_2.cs" />
     <Compile Include="classee\LogHelper.cs" />
@@ -476,6 +477,8 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="logo_ico.ico" />
+    <None Include="Resources\images1.jpg" />
+    <None Include="Resources\images2.jpg" />
     <None Include="Resources\check3.png" />
     <None Include="Resources\log-file.png" />
     <None Include="Resources\icons8-error-100.png" />

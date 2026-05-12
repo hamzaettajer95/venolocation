@@ -268,13 +268,12 @@ namespace venolocation.droit
                     "Tables à archiver",
                     new string[]
                     {
-                            "contrats",
-                            "reservations",
-                            "depenses",
-                            "recettes"
+                        "contrats",
+                        "reservations",
+                        "depenses",
+                        "recettes"
                     },
-
-                        true
+                    true
                 );
 
                 if (choix == null)
@@ -300,12 +299,24 @@ namespace venolocation.droit
                         DatabaseTools.ArchiverRecettes_Type(annee);
                 }
 
-                LogHelper.AddLog("Archivage tables année " + annee + " : " + string.Join(", ", choix.TablesSelectionnees), Session.Username);
+                LogHelper.AddLog(
+                    "Archivage tables année " + annee + " : " + string.Join(", ", choix.TablesSelectionnees),
+                    Session.Username
+                );
+
                 MessageService.Success("Archivage terminé avec succès.");
             }
             catch (Exception ex)
             {
-                dbErreur.AddLog(ex.Message, Session.Username, "setting", "btnArchiver_Click");
+                ErrorReporter.SendError(ex, "setting", "btnArchiver_Click");
+
+                dbErreur.AddLog(
+                    ex.Message,
+                    Session.Username,
+                    "setting",
+                    "btnArchiver_Click"
+                );
+
                 MessageService.Error("Erreur lors de l'archivage : " + ex.Message);
             }
         }
@@ -517,5 +528,68 @@ namespace venolocation.droit
             affi_erreur af = new affi_erreur();
             af.ShowDialog();
         }
+
+        private void guna2Button1_Click(object sender, EventArgs e)
+        {
+
+            try
+            {
+                frmChoixTables choix = OuvrirChoixTables(
+                    "Tables à restaurer depuis l'archive",
+                    new string[]
+                    {
+                        "contrats",
+                        "reservations",
+                        "depenses",
+                        "recettes" },  true  );
+
+                if (choix == null)
+                    return;
+
+                int annee = choix.AnneeSelectionnee;
+
+                if (MessageService.Confirm("Confirmer l'annulation de l'archivage de l'année " + annee + " ?") != DialogResult.Yes)
+                    return;
+
+              
+
+                if (choix.TablesSelectionnees.Contains("reservations"))
+                    DatabaseTools.RestaurerReservationsDepuisArchive(annee);
+
+                if (choix.TablesSelectionnees.Contains("contrats"))
+                    DatabaseTools.RestaurerContratsDepuisArchive(annee);
+
+                if (choix.TablesSelectionnees.Contains("depenses"))
+                    DatabaseTools.RestaurerDepensesDepuisArchive(annee);
+
+                if (choix.TablesSelectionnees.Contains("recettes"))
+                    DatabaseTools.RestaurerRecettesDepuisArchive(annee);
+
+                LogHelper.AddLog(
+                    "Annulation archivage année " + annee + " : " + string.Join(", ", choix.TablesSelectionnees),
+                    Session.Username
+                );
+
+                MessageService.Success("Annulation d'archivage terminée avec succès.");
+            }
+            catch (Exception ex)
+            {
+                ErrorReporter.SendError(ex, "setting", "btnAnnulerArchivage_Click");
+
+                dbErreur.AddLog(
+                    ex.Message,
+                    Session.Username,
+                    "setting",
+                    "btnAnnulerArchivage_Click"
+                );
+
+                MessageService.Error("Erreur lors de l'annulation de l'archivage : " + ex.Message);
+            }
+        }
+        
+        
+        
+        
+
     }
 }

@@ -43,18 +43,20 @@
             this.label2 = new System.Windows.Forms.Label();
             this.cb_client = new System.Windows.Forms.ComboBox();
             this.guna2GradientPanel1 = new Guna.UI2.WinForms.Guna2GradientPanel();
+            this.iconPictureBox1 = new FontAwesome.Sharp.IconPictureBox();
             this.label1 = new System.Windows.Forms.Label();
             this.guna2CirclePictureBox1 = new Guna.UI2.WinForms.Guna2CirclePictureBox();
             this.panel2 = new System.Windows.Forms.Panel();
             this.btnimprimer = new Guna.UI2.WinForms.Guna2Button();
             this.btnAnnuler = new Guna.UI2.WinForms.Guna2Button();
-            this.iconPictureBox1 = new FontAwesome.Sharp.IconPictureBox();
+            this.chkArchive = new Guna.UI2.WinForms.Guna2ToggleSwitch();
+            this.label7 = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.dgvHistory)).BeginInit();
             this.panel1.SuspendLayout();
             this.guna2GradientPanel1.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.iconPictureBox1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.guna2CirclePictureBox1)).BeginInit();
             this.panel2.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.iconPictureBox1)).BeginInit();
             this.SuspendLayout();
             // 
             // dgvHistory
@@ -81,6 +83,8 @@
             // panel1
             // 
             this.panel1.BackColor = System.Drawing.Color.White;
+            this.panel1.Controls.Add(this.label7);
+            this.panel1.Controls.Add(this.chkArchive);
             this.panel1.Controls.Add(this.dtp_fin);
             this.panel1.Controls.Add(this.dtp_debut);
             this.panel1.Controls.Add(this.iconButton1);
@@ -247,6 +251,19 @@
             this.guna2GradientPanel1.Size = new System.Drawing.Size(1443, 80);
             this.guna2GradientPanel1.TabIndex = 6;
             // 
+            // iconPictureBox1
+            // 
+            this.iconPictureBox1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(60)))), ((int)(((byte)(136)))), ((int)(((byte)(232)))));
+            this.iconPictureBox1.IconChar = FontAwesome.Sharp.IconChar.RectangleList;
+            this.iconPictureBox1.IconColor = System.Drawing.Color.White;
+            this.iconPictureBox1.IconFont = FontAwesome.Sharp.IconFont.Auto;
+            this.iconPictureBox1.IconSize = 55;
+            this.iconPictureBox1.Location = new System.Drawing.Point(18, 12);
+            this.iconPictureBox1.Name = "iconPictureBox1";
+            this.iconPictureBox1.Size = new System.Drawing.Size(55, 55);
+            this.iconPictureBox1.TabIndex = 3;
+            this.iconPictureBox1.TabStop = false;
+            // 
             // label1
             // 
             this.label1.AutoSize = true;
@@ -323,18 +340,31 @@
             this.btnAnnuler.Text = "Annuler";
             this.btnAnnuler.Click += new System.EventHandler(this.btnAnnuler_Click);
             // 
-            // iconPictureBox1
+            // chkArchive
             // 
-            this.iconPictureBox1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(60)))), ((int)(((byte)(136)))), ((int)(((byte)(232)))));
-            this.iconPictureBox1.IconChar = FontAwesome.Sharp.IconChar.RectangleList;
-            this.iconPictureBox1.IconColor = System.Drawing.Color.White;
-            this.iconPictureBox1.IconFont = FontAwesome.Sharp.IconFont.Auto;
-            this.iconPictureBox1.IconSize = 55;
-            this.iconPictureBox1.Location = new System.Drawing.Point(18, 12);
-            this.iconPictureBox1.Name = "iconPictureBox1";
-            this.iconPictureBox1.Size = new System.Drawing.Size(55, 55);
-            this.iconPictureBox1.TabIndex = 3;
-            this.iconPictureBox1.TabStop = false;
+            this.chkArchive.CheckedState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(94)))), ((int)(((byte)(148)))), ((int)(((byte)(255)))));
+            this.chkArchive.CheckedState.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(94)))), ((int)(((byte)(148)))), ((int)(((byte)(255)))));
+            this.chkArchive.CheckedState.InnerBorderColor = System.Drawing.Color.White;
+            this.chkArchive.CheckedState.InnerColor = System.Drawing.Color.White;
+            this.chkArchive.Location = new System.Drawing.Point(1275, 89);
+            this.chkArchive.Name = "chkArchive";
+            this.chkArchive.Size = new System.Drawing.Size(54, 21);
+            this.chkArchive.TabIndex = 13;
+            this.chkArchive.UncheckedState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(125)))), ((int)(((byte)(137)))), ((int)(((byte)(149)))));
+            this.chkArchive.UncheckedState.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(125)))), ((int)(((byte)(137)))), ((int)(((byte)(149)))));
+            this.chkArchive.UncheckedState.InnerBorderColor = System.Drawing.Color.White;
+            this.chkArchive.UncheckedState.InnerColor = System.Drawing.Color.White;
+            this.chkArchive.CheckedChanged += new System.EventHandler(this.chkArchive_CheckedChanged);
+            // 
+            // label7
+            // 
+            this.label7.AutoSize = true;
+            this.label7.Font = new System.Drawing.Font("Segoe UI Semibold", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label7.Location = new System.Drawing.Point(1211, 45);
+            this.label7.Name = "label7";
+            this.label7.Size = new System.Drawing.Size(153, 28);
+            this.label7.TabIndex = 14;
+            this.label7.Text = "Afficher archive";
             // 
             // historique_contrats
             // 
@@ -358,9 +388,9 @@
             this.panel1.PerformLayout();
             this.guna2GradientPanel1.ResumeLayout(false);
             this.guna2GradientPanel1.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.iconPictureBox1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.guna2CirclePictureBox1)).EndInit();
             this.panel2.ResumeLayout(false);
-            ((System.ComponentModel.ISupportInitialize)(this.iconPictureBox1)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -387,5 +417,7 @@
         private Guna.UI2.WinForms.Guna2DateTimePicker dtp_fin;
         private Guna.UI2.WinForms.Guna2Button btnimprimer;
         private FontAwesome.Sharp.IconPictureBox iconPictureBox1;
+        private System.Windows.Forms.Label label7;
+        private Guna.UI2.WinForms.Guna2ToggleSwitch chkArchive;
     }
 }

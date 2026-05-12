@@ -127,10 +127,10 @@ namespace venolocation.formee
                     mise_a_jour();
                     timer1.Start();
                     lbldate.Text = DateTime.Now.ToString("dddd dd/MM/yyyy");
-                    deconnecte();
+                   // deconnecte();
                     Dbexec.ExecuteQuery("CALL sp_generer_alertes();");
                     //ChargerToutesLesDonnees();
-                    test_serial();
+                    //test_serial();
                     MakePanelClickable(panel1, panel1_Click);
                 }
                 catch (Exception ex)

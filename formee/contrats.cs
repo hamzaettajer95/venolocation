@@ -302,6 +302,8 @@ namespace venolocation.formee
             this.Close();
         }
 
+        int dernierContratId = 0;
+
         private void btnEnregistrer_Click_1(object sender, EventArgs e)
         {
 
@@ -335,7 +337,7 @@ namespace venolocation.formee
 
                 decimal avance = numAvance.Value;
                 decimal total = CalculerTotal();
-
+               
                 using (MySqlConnection cn = Dbexec.GetConnection())
                 {
                     cn.Open();
@@ -373,6 +375,11 @@ namespace venolocation.formee
                                 cmd.Parameters.AddWithValue("@nom_utilisateur", nomUtilisateur);
 
                                 cmd.ExecuteNonQuery();
+
+                                using (MySqlCommand cmdId = new MySqlCommand("SELECT LAST_INSERT_ID();", cn, tr))
+                                {
+                                    dernierContratId = Convert.ToInt32(cmdId.ExecuteScalar());
+                                }
                             }
 
                             
@@ -401,8 +408,44 @@ namespace venolocation.formee
                     }
                 }
 
-                MessageBox.Show("Contrat enregistré avec succès.");
-                LogHelper.AddLog("Enregistrement contrat client ID: " + clientId + " voiture ID: " + voitureId, Session.Username);
+                MessageBox.Show(
+                                     "Contrat enregistré avec succès.\nN° Contrat : " + dernierContratId,
+                                     "Contrat",
+                                     MessageBoxButtons.OK,
+                                     MessageBoxIcon.Information
+                                 );
+
+                LogHelper.AddLog(
+                    "Enregistrement contrat ID: " + dernierContratId +
+                    " client ID: " + clientId +
+                    " voiture ID: " + voitureId,
+                    Session.Username
+                );
+
+
+                DialogResult rep = MessageBox.Show(
+                    "Voulez-vous imprimer le contrat maintenant ?",
+                    "Impression",
+                    MessageBoxButtons.YesNo,
+                    MessageBoxIcon.Question
+                );
+
+                if (rep == DialogResult.Yes)
+                {
+                    FactureEtatVehiculeData data = ChargerFactureDepuisContrat(dernierContratId);
+
+                    if (data != null)
+                    {
+                        FactureEtatVehiculePrinter printer = new FactureEtatVehiculePrinter(
+                            data,
+                            pictureBoxLogo.Image,
+                            pictureBoxEtatVoiture.Image,
+                            pictureBoxEtatVoiture2.Image
+                        );
+
+                        printer.ShowPreview();
+                    }
+                }
 
                 ChargerReservationsConfirmees();
                 ChargerVoituresDisponibles();
@@ -669,55 +712,277 @@ namespace venolocation.formee
 
         private void tnImprimer_Click(object sender, EventArgs e)
         {
-            FactureData data = new FactureData
+            //FactureEtatVehiculeData data = new FactureEtatVehiculeData
+            //{
+            //    NomSociete = Properties.Settings.Default.nom_societe,
+            //    AdresseSociete = Properties.Settings.Default.adresse_societe,
+            //    TelephoneSociete = Properties.Settings.Default.telephone_societe,
+            //    EmailSociete = Properties.Settings.Default.email_societe,
+
+            //    NumeroFacture = "FAC-" + DateTime.Now.ToString("yyyyMMddHHmm"),
+            //    DateFacture = DateTime.Now.ToString("dd/MM/yyyy"),
+            //    Reference = "RES-" + cbReservation.Text,
+
+            //    ClientNom = txtNom.Text,
+            //    ClientTelephone = txtTelephone.Text,
+            //    ClientCin = cbClient.Text, 
+            //    ClientAdresse = txtAdresse.Text,
+
+            //    Marque = cbMarque.Text,
+            //    Modele = cbModele.Text,
+            //    Immatriculation = cbImmatriculation.Text,
+            //    KmDepart = txtKilometrage.Text,
+            //    KmRetour = "",
+
+            //    DateDepart = dtDateDebut.Value.ToString("dd/MM/yyyy"),
+            //    HeureDepart = cbHeureDebut.Text,
+            //    DateRetour = dtDateFin.Value.ToString("dd/MM/yyyy"),
+            //    HeureRetour = cbHeureRetour.Text,
+            //    NombreJours = txtNombreJours.Text,
+            //    PrixJour = txtPrixJour.Text,
+
+            //    Total = txtTtl.Text,
+            //    Avance = numAvance.Value.ToString("0.00"),
+            //    Reste = txtRestePayer.Text,
+            //    ModePaiement = cbModePaiement.Text,
+
+            //    NiveauCarburant = "1/2",
+            //    Observations = txtRemarques.Text
+            //};
+
+            //FactureEtatVehiculePrinter printer = new FactureEtatVehiculePrinter(
+            //        data,
+            //        pictureBoxLogo.Image,
+            //        pictureBoxEtatVoiture.Image,
+            //        pictureBoxEtatVoiture2.Image
+            //);
+
+            //printer.ShowPreview();
+
+
+            try
             {
-                NumeroFacture = "FAC-" + DateTime.Now.Year + "-0001",
-                DateFacture = DateTime.Now.ToString("dd/MM/yyyy"),
-                Reference = cbReservation.Text,
+                int contratId = dernierContratId;
 
-                NomSociete = Properties.Settings.Default.nom_societe,
-                AdresseSociete = Properties.Settings.Default.adresse_societe,
-                TelephoneSociete = Properties.Settings.Default.telephone_societe,
-                EmailSociete = Properties.Settings.Default.email_societe,
+                FactureEtatVehiculeData data = ChargerFactureDepuisContrat(contratId);
 
-                LogoPath = Path.Combine(Application.StartupPath, "images", "logo.png"),
-                EtatVoitureImagePath = Path.Combine(Application.StartupPath, "images", "etat_voiture.png"),
+                if (data == null)
+                {
+                    MessageBox.Show(
+                        "Contrat introuvable.",
+                        "Impression",
+                        MessageBoxButtons.OK,
+                        MessageBoxIcon.Warning
+                    );
+                    return;
+                }
 
-                ClientNom = txtNom.Text,
-                ClientTelephone = txtTelephone.Text,
-                ClientCin = cbClient.Text, 
-                ClientAdresse = txtAdresse.Text,
-                ClientPermis = txtPermis.Text,
+                FactureEtatVehiculePrinter printer = new FactureEtatVehiculePrinter(
+                    data,
+                    pictureBoxLogo.Image,
+                    pictureBoxEtatVoiture.Image,
+                    pictureBoxEtatVoiture2.Image
+                );
 
-                Marque = cbMarque.Text,
-                Modele = cbModele.Text,
-                Immatriculation = cbImmatriculation.Text,
-                Carburant = cbCarburant.Text,
-                Couleur = "",
-                KilometrageDepart = txtKilometrage.Text,
-                KilometrageRetour = "",
+                printer.ShowPreview();
+            }
+            catch (Exception ex)
+            {
+                dbErreur.AddLog(
+                    ex.Message,
+                    Session.Username,
+                    "contrats",
+                    "btn_imprimer_Click"
+                );
 
-                DateDepart = dtDateDebut.Value.ToString("dd/MM/yyyy"),
-                HeureDepart = cbHeureDebut.Text,
-                DateRetour = dtDateFin.Value.ToString("dd/MM/yyyy"),
-                HeureRetour = cbHeureRetour.Text,
-                NombreJours = txtNombreJours.Text,
-                PrixJour = txtPrixJour.Text,
+           
 
-                Total = txtTtl.ToString(),
-                Avance = txtNombreJours.Text,
-                Reste = txtRestePayer.Text,
-                ModePaiement = cbModePaiement.Text,
-
-                NiveauCarburant = "1/2",
-                Observations = txtRemarques.Text
-            };
-
-            FacturePrinter.PrintPreview(data);
+                MessageBox.Show(
+                    "Erreur lors de l'impression : " + ex.Message,
+                    "Erreur",
+                    MessageBoxButtons.OK,
+                    MessageBoxIcon.Error
+                );
+            }
 
         }
 
-        
-    
+        private FactureEtatVehiculeData ChargerFactureDepuisContrat(int contratId)
+        {
+            string query = @"
+                        SELECT 
+                            c.contrat_id,
+                            c.reservation_id,
+                            c.date_contrat,
+                            c.heure_debut,
+                            c.date_retour_prevu,
+                            c.heure_retour_prevu,
+                            c.kilometrage_sortie,
+                            c.kilometrage_retour,
+                            c.prix_jour,
+                            c.avance,
+                            c.total,
+                            c.status,
+
+                            cl.nom,
+                            cl.prenom,
+                            cl.cin,
+                            cl.telephone,
+                            cl.adresse,
+                            cl.permis_num,
+
+                            v.matricule,
+                            v.marque,
+                            v.modele,
+                            v.carburant,
+                            v.couleur,
+                            v.categorie,
+                            v.kilometrage
+
+                        FROM contrats c
+                        LEFT JOIN clients cl ON cl.client_id = c.client_id
+                        LEFT JOIN voitures v ON v.voiture_id = c.voiture_id
+                        WHERE c.contrat_id = @contrat_id
+                        LIMIT 1;
+                    ";
+
+            using (MySqlConnection con = new MySqlConnection(DbConfig.GetConnectionString()))
+            using (MySqlCommand cmd = new MySqlCommand(query, con))
+            {
+                cmd.Parameters.AddWithValue("@contrat_id", contratId);
+
+                con.Open();
+
+                using (MySqlDataReader dr = cmd.ExecuteReader())
+                {
+                    if (!dr.Read())
+                        return null;
+
+                    decimal total = GetDecimal(dr, "total");
+                    decimal avance = GetDecimal(dr, "avance");
+                    decimal reste = total - avance;
+
+                    DateTime dateDebut = GetDate(dr, "date_contrat");
+                    DateTime dateFin = GetDate(dr, "date_retour_prevu");
+
+                    int nombreJours = (dateFin.Date - dateDebut.Date).Days;
+
+                    if (nombreJours <= 0)
+                        nombreJours = 1;
+
+                    string reservationId = GetString(dr, "reservation_id");
+
+                    return new FactureEtatVehiculeData
+                    {
+                        NomSociete = Properties.Settings.Default.nom_societe,
+                        AdresseSociete = Properties.Settings.Default.adresse_societe,
+                        TelephoneSociete = Properties.Settings.Default.telephone_societe,
+                        EmailSociete = Properties.Settings.Default.email_societe,
+
+                        NumeroFacture = "FAC-" + DateTime.Now.Year + "-" + contratId.ToString().PadLeft(5, '0'),
+                        DateFacture = DateTime.Now.ToString("dd/MM/yyyy"),
+                        Reference = string.IsNullOrWhiteSpace(reservationId) ? "Sans réservation" : "RES-" + reservationId,
+
+                        ClientNom = (GetString(dr, "nom") + " " + GetString(dr, "prenom")).Trim(),
+                        ClientTelephone = GetString(dr, "telephone"),
+                        ClientCin = GetString(dr, "cin"),
+                        ClientAdresse = GetString(dr, "adresse"),
+
+                        Marque = GetString(dr, "marque"),
+                        Modele = GetString(dr, "modele"),
+                        Immatriculation = GetString(dr, "matricule"),
+                        KmDepart = GetString(dr, "kilometrage_sortie"),
+                        KmRetour = GetString(dr, "kilometrage_retour"),
+
+                        DateDepart = dateDebut.ToString("dd/MM/yyyy"),
+                        HeureDepart = FormatTime(GetString(dr, "heure_debut")),
+                        DateRetour = dateFin.ToString("dd/MM/yyyy"),
+                        HeureRetour = FormatTime(GetString(dr, "heure_retour_prevu")),
+                        NombreJours = nombreJours.ToString(),
+                        PrixJour = GetDecimal(dr, "prix_jour").ToString("0.00"),
+
+                        Total = total.ToString("0.00"),
+                        Avance = avance.ToString("0.00"),
+                        Reste = reste.ToString("0.00"),
+
+                       
+                        ModePaiement = "",
+
+                        NiveauCarburant = "",
+                        Observations = ""
+                    };
+                }
+            }
+        }
+
+        private string GetString(MySqlDataReader dr, string columnName)
+        {
+            try
+            {
+                object value = dr[columnName];
+
+                if (value == DBNull.Value || value == null)
+                    return "";
+
+                return value.ToString();
+            }
+            catch
+            {
+                return "";
+            }
+        }
+
+        private decimal GetDecimal(MySqlDataReader dr, string columnName)
+        {
+            try
+            {
+                object value = dr[columnName];
+
+                if (value == DBNull.Value || value == null)
+                    return 0;
+
+                return Convert.ToDecimal(value);
+            }
+            catch
+            {
+                return 0;
+            }
+        }
+
+        private DateTime GetDate(MySqlDataReader dr, string columnName)
+        {
+            try
+            {
+                object value = dr[columnName];
+
+                if (value == DBNull.Value || value == null)
+                    return DateTime.Now;
+
+                return Convert.ToDateTime(value);
+            }
+            catch
+            {
+                return DateTime.Now;
+            }
+        }
+
+        private string FormatTime(string timeValue)
+        {
+            if (string.IsNullOrWhiteSpace(timeValue))
+                return "";
+
+            TimeSpan ts;
+
+            if (TimeSpan.TryParse(timeValue, out ts))
+                return ts.ToString(@"hh\:mm");
+
+            DateTime dt;
+
+            if (DateTime.TryParse(timeValue, out dt))
+                return dt.ToString("HH:mm");
+
+            return timeValue;
+        }
+
     }
 }
