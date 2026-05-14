@@ -31,6 +31,9 @@
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(historique_contrats));
             this.dgvHistory = new System.Windows.Forms.DataGridView();
             this.panel1 = new System.Windows.Forms.Panel();
+            this.chkFiltrerDate = new System.Windows.Forms.CheckBox();
+            this.label7 = new System.Windows.Forms.Label();
+            this.chkArchive = new Guna.UI2.WinForms.Guna2ToggleSwitch();
             this.dtp_fin = new Guna.UI2.WinForms.Guna2DateTimePicker();
             this.dtp_debut = new Guna.UI2.WinForms.Guna2DateTimePicker();
             this.iconButton1 = new FontAwesome.Sharp.IconButton();
@@ -49,8 +52,6 @@
             this.panel2 = new System.Windows.Forms.Panel();
             this.btnimprimer = new Guna.UI2.WinForms.Guna2Button();
             this.btnAnnuler = new Guna.UI2.WinForms.Guna2Button();
-            this.chkArchive = new Guna.UI2.WinForms.Guna2ToggleSwitch();
-            this.label7 = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.dgvHistory)).BeginInit();
             this.panel1.SuspendLayout();
             this.guna2GradientPanel1.SuspendLayout();
@@ -83,6 +84,7 @@
             // panel1
             // 
             this.panel1.BackColor = System.Drawing.Color.White;
+            this.panel1.Controls.Add(this.chkFiltrerDate);
             this.panel1.Controls.Add(this.label7);
             this.panel1.Controls.Add(this.chkArchive);
             this.panel1.Controls.Add(this.dtp_fin);
@@ -100,6 +102,45 @@
             this.panel1.Name = "panel1";
             this.panel1.Size = new System.Drawing.Size(1419, 130);
             this.panel1.TabIndex = 5;
+            this.panel1.Paint += new System.Windows.Forms.PaintEventHandler(this.panel1_Paint);
+            // 
+            // chkFiltrerDate
+            // 
+            this.chkFiltrerDate.AutoSize = true;
+            this.chkFiltrerDate.Font = new System.Drawing.Font("Segoe UI", 10.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.chkFiltrerDate.Location = new System.Drawing.Point(772, 88);
+            this.chkFiltrerDate.Name = "chkFiltrerDate";
+            this.chkFiltrerDate.Size = new System.Drawing.Size(113, 27);
+            this.chkFiltrerDate.TabIndex = 15;
+            this.chkFiltrerDate.Text = "Avec Date";
+            this.chkFiltrerDate.UseVisualStyleBackColor = true;
+            this.chkFiltrerDate.CheckedChanged += new System.EventHandler(this.chkFiltrerDate_CheckedChanged);
+            // 
+            // label7
+            // 
+            this.label7.AutoSize = true;
+            this.label7.Font = new System.Drawing.Font("Segoe UI Semibold", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label7.Location = new System.Drawing.Point(1211, 45);
+            this.label7.Name = "label7";
+            this.label7.Size = new System.Drawing.Size(153, 28);
+            this.label7.TabIndex = 14;
+            this.label7.Text = "Afficher archive";
+            // 
+            // chkArchive
+            // 
+            this.chkArchive.CheckedState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(94)))), ((int)(((byte)(148)))), ((int)(((byte)(255)))));
+            this.chkArchive.CheckedState.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(94)))), ((int)(((byte)(148)))), ((int)(((byte)(255)))));
+            this.chkArchive.CheckedState.InnerBorderColor = System.Drawing.Color.White;
+            this.chkArchive.CheckedState.InnerColor = System.Drawing.Color.White;
+            this.chkArchive.Location = new System.Drawing.Point(1275, 89);
+            this.chkArchive.Name = "chkArchive";
+            this.chkArchive.Size = new System.Drawing.Size(54, 21);
+            this.chkArchive.TabIndex = 13;
+            this.chkArchive.UncheckedState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(125)))), ((int)(((byte)(137)))), ((int)(((byte)(149)))));
+            this.chkArchive.UncheckedState.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(125)))), ((int)(((byte)(137)))), ((int)(((byte)(149)))));
+            this.chkArchive.UncheckedState.InnerBorderColor = System.Drawing.Color.White;
+            this.chkArchive.UncheckedState.InnerColor = System.Drawing.Color.White;
+            this.chkArchive.CheckedChanged += new System.EventHandler(this.chkArchive_CheckedChanged);
             // 
             // dtp_fin
             // 
@@ -108,7 +149,7 @@
             this.dtp_fin.FillColor = System.Drawing.Color.White;
             this.dtp_fin.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.dtp_fin.Format = System.Windows.Forms.DateTimePickerFormat.Short;
-            this.dtp_fin.Location = new System.Drawing.Point(700, 82);
+            this.dtp_fin.Location = new System.Drawing.Point(533, 83);
             this.dtp_fin.MaxDate = new System.DateTime(9998, 12, 31, 0, 0, 0, 0);
             this.dtp_fin.MinDate = new System.DateTime(1753, 1, 1, 0, 0, 0, 0);
             this.dtp_fin.Name = "dtp_fin";
@@ -123,7 +164,7 @@
             this.dtp_debut.FillColor = System.Drawing.Color.White;
             this.dtp_debut.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.dtp_debut.Format = System.Windows.Forms.DateTimePickerFormat.Short;
-            this.dtp_debut.Location = new System.Drawing.Point(261, 82);
+            this.dtp_debut.Location = new System.Drawing.Point(178, 83);
             this.dtp_debut.MaxDate = new System.DateTime(9998, 12, 31, 0, 0, 0, 0);
             this.dtp_debut.MinDate = new System.DateTime(1753, 1, 1, 0, 0, 0, 0);
             this.dtp_debut.Name = "dtp_debut";
@@ -153,7 +194,7 @@
             // 
             this.label6.AutoSize = true;
             this.label6.Font = new System.Drawing.Font("Segoe UI Semibold", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label6.Location = new System.Drawing.Point(586, 82);
+            this.label6.Location = new System.Drawing.Point(419, 87);
             this.label6.Name = "label6";
             this.label6.Size = new System.Drawing.Size(98, 28);
             this.label6.TabIndex = 8;
@@ -163,7 +204,7 @@
             // 
             this.label5.AutoSize = true;
             this.label5.Font = new System.Drawing.Font("Segoe UI Semibold", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label5.Location = new System.Drawing.Point(100, 82);
+            this.label5.Location = new System.Drawing.Point(17, 87);
             this.label5.Name = "label5";
             this.label5.Size = new System.Drawing.Size(127, 28);
             this.label5.TabIndex = 6;
@@ -318,6 +359,7 @@
             this.btnimprimer.Size = new System.Drawing.Size(310, 60);
             this.btnimprimer.TabIndex = 12;
             this.btnimprimer.Text = "Imprimer";
+            this.btnimprimer.Click += new System.EventHandler(this.btnimprimer_Click);
             // 
             // btnAnnuler
             // 
@@ -339,32 +381,6 @@
             this.btnAnnuler.TabIndex = 11;
             this.btnAnnuler.Text = "Annuler";
             this.btnAnnuler.Click += new System.EventHandler(this.btnAnnuler_Click);
-            // 
-            // chkArchive
-            // 
-            this.chkArchive.CheckedState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(94)))), ((int)(((byte)(148)))), ((int)(((byte)(255)))));
-            this.chkArchive.CheckedState.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(94)))), ((int)(((byte)(148)))), ((int)(((byte)(255)))));
-            this.chkArchive.CheckedState.InnerBorderColor = System.Drawing.Color.White;
-            this.chkArchive.CheckedState.InnerColor = System.Drawing.Color.White;
-            this.chkArchive.Location = new System.Drawing.Point(1275, 89);
-            this.chkArchive.Name = "chkArchive";
-            this.chkArchive.Size = new System.Drawing.Size(54, 21);
-            this.chkArchive.TabIndex = 13;
-            this.chkArchive.UncheckedState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(125)))), ((int)(((byte)(137)))), ((int)(((byte)(149)))));
-            this.chkArchive.UncheckedState.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(125)))), ((int)(((byte)(137)))), ((int)(((byte)(149)))));
-            this.chkArchive.UncheckedState.InnerBorderColor = System.Drawing.Color.White;
-            this.chkArchive.UncheckedState.InnerColor = System.Drawing.Color.White;
-            this.chkArchive.CheckedChanged += new System.EventHandler(this.chkArchive_CheckedChanged);
-            // 
-            // label7
-            // 
-            this.label7.AutoSize = true;
-            this.label7.Font = new System.Drawing.Font("Segoe UI Semibold", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label7.Location = new System.Drawing.Point(1211, 45);
-            this.label7.Name = "label7";
-            this.label7.Size = new System.Drawing.Size(153, 28);
-            this.label7.TabIndex = 14;
-            this.label7.Text = "Afficher archive";
             // 
             // historique_contrats
             // 
@@ -419,5 +435,6 @@
         private FontAwesome.Sharp.IconPictureBox iconPictureBox1;
         private System.Windows.Forms.Label label7;
         private Guna.UI2.WinForms.Guna2ToggleSwitch chkArchive;
+        private System.Windows.Forms.CheckBox chkFiltrerDate;
     }
 }

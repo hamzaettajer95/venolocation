@@ -76,8 +76,7 @@ namespace venolocation.formee
 
             cbVoiture.SelectedIndex = -1;
             cbClient.SelectedIndex = -1;
-            cbHeureDebut.SelectedIndex = -1;
-            cbHeureFin.SelectedIndex = -1;
+         
 
             btnReserver.Enabled = false;
             btnConfirmer.Enabled = false;
@@ -95,6 +94,10 @@ namespace venolocation.formee
                 cbHeureDebut.Items.Add(heure);
                 cbHeureFin.Items.Add(heure);
             }
+            string heureActuelle = DateTime.Now.Hour.ToString("00") + ":00";
+
+            cbHeureDebut.SelectedItem = heureActuelle;
+            cbHeureFin.SelectedItem = heureActuelle;
         }
 
         private void ChargerVoitures()
@@ -458,6 +461,108 @@ namespace venolocation.formee
             }
         }
 
+
+        private DataTable GetReservationsEnAttenteQuiSeChevauchent(int reservationId)
+        {
+            string query = @"
+                        SELECT 
+                            r.reservation_id AS 'ID',
+                            CONCAT(c.nom, ' ', c.prenom, ' - ', c.cin) AS 'Client',
+                            CONCAT(DATE_FORMAT(r.date_debut, '%d/%m/%Y'), ' ', TIME_FORMAT(r.heure_debut, '%H:%i')) AS 'Début',
+                            CONCAT(DATE_FORMAT(r.date_fin, '%d/%m/%Y'), ' ', TIME_FORMAT(r.heure_fin, '%H:%i')) AS 'Fin',
+                            r.status AS 'Statut'
+                        FROM reservations r
+                        INNER JOIN clients c ON c.client_id = r.client_id
+                        WHERE r.voiture_id = (
+                            SELECT voiture_id
+                            FROM reservations
+                            WHERE reservation_id = @reservation_id
+                        )
+                        AND r.reservation_id <> @reservation_id
+                        AND r.status = @status_en_attente
+                        AND (
+                            TIMESTAMP(r.date_debut, r.heure_debut) < (
+                                SELECT TIMESTAMP(date_fin, heure_fin)
+                                FROM reservations
+                                WHERE reservation_id = @reservation_id
+                            )
+                            AND
+                            TIMESTAMP(r.date_fin, r.heure_fin) > (
+                                SELECT TIMESTAMP(date_debut, heure_debut)
+                                FROM reservations
+                                WHERE reservation_id = @reservation_id
+                            )
+                        )
+                        ORDER BY r.date_debut, r.heure_debut;";
+
+            MySqlParameter[] ps =
+            {
+                new MySqlParameter("@reservation_id", reservationId),
+                new MySqlParameter("@status_en_attente", AppStatus.ReservationEnAttente)
+            };
+
+            return Dbexec.GetData(query, ps);
+        }
+
+        private string ConstruireMessageReservationsChevauchees(DataTable dt)
+        {
+            StringBuilder sb = new StringBuilder();
+
+            sb.AppendLine("Attention : il existe des réservations en attente qui se chevauchent avec cette réservation.");
+            sb.AppendLine();
+            sb.AppendLine("Si vous confirmez celle-ci, les autres réservations peuvent devenir impossibles.");
+            sb.AppendLine();
+            sb.AppendLine("Réservations concernées :");
+
+            foreach (DataRow row in dt.Rows)
+            {
+                sb.AppendLine(
+                    "- ID: " + row["ID"] +
+                    " | Client: " + row["Client"] +
+                    " | Du: " + row["Début"] +
+                    " | Au: " + row["Fin"]
+                );
+            }
+
+            sb.AppendLine();
+            sb.AppendLine("Voulez-vous continuer la confirmation ?");
+
+            return sb.ToString();
+        }
+        private bool VoitureOccupeePourReservation(int reservationId)
+        {
+            string query = @"
+                SELECT COUNT(*)
+                FROM reservations r
+                WHERE r.voiture_id = (
+                    SELECT voiture_id 
+                    FROM reservations 
+                    WHERE reservation_id = @reservation_id
+                )
+                AND r.reservation_id <> @reservation_id
+                AND r.status = @status_confirmee
+                AND (
+                    TIMESTAMP(r.date_debut, r.heure_debut) <= (
+                        SELECT TIMESTAMP(date_fin, heure_fin)
+                        FROM reservations
+                        WHERE reservation_id = @reservation_id
+                    )
+                    AND
+                    TIMESTAMP(r.date_fin, r.heure_fin) >= (
+                        SELECT TIMESTAMP(date_debut, heure_debut)
+                        FROM reservations
+                        WHERE reservation_id = @reservation_id
+                    )
+                );";
+
+            MySqlParameter[] ps =
+            {
+                new MySqlParameter("@reservation_id", reservationId),
+                new MySqlParameter("@status_confirmee", AppStatus.ReservationConfirmee)
+            };
+
+            return Dbexec.Exists(query, ps);
+        }
         private void btnConfirmer_Click(object sender, EventArgs e)
         {
             if (reservationIdSelectionnee <= 0)
@@ -476,10 +581,40 @@ namespace venolocation.formee
 
             try
             {
+                if (VoitureOccupeePourReservation(reservationIdSelectionnee))
+                {
+                    MessageService.Warning(
+                        "Impossible de confirmer cette réservation.\n\n" +
+                        "Cette voiture possède déjà une réservation confirmée dans cette période."
+                    );
+                    return;
+                }
+
+                DataTable dtChevauchements = GetReservationsEnAttenteQuiSeChevauchent(reservationIdSelectionnee);
+
+                if (dtChevauchements.Rows.Count > 0)
+                {
+                    DialogResult rep = MessageBox.Show(
+                        ConstruireMessageReservationsChevauchees(dtChevauchements),
+                        "Réservations en attente chevauchées",
+                        MessageBoxButtons.YesNo,
+                        MessageBoxIcon.Warning
+                    );
+
+                    if (rep != DialogResult.Yes)
+                    {
+                        LogHelper.AddLog(
+                            "Confirmation réservation annulée par utilisateur à cause de chevauchements. ID = " + reservationIdSelectionnee,
+                            Session.Username
+                        );
+                        return;
+                    }
+                }
+
                 string query = @"
-                            UPDATE reservations
-                            SET status = @status
-                            WHERE reservation_id = @reservation_id;";
+                        UPDATE reservations
+                        SET status = @status
+                        WHERE reservation_id = @reservation_id;";
 
                 MySqlParameter[] ps =
                 {
@@ -497,7 +632,15 @@ namespace venolocation.formee
             }
             catch (Exception ex)
             {
-                dbErreur.AddLog(ex.Message, Session.Username, "reservation", "btnConfirmer_Click");
+               
+
+                dbErreur.AddLog(
+                    ex.Message,
+                    Session.Username,
+                    "reservation",
+                    "btnConfirmer_Click"
+                );
+
                 MessageService.Error(AppMessages.UnexpectedError);
             }
         }
@@ -557,8 +700,9 @@ namespace venolocation.formee
                 LogHelper.AddLog("Validation voiture/client refusée : sélection incomplète.", Session.Username);
                 return;
             }
-
-            MessageService.Success("Voiture et client validés.");
+            btnConfirmer.Enabled = false;
+            btnAnnuler.Enabled = false;
+            cardDate.Enabled = true;
         }
 
         private void btnVerifierDate_Click(object sender, EventArgs e)
@@ -568,6 +712,8 @@ namespace venolocation.formee
 
         private void btnVerifierDate_Click_1(object sender, EventArgs e)
         {
+            btnConfirmer.Enabled = false;
+            btnAnnuler.Enabled = false;
             try
             {
                 if (!ChampsValides())
@@ -587,6 +733,7 @@ namespace venolocation.formee
                     LogHelper.AddLog("Disponibilité vérifiée : voiture disponible. Prix estimé = " + total.ToString("0.00") + " DH.", Session.Username);
 
                     btnReserver.Enabled = true;
+                    cardDate.Enabled = false;
                 }
                 else
                 {

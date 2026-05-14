@@ -207,8 +207,9 @@
             this.cardDate.Controls.Add(this.label5);
             this.cardDate.Controls.Add(this.label4);
             this.cardDate.Controls.Add(this.iconPictureBox3);
+            this.cardDate.Enabled = false;
             this.cardDate.FillColor = System.Drawing.Color.White;
-            this.cardDate.Location = new System.Drawing.Point(35, 381);
+            this.cardDate.Location = new System.Drawing.Point(35, 283);
             this.cardDate.Name = "cardDate";
             this.cardDate.Radius = 14;
             this.cardDate.ShadowColor = System.Drawing.Color.Black;
@@ -377,7 +378,7 @@
             this.cardVoiture.Controls.Add(this.label1);
             this.cardVoiture.Controls.Add(this.iconPictureBox1);
             this.cardVoiture.FillColor = System.Drawing.Color.White;
-            this.cardVoiture.Location = new System.Drawing.Point(35, 202);
+            this.cardVoiture.Location = new System.Drawing.Point(35, 105);
             this.cardVoiture.Name = "cardVoiture";
             this.cardVoiture.Radius = 14;
             this.cardVoiture.ShadowColor = System.Drawing.Color.FromArgb(((int)(((byte)(220)))), ((int)(((byte)(225)))), ((int)(((byte)(230)))));
@@ -519,7 +520,7 @@
             this.pnlAction.Controls.Add(this.btnReserver);
             this.pnlAction.Controls.Add(this.btnNouvelle);
             this.pnlAction.FillColor = System.Drawing.Color.White;
-            this.pnlAction.Location = new System.Drawing.Point(35, 101);
+            this.pnlAction.Location = new System.Drawing.Point(32, 453);
             this.pnlAction.Name = "pnlAction";
             this.pnlAction.Size = new System.Drawing.Size(1380, 95);
             this.pnlAction.TabIndex = 1;
@@ -658,7 +659,7 @@
             this.icoHeader.TabIndex = 0;
             this.icoHeader.TabStop = false;
             // 
-            // n_reservation
+            // reservation
             // 
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.None;
             this.ClientSize = new System.Drawing.Size(1432, 933);
@@ -667,7 +668,7 @@
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.MaximizeBox = false;
             this.MinimizeBox = false;
-            this.Name = "n_reservation";
+            this.Name = "reservation";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Gestion des Réservations";
             this.Load += new System.EventHandler(this.n_reservation_Load);

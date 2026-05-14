@@ -38,16 +38,23 @@ namespace venolocation.droit
                 List<MySqlParameter> ps = new List<MySqlParameter>();
 
                 string query = @"
-                    SELECT 
-                        c.contrat_id AS 'ID',
-                        c.client_id AS 'Client ID',
-                        c.voiture_id AS 'Voiture ID',
-                        c.status AS 'Statut',
-                        DATE_FORMAT(c.date_contrat, '%d/%m/%Y') AS 'Date contrat',
-                        DATE_FORMAT(c.date_retour_prevu, '%d/%m/%Y') AS 'Retour prévu',
-                        c.total AS 'Total'
-                    FROM " + tableName + @" c
-                    WHERE 1=1 ";
+            SELECT 
+                c.contrat_id AS 'ID',
+
+                c.client_id AS 'Client ID',
+                cl.cin AS 'CIN Client',
+
+                c.voiture_id AS 'Voiture ID',
+                v.matricule AS 'Matricule',
+
+                c.status AS 'Statut',
+                DATE_FORMAT(c.date_contrat, '%d/%m/%Y') AS 'Date contrat',
+                DATE_FORMAT(c.date_retour_prevu, '%d/%m/%Y') AS 'Retour prévu',
+                c.total AS 'Total'
+            FROM " + tableName + @" c
+            LEFT JOIN clients cl ON cl.client_id = c.client_id
+            LEFT JOIN voitures v ON v.voiture_id = c.voiture_id
+            WHERE 1=1 ";
 
                 if (cb_client.SelectedValue != null && Convert.ToInt32(cb_client.SelectedValue) > 0)
                 {
@@ -67,15 +74,21 @@ namespace venolocation.droit
                     ps.Add(new MySqlParameter("@status", selectedStatus));
                 }
 
-                query += @"
-                            AND DATE(c.date_contrat) >= @date_debut
-                            AND DATE(c.date_retour_prevu) <= @date_fin
-                            ORDER BY c.contrat_id DESC
-                            LIMIT 300;
-                        ";
+                // filter date غير إلا كان checkbox مفعّل
+                if (chkFiltrerDate.Checked)
+                {
+                    query += @"
+                AND DATE(c.date_contrat) >= @date_debut
+                AND DATE(c.date_retour_prevu) <= @date_fin ";
 
-                ps.Add(new MySqlParameter("@date_debut", dtp_debut.Value.Date));
-                ps.Add(new MySqlParameter("@date_fin", dtp_fin.Value.Date));
+                    ps.Add(new MySqlParameter("@date_debut", dtp_debut.Value.Date));
+                    ps.Add(new MySqlParameter("@date_fin", dtp_fin.Value.Date));
+                }
+
+                query += @"
+            ORDER BY c.contrat_id DESC
+            LIMIT 300;
+        ";
 
                 dgvHistory.DataSource = Dbexec.GetData(query, ps.ToArray());
 
@@ -83,13 +96,20 @@ namespace venolocation.droit
 
                 if (dgvHistory.Columns.Count > 0)
                 {
-                    dgvHistory.Columns["ID"].FillWeight = 10;
-                    dgvHistory.Columns["Client ID"].FillWeight = 15;
-                    dgvHistory.Columns["Voiture ID"].FillWeight = 15;
-                    dgvHistory.Columns["Statut"].FillWeight = 18;
-                    dgvHistory.Columns["Date contrat"].FillWeight = 18;
-                    dgvHistory.Columns["Retour prévu"].FillWeight = 18;
-                    dgvHistory.Columns["Total"].FillWeight = 15;
+                    
+                    if (dgvHistory.Columns.Contains("Client ID"))
+                        dgvHistory.Columns["Client ID"].Visible = false;
+
+                    if (dgvHistory.Columns.Contains("Voiture ID"))
+                        dgvHistory.Columns["Voiture ID"].Visible = false;
+
+                    dgvHistory.Columns["ID"].FillWeight = 8;
+                    dgvHistory.Columns["CIN Client"].FillWeight = 18;
+                    dgvHistory.Columns["Matricule"].FillWeight = 18;
+                    dgvHistory.Columns["Statut"].FillWeight = 16;
+                    dgvHistory.Columns["Date contrat"].FillWeight = 16;
+                    dgvHistory.Columns["Retour prévu"].FillWeight = 16;
+                    dgvHistory.Columns["Total"].FillWeight = 12;
                 }
             }
             catch (Exception ex)
@@ -111,25 +131,32 @@ namespace venolocation.droit
                 );
             }
         }
+        private void ActiverAutoComplete(ComboBox combo)
+        {
+            combo.DropDownStyle = ComboBoxStyle.DropDown;
+            combo.AutoCompleteMode = AutoCompleteMode.SuggestAppend;
+            combo.AutoCompleteSource = AutoCompleteSource.ListItems;
+        }
 
         private void FillCombos()
         {
             try
             {
                 DataTable dtClients = Dbexec.GetData(@"
-                                                        SELECT client_id, nom
+                                                        SELECT client_id, cin
                                                         FROM clients
-                                                        ORDER BY nom
+                                                        ORDER BY cin
                                                         LIMIT 500;");
 
                 DataRow drClient = dtClients.NewRow();
                 drClient["client_id"] = 0;
-                drClient["nom"] = "--- Tout ---";
+                drClient["cin"] = "--- Tout ---";
                 dtClients.Rows.InsertAt(drClient, 0);
 
                 cb_client.DataSource = dtClients;
-                cb_client.DisplayMember = "nom";
+                cb_client.DisplayMember = "cin";
                 cb_client.ValueMember = "client_id";
+                ActiverAutoComplete(cb_client);
 
                 DataTable dtCars = Dbexec.GetData(@"
                                                     SELECT voiture_id, matricule
@@ -145,6 +172,7 @@ namespace venolocation.droit
                 cb_voiture.DataSource = dtCars;
                 cb_voiture.DisplayMember = "matricule";
                 cb_voiture.ValueMember = "voiture_id";
+                ActiverAutoComplete(cb_voiture);
 
                 cb_client.SelectedIndex = 0;
                 cb_voiture.SelectedIndex = 0;
@@ -164,6 +192,10 @@ namespace venolocation.droit
 
                 FillCombos();
 
+                chkFiltrerDate.Checked = false;
+                dtp_debut.Enabled = false;
+                dtp_fin.Enabled = false;
+
                 cb_statut.Items.Clear();
                 cb_statut.Items.Add("--- Tout ---");
                 cb_statut.Items.Add(AppStatus.ContratEnCours);
@@ -171,8 +203,15 @@ namespace venolocation.droit
                 cb_statut.Items.Add(AppStatus.ContratAnnule);
                 cb_statut.SelectedIndex = 0;
 
+                
                 dtp_debut.Value = DateTime.Now.AddMonths(-1);
                 dtp_fin.Value = DateTime.Now.AddMonths(1);
+
+                chkFiltrerDate.Checked = false;
+                dtp_debut.Enabled = false;
+                dtp_fin.Enabled = false;
+
+                LoadContracts();
 
                 LoadContracts();
             }
@@ -308,6 +347,62 @@ namespace venolocation.droit
             cb_statut.SelectedIndex = 0;
 
            
+            LoadContracts();
+        }
+
+        private void btnimprimer_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                if (dgvHistory.Rows.Count == 0)
+                {
+                    MessageBox.Show(
+                        "Aucune donnée à imprimer.",
+                        "Impression",
+                        MessageBoxButtons.OK,
+                        MessageBoxIcon.Warning
+                    );
+                    return;
+                }
+
+                DataGridViewPrinter printer = new DataGridViewPrinter(
+                    dgvHistory,
+                    "Historique des contrats",
+                    Session.Username
+                );
+
+                printer.ShowPreview();
+            }
+            catch (Exception ex)
+            {
+                
+
+                dbErreur.AddLog(
+                    ex.Message,
+                    Session.Username,
+                    "historique_contrats",
+                    "btnImprimer_Click"
+                );
+
+                MessageBox.Show(
+                    "Erreur lors de l'impression : " + ex.Message,
+                    "Erreur",
+                    MessageBoxButtons.OK,
+                    MessageBoxIcon.Error
+                );
+            }
+        }
+
+        private void panel1_Paint(object sender, PaintEventArgs e)
+        {
+
+        }
+
+        private void chkFiltrerDate_CheckedChanged(object sender, EventArgs e)
+        {
+            dtp_debut.Enabled = chkFiltrerDate.Checked;
+            dtp_fin.Enabled = chkFiltrerDate.Checked;
+
             LoadContracts();
         }
     }

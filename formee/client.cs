@@ -22,7 +22,48 @@ namespace venolocation.formee
         {
             InitializeComponent();
         }
+        private class ClientCinInfo
+        {
+            public bool Exists { get; set; }
+            public int ClientId { get; set; }
+            public bool Actif { get; set; }
+        }
 
+        private ClientCinInfo GetClientByCin(string cin)
+        {
+            ClientCinInfo info = new ClientCinInfo
+            {
+                Exists = false,
+                ClientId = 0,
+                Actif = false
+            };
+
+            string q = @"
+        SELECT client_id, actif
+        FROM clients
+        WHERE cin = @cin
+        LIMIT 1;";
+
+            using (MySqlConnection cn = Dbexec.GetConnection())
+            using (MySqlCommand cmd = new MySqlCommand(q, cn))
+            {
+                cmd.Parameters.AddWithValue("@cin", cin.Trim());
+
+                cn.Open();
+
+                using (MySqlDataReader dr = cmd.ExecuteReader())
+                {
+                    if (dr.Read())
+                    {
+                        info.Exists = true;
+                        info.ClientId = Convert.ToInt32(dr["client_id"]);
+                        info.Actif = Convert.ToInt32(dr["actif"]) == 1;
+                    }
+                }
+            }
+
+            return info;
+        }
         bool CinExists(string cin)
         {
             string q = "SELECT COUNT(*) FROM clients WHERE cin = @cin";
@@ -140,6 +181,40 @@ namespace venolocation.formee
                 this.ResumeLayout();
             }
         }
+        private void ReactiverClient(int clientId)
+        {
+            string q = @"
+                    UPDATE clients SET
+                        nom = @nom,
+                        prenom = @prenom,
+                        cin = @cin,
+                        telephone = @tel,
+                        adresse = @adresse,
+                        ville = @ville,
+                        date_naissance = @dateN,
+                        permis_num = @permis,
+                        permis_date = @datePermis,
+                        nom_utilisateur = @user,
+                        actif = 1
+                    WHERE client_id = @id;";
+
+            MySqlParameter[] ps =
+            {
+                new MySqlParameter("@nom", txtNomClient.Text.Trim()),
+                new MySqlParameter("@prenom", txtPrenomClient.Text.Trim()),
+                new MySqlParameter("@cin", txtCinClient.Text.Trim()),
+                new MySqlParameter("@tel", txtTelephone.Text.Trim()),
+                new MySqlParameter("@adresse", txtAdresseClient.Text.Trim()),
+                new MySqlParameter("@ville", txtVilleClient.Text.Trim()),
+                new MySqlParameter("@dateN", dtpDateNaissance.Value.Date),
+                new MySqlParameter("@permis", txtPermisClient.Text.Trim()),
+                new MySqlParameter("@datePermis", dtpDelivreLe.Value.Date),
+                new MySqlParameter("@user", Session.Username),
+                new MySqlParameter("@id", clientId)
+            };
+
+            Dbexec.ExecuteQuery(q, ps);
+        }
 
         private void btnAjouter_Click(object sender, EventArgs e)
         {
@@ -152,10 +227,34 @@ namespace venolocation.formee
                     return;
                 }
 
-                if (CinExists(txtCinClient.Text.Trim()))
+                ClientCinInfo clientInfo = GetClientByCin(txtCinClient.Text.Trim());
+
+                if (clientInfo.Exists)
                 {
-                    MessageService.Warning("CIN déjà existant");
-                    LogHelper.AddLog("Ajout client refusé : CIN existe " + txtCinClient.Text, Session.Username);
+                    if (clientInfo.Actif)
+                    {
+                        MessageService.Warning("CIN déjà existant");
+                        LogHelper.AddLog("Ajout client refusé : CIN existe " + txtCinClient.Text, Session.Username);
+                        return;
+                    }
+
+                    DialogResult rep = MessageBox.Show(
+                        "Ce client existe déjà mais il est désactivé.\n\nVoulez-vous le réactiver avec les nouvelles informations ?",
+                        "Client désactivé",
+                        MessageBoxButtons.YesNo,
+                        MessageBoxIcon.Question
+                    );
+
+                    if (rep != DialogResult.Yes)
+                        return;
+
+                    ReactiverClient(clientInfo.ClientId);
+
+                    LogHelper.AddLog("Client réactivé CIN: " + txtCinClient.Text.Trim(), Session.Username);
+                    MessageService.Success("Client réactivé avec succès.");
+
+                    LoadClients();
+                    ClearFields();
                     return;
                 }
 
@@ -367,10 +466,13 @@ namespace venolocation.formee
                             DATE_FORMAT(permis_date, '%d/%m/%Y') AS 'Date permis',
                             nom_utilisateur AS 'Utilisateur'
                         FROM clients
-                        WHERE nom LIKE @s 
-                           OR prenom LIKE @s 
-                           OR cin LIKE @s
-                           OR telephone LIKE @s
+                        WHERE actif = 1
+                                  AND (
+                                        nom LIKE @s 
+                                        OR prenom LIKE @s 
+                                        OR cin LIKE @s
+                                        OR telephone LIKE @s
+                                      )
                         ORDER BY client_id DESC
                         LIMIT 100;";
 

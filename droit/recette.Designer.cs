@@ -39,6 +39,8 @@
             this.btn_modifier = new FontAwesome.Sharp.IconButton();
             this.btn_ajouter = new FontAwesome.Sharp.IconButton();
             this.panel3 = new System.Windows.Forms.Panel();
+            this.txt_montant = new Guna.UI2.WinForms.Guna2TextBox();
+            this.txt_type = new Guna.UI2.WinForms.Guna2TextBox();
             this.label3 = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
             this.panel2 = new System.Windows.Forms.Panel();
@@ -47,8 +49,7 @@
             this.cb_mois = new System.Windows.Forms.ComboBox();
             this.label1 = new System.Windows.Forms.Label();
             this.cb_annee = new System.Windows.Forms.ComboBox();
-            this.txt_type = new Guna.UI2.WinForms.Guna2TextBox();
-            this.txt_montant = new Guna.UI2.WinForms.Guna2TextBox();
+            this.btn_imprimer = new FontAwesome.Sharp.IconButton();
             ((System.ComponentModel.ISupportInitialize)(this.dgvRecette)).BeginInit();
             this.panel1.SuspendLayout();
             this.panel3.SuspendLayout();
@@ -103,6 +104,7 @@
             // panel1
             // 
             this.panel1.BackColor = System.Drawing.Color.White;
+            this.panel1.Controls.Add(this.btn_imprimer);
             this.panel1.Controls.Add(this.btn_suprimmer);
             this.panel1.Controls.Add(this.btn_modifier);
             this.panel1.Controls.Add(this.btn_ajouter);
@@ -122,7 +124,7 @@
             this.btn_suprimmer.IconFont = FontAwesome.Sharp.IconFont.Auto;
             this.btn_suprimmer.IconSize = 40;
             this.btn_suprimmer.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btn_suprimmer.Location = new System.Drawing.Point(589, 3);
+            this.btn_suprimmer.Location = new System.Drawing.Point(423, 3);
             this.btn_suprimmer.Name = "btn_suprimmer";
             this.btn_suprimmer.Size = new System.Drawing.Size(198, 57);
             this.btn_suprimmer.TabIndex = 2;
@@ -141,7 +143,7 @@
             this.btn_modifier.IconFont = FontAwesome.Sharp.IconFont.Auto;
             this.btn_modifier.IconSize = 40;
             this.btn_modifier.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btn_modifier.Location = new System.Drawing.Point(309, 3);
+            this.btn_modifier.Location = new System.Drawing.Point(215, 3);
             this.btn_modifier.Name = "btn_modifier";
             this.btn_modifier.Size = new System.Drawing.Size(198, 57);
             this.btn_modifier.TabIndex = 1;
@@ -159,7 +161,7 @@
             this.btn_ajouter.IconFont = FontAwesome.Sharp.IconFont.Auto;
             this.btn_ajouter.IconSize = 40;
             this.btn_ajouter.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btn_ajouter.Location = new System.Drawing.Point(21, 3);
+            this.btn_ajouter.Location = new System.Drawing.Point(7, 3);
             this.btn_ajouter.Name = "btn_ajouter";
             this.btn_ajouter.Size = new System.Drawing.Size(198, 57);
             this.btn_ajouter.TabIndex = 0;
@@ -178,6 +180,51 @@
             this.panel3.Name = "panel3";
             this.panel3.Size = new System.Drawing.Size(833, 68);
             this.panel3.TabIndex = 9;
+            // 
+            // txt_montant
+            // 
+            this.txt_montant.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(210)))), ((int)(((byte)(218)))), ((int)(((byte)(226)))));
+            this.txt_montant.BorderRadius = 8;
+            this.txt_montant.Cursor = System.Windows.Forms.Cursors.IBeam;
+            this.txt_montant.DefaultText = "";
+            this.txt_montant.DisabledState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(208)))), ((int)(((byte)(208)))), ((int)(((byte)(208)))));
+            this.txt_montant.DisabledState.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(226)))), ((int)(((byte)(226)))), ((int)(((byte)(226)))));
+            this.txt_montant.DisabledState.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(138)))), ((int)(((byte)(138)))), ((int)(((byte)(138)))));
+            this.txt_montant.DisabledState.PlaceholderForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(138)))), ((int)(((byte)(138)))), ((int)(((byte)(138)))));
+            this.txt_montant.FocusedState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(94)))), ((int)(((byte)(148)))), ((int)(((byte)(255)))));
+            this.txt_montant.Font = new System.Drawing.Font("Segoe UI", 10.8F);
+            this.txt_montant.HoverState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(94)))), ((int)(((byte)(148)))), ((int)(((byte)(255)))));
+            this.txt_montant.Location = new System.Drawing.Point(540, 12);
+            this.txt_montant.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            this.txt_montant.Multiline = true;
+            this.txt_montant.Name = "txt_montant";
+            this.txt_montant.PlaceholderText = "0,00";
+            this.txt_montant.SelectedText = "";
+            this.txt_montant.Size = new System.Drawing.Size(247, 41);
+            this.txt_montant.TabIndex = 19;
+            this.txt_montant.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
+            // 
+            // txt_type
+            // 
+            this.txt_type.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(210)))), ((int)(((byte)(218)))), ((int)(((byte)(226)))));
+            this.txt_type.BorderRadius = 8;
+            this.txt_type.Cursor = System.Windows.Forms.Cursors.IBeam;
+            this.txt_type.DefaultText = "";
+            this.txt_type.DisabledState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(208)))), ((int)(((byte)(208)))), ((int)(((byte)(208)))));
+            this.txt_type.DisabledState.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(226)))), ((int)(((byte)(226)))), ((int)(((byte)(226)))));
+            this.txt_type.DisabledState.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(138)))), ((int)(((byte)(138)))), ((int)(((byte)(138)))));
+            this.txt_type.DisabledState.PlaceholderForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(138)))), ((int)(((byte)(138)))), ((int)(((byte)(138)))));
+            this.txt_type.FocusedState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(94)))), ((int)(((byte)(148)))), ((int)(((byte)(255)))));
+            this.txt_type.Font = new System.Drawing.Font("Segoe UI", 10.8F);
+            this.txt_type.HoverState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(94)))), ((int)(((byte)(148)))), ((int)(((byte)(255)))));
+            this.txt_type.Location = new System.Drawing.Point(116, 12);
+            this.txt_type.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            this.txt_type.Multiline = true;
+            this.txt_type.Name = "txt_type";
+            this.txt_type.PlaceholderText = "Type de recette";
+            this.txt_type.SelectedText = "";
+            this.txt_type.Size = new System.Drawing.Size(291, 41);
+            this.txt_type.TabIndex = 20;
             // 
             // label3
             // 
@@ -274,50 +321,24 @@
             this.cb_annee.TabIndex = 0;
             this.cb_annee.Text = "Année";
             // 
-            // txt_type
+            // btn_imprimer
             // 
-            this.txt_type.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(210)))), ((int)(((byte)(218)))), ((int)(((byte)(226)))));
-            this.txt_type.BorderRadius = 8;
-            this.txt_type.Cursor = System.Windows.Forms.Cursors.IBeam;
-            this.txt_type.DefaultText = "";
-            this.txt_type.DisabledState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(208)))), ((int)(((byte)(208)))), ((int)(((byte)(208)))));
-            this.txt_type.DisabledState.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(226)))), ((int)(((byte)(226)))), ((int)(((byte)(226)))));
-            this.txt_type.DisabledState.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(138)))), ((int)(((byte)(138)))), ((int)(((byte)(138)))));
-            this.txt_type.DisabledState.PlaceholderForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(138)))), ((int)(((byte)(138)))), ((int)(((byte)(138)))));
-            this.txt_type.FocusedState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(94)))), ((int)(((byte)(148)))), ((int)(((byte)(255)))));
-            this.txt_type.Font = new System.Drawing.Font("Segoe UI", 10.8F);
-            this.txt_type.HoverState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(94)))), ((int)(((byte)(148)))), ((int)(((byte)(255)))));
-            this.txt_type.Location = new System.Drawing.Point(116, 12);
-            this.txt_type.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
-            this.txt_type.Multiline = true;
-            this.txt_type.Name = "txt_type";
-            this.txt_type.PlaceholderText = "Type de recette";
-            this.txt_type.SelectedText = "";
-            this.txt_type.Size = new System.Drawing.Size(291, 41);
-            this.txt_type.TabIndex = 20;
-            // 
-            // txt_montant
-            // 
-            this.txt_montant.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(210)))), ((int)(((byte)(218)))), ((int)(((byte)(226)))));
-            this.txt_montant.BorderRadius = 8;
-            this.txt_montant.Cursor = System.Windows.Forms.Cursors.IBeam;
-            this.txt_montant.DefaultText = "";
-            this.txt_montant.DisabledState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(208)))), ((int)(((byte)(208)))), ((int)(((byte)(208)))));
-            this.txt_montant.DisabledState.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(226)))), ((int)(((byte)(226)))), ((int)(((byte)(226)))));
-            this.txt_montant.DisabledState.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(138)))), ((int)(((byte)(138)))), ((int)(((byte)(138)))));
-            this.txt_montant.DisabledState.PlaceholderForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(138)))), ((int)(((byte)(138)))), ((int)(((byte)(138)))));
-            this.txt_montant.FocusedState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(94)))), ((int)(((byte)(148)))), ((int)(((byte)(255)))));
-            this.txt_montant.Font = new System.Drawing.Font("Segoe UI", 10.8F);
-            this.txt_montant.HoverState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(94)))), ((int)(((byte)(148)))), ((int)(((byte)(255)))));
-            this.txt_montant.Location = new System.Drawing.Point(540, 12);
-            this.txt_montant.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
-            this.txt_montant.Multiline = true;
-            this.txt_montant.Name = "txt_montant";
-            this.txt_montant.PlaceholderText = "0,00";
-            this.txt_montant.SelectedText = "";
-            this.txt_montant.Size = new System.Drawing.Size(247, 41);
-            this.txt_montant.TabIndex = 19;
-            this.txt_montant.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
+            this.btn_imprimer.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(126)))), ((int)(((byte)(87)))), ((int)(((byte)(194)))));
+            this.btn_imprimer.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btn_imprimer.Font = new System.Drawing.Font("Segoe UI", 10.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btn_imprimer.ForeColor = System.Drawing.Color.White;
+            this.btn_imprimer.IconChar = FontAwesome.Sharp.IconChar.Print;
+            this.btn_imprimer.IconColor = System.Drawing.Color.White;
+            this.btn_imprimer.IconFont = FontAwesome.Sharp.IconFont.Auto;
+            this.btn_imprimer.IconSize = 40;
+            this.btn_imprimer.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.btn_imprimer.Location = new System.Drawing.Point(631, 3);
+            this.btn_imprimer.Name = "btn_imprimer";
+            this.btn_imprimer.Size = new System.Drawing.Size(198, 57);
+            this.btn_imprimer.TabIndex = 3;
+            this.btn_imprimer.Text = "Imprimmer";
+            this.btn_imprimer.UseVisualStyleBackColor = false;
+            this.btn_imprimer.Click += new System.EventHandler(this.btn_imprimer_Click);
             // 
             // recette
             // 
@@ -366,5 +387,6 @@
         private System.Windows.Forms.ComboBox cb_annee;
         private Guna.UI2.WinForms.Guna2TextBox txt_montant;
         private Guna.UI2.WinForms.Guna2TextBox txt_type;
+        private FontAwesome.Sharp.IconButton btn_imprimer;
     }
 }

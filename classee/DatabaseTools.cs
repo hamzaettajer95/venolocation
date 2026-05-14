@@ -580,27 +580,27 @@ namespace venolocation.classee
         public static void RestaurerRecettesDepuisArchive(int annee)
         {
             string insert = @"
-        INSERT INTO recettes
-        (
-            recette_id, contrat_id, montant, type,
-            date_recette, nom_utilisateur, created_at
-        )
-        SELECT
-            a.recette_id, a.contrat_id, a.montant, a.type,
-            a.date_recette, a.nom_utilisateur, a.created_at
-        FROM recettes_archive a
-        WHERE a.annee_archive = @annee
-          AND NOT EXISTS (
-              SELECT 1
-              FROM recettes r
-              WHERE r.recette_id = a.recette_id
-          );";
+                INSERT INTO recettes
+                (
+                    recette_id, contrat_id, montant, type,
+                    date_recette, nom_utilisateur, created_at
+                )
+                SELECT
+                    a.recette_id, a.contrat_id, a.montant, a.type,
+                    a.date_recette, a.nom_utilisateur, a.created_at
+                FROM recettes_archive a
+                WHERE a.annee_archive = @annee
+                  AND NOT EXISTS (
+                      SELECT 1
+                      FROM recettes r
+                      WHERE r.recette_id = a.recette_id
+                  );";
 
-            string deleteArchive = @"
-        DELETE a
-        FROM recettes_archive a
-        INNER JOIN recettes r ON r.recette_id = a.recette_id
-        WHERE a.annee_archive = @annee;";
+                    string deleteArchive = @"
+                DELETE a
+                FROM recettes_archive a
+                INNER JOIN recettes r ON r.recette_id = a.recette_id
+                WHERE a.annee_archive = @annee;";
 
             ExecuterRestaurationArchive(insert, deleteArchive, annee);
         }

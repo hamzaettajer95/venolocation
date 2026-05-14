@@ -9,6 +9,7 @@ using System.Threading.Tasks;
 using System.Windows.Forms;
 using MySql.Data.MySqlClient;
 using venolocation.classee;
+using System.IO;
 
 namespace venolocation.formee
 {
@@ -19,6 +20,7 @@ namespace venolocation.formee
             InitializeComponent();
         }
         string imagePath = "";
+
         void LoadVoitures()
         {
             try

@@ -257,5 +257,48 @@ namespace venolocation.formee
                 MessageBox.Show("Erreur lors du filtrage : " + ex.Message);
             }
         }
+
+        private void btn_imprimer_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                if (dgvDepence.Rows.Count == 0)
+                {
+                    MessageBox.Show(
+                        "Aucune donnée à imprimer.",
+                        "Impression",
+                        MessageBoxButtons.OK,
+                        MessageBoxIcon.Warning
+                    );
+                    return;
+                }
+
+                DataGridViewPrinter printer = new DataGridViewPrinter(
+                    dgvDepence,
+                    "Liste des Depences",
+                    Session.Username
+                );
+
+                printer.ShowPreview();
+            }
+            catch (Exception ex)
+            {
+
+
+                dbErreur.AddLog(
+                    ex.Message,
+                    Session.Username,
+                    "historique_contrats",
+                    "btnImprimer_Click"
+                );
+
+                MessageBox.Show(
+                    "Erreur lors de l'impression : " + ex.Message,
+                    "Erreur",
+                    MessageBoxButtons.OK,
+                    MessageBoxIcon.Error
+                );
+            }
+        }
     }
 }

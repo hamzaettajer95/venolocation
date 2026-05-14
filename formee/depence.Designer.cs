@@ -51,6 +51,7 @@
             this.label4 = new System.Windows.Forms.Label();
             this.label3 = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
+            this.btn_imprimer = new FontAwesome.Sharp.IconButton();
             this.panel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgvDepence)).BeginInit();
             this.panel2.SuspendLayout();
@@ -68,7 +69,7 @@
             this.btn_suprimmer.IconFont = FontAwesome.Sharp.IconFont.Auto;
             this.btn_suprimmer.IconSize = 40;
             this.btn_suprimmer.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btn_suprimmer.Location = new System.Drawing.Point(439, 5);
+            this.btn_suprimmer.Location = new System.Drawing.Point(501, 4);
             this.btn_suprimmer.Name = "btn_suprimmer";
             this.btn_suprimmer.Size = new System.Drawing.Size(198, 57);
             this.btn_suprimmer.TabIndex = 2;
@@ -87,7 +88,7 @@
             this.btn_modifier.IconFont = FontAwesome.Sharp.IconFont.Auto;
             this.btn_modifier.IconSize = 40;
             this.btn_modifier.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btn_modifier.Location = new System.Drawing.Point(230, 5);
+            this.btn_modifier.Location = new System.Drawing.Point(261, 4);
             this.btn_modifier.Name = "btn_modifier";
             this.btn_modifier.Size = new System.Drawing.Size(198, 57);
             this.btn_modifier.TabIndex = 1;
@@ -105,7 +106,7 @@
             this.btn_ajouter.IconFont = FontAwesome.Sharp.IconFont.Auto;
             this.btn_ajouter.IconSize = 40;
             this.btn_ajouter.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btn_ajouter.Location = new System.Drawing.Point(21, 5);
+            this.btn_ajouter.Location = new System.Drawing.Point(21, 4);
             this.btn_ajouter.Name = "btn_ajouter";
             this.btn_ajouter.Size = new System.Drawing.Size(198, 57);
             this.btn_ajouter.TabIndex = 0;
@@ -116,9 +117,9 @@
             // panel1
             // 
             this.panel1.BackColor = System.Drawing.Color.White;
+            this.panel1.Controls.Add(this.btn_imprimer);
             this.panel1.Controls.Add(this.btn_suprimmer);
             this.panel1.Controls.Add(this.btn_modifier);
-            this.panel1.Controls.Add(this.lbl_totale);
             this.panel1.Controls.Add(this.btn_ajouter);
             this.panel1.Location = new System.Drawing.Point(7, 555);
             this.panel1.Name = "panel1";
@@ -129,7 +130,7 @@
             // 
             this.lbl_totale.AutoSize = true;
             this.lbl_totale.Font = new System.Drawing.Font("Segoe UI Semibold", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lbl_totale.Location = new System.Drawing.Point(658, 18);
+            this.lbl_totale.Location = new System.Drawing.Point(616, 94);
             this.lbl_totale.Name = "lbl_totale";
             this.lbl_totale.Size = new System.Drawing.Size(167, 28);
             this.lbl_totale.TabIndex = 12;
@@ -249,6 +250,7 @@
             this.panel3.BackColor = System.Drawing.Color.White;
             this.panel3.Controls.Add(this.txt_description);
             this.panel3.Controls.Add(this.txt_type);
+            this.panel3.Controls.Add(this.lbl_totale);
             this.panel3.Controls.Add(this.txt_montant);
             this.panel3.Controls.Add(this.label4);
             this.panel3.Controls.Add(this.label3);
@@ -277,7 +279,7 @@
             this.txt_description.Name = "txt_description";
             this.txt_description.PlaceholderText = "Déscription";
             this.txt_description.SelectedText = "";
-            this.txt_description.Size = new System.Drawing.Size(703, 41);
+            this.txt_description.Size = new System.Drawing.Size(423, 41);
             this.txt_description.TabIndex = 17;
             // 
             // txt_type
@@ -355,6 +357,25 @@
             this.label2.TabIndex = 2;
             this.label2.Text = "Le Type :";
             // 
+            // btn_imprimer
+            // 
+            this.btn_imprimer.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(126)))), ((int)(((byte)(87)))), ((int)(((byte)(194)))));
+            this.btn_imprimer.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btn_imprimer.Font = new System.Drawing.Font("Segoe UI", 10.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btn_imprimer.ForeColor = System.Drawing.Color.White;
+            this.btn_imprimer.IconChar = FontAwesome.Sharp.IconChar.Print;
+            this.btn_imprimer.IconColor = System.Drawing.Color.White;
+            this.btn_imprimer.IconFont = FontAwesome.Sharp.IconFont.Auto;
+            this.btn_imprimer.IconSize = 40;
+            this.btn_imprimer.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.btn_imprimer.Location = new System.Drawing.Point(741, 4);
+            this.btn_imprimer.Name = "btn_imprimer";
+            this.btn_imprimer.Size = new System.Drawing.Size(198, 57);
+            this.btn_imprimer.TabIndex = 4;
+            this.btn_imprimer.Text = "Imprimmer";
+            this.btn_imprimer.UseVisualStyleBackColor = false;
+            this.btn_imprimer.Click += new System.EventHandler(this.btn_imprimer_Click);
+            // 
             // depence
             // 
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.None;
@@ -373,7 +394,6 @@
             this.Text = "Dépence";
             this.Load += new System.EventHandler(this.depence_Load);
             this.panel1.ResumeLayout(false);
-            this.panel1.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgvDepence)).EndInit();
             this.panel2.ResumeLayout(false);
             this.panel2.PerformLayout();
@@ -403,5 +423,6 @@
         private Guna.UI2.WinForms.Guna2TextBox txt_description;
         private Guna.UI2.WinForms.Guna2TextBox txt_type;
         private Guna.UI2.WinForms.Guna2TextBox txt_montant;
+        private FontAwesome.Sharp.IconButton btn_imprimer;
     }
 }
