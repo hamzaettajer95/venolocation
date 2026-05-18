@@ -128,6 +128,7 @@
             this.label26 = new System.Windows.Forms.Label();
             this.iconPictureBox10 = new FontAwesome.Sharp.IconPictureBox();
             this.label24 = new System.Windows.Forms.Label();
+            this.dtpMois = new System.Windows.Forms.DateTimePicker();
             this.pnlHeader.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.iconPictureBox1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.guna2CirclePictureBox1)).BeginInit();
@@ -166,6 +167,7 @@
             // pnlHeader
             // 
             this.pnlHeader.BorderRadius = 16;
+            this.pnlHeader.Controls.Add(this.dtpMois);
             this.pnlHeader.Controls.Add(this.btnActualiser);
             this.pnlHeader.Controls.Add(this.label2);
             this.pnlHeader.Controls.Add(this.iconPictureBox1);
@@ -1397,6 +1399,14 @@
             this.label24.TabIndex = 13;
             this.label24.Text = "Résumé Financier ( mois en cours)";
             // 
+            // dtpMois
+            // 
+            this.dtpMois.CustomFormat = "MM/yyyy";
+            this.dtpMois.Location = new System.Drawing.Point(518, 36);
+            this.dtpMois.Name = "dtpMois";
+            this.dtpMois.Size = new System.Drawing.Size(120, 22);
+            this.dtpMois.TabIndex = 6;
+            // 
             // situation
             // 
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.None;
@@ -1562,5 +1572,6 @@
         private System.Windows.Forms.Label lblEntreesMois;
         private System.Windows.Forms.Label label26;
         private Guna.UI2.WinForms.Guna2ProgressBar pbTotalClients;
+        private System.Windows.Forms.DateTimePicker dtpMois;
     }
 }

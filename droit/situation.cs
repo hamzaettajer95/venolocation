@@ -78,6 +78,21 @@ namespace venolocation.droit
             {
                 this.ResumeLayout();
             }
+            // imprimer situation
+            try
+            {
+                int mois = dtpMois.Value.Month;
+                int annee = dtpMois.Value.Year;
+
+                SituationMensuellePrinter printer =
+                    new SituationMensuellePrinter(mois, annee);
+
+                printer.ShowPreview();
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+            }
         }
 
         private void ChargerTout()

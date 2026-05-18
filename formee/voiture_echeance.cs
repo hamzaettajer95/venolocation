@@ -62,7 +62,7 @@ namespace venolocation.formee
             }
             catch (Exception ex)
             {
-                ErrorReporter.SendError(ex, "voiture_echeance", "voiture_echeance_Load");
+               // ErrorReporter.SendError(ex, "voiture_echeance", "voiture_echeance_Load");
                 dbErreur.AddLog(ex.Message, Session.Username, "voiture_echeance", "voiture_echeance_Load");
                 MessageService.Error("Erreur chargement formulaire échéances.");
             }
@@ -143,7 +143,7 @@ namespace venolocation.formee
                         catch (Exception ex)
                         {
                             tr.Rollback();
-                            ErrorReporter.SendError(ex, "retour", "retour_Load");
+                            //ErrorReporter.SendError(ex, "retour", "retour_Load");
                             dbErreur.AddLog(ex.Message, Session.Username, "voiture_echeance", "btnAjouter_Click_Transaction");
                             MessageService.Error("Erreur lors de l'ajout de l'échéance.");
                         }
@@ -152,7 +152,7 @@ namespace venolocation.formee
             }
             catch (Exception ex)
             {
-                ErrorReporter.SendError(ex, "voiture_echeance", "btnAjouter_Click");
+                //ErrorReporter.SendError(ex, "voiture_echeance", "btnAjouter_Click");
                 dbErreur.AddLog(ex.Message, Session.Username, "voiture_echeance", "btnAjouter_Click");
                 MessageService.Error("Erreur connexion base de données.");
             }
@@ -288,7 +288,7 @@ namespace venolocation.formee
                         catch (Exception ex)
                         {
                             tr.Rollback();
-                            ErrorReporter.SendError(ex, "voiture_echeance", "btnModifier_Click_Transaction");
+                            //ErrorReporter.SendError(ex, "voiture_echeance", "btnModifier_Click_Transaction");
                             
                             dbErreur.AddLog(ex.Message, Session.Username, "voiture_echeance", "btnModifier_Click_Transaction");
                             MessageService.Error("Erreur lors de la modification.");
@@ -298,7 +298,7 @@ namespace venolocation.formee
             }
             catch (Exception ex)
             {
-                ErrorReporter.SendError(ex, "voiture_echeance", "btnModifier_Click");
+                //ErrorReporter.SendError(ex, "voiture_echeance", "btnModifier_Click");
                 dbErreur.AddLog(ex.Message, Session.Username, "voiture_echeance", "btnModifier_Click");
                 MessageService.Error("Erreur connexion base de données.");
             }
@@ -356,7 +356,7 @@ namespace venolocation.formee
                         catch (Exception ex)
                         {
                             tr.Rollback();
-                            ErrorReporter.SendError(ex, "voiture_echeance", "btnSupprimer_Click_Transaction");
+                            //ErrorReporter.SendError(ex, "voiture_echeance", "btnSupprimer_Click_Transaction");
                             dbErreur.AddLog(ex.Message, Session.Username, "voiture_echeance", "btnSupprimer_Click_Transaction");
                             MessageService.Error("Erreur lors de la suppression.");
                         }
@@ -365,7 +365,7 @@ namespace venolocation.formee
             }
             catch (Exception ex)
             {
-                ErrorReporter.SendError(ex, "voiture_echeance", "btnSupprimer_Click");
+                //ErrorReporter.SendError(ex, "voiture_echeance", "btnSupprimer_Click");
                 dbErreur.AddLog(ex.Message, Session.Username, "voiture_echeance", "btnSupprimer_Click");
                 MessageService.Error("Erreur connexion base de données.");
             }
@@ -479,7 +479,7 @@ namespace venolocation.formee
             }
             catch (Exception ex)
             {
-                ErrorReporter.SendError(ex, "voiture_echeance", "ChargerVoitures");
+                //ErrorReporter.SendError(ex, "voiture_echeance", "ChargerVoitures");
                 dbErreur.AddLog(ex.Message, Session.Username, "voiture_echeance", "ChargerVoitures");
                 MessageService.Error("Erreur chargement voitures.");
             }
@@ -699,20 +699,20 @@ namespace venolocation.formee
             cbVoiture.SelectedValue = Convert.ToInt32(row.Cells["Voiture ID"].Value);
 
             SetTypeEcheanceText(row.Cells["TypeValue"].Value?.ToString());
-            txtNumeroDocument.Text = row.Cells["N° Document"].Value?.ToString();
+            txtNumeroDocument.Text = row.Cells["Document"].Value?.ToString();
 
             DateTime dateDebut;
-            if (DateTime.TryParse(row.Cells["Date début"].Value?.ToString(), out dateDebut))
+            if (DateTime.TryParse(row.Cells["Début"].Value?.ToString(), out dateDebut))
                 dtDateDebut.Value = dateDebut;
 
             DateTime dateFin;
-            if (DateTime.TryParse(row.Cells["Date fin"].Value?.ToString(), out dateFin))
+            if (DateTime.TryParse(row.Cells["Fin"].Value?.ToString(), out dateFin))
                 dtDateFin.Value = dateFin;
 
             txtMontant.Text = row.Cells["Montant"].Value?.ToString();
             txtRemarque.Text = row.Cells["Remarque"].Value?.ToString();
 
-            SetStatutText(row.Cells["StatutValue"].Value?.ToString());
+            SetStatutText(row.Cells["Statut"].Value?.ToString());
         }
 
         private void txtMontant_KeyPress(object sender, KeyPressEventArgs e)

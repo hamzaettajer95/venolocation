@@ -130,6 +130,7 @@
     <Compile Include="classee\LogHelper.cs" />
     <Compile Include="classee\MessageService.cs" />
     <Compile Include="classee\Session.cs" />
+    <Compile Include="classee\SituationMensuellePrinter.cs" />
     <Compile Include="classee\UpdateHelper.cs" />
     <Compile Include="classee\UpdateInfo.cs" />
     <Compile Include="dev\debug.cs">

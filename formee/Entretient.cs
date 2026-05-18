@@ -80,8 +80,6 @@ namespace venolocation.formee
             cbTypeEntretien.Items.Clear();
 
             cbTypeEntretien.Items.Add("Vidange");
-            cbTypeEntretien.Items.Add("Filtre à huile");
-            cbTypeEntretien.Items.Add("Filtre à air");
             cbTypeEntretien.Items.Add("Plaquettes de frein");
             cbTypeEntretien.Items.Add("Pneus");
             cbTypeEntretien.Items.Add("Batterie");

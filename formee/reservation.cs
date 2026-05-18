@@ -22,7 +22,6 @@ namespace venolocation.formee
         }
 
 
-
         private void ColorierStatutsReservations()
         {
             if (!dgvReservations.Columns.Contains("Statut"))
