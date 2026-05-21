@@ -1,4 +1,6 @@
-﻿using System;
+﻿using MySql.Data.MySqlClient;
+using Org.BouncyCastle.Tls;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -6,13 +8,10 @@ using System.Drawing;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Web.UI.WebControls.WebParts;
 using System.Windows.Forms;
-
-using MySql.Data.MySqlClient;
-
-using Org.BouncyCastle.Tls;
-
 using venolocation.classee;
+using venolocation.dev;
 using venolocation.settin;
 
 namespace venolocation.formee
@@ -30,6 +29,7 @@ namespace venolocation.formee
         {
             lblDateTime.Text = DateTime.Now.ToString("HH:mm:ss");
         }
+       
         void mise_a_jour()
         {
             string updateUrl = Properties.Settings.Default.updateUrl;
@@ -74,7 +74,7 @@ namespace venolocation.formee
                     port = 3306;
                 }
             }
-
+           
             MySqlConnectionStringBuilder builder = new MySqlConnectionStringBuilder
             {
                 Server = server,
@@ -92,29 +92,25 @@ namespace venolocation.formee
                 try
                 {
                 
-                     string connectionString = GetConnectionStringFromTextBox();
+                //string connectionString = GetConnectionStringFromTextBox();
 
-                    using (MySqlConnection con = new MySqlConnection(connectionString))
-                    {
-                        con.Open();
-                    }
+                using (MySqlConnection con = new MySqlConnection(connectionString))
+                        {
+                            con.Open();
+                        }
 
-                    return true;
+                        return true;
                 }
                 catch (Exception ex)
                 {
-                ErrorReporter.SendError(ex, "dashboard", "erreur connection");
-                dbErreur.AddLog(ex.Message, Session.Username, "dashboard", "erreur connection");
-                    MessageBox.Show(
-                        "Erreur de connexion : " + ex.Message,
-                        "Connexion",
-                        MessageBoxButtons.OK,
-                        MessageBoxIcon.Error
-                    );
 
-                    return false;
+                    MessageBox.Show("Erreur de connexion à la base de données : " + ex.Message, "Erreur de connexion", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    ErrorReporter.SendError(ex, "dashboard", "erreur connection");
+                    
+
+                        return false;
                 }
-            
+            //test
         }
         private void dashboard_Load(object sender, EventArgs e)
         {
@@ -128,7 +124,7 @@ namespace venolocation.formee
                     timer1.Start();
                     lbldate.Text = DateTime.Now.ToString("dddd dd/MM/yyyy");
                     ChargerToutesLesDonnees();
-                    //deconnecte();
+                    deconnecte();
                     Dbexec.ExecuteQuery("CALL sp_generer_alertes();");
                    
                     //test_serial();
@@ -471,6 +467,7 @@ namespace venolocation.formee
             dgvAlertes.DataSource = null;
             dgvDernieresOperations.DataSource = null;
             dgvRetoursPrevus.DataSource = null;
+
 
         }
 

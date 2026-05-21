@@ -4,7 +4,7 @@ using System.Linq;
 using System.Security.Cryptography;
 using System.Text;
 using System.Threading.Tasks;
-
+using System.Windows;
 using MySql.Data.MySqlClient;
 
 namespace venolocation.classee
@@ -52,9 +52,10 @@ namespace venolocation.classee
                 if (port == 0)
                     port = 3306;
             }
-
+            //MessageBox.Show(server + " " + database + " " + user + " " + password + " " + port);
             MySqlConnectionStringBuilder builder = new MySqlConnectionStringBuilder
             {
+               
                 Server = server,
                 Database = database,
                 UserID = user,
