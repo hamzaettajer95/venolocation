@@ -101,8 +101,8 @@ namespace venolocation.classee
                         {
                             return true;
                         }
-
-                        return false;
+                       
+                        continue;
                     }
                 }
                 
@@ -141,7 +141,7 @@ namespace venolocation.classee
                     File.Delete(keyPath);
 
                 bool downloaded = DownloadFileKey(driveUrl, keyPath);
-                
+
                 if (!downloaded)
                 {
                     MessageBox.Show(
@@ -153,7 +153,7 @@ namespace venolocation.classee
 
                     return false;
                 }
-                
+
 
                 string processorIdPc = GetProcessorId();
                 string serialLocal = Properties.Settings.Default.serial;
@@ -170,9 +170,12 @@ namespace venolocation.classee
                     return false;
                 }
 
-                
-                bool isValid = CheckLicense(keyPath,programName,processorIdPc,serialLocal);
 
+                bool isValid = CheckLicense(keyPath, programName, processorIdPc, serialLocal);
+                
+                
+
+                
                 if (!isValid)
                 {
                     MessageBox.Show(

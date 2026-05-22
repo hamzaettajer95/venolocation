@@ -152,8 +152,7 @@
             // 
             // activation
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
-            this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.None;
             this.ClientSize = new System.Drawing.Size(717, 281);
             this.Controls.Add(this.cardLicence);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedDialog;

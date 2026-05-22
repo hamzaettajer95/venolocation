@@ -76,7 +76,6 @@ namespace venolocation.classee
                      "Message LOGICIEL" + Environment.NewLine +
                      Environment.NewLine +
                      "Programme : " + Properties.Settings.Default.name_programe + Environment.NewLine +
-                     "Version : " + Properties.Settings.Default.verssion + Environment.NewLine +
                      "Utilisateur : " + Session.Username + Environment.NewLine +
                      "PC Name : " + Environment.MachineName + Environment.NewLine +
                      "ID_prosesseur : " + ActivationHelper.GetProcessorId() + Environment.NewLine +

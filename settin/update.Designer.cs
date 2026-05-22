@@ -30,14 +30,14 @@
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(update));
             this.cardUpdate = new Guna.UI2.WinForms.Guna2Panel();
+            this.progressBar1 = new Guna.UI2.WinForms.Guna2ProgressBar();
+            this.txtDescription = new Guna.UI2.WinForms.Guna2TextBox();
+            this.btnTelecharger = new Guna.UI2.WinForms.Guna2Button();
             this.btnIgnorer = new Guna.UI2.WinForms.Guna2Button();
             this.lblNouvelleVersion = new System.Windows.Forms.Label();
             this.lblVersionActuelle = new System.Windows.Forms.Label();
-            this.label6 = new System.Windows.Forms.Label();
-            this.btnTelecharger = new Guna.UI2.WinForms.Guna2Button();
             this.iconPictureBox2 = new FontAwesome.Sharp.IconPictureBox();
-            this.txtDescription = new Guna.UI2.WinForms.Guna2TextBox();
-            this.progressBar1 = new Guna.UI2.WinForms.Guna2ProgressBar();
+            this.label6 = new System.Windows.Forms.Label();
             this.cardUpdate.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.iconPictureBox2)).BeginInit();
             this.SuspendLayout();
@@ -61,6 +61,55 @@
             this.cardUpdate.Name = "cardUpdate";
             this.cardUpdate.Size = new System.Drawing.Size(741, 406);
             this.cardUpdate.TabIndex = 2;
+            // 
+            // progressBar1
+            // 
+            this.progressBar1.Location = new System.Drawing.Point(77, 287);
+            this.progressBar1.Name = "progressBar1";
+            this.progressBar1.Size = new System.Drawing.Size(624, 30);
+            this.progressBar1.TabIndex = 15;
+            this.progressBar1.Text = "guna2ProgressBar1";
+            this.progressBar1.TextRenderingHint = System.Drawing.Text.TextRenderingHint.SystemDefault;
+            // 
+            // txtDescription
+            // 
+            this.txtDescription.BorderRadius = 8;
+            this.txtDescription.Cursor = System.Windows.Forms.Cursors.IBeam;
+            this.txtDescription.DefaultText = "";
+            this.txtDescription.DisabledState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(208)))), ((int)(((byte)(208)))), ((int)(((byte)(208)))));
+            this.txtDescription.DisabledState.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(226)))), ((int)(((byte)(226)))), ((int)(((byte)(226)))));
+            this.txtDescription.DisabledState.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(138)))), ((int)(((byte)(138)))), ((int)(((byte)(138)))));
+            this.txtDescription.DisabledState.PlaceholderForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(138)))), ((int)(((byte)(138)))), ((int)(((byte)(138)))));
+            this.txtDescription.FocusedState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(94)))), ((int)(((byte)(148)))), ((int)(((byte)(255)))));
+            this.txtDescription.Font = new System.Drawing.Font("Segoe UI Semibold", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txtDescription.HoverState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(94)))), ((int)(((byte)(148)))), ((int)(((byte)(255)))));
+            this.txtDescription.Location = new System.Drawing.Point(63, 170);
+            this.txtDescription.Margin = new System.Windows.Forms.Padding(4, 6, 4, 6);
+            this.txtDescription.Name = "txtDescription";
+            this.txtDescription.PlaceholderText = "Description";
+            this.txtDescription.SelectedText = "";
+            this.txtDescription.Size = new System.Drawing.Size(642, 67);
+            this.txtDescription.TabIndex = 14;
+            // 
+            // btnTelecharger
+            // 
+            this.btnTelecharger.BorderRadius = 8;
+            this.btnTelecharger.DisabledState.BorderColor = System.Drawing.Color.DarkGray;
+            this.btnTelecharger.DisabledState.CustomBorderColor = System.Drawing.Color.DarkGray;
+            this.btnTelecharger.DisabledState.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(169)))), ((int)(((byte)(169)))), ((int)(((byte)(169)))));
+            this.btnTelecharger.DisabledState.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(141)))), ((int)(((byte)(141)))), ((int)(((byte)(141)))));
+            this.btnTelecharger.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(21)))), ((int)(((byte)(101)))), ((int)(((byte)(192)))));
+            this.btnTelecharger.Font = new System.Drawing.Font("Segoe UI", 10.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnTelecharger.ForeColor = System.Drawing.Color.White;
+            this.btnTelecharger.Image = global::venolocation.Properties.Resources.cloud_computing;
+            this.btnTelecharger.ImageAlign = System.Windows.Forms.HorizontalAlignment.Left;
+            this.btnTelecharger.ImageSize = new System.Drawing.Size(30, 30);
+            this.btnTelecharger.Location = new System.Drawing.Point(63, 337);
+            this.btnTelecharger.Name = "btnTelecharger";
+            this.btnTelecharger.Size = new System.Drawing.Size(224, 45);
+            this.btnTelecharger.TabIndex = 13;
+            this.btnTelecharger.Text = "Télécharger";
+            this.btnTelecharger.Click += new System.EventHandler(this.btnTelecharger_Click);
             // 
             // btnIgnorer
             // 
@@ -107,38 +156,6 @@
             this.lblVersionActuelle.TabIndex = 10;
             this.lblVersionActuelle.Text = "Version actuelle : 1.0.0.0";
             // 
-            // label6
-            // 
-            this.label6.AutoSize = true;
-            this.label6.BackColor = System.Drawing.Color.Transparent;
-            this.label6.Font = new System.Drawing.Font("Segoe UI", 13.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label6.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(24)))), ((int)(((byte)(86)))), ((int)(((byte)(197)))));
-            this.label6.Location = new System.Drawing.Point(57, 15);
-            this.label6.Name = "label6";
-            this.label6.Size = new System.Drawing.Size(133, 31);
-            this.label6.TabIndex = 8;
-            this.label6.Text = "Mise à jour";
-            // 
-            // btnTelecharger
-            // 
-            this.btnTelecharger.BorderRadius = 8;
-            this.btnTelecharger.DisabledState.BorderColor = System.Drawing.Color.DarkGray;
-            this.btnTelecharger.DisabledState.CustomBorderColor = System.Drawing.Color.DarkGray;
-            this.btnTelecharger.DisabledState.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(169)))), ((int)(((byte)(169)))), ((int)(((byte)(169)))));
-            this.btnTelecharger.DisabledState.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(141)))), ((int)(((byte)(141)))), ((int)(((byte)(141)))));
-            this.btnTelecharger.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(21)))), ((int)(((byte)(101)))), ((int)(((byte)(192)))));
-            this.btnTelecharger.Font = new System.Drawing.Font("Segoe UI", 10.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnTelecharger.ForeColor = System.Drawing.Color.White;
-            this.btnTelecharger.Image = global::venolocation.Properties.Resources.cloud_computing;
-            this.btnTelecharger.ImageAlign = System.Windows.Forms.HorizontalAlignment.Left;
-            this.btnTelecharger.ImageSize = new System.Drawing.Size(30, 30);
-            this.btnTelecharger.Location = new System.Drawing.Point(63, 337);
-            this.btnTelecharger.Name = "btnTelecharger";
-            this.btnTelecharger.Size = new System.Drawing.Size(224, 45);
-            this.btnTelecharger.TabIndex = 13;
-            this.btnTelecharger.Text = "Télécharger";
-            this.btnTelecharger.Click += new System.EventHandler(this.btnTelecharger_Click);
-            // 
             // iconPictureBox2
             // 
             this.iconPictureBox2.BackColor = System.Drawing.Color.White;
@@ -152,39 +169,21 @@
             this.iconPictureBox2.TabIndex = 9;
             this.iconPictureBox2.TabStop = false;
             // 
-            // txtDescription
+            // label6
             // 
-            this.txtDescription.BorderRadius = 8;
-            this.txtDescription.Cursor = System.Windows.Forms.Cursors.IBeam;
-            this.txtDescription.DefaultText = "";
-            this.txtDescription.DisabledState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(208)))), ((int)(((byte)(208)))), ((int)(((byte)(208)))));
-            this.txtDescription.DisabledState.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(226)))), ((int)(((byte)(226)))), ((int)(((byte)(226)))));
-            this.txtDescription.DisabledState.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(138)))), ((int)(((byte)(138)))), ((int)(((byte)(138)))));
-            this.txtDescription.DisabledState.PlaceholderForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(138)))), ((int)(((byte)(138)))), ((int)(((byte)(138)))));
-            this.txtDescription.FocusedState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(94)))), ((int)(((byte)(148)))), ((int)(((byte)(255)))));
-            this.txtDescription.Font = new System.Drawing.Font("Segoe UI Semibold", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtDescription.HoverState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(94)))), ((int)(((byte)(148)))), ((int)(((byte)(255)))));
-            this.txtDescription.Location = new System.Drawing.Point(63, 170);
-            this.txtDescription.Margin = new System.Windows.Forms.Padding(4, 6, 4, 6);
-            this.txtDescription.Name = "txtDescription";
-            this.txtDescription.PlaceholderText = "Description";
-            this.txtDescription.SelectedText = "";
-            this.txtDescription.Size = new System.Drawing.Size(642, 67);
-            this.txtDescription.TabIndex = 14;
-            // 
-            // progressBar1
-            // 
-            this.progressBar1.Location = new System.Drawing.Point(77, 287);
-            this.progressBar1.Name = "progressBar1";
-            this.progressBar1.Size = new System.Drawing.Size(624, 30);
-            this.progressBar1.TabIndex = 15;
-            this.progressBar1.Text = "guna2ProgressBar1";
-            this.progressBar1.TextRenderingHint = System.Drawing.Text.TextRenderingHint.SystemDefault;
+            this.label6.AutoSize = true;
+            this.label6.BackColor = System.Drawing.Color.Transparent;
+            this.label6.Font = new System.Drawing.Font("Segoe UI", 13.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label6.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(24)))), ((int)(((byte)(86)))), ((int)(((byte)(197)))));
+            this.label6.Location = new System.Drawing.Point(57, 15);
+            this.label6.Name = "label6";
+            this.label6.Size = new System.Drawing.Size(133, 31);
+            this.label6.TabIndex = 8;
+            this.label6.Text = "Mise à jour";
             // 
             // update
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
-            this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.None;
             this.ClientSize = new System.Drawing.Size(745, 421);
             this.Controls.Add(this.cardUpdate);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;

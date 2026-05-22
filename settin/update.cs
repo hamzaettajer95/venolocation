@@ -43,11 +43,11 @@ namespace venolocation.settin
             txtDescription.Text = _updateInfo.Description;
 
             progressBar1.Value = 0;
-
             if (_updateInfo.Obligatoire)
             {
                 label6.Text = "Cette mise à jour est obligatoire.";
                 btnIgnorer.Enabled = false;
+                
             }
             else
             {

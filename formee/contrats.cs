@@ -433,9 +433,10 @@ namespace venolocation.formee
                 if (rep == DialogResult.Yes)
                 {
                     FactureEtatVehiculeData data = ChargerFactureDepuisContrat(dernierContratId);
-
+                    
                     if (data != null)
                     {
+                        data.Observations = txtRemarques.Text; // Ajouter les remarques du contrat à la facture
                         FactureEtatVehiculePrinter printer = new FactureEtatVehiculePrinter(
                             data,
                             pictureBoxLogo.Image,
@@ -765,7 +766,7 @@ namespace venolocation.formee
                 int contratId = dernierContratId;
 
                 FactureEtatVehiculeData data = ChargerFactureDepuisContrat(contratId);
-
+                data.Observations = txtRemarques.Text; // Ajouter les remarques du contrat à la facture
                 if (data == null)
                 {
                     MessageBox.Show(

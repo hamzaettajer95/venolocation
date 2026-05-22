@@ -29,7 +29,7 @@ namespace venolocation.formee
             txtPassword.UseSystemPasswordChar = !chkShowPassword.Checked;
         }
 
-        private void btnLogin_Click(object sender, EventArgs e)
+        void loggin()
         {
             try
             {
@@ -49,7 +49,7 @@ namespace venolocation.formee
                     {
                         nom = dr["nom"].ToString();
                         role = dr["role"].ToString();
-                        Session.Username = nom;                        
+                        Session.Username = nom;
                         Session.Role = role;
                         LogHelper.AddLog("Connexion réussie.", Session.Username);
 
@@ -59,7 +59,7 @@ namespace venolocation.formee
                     }
                     else
                     {
-                        
+
                         LogHelper.AddLog("Échec de connexion.", txtUsername.Text.Trim());
                         MessageBox.Show("Nom d'utilisateur ou mot de passe incorrect.");
                     }
@@ -73,7 +73,11 @@ namespace venolocation.formee
                 dbErreur.AddLog(ex.Message, txtUsername.Text.Trim(), "login", "btnLogin_Click");
                 MessageBox.Show(ex.Message);
             }
-
+        }
+        private void btnLogin_Click(object sender, EventArgs e)
+        {
+            
+            loggin();
         }
 
         private void btnClose_Click(object sender, EventArgs e)
@@ -81,6 +85,16 @@ namespace venolocation.formee
             Session.Username = "";
             Session.Role = "";
             this.Close();
+        }
+
+        private void txtPassword_KeyDown(object sender, KeyEventArgs e)
+        {
+            if (e.KeyCode != Keys.Enter)
+                return;
+
+            e.SuppressKeyPress = true;
+            loggin();
+
         }
     }
 }

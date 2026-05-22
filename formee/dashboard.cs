@@ -54,8 +54,7 @@ namespace venolocation.formee
                     return;
                 }
             }
-
-           
+                       
         }
         private string GetConnectionStringFromTextBox()
         {
@@ -104,30 +103,37 @@ namespace venolocation.formee
                 catch (Exception ex)
                 {
 
-                    MessageBox.Show("Erreur de connexion à la base de données : " + ex.Message, "Erreur de connexion", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                    ErrorReporter.SendError(ex, "dashboard", "erreur connection");
-                    
+                MessageBox.Show("Erreur de connexion à la base de données : " + ex.Message, "Erreur de connexion", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                ErrorReporter.SendError(ex, "dashboard", "erreur connection");
 
-                        return false;
+
+                return false;
                 }
-            //test
+            
         }
+        bool test = false;
         private void dashboard_Load(object sender, EventArgs e)
         {
             if (verifier_connection())
             {
-
+                test=true;
                 try
                 {
                     this.SuspendLayout();
-                    mise_a_jour();
+                    
                     timer1.Start();
                     lbldate.Text = DateTime.Now.ToString("dddd dd/MM/yyyy");
                     ChargerToutesLesDonnees();
-                    deconnecte();
+
+                    mise_a_jour();
+                    //deconnecte();
+                    //test_serial();
+
+
+                    // enregistrer les alertes dans la base de données
                     Dbexec.ExecuteQuery("CALL sp_generer_alertes();");
                    
-                    //test_serial();
+                   
                     MakePanelClickable(panel1, panel1_Click);
                 }
                 catch (Exception ex)
@@ -143,6 +149,7 @@ namespace venolocation.formee
             }
             else
             {
+                deconnecte();
                 dev.server ser = new dev.server();
                 ser.ShowDialog();
             }
@@ -410,11 +417,16 @@ namespace venolocation.formee
             try
             {
                 this.SuspendLayout();
-                ChargerToutesLesDonnees();
+                if (test)
+                {
+                    ChargerToutesLesDonnees();
+                }
+
+                
             }
             catch (Exception ex)
             {
-                ErrorReporter.SendError(ex, "dashboard", "dashboard_Activated");
+                //ErrorReporter.SendError(ex, "dashboard", "dashboard_Activated");
                 dbErreur.AddLog(ex.Message, Session.Username, "dashboard", "dashboard_Activated");
                 MessageBox.Show("Erreur actualisation dashboard : " + ex.Message);
             }
@@ -467,6 +479,7 @@ namespace venolocation.formee
             dgvAlertes.DataSource = null;
             dgvDernieresOperations.DataSource = null;
             dgvRetoursPrevus.DataSource = null;
+            btnUserMenu.Enabled = false;
 
 
         }
@@ -486,6 +499,7 @@ namespace venolocation.formee
             btnAccidents.Enabled = true;            
             btnReparation.Enabled = true;            
             btnHistorique.Enabled = true;
+            btnUserMenu.Enabled = true;
         }
 
         void developpeur()
@@ -558,7 +572,6 @@ namespace venolocation.formee
             string programName = Properties.Settings.Default.name_programe;
 
             string driveUrl = Properties.Settings.Default.url_licence;
-
             bool active = ActivationHelper.CheckActivationFromDrive(programName, driveUrl);
 
             if (!active)
@@ -606,6 +619,11 @@ namespace venolocation.formee
             settin.activation acti = new activation();
             acti.ShowDialog();
             btnavtiveLicence.Visible = false;
+        }
+
+        private void dashboard_FormClosed(object sender, FormClosedEventArgs e)
+        {
+            LogHelper.AddLog(" Fermeture de session.", Session.Username);
         }
     }
 }

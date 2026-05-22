@@ -307,7 +307,7 @@ namespace venolocation.classee
                 for (int i = 0; i < 3; i++)
                 {
                     int yy = y + 42 + i * 18;
-                    g.DrawLine(Pens.LightGray, x + 15, yy, x + w - 15, yy);
+                    //g.DrawLine(Pens.LightGray, x + 15, yy, x + w - 15, yy);
                 }
 
                 g.DrawString(Safe(_data.Observations), fontNormal, Brushes.Black, rect);

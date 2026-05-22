@@ -40,6 +40,7 @@
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle9 = new System.Windows.Forms.DataGridViewCellStyle();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(dashboard));
             this.panelTop = new System.Windows.Forms.Panel();
+            this.btnavtiveLicence = new Guna.UI2.WinForms.Guna2Button();
             this.panel1 = new System.Windows.Forms.Panel();
             this.pictureBox1 = new System.Windows.Forms.PictureBox();
             this.lblUser = new System.Windows.Forms.Label();
@@ -103,7 +104,6 @@
             this.ProfilToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStripSeparator1 = new System.Windows.Forms.ToolStripSeparator();
             this.deconnecterToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.btnavtiveLicence = new Guna.UI2.WinForms.Guna2Button();
             this.panelTop.SuspendLayout();
             this.panel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
@@ -145,6 +145,33 @@
             this.panelTop.Name = "panelTop";
             this.panelTop.Size = new System.Drawing.Size(1697, 70);
             this.panelTop.TabIndex = 0;
+            // 
+            // btnavtiveLicence
+            // 
+            this.btnavtiveLicence.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(191)))), ((int)(((byte)(219)))), ((int)(((byte)(254)))));
+            this.btnavtiveLicence.BorderRadius = 12;
+            this.btnavtiveLicence.BorderThickness = 1;
+            this.btnavtiveLicence.DisabledState.BorderColor = System.Drawing.Color.DarkGray;
+            this.btnavtiveLicence.DisabledState.CustomBorderColor = System.Drawing.Color.DarkGray;
+            this.btnavtiveLicence.DisabledState.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(169)))), ((int)(((byte)(169)))), ((int)(((byte)(169)))));
+            this.btnavtiveLicence.DisabledState.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(141)))), ((int)(((byte)(141)))), ((int)(((byte)(141)))));
+            this.btnavtiveLicence.Dock = System.Windows.Forms.DockStyle.Right;
+            this.btnavtiveLicence.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(38)))), ((int)(((byte)(166)))), ((int)(((byte)(91)))));
+            this.btnavtiveLicence.Font = new System.Drawing.Font("Segoe UI", 10.8F, System.Drawing.FontStyle.Bold);
+            this.btnavtiveLicence.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(45)))), ((int)(((byte)(55)))), ((int)(((byte)(72)))));
+            this.btnavtiveLicence.HoverState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(128)))), ((int)(((byte)(128)))), ((int)(((byte)(255)))));
+            this.btnavtiveLicence.HoverState.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(239)))), ((int)(((byte)(246)))), ((int)(((byte)(255)))));
+            this.btnavtiveLicence.Image = global::venolocation.Properties.Resources.certificate;
+            this.btnavtiveLicence.ImageAlign = System.Windows.Forms.HorizontalAlignment.Left;
+            this.btnavtiveLicence.ImageSize = new System.Drawing.Size(35, 35);
+            this.btnavtiveLicence.Location = new System.Drawing.Point(1172, 0);
+            this.btnavtiveLicence.Name = "btnavtiveLicence";
+            this.btnavtiveLicence.Size = new System.Drawing.Size(282, 70);
+            this.btnavtiveLicence.TabIndex = 20;
+            this.btnavtiveLicence.Text = "    Activé Logiciel";
+            this.btnavtiveLicence.TextAlign = System.Windows.Forms.HorizontalAlignment.Left;
+            this.btnavtiveLicence.Visible = false;
+            this.btnavtiveLicence.Click += new System.EventHandler(this.btnavtiveLicence_Click);
             // 
             // panel1
             // 
@@ -198,11 +225,11 @@
             // 
             this.lbldate.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.lbldate.AutoSize = true;
-            this.lbldate.Font = new System.Drawing.Font("Algerian", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lbldate.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lbldate.ForeColor = System.Drawing.Color.WhiteSmoke;
             this.lbldate.Location = new System.Drawing.Point(689, 20);
             this.lbldate.Name = "lbldate";
-            this.lbldate.Size = new System.Drawing.Size(184, 22);
+            this.lbldate.Size = new System.Drawing.Size(158, 25);
             this.lbldate.TabIndex = 3;
             this.lbldate.Text = "lundi 18/03/2026";
             // 
@@ -210,11 +237,11 @@
             // 
             this.lblDateTime.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.lblDateTime.AutoSize = true;
-            this.lblDateTime.Font = new System.Drawing.Font("Algerian", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblDateTime.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblDateTime.ForeColor = System.Drawing.Color.WhiteSmoke;
             this.lblDateTime.Location = new System.Drawing.Point(918, 21);
             this.lblDateTime.Name = "lblDateTime";
-            this.lblDateTime.Size = new System.Drawing.Size(68, 22);
+            this.lblDateTime.Size = new System.Drawing.Size(67, 25);
             this.lblDateTime.TabIndex = 2;
             this.lblDateTime.Text = " 22:40";
             // 
@@ -1168,19 +1195,19 @@
             this.cmsUser.Margin = new System.Windows.Forms.Padding(0, 10, 0, 10);
             this.cmsUser.Name = "cmsUser";
             this.cmsUser.ShowCheckMargin = true;
-            this.cmsUser.Size = new System.Drawing.Size(287, 152);
+            this.cmsUser.Size = new System.Drawing.Size(267, 140);
             this.cmsUser.Text = "Menu";
             this.cmsUser.Opening += new System.ComponentModel.CancelEventHandler(this.cmsUser_Opening);
             // 
             // ProfilToolStripMenuItem
             // 
             this.ProfilToolStripMenuItem.BackColor = System.Drawing.Color.White;
-            this.ProfilToolStripMenuItem.Font = new System.Drawing.Font("Elephant", 16.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.ProfilToolStripMenuItem.Font = new System.Drawing.Font("Microsoft Sans Serif", 16.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.ProfilToolStripMenuItem.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this.ProfilToolStripMenuItem.Margin = new System.Windows.Forms.Padding(0, 20, 0, 10);
             this.ProfilToolStripMenuItem.Name = "ProfilToolStripMenuItem";
             this.ProfilToolStripMenuItem.Padding = new System.Windows.Forms.Padding(0, 0, 0, 10);
-            this.ProfilToolStripMenuItem.Size = new System.Drawing.Size(286, 50);
+            this.ProfilToolStripMenuItem.Size = new System.Drawing.Size(266, 44);
             this.ProfilToolStripMenuItem.Text = "Login";
             this.ProfilToolStripMenuItem.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this.ProfilToolStripMenuItem.Click += new System.EventHandler(this.ProfilToolStripMenuItem_Click);
@@ -1189,44 +1216,17 @@
             // 
             this.toolStripSeparator1.ForeColor = System.Drawing.Color.Black;
             this.toolStripSeparator1.Name = "toolStripSeparator1";
-            this.toolStripSeparator1.Size = new System.Drawing.Size(283, 6);
+            this.toolStripSeparator1.Size = new System.Drawing.Size(263, 6);
             // 
             // deconnecterToolStripMenuItem
             // 
             this.deconnecterToolStripMenuItem.BackColor = System.Drawing.Color.White;
-            this.deconnecterToolStripMenuItem.Font = new System.Drawing.Font("Elephant", 16.2F);
+            this.deconnecterToolStripMenuItem.Font = new System.Drawing.Font("Microsoft Sans Serif", 16.2F);
             this.deconnecterToolStripMenuItem.Margin = new System.Windows.Forms.Padding(0, 10, 0, 10);
             this.deconnecterToolStripMenuItem.Name = "deconnecterToolStripMenuItem";
-            this.deconnecterToolStripMenuItem.Size = new System.Drawing.Size(286, 42);
+            this.deconnecterToolStripMenuItem.Size = new System.Drawing.Size(266, 36);
             this.deconnecterToolStripMenuItem.Text = "Déconnecter";
             this.deconnecterToolStripMenuItem.Click += new System.EventHandler(this.deconnecterToolStripMenuItem_Click);
-            // 
-            // btnavtiveLicence
-            // 
-            this.btnavtiveLicence.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(191)))), ((int)(((byte)(219)))), ((int)(((byte)(254)))));
-            this.btnavtiveLicence.BorderRadius = 12;
-            this.btnavtiveLicence.BorderThickness = 1;
-            this.btnavtiveLicence.DisabledState.BorderColor = System.Drawing.Color.DarkGray;
-            this.btnavtiveLicence.DisabledState.CustomBorderColor = System.Drawing.Color.DarkGray;
-            this.btnavtiveLicence.DisabledState.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(169)))), ((int)(((byte)(169)))), ((int)(((byte)(169)))));
-            this.btnavtiveLicence.DisabledState.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(141)))), ((int)(((byte)(141)))), ((int)(((byte)(141)))));
-            this.btnavtiveLicence.Dock = System.Windows.Forms.DockStyle.Right;
-            this.btnavtiveLicence.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(38)))), ((int)(((byte)(166)))), ((int)(((byte)(91)))));
-            this.btnavtiveLicence.Font = new System.Drawing.Font("Segoe UI", 10.8F, System.Drawing.FontStyle.Bold);
-            this.btnavtiveLicence.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(45)))), ((int)(((byte)(55)))), ((int)(((byte)(72)))));
-            this.btnavtiveLicence.HoverState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(128)))), ((int)(((byte)(128)))), ((int)(((byte)(255)))));
-            this.btnavtiveLicence.HoverState.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(239)))), ((int)(((byte)(246)))), ((int)(((byte)(255)))));
-            this.btnavtiveLicence.Image = global::venolocation.Properties.Resources.certificate;
-            this.btnavtiveLicence.ImageAlign = System.Windows.Forms.HorizontalAlignment.Left;
-            this.btnavtiveLicence.ImageSize = new System.Drawing.Size(35, 35);
-            this.btnavtiveLicence.Location = new System.Drawing.Point(1172, 0);
-            this.btnavtiveLicence.Name = "btnavtiveLicence";
-            this.btnavtiveLicence.Size = new System.Drawing.Size(282, 70);
-            this.btnavtiveLicence.TabIndex = 20;
-            this.btnavtiveLicence.Text = "    Activé Logiciel";
-            this.btnavtiveLicence.TextAlign = System.Windows.Forms.HorizontalAlignment.Left;
-            this.btnavtiveLicence.Visible = false;
-            this.btnavtiveLicence.Click += new System.EventHandler(this.btnavtiveLicence_Click);
             // 
             // dashboard
             // 
@@ -1246,6 +1246,7 @@
             this.Text = "Gestion Location Voiture";
             this.WindowState = System.Windows.Forms.FormWindowState.Maximized;
             this.Activated += new System.EventHandler(this.dashboard_Activated);
+            this.FormClosed += new System.Windows.Forms.FormClosedEventHandler(this.dashboard_FormClosed);
             this.Load += new System.EventHandler(this.dashboard_Load);
             this.panelTop.ResumeLayout(false);
             this.panelTop.PerformLayout();

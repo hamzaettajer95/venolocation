@@ -34,10 +34,16 @@
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(voiture_echeance));
             this.pnlHeader = new Guna.UI2.WinForms.Guna2GradientPanel();
             this.label2 = new System.Windows.Forms.Label();
-            this.label1 = new System.Windows.Forms.Label();
             this.iconPictureBox1 = new FontAwesome.Sharp.IconPictureBox();
+            this.label1 = new System.Windows.Forms.Label();
             this.guna2CirclePictureBox1 = new Guna.UI2.WinForms.Guna2CirclePictureBox();
             this.cardInfo = new Guna.UI2.WinForms.Guna2Panel();
+            this.cbStatut = new Guna.UI2.WinForms.Guna2ComboBox();
+            this.txtNumeroDocument = new Guna.UI2.WinForms.Guna2TextBox();
+            this.label11 = new System.Windows.Forms.Label();
+            this.label10 = new System.Windows.Forms.Label();
+            this.dtDateFin = new Guna.UI2.WinForms.Guna2DateTimePicker();
+            this.label7 = new System.Windows.Forms.Label();
             this.dtDateDebut = new Guna.UI2.WinForms.Guna2DateTimePicker();
             this.txtMontant = new Guna.UI2.WinForms.Guna2TextBox();
             this.label8 = new System.Windows.Forms.Label();
@@ -50,12 +56,6 @@
             this.label4 = new System.Windows.Forms.Label();
             this.label3 = new System.Windows.Forms.Label();
             this.iconPictureBox2 = new FontAwesome.Sharp.IconPictureBox();
-            this.dtDateFin = new Guna.UI2.WinForms.Guna2DateTimePicker();
-            this.label7 = new System.Windows.Forms.Label();
-            this.label10 = new System.Windows.Forms.Label();
-            this.label11 = new System.Windows.Forms.Label();
-            this.txtNumeroDocument = new Guna.UI2.WinForms.Guna2TextBox();
-            this.cbStatut = new Guna.UI2.WinForms.Guna2ComboBox();
             this.btnNouveau = new Guna.UI2.WinForms.Guna2Button();
             this.btnSupprimer = new Guna.UI2.WinForms.Guna2Button();
             this.btnModifier = new Guna.UI2.WinForms.Guna2Button();
@@ -96,18 +96,6 @@
             this.label2.TabIndex = 3;
             this.label2.Text = "Assurance, visite technique, vignette et documents des véhicules";
             // 
-            // label1
-            // 
-            this.label1.AutoSize = true;
-            this.label1.BackColor = System.Drawing.Color.Transparent;
-            this.label1.Font = new System.Drawing.Font("Segoe UI", 22.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label1.ForeColor = System.Drawing.Color.White;
-            this.label1.Location = new System.Drawing.Point(82, 8);
-            this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(579, 50);
-            this.label1.TabIndex = 1;
-            this.label1.Text = "Gestion des échéances véhicules";
-            // 
             // iconPictureBox1
             // 
             this.iconPictureBox1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(60)))), ((int)(((byte)(136)))), ((int)(((byte)(232)))));
@@ -120,6 +108,18 @@
             this.iconPictureBox1.Size = new System.Drawing.Size(55, 55);
             this.iconPictureBox1.TabIndex = 2;
             this.iconPictureBox1.TabStop = false;
+            // 
+            // label1
+            // 
+            this.label1.AutoSize = true;
+            this.label1.BackColor = System.Drawing.Color.Transparent;
+            this.label1.Font = new System.Drawing.Font("Segoe UI", 22.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label1.ForeColor = System.Drawing.Color.White;
+            this.label1.Location = new System.Drawing.Point(82, 8);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(579, 50);
+            this.label1.TabIndex = 1;
+            this.label1.Text = "Gestion des échéances véhicules";
             // 
             // guna2CirclePictureBox1
             // 
@@ -162,6 +162,97 @@
             this.cardInfo.Size = new System.Drawing.Size(1258, 315);
             this.cardInfo.TabIndex = 4;
             this.cardInfo.Paint += new System.Windows.Forms.PaintEventHandler(this.cardInfo_Paint);
+            // 
+            // cbStatut
+            // 
+            this.cbStatut.BackColor = System.Drawing.Color.Transparent;
+            this.cbStatut.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(210)))), ((int)(((byte)(218)))), ((int)(((byte)(226)))));
+            this.cbStatut.BorderRadius = 8;
+            this.cbStatut.DrawMode = System.Windows.Forms.DrawMode.OwnerDrawFixed;
+            this.cbStatut.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.cbStatut.FocusedColor = System.Drawing.Color.FromArgb(((int)(((byte)(94)))), ((int)(((byte)(148)))), ((int)(((byte)(255)))));
+            this.cbStatut.FocusedState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(94)))), ((int)(((byte)(148)))), ((int)(((byte)(255)))));
+            this.cbStatut.Font = new System.Drawing.Font("Segoe UI", 10.8F);
+            this.cbStatut.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(68)))), ((int)(((byte)(88)))), ((int)(((byte)(112)))));
+            this.cbStatut.ItemHeight = 30;
+            this.cbStatut.Items.AddRange(new object[] {
+            "Active",
+            "Expirée",
+            "À renouveler"});
+            this.cbStatut.Location = new System.Drawing.Point(830, 255);
+            this.cbStatut.Name = "cbStatut";
+            this.cbStatut.Size = new System.Drawing.Size(389, 36);
+            this.cbStatut.TabIndex = 21;
+            // 
+            // txtNumeroDocument
+            // 
+            this.txtNumeroDocument.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(210)))), ((int)(((byte)(218)))), ((int)(((byte)(226)))));
+            this.txtNumeroDocument.BorderRadius = 8;
+            this.txtNumeroDocument.Cursor = System.Windows.Forms.Cursors.IBeam;
+            this.txtNumeroDocument.DefaultText = "";
+            this.txtNumeroDocument.DisabledState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(208)))), ((int)(((byte)(208)))), ((int)(((byte)(208)))));
+            this.txtNumeroDocument.DisabledState.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(226)))), ((int)(((byte)(226)))), ((int)(((byte)(226)))));
+            this.txtNumeroDocument.DisabledState.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(138)))), ((int)(((byte)(138)))), ((int)(((byte)(138)))));
+            this.txtNumeroDocument.DisabledState.PlaceholderForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(138)))), ((int)(((byte)(138)))), ((int)(((byte)(138)))));
+            this.txtNumeroDocument.FocusedState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(94)))), ((int)(((byte)(148)))), ((int)(((byte)(255)))));
+            this.txtNumeroDocument.Font = new System.Drawing.Font("Segoe UI", 10.8F);
+            this.txtNumeroDocument.HoverState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(94)))), ((int)(((byte)(148)))), ((int)(((byte)(255)))));
+            this.txtNumeroDocument.Location = new System.Drawing.Point(50, 250);
+            this.txtNumeroDocument.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            this.txtNumeroDocument.Multiline = true;
+            this.txtNumeroDocument.Name = "txtNumeroDocument";
+            this.txtNumeroDocument.PlaceholderText = "";
+            this.txtNumeroDocument.SelectedText = "";
+            this.txtNumeroDocument.Size = new System.Drawing.Size(415, 41);
+            this.txtNumeroDocument.TabIndex = 20;
+            // 
+            // label11
+            // 
+            this.label11.AutoSize = true;
+            this.label11.Font = new System.Drawing.Font("Segoe UI", 10.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label11.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(30)))), ((int)(((byte)(41)))), ((int)(((byte)(59)))));
+            this.label11.Location = new System.Drawing.Point(810, 227);
+            this.label11.Name = "label11";
+            this.label11.Size = new System.Drawing.Size(82, 25);
+            this.label11.TabIndex = 19;
+            this.label11.Text = "Statut :*";
+            // 
+            // label10
+            // 
+            this.label10.AutoSize = true;
+            this.label10.Font = new System.Drawing.Font("Segoe UI", 10.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label10.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(30)))), ((int)(((byte)(41)))), ((int)(((byte)(59)))));
+            this.label10.Location = new System.Drawing.Point(810, 49);
+            this.label10.Name = "label10";
+            this.label10.Size = new System.Drawing.Size(117, 25);
+            this.label10.TabIndex = 18;
+            this.label10.Text = "Remarque :*";
+            // 
+            // dtDateFin
+            // 
+            this.dtDateFin.BorderRadius = 8;
+            this.dtDateFin.Checked = true;
+            this.dtDateFin.FillColor = System.Drawing.Color.White;
+            this.dtDateFin.Font = new System.Drawing.Font("Segoe UI", 10.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.dtDateFin.Format = System.Windows.Forms.DateTimePickerFormat.Long;
+            this.dtDateFin.Location = new System.Drawing.Point(515, 255);
+            this.dtDateFin.MaxDate = new System.DateTime(9998, 12, 31, 0, 0, 0, 0);
+            this.dtDateFin.MinDate = new System.DateTime(1753, 1, 1, 0, 0, 0, 0);
+            this.dtDateFin.Name = "dtDateFin";
+            this.dtDateFin.Size = new System.Drawing.Size(245, 36);
+            this.dtDateFin.TabIndex = 17;
+            this.dtDateFin.Value = new System.DateTime(2026, 4, 22, 14, 36, 56, 972);
+            // 
+            // label7
+            // 
+            this.label7.AutoSize = true;
+            this.label7.Font = new System.Drawing.Font("Segoe UI", 10.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label7.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(30)))), ((int)(((byte)(41)))), ((int)(((byte)(59)))));
+            this.label7.Location = new System.Drawing.Point(510, 227);
+            this.label7.Name = "label7";
+            this.label7.Size = new System.Drawing.Size(98, 25);
+            this.label7.TabIndex = 16;
+            this.label7.Text = "Date fin :*";
             // 
             // dtDateDebut
             // 
@@ -341,97 +432,6 @@
             this.iconPictureBox2.TabIndex = 3;
             this.iconPictureBox2.TabStop = false;
             // 
-            // dtDateFin
-            // 
-            this.dtDateFin.BorderRadius = 8;
-            this.dtDateFin.Checked = true;
-            this.dtDateFin.FillColor = System.Drawing.Color.White;
-            this.dtDateFin.Font = new System.Drawing.Font("Segoe UI", 10.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.dtDateFin.Format = System.Windows.Forms.DateTimePickerFormat.Long;
-            this.dtDateFin.Location = new System.Drawing.Point(515, 255);
-            this.dtDateFin.MaxDate = new System.DateTime(9998, 12, 31, 0, 0, 0, 0);
-            this.dtDateFin.MinDate = new System.DateTime(1753, 1, 1, 0, 0, 0, 0);
-            this.dtDateFin.Name = "dtDateFin";
-            this.dtDateFin.Size = new System.Drawing.Size(245, 36);
-            this.dtDateFin.TabIndex = 17;
-            this.dtDateFin.Value = new System.DateTime(2026, 4, 22, 14, 36, 56, 972);
-            // 
-            // label7
-            // 
-            this.label7.AutoSize = true;
-            this.label7.Font = new System.Drawing.Font("Segoe UI", 10.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label7.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(30)))), ((int)(((byte)(41)))), ((int)(((byte)(59)))));
-            this.label7.Location = new System.Drawing.Point(510, 227);
-            this.label7.Name = "label7";
-            this.label7.Size = new System.Drawing.Size(98, 25);
-            this.label7.TabIndex = 16;
-            this.label7.Text = "Date fin :*";
-            // 
-            // label10
-            // 
-            this.label10.AutoSize = true;
-            this.label10.Font = new System.Drawing.Font("Segoe UI", 10.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label10.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(30)))), ((int)(((byte)(41)))), ((int)(((byte)(59)))));
-            this.label10.Location = new System.Drawing.Point(810, 49);
-            this.label10.Name = "label10";
-            this.label10.Size = new System.Drawing.Size(117, 25);
-            this.label10.TabIndex = 18;
-            this.label10.Text = "Remarque :*";
-            // 
-            // label11
-            // 
-            this.label11.AutoSize = true;
-            this.label11.Font = new System.Drawing.Font("Segoe UI", 10.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label11.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(30)))), ((int)(((byte)(41)))), ((int)(((byte)(59)))));
-            this.label11.Location = new System.Drawing.Point(810, 227);
-            this.label11.Name = "label11";
-            this.label11.Size = new System.Drawing.Size(82, 25);
-            this.label11.TabIndex = 19;
-            this.label11.Text = "Statut :*";
-            // 
-            // txtNumeroDocument
-            // 
-            this.txtNumeroDocument.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(210)))), ((int)(((byte)(218)))), ((int)(((byte)(226)))));
-            this.txtNumeroDocument.BorderRadius = 8;
-            this.txtNumeroDocument.Cursor = System.Windows.Forms.Cursors.IBeam;
-            this.txtNumeroDocument.DefaultText = "";
-            this.txtNumeroDocument.DisabledState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(208)))), ((int)(((byte)(208)))), ((int)(((byte)(208)))));
-            this.txtNumeroDocument.DisabledState.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(226)))), ((int)(((byte)(226)))), ((int)(((byte)(226)))));
-            this.txtNumeroDocument.DisabledState.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(138)))), ((int)(((byte)(138)))), ((int)(((byte)(138)))));
-            this.txtNumeroDocument.DisabledState.PlaceholderForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(138)))), ((int)(((byte)(138)))), ((int)(((byte)(138)))));
-            this.txtNumeroDocument.FocusedState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(94)))), ((int)(((byte)(148)))), ((int)(((byte)(255)))));
-            this.txtNumeroDocument.Font = new System.Drawing.Font("Segoe UI", 10.8F);
-            this.txtNumeroDocument.HoverState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(94)))), ((int)(((byte)(148)))), ((int)(((byte)(255)))));
-            this.txtNumeroDocument.Location = new System.Drawing.Point(50, 250);
-            this.txtNumeroDocument.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
-            this.txtNumeroDocument.Multiline = true;
-            this.txtNumeroDocument.Name = "txtNumeroDocument";
-            this.txtNumeroDocument.PlaceholderText = "";
-            this.txtNumeroDocument.SelectedText = "";
-            this.txtNumeroDocument.Size = new System.Drawing.Size(415, 41);
-            this.txtNumeroDocument.TabIndex = 20;
-            // 
-            // cbStatut
-            // 
-            this.cbStatut.BackColor = System.Drawing.Color.Transparent;
-            this.cbStatut.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(210)))), ((int)(((byte)(218)))), ((int)(((byte)(226)))));
-            this.cbStatut.BorderRadius = 8;
-            this.cbStatut.DrawMode = System.Windows.Forms.DrawMode.OwnerDrawFixed;
-            this.cbStatut.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this.cbStatut.FocusedColor = System.Drawing.Color.FromArgb(((int)(((byte)(94)))), ((int)(((byte)(148)))), ((int)(((byte)(255)))));
-            this.cbStatut.FocusedState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(94)))), ((int)(((byte)(148)))), ((int)(((byte)(255)))));
-            this.cbStatut.Font = new System.Drawing.Font("Segoe UI", 10.8F);
-            this.cbStatut.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(68)))), ((int)(((byte)(88)))), ((int)(((byte)(112)))));
-            this.cbStatut.ItemHeight = 30;
-            this.cbStatut.Items.AddRange(new object[] {
-            "Active",
-            "Expirée",
-            "À renouveler"});
-            this.cbStatut.Location = new System.Drawing.Point(830, 255);
-            this.cbStatut.Name = "cbStatut";
-            this.cbStatut.Size = new System.Drawing.Size(389, 36);
-            this.cbStatut.TabIndex = 21;
-            // 
             // btnNouveau
             // 
             this.btnNouveau.BorderRadius = 8;
@@ -526,7 +526,8 @@
             dataGridViewCellStyle2.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
             dataGridViewCellStyle2.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
             this.dgvEcheances.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle2;
-            this.dgvEcheances.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.dgvEcheances.ColumnHeadersHeight = 4;
+            this.dgvEcheances.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.EnableResizing;
             dataGridViewCellStyle3.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
             dataGridViewCellStyle3.BackColor = System.Drawing.Color.White;
             dataGridViewCellStyle3.Font = new System.Drawing.Font("Microsoft Sans Serif", 7.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
@@ -555,7 +556,7 @@
             this.dgvEcheances.ThemeStyle.HeaderStyle.BorderStyle = System.Windows.Forms.DataGridViewHeaderBorderStyle.None;
             this.dgvEcheances.ThemeStyle.HeaderStyle.Font = new System.Drawing.Font("Microsoft Sans Serif", 7.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.dgvEcheances.ThemeStyle.HeaderStyle.ForeColor = System.Drawing.Color.White;
-            this.dgvEcheances.ThemeStyle.HeaderStyle.HeaightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.dgvEcheances.ThemeStyle.HeaderStyle.HeaightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.EnableResizing;
             this.dgvEcheances.ThemeStyle.HeaderStyle.Height = 4;
             this.dgvEcheances.ThemeStyle.ReadOnly = true;
             this.dgvEcheances.ThemeStyle.RowsStyle.BackColor = System.Drawing.Color.White;
@@ -569,8 +570,7 @@
             // 
             // voiture_echeance
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
-            this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.None;
             this.BackColor = System.Drawing.Color.White;
             this.ClientSize = new System.Drawing.Size(1263, 800);
             this.Controls.Add(this.dgvEcheances);
