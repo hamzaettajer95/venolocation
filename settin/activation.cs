@@ -66,7 +66,7 @@ namespace venolocation.settin
             else
             {
                 AfficherLicenceActive();
-                classee.ErrorReporter.SendTestMessage("Ce Client active ce programme avec le serial : "+txtActivation.Text);
+                //classee.ErrorReporter.SendTestMessage("Ce Client active ce programme avec le serial : "+txtActivation.Text);
             }
                 
 

@@ -1,17 +1,11 @@
-﻿using MySql.Data.MySqlClient;
-using Org.BouncyCastle.Tls;
+﻿using Guna.UI2.WinForms;
+using MySql.Data.MySqlClient;
 using System;
-using System.Collections.Generic;
 using System.ComponentModel;
-using System.Data;
 using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.Web.UI.WebControls.WebParts;
+using System.Net.NetworkInformation;
 using System.Windows.Forms;
 using venolocation.classee;
-using venolocation.dev;
 using venolocation.settin;
 
 namespace venolocation.formee
@@ -29,7 +23,24 @@ namespace venolocation.formee
         {
             lblDateTime.Text = DateTime.Now.ToString("HH:mm:ss");
         }
-       
+
+        static bool VerifierInternet()
+        {
+            try
+            {
+                using (Ping ping = new Ping())
+                {
+                    PingReply reply = ping.Send("8.8.8.8", 3000);
+
+                    return reply.Status == IPStatus.Success;
+                }
+            }
+            catch
+            {
+                return false;
+            }
+        }
+
         void mise_a_jour()
         {
             string updateUrl = Properties.Settings.Default.updateUrl;
@@ -114,27 +125,50 @@ namespace venolocation.formee
         bool test = false;
         private void dashboard_Load(object sender, EventArgs e)
         {
+
+            if (VerifierInternet())
+            {
+
+                lblInternet.Text = "Version de l'application : " + Properties.Settings.Default.verssion;
+                
+
+                mise_a_jour();
+                test_serial();
+
+
+            }
+            else
+            {
+                
+                MessageBox.Show("Veuillez vérifier votre connexion internet et réessayer.", "Erreur de connexion", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                MessageBox.Show("le logiciel va fermer.", "Fermeture", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                Application.Exit();
+            }
             if (verifier_connection())
             {
-                test=true;
+                test = true;
                 try
                 {
                     this.SuspendLayout();
-                    
+
+
+                    MakePanelClickable(panel1, panel1_Click);
                     timer1.Start();
                     lbldate.Text = DateTime.Now.ToString("dddd dd/MM/yyyy");
+
+
                     ChargerToutesLesDonnees();
 
-                    mise_a_jour();
-                    //deconnecte();
-                    //test_serial();
 
+                    deconnecte();
+
+                    panel1.Enabled = true;
 
                     // enregistrer les alertes dans la base de données
                     Dbexec.ExecuteQuery("CALL sp_generer_alertes();");
-                   
-                   
-                    MakePanelClickable(panel1, panel1_Click);
+
+
+
                 }
                 catch (Exception ex)
                 {
@@ -153,6 +187,19 @@ namespace venolocation.formee
                 dev.server ser = new dev.server();
                 ser.ShowDialog();
             }
+
+
+            //L_Service.Init();
+
+            //if (!L_Service.IsValid())
+            //{
+            //    MessageBox.Show("Demo terminé contactez le développeur.", "Demo terminée", MessageBoxButtons.OK, MessageBoxIcon.Information);
+
+            //    Application.Exit();
+            //    return;
+            //}
+
+            //L_Service.Use();
 
 
         }

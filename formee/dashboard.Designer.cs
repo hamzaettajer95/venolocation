@@ -60,6 +60,7 @@
             this.btnentretient = new FontAwesome.Sharp.IconButton();
             this.btnecheances = new FontAwesome.Sharp.IconButton();
             this.panelRight = new System.Windows.Forms.Panel();
+            this.lblInternet = new System.Windows.Forms.Label();
             this.btndeveloppeur = new FontAwesome.Sharp.IconButton();
             this.btnSetting = new FontAwesome.Sharp.IconButton();
             this.btnAccidents = new FontAwesome.Sharp.IconButton();
@@ -104,6 +105,7 @@
             this.ProfilToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStripSeparator1 = new System.Windows.Forms.ToolStripSeparator();
             this.deconnecterToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.linkLabel1 = new System.Windows.Forms.LinkLabel();
             this.panelTop.SuspendLayout();
             this.panel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
@@ -263,7 +265,7 @@
             this.panelLeft.Dock = System.Windows.Forms.DockStyle.Left;
             this.panelLeft.Location = new System.Drawing.Point(0, 70);
             this.panelLeft.Name = "panelLeft";
-            this.panelLeft.Size = new System.Drawing.Size(220, 891);
+            this.panelLeft.Size = new System.Drawing.Size(220, 914);
             this.panelLeft.TabIndex = 1;
             // 
             // flowMenu
@@ -282,7 +284,7 @@
             this.flowMenu.Location = new System.Drawing.Point(0, 0);
             this.flowMenu.Name = "flowMenu";
             this.flowMenu.Padding = new System.Windows.Forms.Padding(10, 20, 10, 10);
-            this.flowMenu.Size = new System.Drawing.Size(220, 891);
+            this.flowMenu.Size = new System.Drawing.Size(220, 914);
             this.flowMenu.TabIndex = 0;
             this.flowMenu.WrapContents = false;
             // 
@@ -506,6 +508,7 @@
             // 
             this.panelRight.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(245)))), ((int)(((byte)(247)))), ((int)(((byte)(250)))));
             this.panelRight.Controls.Add(this.btndeveloppeur);
+            this.panelRight.Controls.Add(this.linkLabel1);
             this.panelRight.Controls.Add(this.btnSetting);
             this.panelRight.Controls.Add(this.btnAccidents);
             this.panelRight.Controls.Add(this.btnReparation);
@@ -517,8 +520,19 @@
             this.panelRight.Dock = System.Windows.Forms.DockStyle.Right;
             this.panelRight.Location = new System.Drawing.Point(1437, 70);
             this.panelRight.Name = "panelRight";
-            this.panelRight.Size = new System.Drawing.Size(260, 891);
+            this.panelRight.Size = new System.Drawing.Size(260, 914);
             this.panelRight.TabIndex = 2;
+            // 
+            // lblInternet
+            // 
+            this.lblInternet.AutoSize = true;
+            this.lblInternet.Dock = System.Windows.Forms.DockStyle.Bottom;
+            this.lblInternet.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblInternet.Location = new System.Drawing.Point(0, 886);
+            this.lblInternet.Name = "lblInternet";
+            this.lblInternet.Size = new System.Drawing.Size(17, 28);
+            this.lblInternet.TabIndex = 9;
+            this.lblInternet.Text = ".";
             // 
             // btndeveloppeur
             // 
@@ -728,13 +742,14 @@
             this.panelCenter.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
+            this.panelCenter.Controls.Add(this.lblInternet);
             this.panelCenter.Controls.Add(this.panelOperations);
             this.panelCenter.Controls.Add(this.panelBottom);
             this.panelCenter.Controls.Add(this.tableStats);
             this.panelCenter.Controls.Add(this.lblWelcome);
             this.panelCenter.Location = new System.Drawing.Point(220, 70);
             this.panelCenter.Name = "panelCenter";
-            this.panelCenter.Size = new System.Drawing.Size(1217, 891);
+            this.panelCenter.Size = new System.Drawing.Size(1217, 914);
             this.panelCenter.TabIndex = 3;
             // 
             // panelOperations
@@ -1228,12 +1243,24 @@
             this.deconnecterToolStripMenuItem.Text = "Déconnecter";
             this.deconnecterToolStripMenuItem.Click += new System.EventHandler(this.deconnecterToolStripMenuItem_Click);
             // 
+            // linkLabel1
+            // 
+            this.linkLabel1.AutoSize = true;
+            this.linkLabel1.Dock = System.Windows.Forms.DockStyle.Bottom;
+            this.linkLabel1.Font = new System.Drawing.Font("Segoe UI", 13.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.linkLabel1.Location = new System.Drawing.Point(0, 883);
+            this.linkLabel1.Name = "linkLabel1";
+            this.linkLabel1.Size = new System.Drawing.Size(251, 31);
+            this.linkLabel1.TabIndex = 4;
+            this.linkLabel1.TabStop = true;
+            this.linkLabel1.Text = "© Tous droits réservés";
+            // 
             // dashboard
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 17F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.WhiteSmoke;
-            this.ClientSize = new System.Drawing.Size(1697, 961);
+            this.ClientSize = new System.Drawing.Size(1697, 984);
             this.Controls.Add(this.panelCenter);
             this.Controls.Add(this.panelRight);
             this.Controls.Add(this.panelLeft);
@@ -1351,6 +1378,8 @@
         private FontAwesome.Sharp.IconButton btnentretient;
         private FontAwesome.Sharp.IconButton btnecheances;
         private Guna.UI2.WinForms.Guna2Button btnavtiveLicence;
+        private System.Windows.Forms.Label lblInternet;
+        private System.Windows.Forms.LinkLabel linkLabel1;
     }
 }
 

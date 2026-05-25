@@ -33,9 +33,9 @@
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle3 = new System.Windows.Forms.DataGridViewCellStyle();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(depence));
             this.btn_suprimmer = new FontAwesome.Sharp.IconButton();
-            this.btn_modifier = new FontAwesome.Sharp.IconButton();
             this.btn_ajouter = new FontAwesome.Sharp.IconButton();
             this.panel1 = new System.Windows.Forms.Panel();
+            this.btn_imprimer = new FontAwesome.Sharp.IconButton();
             this.lbl_totale = new System.Windows.Forms.Label();
             this.btn_filtrer = new FontAwesome.Sharp.IconButton();
             this.cb_jour = new System.Windows.Forms.ComboBox();
@@ -51,7 +51,6 @@
             this.label4 = new System.Windows.Forms.Label();
             this.label3 = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
-            this.btn_imprimer = new FontAwesome.Sharp.IconButton();
             this.panel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgvDepence)).BeginInit();
             this.panel2.SuspendLayout();
@@ -69,31 +68,13 @@
             this.btn_suprimmer.IconFont = FontAwesome.Sharp.IconFont.Auto;
             this.btn_suprimmer.IconSize = 40;
             this.btn_suprimmer.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btn_suprimmer.Location = new System.Drawing.Point(501, 4);
+            this.btn_suprimmer.Location = new System.Drawing.Point(381, 4);
             this.btn_suprimmer.Name = "btn_suprimmer";
             this.btn_suprimmer.Size = new System.Drawing.Size(198, 57);
             this.btn_suprimmer.TabIndex = 2;
             this.btn_suprimmer.Text = "Supprimer";
             this.btn_suprimmer.UseVisualStyleBackColor = false;
             this.btn_suprimmer.Click += new System.EventHandler(this.btn_suprimmer_Click);
-            // 
-            // btn_modifier
-            // 
-            this.btn_modifier.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(123)))), ((int)(((byte)(255)))));
-            this.btn_modifier.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btn_modifier.Font = new System.Drawing.Font("Segoe UI", 10.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btn_modifier.ForeColor = System.Drawing.Color.White;
-            this.btn_modifier.IconChar = FontAwesome.Sharp.IconChar.Edit;
-            this.btn_modifier.IconColor = System.Drawing.Color.White;
-            this.btn_modifier.IconFont = FontAwesome.Sharp.IconFont.Auto;
-            this.btn_modifier.IconSize = 40;
-            this.btn_modifier.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btn_modifier.Location = new System.Drawing.Point(261, 4);
-            this.btn_modifier.Name = "btn_modifier";
-            this.btn_modifier.Size = new System.Drawing.Size(198, 57);
-            this.btn_modifier.TabIndex = 1;
-            this.btn_modifier.Text = "Modifier";
-            this.btn_modifier.UseVisualStyleBackColor = false;
             // 
             // btn_ajouter
             // 
@@ -119,12 +100,30 @@
             this.panel1.BackColor = System.Drawing.Color.White;
             this.panel1.Controls.Add(this.btn_imprimer);
             this.panel1.Controls.Add(this.btn_suprimmer);
-            this.panel1.Controls.Add(this.btn_modifier);
             this.panel1.Controls.Add(this.btn_ajouter);
             this.panel1.Location = new System.Drawing.Point(7, 555);
             this.panel1.Name = "panel1";
             this.panel1.Size = new System.Drawing.Size(975, 65);
             this.panel1.TabIndex = 13;
+            // 
+            // btn_imprimer
+            // 
+            this.btn_imprimer.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(126)))), ((int)(((byte)(87)))), ((int)(((byte)(194)))));
+            this.btn_imprimer.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btn_imprimer.Font = new System.Drawing.Font("Segoe UI", 10.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btn_imprimer.ForeColor = System.Drawing.Color.White;
+            this.btn_imprimer.IconChar = FontAwesome.Sharp.IconChar.Print;
+            this.btn_imprimer.IconColor = System.Drawing.Color.White;
+            this.btn_imprimer.IconFont = FontAwesome.Sharp.IconFont.Auto;
+            this.btn_imprimer.IconSize = 40;
+            this.btn_imprimer.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.btn_imprimer.Location = new System.Drawing.Point(741, 4);
+            this.btn_imprimer.Name = "btn_imprimer";
+            this.btn_imprimer.Size = new System.Drawing.Size(198, 57);
+            this.btn_imprimer.TabIndex = 4;
+            this.btn_imprimer.Text = "Imprimmer";
+            this.btn_imprimer.UseVisualStyleBackColor = false;
+            this.btn_imprimer.Click += new System.EventHandler(this.btn_imprimer_Click);
             // 
             // lbl_totale
             // 
@@ -357,25 +356,6 @@
             this.label2.TabIndex = 2;
             this.label2.Text = "Le Type :";
             // 
-            // btn_imprimer
-            // 
-            this.btn_imprimer.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(126)))), ((int)(((byte)(87)))), ((int)(((byte)(194)))));
-            this.btn_imprimer.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btn_imprimer.Font = new System.Drawing.Font("Segoe UI", 10.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btn_imprimer.ForeColor = System.Drawing.Color.White;
-            this.btn_imprimer.IconChar = FontAwesome.Sharp.IconChar.Print;
-            this.btn_imprimer.IconColor = System.Drawing.Color.White;
-            this.btn_imprimer.IconFont = FontAwesome.Sharp.IconFont.Auto;
-            this.btn_imprimer.IconSize = 40;
-            this.btn_imprimer.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btn_imprimer.Location = new System.Drawing.Point(741, 4);
-            this.btn_imprimer.Name = "btn_imprimer";
-            this.btn_imprimer.Size = new System.Drawing.Size(198, 57);
-            this.btn_imprimer.TabIndex = 4;
-            this.btn_imprimer.Text = "Imprimmer";
-            this.btn_imprimer.UseVisualStyleBackColor = false;
-            this.btn_imprimer.Click += new System.EventHandler(this.btn_imprimer_Click);
-            // 
             // depence
             // 
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.None;
@@ -405,7 +385,6 @@
 
         #endregion
         private FontAwesome.Sharp.IconButton btn_suprimmer;
-        private FontAwesome.Sharp.IconButton btn_modifier;
         private FontAwesome.Sharp.IconButton btn_ajouter;
         private System.Windows.Forms.Panel panel1;
         private FontAwesome.Sharp.IconButton btn_filtrer;

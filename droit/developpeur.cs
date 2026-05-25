@@ -113,6 +113,7 @@ namespace venolocation.droit
                 MakePanelClickable(pnlAPropos, pnlAPropos_Click);
 
                 lblDerniereVerification.Text = "Dernière vérification : " + DateTime.Now.ToString("dd/MM/yyyy HH:mm:ss");
+                
             }
             catch (Exception ex)
             {
