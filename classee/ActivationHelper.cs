@@ -156,7 +156,7 @@ namespace venolocation.classee
 
 
                 string processorIdPc = GetProcessorId();
-                string serialLocal = Properties.Settings.Default.serial;
+                string serialLocal = App_Config.Instance.serial;
 
                 if (string.IsNullOrWhiteSpace(serialLocal))
                 {

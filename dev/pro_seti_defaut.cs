@@ -5,6 +5,7 @@ using System.Configuration;
 using System.Data;
 using System.Drawing;
 using System.Linq;
+using System.Reflection;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
@@ -45,13 +46,15 @@ namespace venolocation.dev
         {
             dgvSettings.Rows.Clear();
 
-            foreach (SettingsProperty prop in Properties.Settings.Default.Properties)
+            var config = App_Config.Instance;
+
+            var props = typeof(App_Config).GetProperties();
+
+            foreach (var prop in props)
             {
                 string nom = prop.Name;
                 string type = prop.PropertyType.Name;
-
-                object value = Properties.Settings.Default[nom];
-                string valeur = value == null ? "" : value.ToString();
+                string valeur = prop.GetValue(config)?.ToString() ?? "";
 
                 dgvSettings.Rows.Add(nom, type, valeur);
             }
@@ -83,33 +86,34 @@ namespace venolocation.dev
                 );
                 return;
             }
+           
 
             string nom = txtNom.Text.Trim();
-            string nouvelleValeur = txtValeur.Text;
+            string valeur = txtValeur.Text;
+
+            var config = App_Config.Instance;
+
+            PropertyInfo prop = typeof(App_Config).GetProperty(nom);
+
+            if (prop == null)
+            {
+                MessageBox.Show(
+                    "Paramètre introuvable.",
+                    "Paramètres",
+                    MessageBoxButtons.OK,
+                    MessageBoxIcon.Error
+                );
+                return;
+            }
+
+            
 
             try
             {
-                SettingsProperty prop = Properties.Settings.Default.Properties[nom];
-
-                if (prop == null)
-                {
-                    MessageBox.Show(
-                        "Paramètre introuvable.",
-                        "Paramètres",
-                        MessageBoxButtons.OK,
-                        MessageBoxIcon.Error
-                    );
-                    return;
-                }
-
-                object ancienneValeurObj = Properties.Settings.Default[nom];
-                string ancienneValeur = ancienneValeurObj == null ? "" : ancienneValeurObj.ToString();
-
+               
                 DialogResult rep = MessageBox.Show(
                     "Voulez-vous modifier ce paramètre ?\n\n" +
-                    "Nom : " + nom + "\n" +
-                    "Ancienne valeur : " + MasquerSiSensible(nom, ancienneValeur) + "\n" +
-                    "Nouvelle valeur : " + MasquerSiSensible(nom, nouvelleValeur),
+                    "Nom : " + nom + "\n",
                     "Confirmation",
                     MessageBoxButtons.YesNo,
                     MessageBoxIcon.Question
@@ -118,18 +122,11 @@ namespace venolocation.dev
                 if (rep != DialogResult.Yes)
                     return;
 
-                object convertedValue = ConvertirValeur(nouvelleValeur, prop.PropertyType);
+                object value = Convert.ChangeType(valeur, prop.PropertyType);
 
-                Properties.Settings.Default[nom] = convertedValue;
-                Properties.Settings.Default.Save();
+                prop.SetValue(config, value);
 
-                LogHelper.AddLog(
-                    "Modification paramètre application : " +
-                    nom +
-                    " | Ancienne valeur : " + MasquerSiSensible(nom, ancienneValeur) +
-                    " | Nouvelle valeur : " + MasquerSiSensible(nom, nouvelleValeur),
-                    Session.Username
-                );
+                App_Config.Save(config);
 
                 MessageBox.Show(
                     "Paramètre enregistré avec succès.",
@@ -140,6 +137,15 @@ namespace venolocation.dev
 
                 ChargerSettings();
                 SelectionnerLigne(nom);
+
+               
+
+                LogHelper.AddLog(
+                    "Modification paramètre application : " + nom ,  Session.Username );
+
+               
+
+               
             }
             catch (Exception ex)
             {
@@ -169,78 +175,9 @@ namespace venolocation.dev
             this.Close();
         }
 
-        private object ConvertirValeur(string valeur, Type type)
-        {
-            if (type == typeof(string))
-                return valeur ?? "";
+        
 
-            if (type == typeof(int))
-            {
-                int result;
-                if (int.TryParse(valeur, out result))
-                    return result;
-
-                throw new Exception("Valeur invalide pour un entier.");
-            }
-
-            if (type == typeof(bool))
-            {
-                bool result;
-                if (bool.TryParse(valeur, out result))
-                    return result;
-
-                if (valeur == "1")
-                    return true;
-
-                if (valeur == "0")
-                    return false;
-
-                throw new Exception("Valeur invalide pour un booléen. Utilisez true/false.");
-            }
-
-            if (type == typeof(decimal))
-            {
-                decimal result;
-                if (decimal.TryParse(valeur, out result))
-                    return result;
-
-                throw new Exception("Valeur invalide pour un decimal.");
-            }
-
-            if (type == typeof(double))
-            {
-                double result;
-                if (double.TryParse(valeur, out result))
-                    return result;
-
-                throw new Exception("Valeur invalide pour un double.");
-            }
-
-            if (type == typeof(DateTime))
-            {
-                DateTime result;
-                if (DateTime.TryParse(valeur, out result))
-                    return result;
-
-                throw new Exception("Valeur invalide pour une date.");
-            }
-
-            return valeur;
-        }
-
-        private string MasquerSiSensible(string nom, string valeur)
-        {
-            if (string.IsNullOrWhiteSpace(nom))
-                return valeur;
-
-            string n = nom.ToLower();
-
-            if (n.Contains("password") || n.Contains("pass") || n.Contains("pwd"))
-                return "********";
-
-            return valeur;
-        }
-
+     
         private void SelectionnerLigne(string nom)
         {
             foreach (DataGridViewRow row in dgvSettings.Rows)

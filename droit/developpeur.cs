@@ -9,7 +9,7 @@ using System.Threading.Tasks;
 using System.Windows.Forms;
 using System.IO;
 using System.Security.Cryptography;
-using MySql.Data.MySqlClient;
+using MySqlConnector;
 
 using venolocation.classee;
 using venolocation.dev;
@@ -320,8 +320,8 @@ namespace venolocation.droit
                     if (rep != DialogResult.Yes)
                         return;
 
-                    Properties.Settings.Default.conx = connectionString;
-                    Properties.Settings.Default.Save();
+                    App_Config.Instance.conx = connectionString;
+                    App_Config.Save(App_Config.Instance);
 
                     LogHelper.AddLog(
                         "Restauration configuration base de données depuis fichier : " + open.FileName,

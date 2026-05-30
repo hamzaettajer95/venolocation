@@ -7,7 +7,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.IO;
 
-using MySql.Data.MySqlClient;
+using MySqlConnector;
 
 namespace venolocation.classee
 {

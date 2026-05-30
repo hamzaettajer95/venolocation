@@ -10,7 +10,7 @@ using System.Windows.Forms;
 
 using Microsoft.VisualBasic;
 
-using MySql.Data.MySqlClient;
+using MySqlConnector;
 
 using venolocation.classee;
 using venolocation.settin;
@@ -26,10 +26,10 @@ namespace venolocation.droit
         }
         private void ChargerParametresGeneraux()
         {
-            txtNomSociete.Text = Properties.Settings.Default.nom_societe;
-            txtTelephone.Text = Properties.Settings.Default.telephone_societe;
-            txtAdresse.Text = Properties.Settings.Default.adresse_societe;
-            txtEmailSociete.Text = Properties.Settings.Default.email_societe;
+            txtNomSociete.Text = App_Config.Instance.nom_societe;
+            txtTelephone.Text = App_Config.Instance.telephone_societe;
+            txtAdresse.Text = App_Config.Instance.adresse_societe;
+            txtEmailSociete.Text = App_Config.Instance.email_societe;
         }
         private void ChargerUtilisateurs()
         {
@@ -111,7 +111,7 @@ namespace venolocation.droit
         
         private void btnMenuUpdate_Click(object sender, EventArgs e)
         {
-            string updateUrl = Properties.Settings.Default.updateUrl ;
+            string updateUrl = App_Config.Instance.updateUrl ;
 
             UpdateInfo updateInfo = UpdateHelper.CheckForUpdate(updateUrl);
 
@@ -496,12 +496,12 @@ namespace venolocation.droit
                 return;
             }
 
-            Properties.Settings.Default.nom_societe = txtNomSociete.Text.Trim();
-            Properties.Settings.Default.telephone_societe = txtTelephone.Text.Trim();
-            Properties.Settings.Default.adresse_societe = txtAdresse.Text.Trim();
-            Properties.Settings.Default.email_societe = txtEmailSociete.Text.Trim();
+            App_Config.Instance.nom_societe = txtNomSociete.Text.Trim();
+            App_Config.Instance.telephone_societe = txtTelephone.Text.Trim();
+            App_Config.Instance.adresse_societe = txtAdresse.Text.Trim();
+            App_Config.Instance.email_societe = txtEmailSociete.Text.Trim();
 
-            Properties.Settings.Default.Save();
+            App_Config.Save(App_Config.Instance);
 
             MessageBox.Show(
                 "Paramètres enregistrés avec succès.",

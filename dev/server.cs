@@ -8,7 +8,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
-using MySql.Data.MySqlClient;
+using MySqlConnector;
 
 using venolocation.classee;
 
@@ -23,11 +23,11 @@ namespace venolocation.dev
 
         private void ChargerParametresConnexion()
         {
-            txtServer.Text = Properties.Settings.Default.db_server;
-            txtDatabase.Text = Properties.Settings.Default.db_name;
-            txtUser.Text = Properties.Settings.Default.db_user;
-            txtPassword.Text = Properties.Settings.Default.db_password;
-            txtPort.Text = Properties.Settings.Default.db_port;
+            txtServer.Text = App_Config.Instance.db_server;
+            txtDatabase.Text = App_Config.Instance.db_name;
+            txtUser.Text = App_Config.Instance.db_user;
+            txtPassword.Text = App_Config.Instance.db_password;
+            txtPort.Text = App_Config.Instance.db_port;
         }
 
         private string GetConnectionStringFromTextBox()
@@ -35,7 +35,7 @@ namespace venolocation.dev
             string server = txtServer.Text.Trim();
             string database = txtDatabase.Text.Trim();
             string user = txtUser.Text.Trim();
-            string password = txtPassword.Text;
+            string password = txtPassword.Text.Trim();
             string portText = txtPort.Text.Trim();
 
             uint port = 3306;
@@ -146,16 +146,16 @@ namespace venolocation.dev
             if (!testOk)
                 return;
 
-            Properties.Settings.Default.db_server = txtServer.Text.Trim();
-            Properties.Settings.Default.db_name = txtDatabase.Text.Trim();
-            Properties.Settings.Default.db_user = txtUser.Text.Trim();
-            Properties.Settings.Default.db_password = txtPassword.Text;
-            Properties.Settings.Default.db_port = txtPort.Text.Trim();
+            App_Config.Instance.db_server = txtServer.Text.Trim();
+            App_Config.Instance.db_name = txtDatabase.Text.Trim();
+            App_Config.Instance.db_user = txtUser.Text.Trim();
+            App_Config.Instance.db_password = txtPassword.Text.Trim();
+            App_Config.Instance.db_port = txtPort.Text.Trim();
 
             
-            Properties.Settings.Default.conx = GetConnectionStringFromTextBox();
+            App_Config.Instance.conx = GetConnectionStringFromTextBox();
 
-            Properties.Settings.Default.Save();
+            App_Config.Save(App_Config.Instance);
 
             MessageBox.Show(
                 "Paramètres de connexion enregistrés avec succès.\nVeuillez redémarrer le logiciel.",

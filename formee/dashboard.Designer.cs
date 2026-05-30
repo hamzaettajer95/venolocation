@@ -60,8 +60,8 @@
             this.btnentretient = new FontAwesome.Sharp.IconButton();
             this.btnecheances = new FontAwesome.Sharp.IconButton();
             this.panelRight = new System.Windows.Forms.Panel();
-            this.lblInternet = new System.Windows.Forms.Label();
             this.btndeveloppeur = new FontAwesome.Sharp.IconButton();
+            this.linkLabel1 = new System.Windows.Forms.LinkLabel();
             this.btnSetting = new FontAwesome.Sharp.IconButton();
             this.btnAccidents = new FontAwesome.Sharp.IconButton();
             this.btnReparation = new FontAwesome.Sharp.IconButton();
@@ -70,6 +70,7 @@
             this.btnDepence = new FontAwesome.Sharp.IconButton();
             this.btnHistorique = new FontAwesome.Sharp.IconButton();
             this.lblQuick = new System.Windows.Forms.Label();
+            this.lblInternet = new System.Windows.Forms.Label();
             this.panelCenter = new System.Windows.Forms.Panel();
             this.panelOperations = new System.Windows.Forms.Panel();
             this.dgvDernieresOperations = new System.Windows.Forms.DataGridView();
@@ -105,7 +106,6 @@
             this.ProfilToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStripSeparator1 = new System.Windows.Forms.ToolStripSeparator();
             this.deconnecterToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.linkLabel1 = new System.Windows.Forms.LinkLabel();
             this.panelTop.SuspendLayout();
             this.panel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
@@ -523,17 +523,6 @@
             this.panelRight.Size = new System.Drawing.Size(260, 914);
             this.panelRight.TabIndex = 2;
             // 
-            // lblInternet
-            // 
-            this.lblInternet.AutoSize = true;
-            this.lblInternet.Dock = System.Windows.Forms.DockStyle.Bottom;
-            this.lblInternet.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblInternet.Location = new System.Drawing.Point(0, 886);
-            this.lblInternet.Name = "lblInternet";
-            this.lblInternet.Size = new System.Drawing.Size(17, 28);
-            this.lblInternet.TabIndex = 9;
-            this.lblInternet.Text = ".";
-            // 
             // btndeveloppeur
             // 
             this.btndeveloppeur.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(97)))), ((int)(((byte)(97)))), ((int)(((byte)(97)))));
@@ -557,6 +546,18 @@
             this.btndeveloppeur.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
             this.btndeveloppeur.UseVisualStyleBackColor = false;
             this.btndeveloppeur.Click += new System.EventHandler(this.btndeveloppeur_Click);
+            // 
+            // linkLabel1
+            // 
+            this.linkLabel1.AutoSize = true;
+            this.linkLabel1.Dock = System.Windows.Forms.DockStyle.Bottom;
+            this.linkLabel1.Font = new System.Drawing.Font("Segoe UI", 13.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.linkLabel1.Location = new System.Drawing.Point(0, 883);
+            this.linkLabel1.Name = "linkLabel1";
+            this.linkLabel1.Size = new System.Drawing.Size(251, 31);
+            this.linkLabel1.TabIndex = 4;
+            this.linkLabel1.TabStop = true;
+            this.linkLabel1.Text = "© Tous droits réservés";
             // 
             // btnSetting
             // 
@@ -736,6 +737,17 @@
             this.lblQuick.Size = new System.Drawing.Size(196, 35);
             this.lblQuick.TabIndex = 0;
             this.lblQuick.Text = "Actions rapides";
+            // 
+            // lblInternet
+            // 
+            this.lblInternet.AutoSize = true;
+            this.lblInternet.Dock = System.Windows.Forms.DockStyle.Bottom;
+            this.lblInternet.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblInternet.Location = new System.Drawing.Point(0, 886);
+            this.lblInternet.Name = "lblInternet";
+            this.lblInternet.Size = new System.Drawing.Size(17, 28);
+            this.lblInternet.TabIndex = 9;
+            this.lblInternet.Text = ".";
             // 
             // panelCenter
             // 
@@ -1242,18 +1254,6 @@
             this.deconnecterToolStripMenuItem.Size = new System.Drawing.Size(266, 36);
             this.deconnecterToolStripMenuItem.Text = "Déconnecter";
             this.deconnecterToolStripMenuItem.Click += new System.EventHandler(this.deconnecterToolStripMenuItem_Click);
-            // 
-            // linkLabel1
-            // 
-            this.linkLabel1.AutoSize = true;
-            this.linkLabel1.Dock = System.Windows.Forms.DockStyle.Bottom;
-            this.linkLabel1.Font = new System.Drawing.Font("Segoe UI", 13.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.linkLabel1.Location = new System.Drawing.Point(0, 883);
-            this.linkLabel1.Name = "linkLabel1";
-            this.linkLabel1.Size = new System.Drawing.Size(251, 31);
-            this.linkLabel1.TabIndex = 4;
-            this.linkLabel1.TabStop = true;
-            this.linkLabel1.Text = "© Tous droits réservés";
             // 
             // dashboard
             // 

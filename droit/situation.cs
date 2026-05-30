@@ -10,7 +10,7 @@ using System.Threading.Tasks;
 using System.Windows.Forms;
 using System.Windows.Forms.DataVisualization.Charting;
 
-using MySql.Data.MySqlClient;
+using MySqlConnector;
 
 using venolocation.classee;
 
@@ -79,20 +79,20 @@ namespace venolocation.droit
                 this.ResumeLayout();
             }
             // imprimer situation
-            try
-            {
-                int mois = dtpMois.Value.Month;
-                int annee = dtpMois.Value.Year;
+            //try
+            //{
+            //    int mois = dtpMois.Value.Month;
+            //    int annee = dtpMois.Value.Year;
 
-                SituationMensuellePrinter printer =
-                    new SituationMensuellePrinter(mois, annee);
+            //    SituationMensuellePrinter printer =
+            //        new SituationMensuellePrinter(mois, annee);
 
-                printer.ShowPreview();
-            }
-            catch (Exception ex)
-            {
-                MessageBox.Show(ex.Message);
-            }
+            //    printer.ShowPreview();
+            //}
+            //catch (Exception ex)
+            //{
+            //    MessageBox.Show(ex.Message);
+            //}
         }
 
         private void ChargerTout()

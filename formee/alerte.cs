@@ -3,7 +3,7 @@ using System.Data;
 using System.Drawing;
 using System.Windows.Forms;
 
-using MySql.Data.MySqlClient;
+using MySqlConnector;
 
 using venolocation.classee;
 

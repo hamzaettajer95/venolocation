@@ -5,7 +5,7 @@ using System.Security.Cryptography;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows;
-using MySql.Data.MySqlClient;
+using MySqlConnector;
 
 namespace venolocation.classee
 {
@@ -13,11 +13,11 @@ namespace venolocation.classee
     {
         //public static string GetConnectionString()
         //{
-        //    string server = Properties.Settings.Default.db_server;
-        //    string database = Properties.Settings.Default.db_name;
-        //    string user = Properties.Settings.Default.db_user;
-        //    string password = Properties.Settings.Default.db_password;
-        //    string port = Properties.Settings.Default.db_port;
+        //    string server = App_Config.Instance.db_server;
+        //    string database = App_Config.Instance.db_name;
+        //    string user = App_Config.Instance.db_user;
+        //    string password = App_Config.Instance.db_password;
+        //    string port = App_Config.Instance.db_port;
 
         //    if (string.IsNullOrWhiteSpace(port))
         //        port = "3306";
@@ -37,11 +37,11 @@ namespace venolocation.classee
 
         public static string GetConnectionString()
         {
-            string server = Properties.Settings.Default.db_server;
-            string database = Properties.Settings.Default.db_name;
-            string user = Properties.Settings.Default.db_user;
-            string password = Properties.Settings.Default.db_password;
-            string portText = Properties.Settings.Default.db_port;
+            string server = App_Config.Instance.db_server;
+            string database = App_Config.Instance.db_name;
+            string user = App_Config.Instance.db_user;
+            string password = App_Config.Instance.db_password;
+            string portText = App_Config.Instance.db_port;
 
             uint port = 3306;
 

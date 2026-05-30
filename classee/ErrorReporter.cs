@@ -18,11 +18,11 @@ namespace venolocation.classee
             {
                 try
                 {
-                    if (!Properties.Settings.Default.telegram_error_enabled)
+                    if (!App_Config.Instance.telegram_error_enabled)
                         return;
 
-                    string token = Properties.Settings.Default.telegram_bot_token;
-                    string chatId = Properties.Settings.Default.telegram_chat_id;
+                    string token = App_Config.Instance.telegram_bot_token;
+                    string chatId = App_Config.Instance.telegram_chat_id;
 
                     if (string.IsNullOrWhiteSpace(token) || string.IsNullOrWhiteSpace(chatId))
                         return;
@@ -30,8 +30,8 @@ namespace venolocation.classee
                 string message =
                         "🚨 ERREUR LOGICIEL" + Environment.NewLine +
                         Environment.NewLine +
-                        "Programme : "+Properties.Settings.Default.name_programe + Environment.NewLine +
-                        "Version : " + Properties.Settings.Default.verssion + Environment.NewLine +
+                        "Programme : "+App_Config.Instance.name_programe + Environment.NewLine +
+                        "Version : " + App_Config.Instance.verssion + Environment.NewLine +
                         "Utilisateur : " + Session.Username + Environment.NewLine +
                         "PC Name : " + Environment.MachineName + Environment.NewLine +
                         "ID_prosesseur : " +  ActivationHelper.GetProcessorId() + Environment.NewLine +
@@ -58,14 +58,14 @@ namespace venolocation.classee
             {
                 try
                 {
-                    string token = Properties.Settings.Default.telegram_bot_token;
-                    string chatId = Properties.Settings.Default.telegram_chat_id;
+                    string token = App_Config.Instance.telegram_bot_token;
+                    string chatId = App_Config.Instance.telegram_chat_id;
 
                     if (string.IsNullOrWhiteSpace(token) || string.IsNullOrWhiteSpace(chatId))
                     {
                         MessageBox.Show(
                             "Veuillez renseigner Bot Token et Chat ID.",
-                            "Telegram",
+                            "Test",
                             MessageBoxButtons.OK,
                             MessageBoxIcon.Warning
                         );
@@ -75,7 +75,7 @@ namespace venolocation.classee
                 string message =
                      "Message LOGICIEL" + Environment.NewLine +
                      Environment.NewLine +
-                     "Programme : " + Properties.Settings.Default.name_programe + Environment.NewLine +
+                     "Programme : " + App_Config.Instance.name_programe + Environment.NewLine +
                      "Utilisateur : " + Session.Username + Environment.NewLine +
                      "PC Name : " + Environment.MachineName + Environment.NewLine +
                      "ID_prosesseur : " + ActivationHelper.GetProcessorId() + Environment.NewLine +

@@ -5,7 +5,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-using MySql.Data.MySqlClient;
+using MySqlConnector;
 
 namespace venolocation.classee
 {
@@ -13,11 +13,11 @@ namespace venolocation.classee
     {
 
 
-        private static readonly string connString = DbConfig.GetConnectionString();
+        //private static string connString = DbConfig.GetConnectionString();
 
         public static MySqlConnection GetConnection()
         {
-            return new MySqlConnection(connString);
+            return new MySqlConnection(DbConfig.GetConnectionString());
         }
 
         

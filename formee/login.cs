@@ -9,7 +9,7 @@ using System.Threading.Tasks;
 using System.Web;
 using System.Windows.Forms;
 
-using MySql.Data.MySqlClient;
+using MySqlConnector;
 
 using venolocation.classee;
 

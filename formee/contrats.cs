@@ -4,7 +4,7 @@ using System.Drawing;
 using System.Windows.Forms;
 using System.Drawing.Printing;
 using venolocation.classee;
-using MySql.Data.MySqlClient;
+using MySqlConnector;
 using System.IO;
 
 namespace venolocation.formee
@@ -875,10 +875,10 @@ namespace venolocation.formee
 
                     return new FactureEtatVehiculeData
                     {
-                        NomSociete = Properties.Settings.Default.nom_societe,
-                        AdresseSociete = Properties.Settings.Default.adresse_societe,
-                        TelephoneSociete = Properties.Settings.Default.telephone_societe,
-                        EmailSociete = Properties.Settings.Default.email_societe,
+                        NomSociete = App_Config.Instance.nom_societe,
+                        AdresseSociete = App_Config.Instance.adresse_societe,
+                        TelephoneSociete = App_Config.Instance.telephone_societe,
+                        EmailSociete = App_Config.Instance.email_societe,
 
                         NumeroFacture = "FAC-" + DateTime.Now.Year + "-" + contratId.ToString().PadLeft(5, '0'),
                         DateFacture = DateTime.Now.ToString("dd/MM/yyyy"),

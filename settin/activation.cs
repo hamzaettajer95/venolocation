@@ -49,11 +49,11 @@ namespace venolocation.settin
             btnActiver.Enabled = true;
             txtActivation.Focus();
         }
-        void test_serial()
+        bool test_serial()
         {
-            string programName = Properties.Settings.Default.name_programe;
+            string programName = App_Config.Instance.name_programe;
 
-            string driveUrl = Properties.Settings.Default.url_licence;
+            string driveUrl = App_Config.Instance.url_licence;
 
             bool active = ActivationHelper.CheckActivationFromDrive(programName, driveUrl);
 
@@ -61,11 +61,12 @@ namespace venolocation.settin
             {
 
                 AfficherLicenceInactive();
-
+                return false;
             }
             else
             {
                 AfficherLicenceActive();
+                return true;
                 //classee.ErrorReporter.SendTestMessage("Ce Client active ce programme avec le serial : "+txtActivation.Text);
             }
                 
@@ -73,7 +74,7 @@ namespace venolocation.settin
         }
         private void activation_Load(object sender, EventArgs e)
         {
-            txtActivation.Text = Properties.Settings.Default.serial;
+            txtActivation.Text = App_Config.Instance.serial;
             test_serial();
         }
 
@@ -91,9 +92,13 @@ namespace venolocation.settin
         }
         private void btnActiver_Click(object sender, EventArgs e)
         {
-            Properties.Settings.Default.serial=NettoyerCode(txtActivation.Text);
-            Properties.Settings.Default.Save();
-            test_serial();
+            App_Config.Instance.serial=NettoyerCode(txtActivation.Text);
+            App_Config.Save(App_Config.Instance);
+            
+            if (test_serial())
+            {
+                classee.ErrorReporter.SendTestMessage("Ce Client active ce programme avec le serial : " + txtActivation.Text);
+            }
         }
 
         private bool isFormatting = false;

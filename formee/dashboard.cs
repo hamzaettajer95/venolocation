@@ -1,5 +1,5 @@
 ﻿using Guna.UI2.WinForms;
-using MySql.Data.MySqlClient;
+using MySqlConnector;
 using System;
 using System.ComponentModel;
 using System.Drawing;
@@ -43,7 +43,7 @@ namespace venolocation.formee
 
         void mise_a_jour()
         {
-            string updateUrl = Properties.Settings.Default.updateUrl;
+            string updateUrl = App_Config.Instance.updateUrl;
 
             UpdateInfo update = UpdateHelper.CheckForUpdate(updateUrl);
 
@@ -69,11 +69,11 @@ namespace venolocation.formee
         }
         private string GetConnectionStringFromTextBox()
         {
-            string server = Properties.Settings.Default.db_server;
-            string database = Properties.Settings.Default.db_name;
-            string user = Properties.Settings.Default.db_user;
-            string password = Properties.Settings.Default.db_password;
-            string portText = Properties.Settings.Default.db_port;
+            string server = App_Config.Instance.db_server;
+            string database = App_Config.Instance.db_name;
+            string user = App_Config.Instance.db_user;
+            string password = App_Config.Instance.db_password;
+            string portText = App_Config.Instance.db_port;
 
             uint port = 3306;
 
@@ -123,13 +123,14 @@ namespace venolocation.formee
             
         }
         bool test = false;
+        
         private void dashboard_Load(object sender, EventArgs e)
         {
-
+          
             if (VerifierInternet())
             {
 
-                lblInternet.Text = "Version de l'application : " + Properties.Settings.Default.verssion;
+                lblInternet.Text = "Version de l'application : " + App_Config.Instance.verssion;
                 
 
                 mise_a_jour();
@@ -616,9 +617,9 @@ namespace venolocation.formee
 
         void test_serial()
         {
-            string programName = Properties.Settings.Default.name_programe;
+            string programName = App_Config.Instance.name_programe;
 
-            string driveUrl = Properties.Settings.Default.url_licence;
+            string driveUrl = App_Config.Instance.url_licence;
             bool active = ActivationHelper.CheckActivationFromDrive(programName, driveUrl);
 
             if (!active)

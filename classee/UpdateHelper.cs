@@ -81,7 +81,7 @@ namespace venolocation.classee
                         return null;
                     }
 
-                    Version current = new Version(Properties.Settings.Default.verssion);
+                    Version current = new Version(App_Config.Instance.verssion);
                     Version latest = new Version(latestVersion);
 
                     bool isNew = latest > current;
@@ -89,7 +89,7 @@ namespace venolocation.classee
 
                     UpdateInfo info = new UpdateInfo
                     {
-                        CurrentVersion = Properties.Settings.Default.verssion,
+                        CurrentVersion = App_Config.Instance.verssion,
                         LatestVersion = latestVersion,
                         Url = url,
                         Description = description,
