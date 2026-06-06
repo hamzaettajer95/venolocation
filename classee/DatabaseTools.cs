@@ -1,13 +1,13 @@
-﻿using System;
+﻿using MySqlConnector;
+using System;
 using System.Collections.Generic;
 using System.Data;
 using System.Diagnostics;
+using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using System.IO;
-
-using MySqlConnector;
+using System.Windows.Forms;
 
 namespace venolocation.classee
 {
@@ -603,6 +603,106 @@ namespace venolocation.classee
                 WHERE a.annee_archive = @annee;";
 
             ExecuterRestaurationArchive(insert, deleteArchive, annee);
+        }
+
+        public static void ResetDatabaseAndCreateAdmin()
+        {
+            string connectionString = Dbexec.GetConnection().ToString();
+
+            string[] tables =
+            {
+                "accidents",
+                "alerte",
+                "clients",
+                "client_comptes",
+                "contrats",
+                "contrats_archive",
+                "depenses",
+                "depenses_archive",
+                "entretiens",
+                "erreur",
+                "logs",
+                "old_contrats",
+                "recettes",
+                "recettes_archive",
+                "reparations",
+                "reservations",
+                "reservations_archive",
+                "utilisateurs",
+                "voitures",
+                "voiture_echeances"
+            };
+
+            try
+            {
+                using (MySqlConnection cn = new MySqlConnection(connectionString))
+                {
+                    cn.Open();
+
+                    using (MySqlCommand cmd = cn.CreateCommand())
+                    {
+
+                        using (MySqlTransaction tr = cn.BeginTransaction())
+                        {
+                            try
+                            {
+                                cmd.CommandText = "SET FOREIGN_KEY_CHECKS = 0;";
+                                cmd.ExecuteNonQuery();
+
+
+                                foreach (string table in tables)
+                                {
+                                    cmd.CommandText = $"TRUNCATE TABLE `{table}`;";
+                                    cmd.ExecuteNonQuery();
+                                }
+
+
+                                cmd.CommandText = "SET FOREIGN_KEY_CHECKS = 1;";
+                                cmd.ExecuteNonQuery();
+
+
+                                cmd.CommandText = @"
+                                    INSERT INTO utilisateurs 
+                                    (nom, login, mot_de_passe, role, created_at)
+                                    VALUES 
+                                    (@nom, @login, @mot_de_passe, @role, NOW()); ";
+
+                                cmd.Parameters.Clear();
+                                cmd.Parameters.AddWithValue("@nom", "admin");
+                                cmd.Parameters.AddWithValue("@login", "admin");
+                                cmd.Parameters.AddWithValue("@mot_de_passe", "admin");
+                                cmd.Parameters.AddWithValue("@role", "Admin");
+
+                                cmd.ExecuteNonQuery();
+
+                                tr.Commit();
+                            }
+                            catch
+                            {
+                                tr.Rollback();
+                                throw;
+                            }
+                        }
+                        
+                    }
+                }
+
+                MessageBox.Show(
+                    "Database reset avec succès. Utilisateur admin/admin créé.",
+                    "Succès",
+                    MessageBoxButtons.OK,
+                    MessageBoxIcon.Information
+                );
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(
+                    "Erreur reset database: " + ex.Message,
+                    "Erreur",
+                    MessageBoxButtons.OK,
+                    MessageBoxIcon.Error
+                );
+            }
         }
 
     }

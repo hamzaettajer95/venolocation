@@ -484,12 +484,13 @@
             this.pnlAPropos.Name = "pnlAPropos";
             this.pnlAPropos.Size = new System.Drawing.Size(222, 92);
             this.pnlAPropos.TabIndex = 13;
+            this.pnlAPropos.Paint += new System.Windows.Forms.PaintEventHandler(this.pnlAPropos_Paint);
             // 
             // iconPictureBox9
             // 
             this.iconPictureBox9.BackColor = System.Drawing.Color.Transparent;
             this.iconPictureBox9.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(21)))), ((int)(((byte)(101)))), ((int)(((byte)(192)))));
-            this.iconPictureBox9.IconChar = FontAwesome.Sharp.IconChar.Database;
+            this.iconPictureBox9.IconChar = FontAwesome.Sharp.IconChar.CircleXmark;
             this.iconPictureBox9.IconColor = System.Drawing.Color.FromArgb(((int)(((byte)(21)))), ((int)(((byte)(101)))), ((int)(((byte)(192)))));
             this.iconPictureBox9.IconFont = FontAwesome.Sharp.IconFont.Auto;
             this.iconPictureBox9.IconSize = 42;
@@ -505,11 +506,11 @@
             this.label11.BackColor = System.Drawing.Color.Transparent;
             this.label11.Font = new System.Drawing.Font("Segoe UI Semibold", 10.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label11.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(40)))), ((int)(((byte)(98)))), ((int)(((byte)(220)))));
-            this.label11.Location = new System.Drawing.Point(33, 57);
+            this.label11.Location = new System.Drawing.Point(6, 57);
             this.label11.Name = "label11";
-            this.label11.Size = new System.Drawing.Size(157, 23);
+            this.label11.Size = new System.Drawing.Size(214, 23);
             this.label11.TabIndex = 11;
-            this.label11.Text = "Tester la connexion";
+            this.label11.Text = "Supprimer tout les donnée";
             // 
             // pnlSauvegarderConfig
             // 
@@ -628,9 +629,9 @@
             this.label18.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(225)))), ((int)(((byte)(48)))), ((int)(((byte)(65)))));
             this.label18.Location = new System.Drawing.Point(26, 57);
             this.label18.Name = "label18";
-            this.label18.Size = new System.Drawing.Size(178, 23);
+            this.label18.Size = new System.Drawing.Size(173, 23);
             this.label18.TabIndex = 1;
-            this.label18.Text = "Afficher configuration";
+            this.label18.Text = "Afficher la connexion";
             // 
             // pnlModeDebug
             // 

@@ -40,10 +40,10 @@ namespace venolocation.formee
             };
 
             string q = @"
-        SELECT client_id, actif
-        FROM clients
-        WHERE cin = @cin
-        LIMIT 1;";
+                    SELECT client_id, actif
+                    FROM clients
+                    WHERE cin = @cin
+                    LIMIT 1;";
 
             using (MySqlConnection cn = Dbexec.GetConnection())
             using (MySqlCommand cmd = new MySqlCommand(q, cn))

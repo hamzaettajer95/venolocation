@@ -7,7 +7,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
-
+using System.IO;
 using Microsoft.VisualBasic;
 
 using MySqlConnector;
@@ -329,6 +329,7 @@ namespace venolocation.droit
                     "Tables à vider",
                     new string[]
                     {
+                            "Toutes les tables",
                             "contrats",
                             "reservations",
                             "depenses",
@@ -342,6 +343,7 @@ namespace venolocation.droit
 
                 if (choix == null)
                     return;
+
 
                 if (MessageService.Confirm("ATTENTION : Les données sélectionnées seront supprimées. Continuer ?") != DialogResult.Yes)
                     return;
@@ -411,6 +413,8 @@ namespace venolocation.droit
             {
                 using (FolderBrowserDialog f = new FolderBrowserDialog())
                 {
+                    
+
                     f.Description = "Choisissez le dossier de sauvegarde";
 
                     if (f.ShowDialog() != DialogResult.OK)

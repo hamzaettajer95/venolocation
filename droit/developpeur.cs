@@ -368,7 +368,21 @@ namespace venolocation.droit
                 return;
             }
 
-            TesterConnexion();
+            if (MessageService.Confirm("ATTENTION : Tout Les données seront supprimées. Continuer ?") != DialogResult.Yes)
+                return;
+
+            if (MessageService.Confirm("Dernière confirmation : supprimer définitivement ?") != DialogResult.Yes)
+                return;
+
+
+            string appPath = Application.StartupPath;
+            // dossier backup
+            string backupFolder = Path.Combine(appPath, "backup");
+            string file = DatabaseTools.BackupDatabase(backupFolder);
+            MessageBox.Show("Sauvegarde de la base de données créée :\n" + file, "Sauvegarde créée", MessageBoxButtons.OK, MessageBoxIcon.Information);
+
+            if (File.Exists(file)) 
+                DatabaseTools.ResetDatabaseAndCreateAdmin();
         }
 
         private void pictureBox2_Click(object sender, EventArgs e)
@@ -505,6 +519,11 @@ namespace venolocation.droit
         }
 
         private void pnlHeader_Paint(object sender, PaintEventArgs e)
+        {
+
+        }
+
+        private void pnlAPropos_Paint(object sender, PaintEventArgs e)
         {
 
         }

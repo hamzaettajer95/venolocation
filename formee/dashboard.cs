@@ -137,70 +137,62 @@ namespace venolocation.formee
                 test_serial();
 
 
+                if (verifier_connection())
+                {
+                    test = true;
+                    try
+                    {
+                        this.SuspendLayout();
+
+
+                        MakePanelClickable(panel1, panel1_Click);
+                        timer1.Start();
+                        lbldate.Text = DateTime.Now.ToString("dddd dd/MM/yyyy");
+
+
+                        ChargerToutesLesDonnees();
+
+
+                        deconnecte();
+
+                        panel1.Enabled = true;
+
+                        // enregistrer les alertes dans la base de données
+                        Dbexec.ExecuteQuery("CALL sp_generer_alertes();");
+
+
+
+                    }
+                    catch (Exception ex)
+                    {
+                        ErrorReporter.SendError(ex, "dashboard", "erreur connection");
+                        dbErreur.AddLog(ex.Message, Session.Username, "dashboard", "dashboard_Load");
+                        MessageBox.Show("Erreur chargement dashboard : " + ex.Message);
+                    }
+                    finally
+                    {
+                        this.ResumeLayout();
+                    }
+                }
+                else
+                {
+                    deconnecte();
+                    dev.server ser = new dev.server();
+                    ser.ShowDialog();
+                }
+
             }
             else
             {
                 
                 MessageBox.Show("Veuillez vérifier votre connexion internet et réessayer.", "Erreur de connexion", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                MessageBox.Show("le logiciel va fermer.", "Fermeture", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                MessageBox.Show("le logiciel va fermer.", "Fermeture", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 Application.Exit();
             }
-            if (verifier_connection())
-            {
-                test = true;
-                try
-                {
-                    this.SuspendLayout();
+            
 
 
-                    MakePanelClickable(panel1, panel1_Click);
-                    timer1.Start();
-                    lbldate.Text = DateTime.Now.ToString("dddd dd/MM/yyyy");
-
-
-                    ChargerToutesLesDonnees();
-
-
-                    deconnecte();
-
-                    panel1.Enabled = true;
-
-                    // enregistrer les alertes dans la base de données
-                    Dbexec.ExecuteQuery("CALL sp_generer_alertes();");
-
-
-
-                }
-                catch (Exception ex)
-                {
-                    ErrorReporter.SendError(ex, "dashboard", "erreur connection");
-                    dbErreur.AddLog(ex.Message, Session.Username, "dashboard", "dashboard_Load");
-                    MessageBox.Show("Erreur chargement dashboard : " + ex.Message);
-                }
-                finally
-                {
-                    this.ResumeLayout();
-                }
-            }
-            else
-            {
-                deconnecte();
-                dev.server ser = new dev.server();
-                ser.ShowDialog();
-            }
-
-
-            //L_Service.Init();
-
-            //if (!L_Service.IsValid())
-            //{
-            //    MessageBox.Show("Demo terminé contactez le développeur.", "Demo terminée", MessageBoxButtons.OK, MessageBoxIcon.Information);
-
-            //    Application.Exit();
-            //    return;
-            //}
-
-            //L_Service.Use();
+          
 
 
         }
