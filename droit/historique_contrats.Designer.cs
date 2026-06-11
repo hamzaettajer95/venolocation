@@ -50,6 +50,8 @@
             this.label1 = new System.Windows.Forms.Label();
             this.guna2CirclePictureBox1 = new Guna.UI2.WinForms.Guna2CirclePictureBox();
             this.panel2 = new System.Windows.Forms.Panel();
+            this.btn_prolongation = new Guna.UI2.WinForms.Guna2Button();
+            this.btn_change_voiture = new Guna.UI2.WinForms.Guna2Button();
             this.btnimprimer = new Guna.UI2.WinForms.Guna2Button();
             this.btnAnnuler = new Guna.UI2.WinForms.Guna2Button();
             ((System.ComponentModel.ISupportInitialize)(this.dgvHistory)).BeginInit();
@@ -77,8 +79,9 @@
             this.dgvHistory.RowHeadersWidth = 51;
             this.dgvHistory.RowTemplate.Height = 34;
             this.dgvHistory.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.dgvHistory.Size = new System.Drawing.Size(1419, 443);
+            this.dgvHistory.Size = new System.Drawing.Size(1419, 520);
             this.dgvHistory.TabIndex = 4;
+            this.dgvHistory.CellDoubleClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvHistory_CellDoubleClick);
             this.dgvHistory.SelectionChanged += new System.EventHandler(this.dgvHistory_SelectionChanged);
             // 
             // panel1
@@ -333,12 +336,56 @@
             // panel2
             // 
             this.panel2.BackColor = System.Drawing.Color.White;
+            this.panel2.Controls.Add(this.btn_prolongation);
+            this.panel2.Controls.Add(this.btn_change_voiture);
             this.panel2.Controls.Add(this.btnimprimer);
             this.panel2.Controls.Add(this.btnAnnuler);
-            this.panel2.Location = new System.Drawing.Point(12, 671);
+            this.panel2.Location = new System.Drawing.Point(12, 748);
             this.panel2.Name = "panel2";
             this.panel2.Size = new System.Drawing.Size(1419, 72);
             this.panel2.TabIndex = 7;
+            // 
+            // btn_prolongation
+            // 
+            this.btn_prolongation.BorderRadius = 10;
+            this.btn_prolongation.DisabledState.BorderColor = System.Drawing.Color.DarkGray;
+            this.btn_prolongation.DisabledState.CustomBorderColor = System.Drawing.Color.DarkGray;
+            this.btn_prolongation.DisabledState.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(169)))), ((int)(((byte)(169)))), ((int)(((byte)(169)))));
+            this.btn_prolongation.DisabledState.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(141)))), ((int)(((byte)(141)))), ((int)(((byte)(141)))));
+            this.btn_prolongation.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(167)))), ((int)(((byte)(38)))));
+            this.btn_prolongation.Font = new System.Drawing.Font("Segoe UI", 16.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btn_prolongation.ForeColor = System.Drawing.Color.White;
+            this.btn_prolongation.HoverState.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(192)))), ((int)(((byte)(128)))));
+            this.btn_prolongation.Image = global::venolocation.Properties.Resources.print_icon;
+            this.btn_prolongation.ImageAlign = System.Windows.Forms.HorizontalAlignment.Left;
+            this.btn_prolongation.ImageSize = new System.Drawing.Size(35, 35);
+            this.btn_prolongation.Location = new System.Drawing.Point(367, 5);
+            this.btn_prolongation.Name = "btn_prolongation";
+            this.btn_prolongation.Size = new System.Drawing.Size(310, 60);
+            this.btn_prolongation.TabIndex = 14;
+            this.btn_prolongation.Text = "Prolongation";
+            this.btn_prolongation.Click += new System.EventHandler(this.btn_prolongation_Click);
+            // 
+            // btn_change_voiture
+            // 
+            this.btn_change_voiture.BorderRadius = 10;
+            this.btn_change_voiture.DisabledState.BorderColor = System.Drawing.Color.DarkGray;
+            this.btn_change_voiture.DisabledState.CustomBorderColor = System.Drawing.Color.DarkGray;
+            this.btn_change_voiture.DisabledState.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(169)))), ((int)(((byte)(169)))), ((int)(((byte)(169)))));
+            this.btn_change_voiture.DisabledState.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(141)))), ((int)(((byte)(141)))), ((int)(((byte)(141)))));
+            this.btn_change_voiture.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(171)))), ((int)(((byte)(71)))), ((int)(((byte)(188)))));
+            this.btn_change_voiture.Font = new System.Drawing.Font("Segoe UI", 16.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btn_change_voiture.ForeColor = System.Drawing.Color.White;
+            this.btn_change_voiture.HoverState.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(128)))), ((int)(((byte)(255)))));
+            this.btn_change_voiture.Image = global::venolocation.Properties.Resources.print_icon;
+            this.btn_change_voiture.ImageAlign = System.Windows.Forms.HorizontalAlignment.Left;
+            this.btn_change_voiture.ImageSize = new System.Drawing.Size(35, 35);
+            this.btn_change_voiture.Location = new System.Drawing.Point(6, 5);
+            this.btn_change_voiture.Name = "btn_change_voiture";
+            this.btn_change_voiture.Size = new System.Drawing.Size(310, 60);
+            this.btn_change_voiture.TabIndex = 13;
+            this.btn_change_voiture.Text = "Changer voiture";
+            this.btn_change_voiture.Click += new System.EventHandler(this.btn_change_voiture_Click);
             // 
             // btnimprimer
             // 
@@ -354,7 +401,7 @@
             this.btnimprimer.Image = global::venolocation.Properties.Resources.print_icon;
             this.btnimprimer.ImageAlign = System.Windows.Forms.HorizontalAlignment.Left;
             this.btnimprimer.ImageSize = new System.Drawing.Size(35, 35);
-            this.btnimprimer.Location = new System.Drawing.Point(332, 9);
+            this.btnimprimer.Location = new System.Drawing.Point(728, 5);
             this.btnimprimer.Name = "btnimprimer";
             this.btnimprimer.Size = new System.Drawing.Size(310, 60);
             this.btnimprimer.TabIndex = 12;
@@ -375,7 +422,7 @@
             this.btnAnnuler.Image = global::venolocation.Properties.Resources.delete;
             this.btnAnnuler.ImageAlign = System.Windows.Forms.HorizontalAlignment.Left;
             this.btnAnnuler.ImageSize = new System.Drawing.Size(35, 35);
-            this.btnAnnuler.Location = new System.Drawing.Point(956, 4);
+            this.btnAnnuler.Location = new System.Drawing.Point(1089, 5);
             this.btnAnnuler.Name = "btnAnnuler";
             this.btnAnnuler.Size = new System.Drawing.Size(310, 60);
             this.btnAnnuler.TabIndex = 11;
@@ -386,7 +433,7 @@
             // 
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.None;
             this.BackColor = System.Drawing.Color.White;
-            this.ClientSize = new System.Drawing.Size(1443, 748);
+            this.ClientSize = new System.Drawing.Size(1443, 823);
             this.Controls.Add(this.panel2);
             this.Controls.Add(this.guna2GradientPanel1);
             this.Controls.Add(this.panel1);
@@ -436,5 +483,7 @@
         private System.Windows.Forms.Label label7;
         private Guna.UI2.WinForms.Guna2ToggleSwitch chkArchive;
         private System.Windows.Forms.CheckBox chkFiltrerDate;
+        private Guna.UI2.WinForms.Guna2Button btn_prolongation;
+        private Guna.UI2.WinForms.Guna2Button btn_change_voiture;
     }
 }

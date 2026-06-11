@@ -22,7 +22,7 @@ namespace venolocation.droit
             InitializeComponent();
         }
 
-
+        private int contratIdSelectionne = 0;
         private void LoadContracts()
         {
             try
@@ -38,23 +38,23 @@ namespace venolocation.droit
                 List<MySqlParameter> ps = new List<MySqlParameter>();
 
                 string query = @"
-            SELECT 
-                c.contrat_id AS 'ID',
+                        SELECT 
+                            c.contrat_id AS 'ID',
 
-                c.client_id AS 'Client ID',
-                cl.cin AS 'CIN Client',
+                            c.client_id AS 'Client ID',
+                            cl.cin AS 'CIN Client',
 
-                c.voiture_id AS 'Voiture ID',
-                v.matricule AS 'Matricule',
+                            c.voiture_id AS 'Voiture ID',
+                            v.matricule AS 'Matricule',
 
-                c.status AS 'Statut',
-                DATE_FORMAT(c.date_contrat, '%d/%m/%Y') AS 'Date contrat',
-                DATE_FORMAT(c.date_retour_prevu, '%d/%m/%Y') AS 'Retour prévu',
-                c.total AS 'Total'
-            FROM " + tableName + @" c
-            LEFT JOIN clients cl ON cl.client_id = c.client_id
-            LEFT JOIN voitures v ON v.voiture_id = c.voiture_id
-            WHERE 1=1 ";
+                            c.status AS 'Statut',
+                            DATE_FORMAT(c.date_contrat, '%d/%m/%Y') AS 'Date contrat',
+                            DATE_FORMAT(c.date_retour_prevu, '%d/%m/%Y') AS 'Retour prévu',
+                            c.total AS 'Total'
+                        FROM " + tableName + @" c
+                        LEFT JOIN clients cl ON cl.client_id = c.client_id
+                        LEFT JOIN voitures v ON v.voiture_id = c.voiture_id
+                        WHERE 1=1 ";
 
                 if (cb_client.SelectedValue != null && Convert.ToInt32(cb_client.SelectedValue) > 0)
                 {
@@ -74,21 +74,21 @@ namespace venolocation.droit
                     ps.Add(new MySqlParameter("@status", selectedStatus));
                 }
 
-                // filter date غير إلا كان checkbox مفعّل
+                
                 if (chkFiltrerDate.Checked)
                 {
                     query += @"
-                AND DATE(c.date_contrat) >= @date_debut
-                AND DATE(c.date_retour_prevu) <= @date_fin ";
+                            AND DATE(c.date_contrat) >= @date_debut
+                            AND DATE(c.date_retour_prevu) <= @date_fin ";
 
                     ps.Add(new MySqlParameter("@date_debut", dtp_debut.Value.Date));
                     ps.Add(new MySqlParameter("@date_fin", dtp_fin.Value.Date));
                 }
 
                 query += @"
-            ORDER BY c.contrat_id DESC
-            LIMIT 300;
-        ";
+                            ORDER BY c.contrat_id DESC
+                            LIMIT 400;
+                        ";
 
                 dgvHistory.DataSource = Dbexec.GetData(query, ps.ToArray());
 
@@ -142,11 +142,7 @@ namespace venolocation.droit
         {
             try
             {
-                DataTable dtClients = Dbexec.GetData(@"
-                                                        SELECT client_id, cin
-                                                        FROM clients
-                                                        ORDER BY cin
-                                                        LIMIT 500;");
+                DataTable dtClients = Dbexec.GetData(@"SELECT client_id, cin FROM clients ORDER BY cin LIMIT 500;");
 
                 DataRow drClient = dtClients.NewRow();
                 drClient["client_id"] = 0;
@@ -158,11 +154,8 @@ namespace venolocation.droit
                 cb_client.ValueMember = "client_id";
                 ActiverAutoComplete(cb_client);
 
-                DataTable dtCars = Dbexec.GetData(@"
-                                                    SELECT voiture_id, matricule
-                                                    FROM voitures
-                                                    ORDER BY matricule
-                                                    LIMIT 500;");
+
+                DataTable dtCars = Dbexec.GetData(@" SELECT voiture_id, matricule  FROM voitures ORDER BY matricule  LIMIT 500;");
 
                 DataRow drCar = dtCars.NewRow();
                 drCar["voiture_id"] = 0;
@@ -213,11 +206,11 @@ namespace venolocation.droit
 
                 LoadContracts();
 
-                LoadContracts();
+                
             }
             catch (Exception ex)
             {
-                ErrorReporter.SendError(ex, "historique_contrats", "historique_contrats_Load");
+               // ErrorReporter.SendError(ex, "historique_contrats", "historique_contrats_Load");
                 dbErreur.AddLog(ex.Message, Session.Username, "historique_contrats", "historique_contrats_Load");
                 MessageBox.Show("Erreur lors du chargement du formulaire : " + ex.Message);
             }
@@ -246,7 +239,11 @@ namespace venolocation.droit
 
             string status = dgvHistory.CurrentRow.Cells["Statut"].Value.ToString();
             btnAnnuler.Enabled = (status == AppStatus.ContratEnCours);
+
+
+            contratIdSelectionne = Convert.ToInt32(dgvHistory.CurrentRow.Cells["ID"].Value);
         }
+
 
         private void iconButton1_Click(object sender, EventArgs e)
         {
@@ -404,6 +401,30 @@ namespace venolocation.droit
             dtp_fin.Enabled = chkFiltrerDate.Checked;
 
             LoadContracts();
+        }
+
+        private void btn_prolongation_Click(object sender, EventArgs e)
+        {
+            prolongation po = new prolongation();
+            po.ShowDialog();
+        }
+
+        private void btn_change_voiture_Click(object sender, EventArgs e)
+        {
+            liste_contrat li = new liste_contrat(id_contrat_selectionne, matricule_selectionne);
+            li.ShowDialog();
+        }
+        int id_contrat_selectionne = -1;
+        string matricule_selectionne = "";
+        private void dgvHistory_CellDoubleClick(object sender, DataGridViewCellEventArgs e)
+        {
+            if (e.RowIndex >= 0)
+            {
+                DataGridViewRow row = dgvHistory.Rows[e.RowIndex];
+
+                id_contrat_selectionne =Convert.ToInt16( row.Cells[0].Value.ToString());
+                matricule_selectionne = row.Cells["Matricule"].Value.ToString();
+            }
         }
     }
 }

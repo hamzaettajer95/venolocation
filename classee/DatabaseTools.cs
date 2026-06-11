@@ -609,6 +609,10 @@ namespace venolocation.classee
         {
             string connectionString = Dbexec.GetConnection().ToString();
 
+            string file;
+            
+           // MessageBox.Show("Sauvegarde de la base de données créée ", "Sauvegarde créée", MessageBoxButtons.OK, MessageBoxIcon.Information);
+
             string[] tables =
             {
                 "accidents",
@@ -635,6 +639,23 @@ namespace venolocation.classee
 
             try
             {
+                // Backuop de la base avant de tout supprimer
+                using (FolderBrowserDialog f = new FolderBrowserDialog())
+                {
+
+
+                    f.Description = "Choisissez le dossier de sauvegarde";
+
+                    if (f.ShowDialog() != DialogResult.OK)
+                        return;
+
+                    file = DatabaseTools.BackupDatabase(f.SelectedPath);
+
+                    LogHelper.AddLog("Backup base de données : " + file, Session.Username);
+
+                }
+
+
                 using (MySqlConnection cn = new MySqlConnection(connectionString))
                 {
                     cn.Open();

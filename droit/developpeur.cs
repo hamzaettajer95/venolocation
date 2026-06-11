@@ -374,14 +374,7 @@ namespace venolocation.droit
             if (MessageService.Confirm("Dernière confirmation : supprimer définitivement ?") != DialogResult.Yes)
                 return;
 
-
-            string appPath = Application.StartupPath;
-            // dossier backup
-            string backupFolder = Path.Combine(appPath, "backup");
-            string file = DatabaseTools.BackupDatabase(backupFolder);
-            MessageBox.Show("Sauvegarde de la base de données créée :\n" + file, "Sauvegarde créée", MessageBoxButtons.OK, MessageBoxIcon.Information);
-
-            if (File.Exists(file)) 
+           
                 DatabaseTools.ResetDatabaseAndCreateAdmin();
         }
 

@@ -223,7 +223,7 @@ namespace venolocation.formee
 
             int jours = CalculerNombreJours();
             decimal total = CalculerTotal();
-            decimal avance = numAvance.Value;
+            decimal avance = numAvance.Text == "" ? 0 : Convert.ToDecimal(numAvance.Text.Replace('.', ','));
             decimal reste = total - avance;
 
             if (reste < 0)
@@ -283,6 +283,9 @@ namespace venolocation.formee
                 return false;
             }
 
+            if (!ValiderDeuxiemeConducteur())
+                return false;
+
             return true;
         }
 
@@ -335,7 +338,7 @@ namespace venolocation.formee
                         prixHeure = rows[0]["prix_heure"] == DBNull.Value ? 0 : Convert.ToDecimal(rows[0]["prix_heure"]);
                 }
 
-                decimal avance = numAvance.Value;
+                decimal avance = numAvance.Text == "" ? 0 : Convert.ToDecimal(numAvance.Text.Replace('.', ','));
                 decimal total = CalculerTotal();
                
                 using (MySqlConnection cn = Dbexec.GetConnection())
@@ -347,14 +350,14 @@ namespace venolocation.formee
                         try
                         {
                             string query = @"
-                    INSERT INTO contrats
-                    (client_id, voiture_id, reservation_id, date_contrat, heure_debut, 
-                     date_retour_prevu, heure_retour_prevu, kilometrage_sortie, 
-                     prix_jour, prix_heure, avance, total, status, nom_utilisateur)
-                    VALUES
-                    (@client_id, @voiture_id, @reservation_id, @date_contrat, @heure_debut,
-                     @date_retour_prevu, @heure_retour_prevu, @kilometrage_sortie,
-                     @prix_jour, @prix_heure, @avance, @total, @status, @nom_utilisateur);";
+                                INSERT INTO contrats
+                                (client_id, voiture_id, reservation_id, date_contrat, heure_debut, 
+                                 date_retour_prevu, heure_retour_prevu, kilometrage_sortie, 
+                                 prix_jour, prix_heure, avance, total, status, nom_utilisateur)
+                                VALUES
+                                (@client_id, @voiture_id, @reservation_id, @date_contrat, @heure_debut,
+                                 @date_retour_prevu, @heure_retour_prevu, @kilometrage_sortie,
+                                 @prix_jour, @prix_heure, @avance, @total, @status, @nom_utilisateur);";
 
                             using (MySqlCommand cmd = new MySqlCommand(query, cn, tr))
                             {
@@ -379,6 +382,7 @@ namespace venolocation.formee
                                 using (MySqlCommand cmdId = new MySqlCommand("SELECT LAST_INSERT_ID();", cn, tr))
                                 {
                                     dernierContratId = Convert.ToInt32(cmdId.ExecuteScalar());
+                                    EnregistrerConducteursContrat(cn, tr, dernierContratId, clientId);
                                 }
                             }
 
@@ -504,7 +508,7 @@ namespace venolocation.formee
 
                 txtKilometrage.Text = rows[0]["kilometrage"].ToString();
                 txtPrixJour.Text = Convert.ToDecimal(rows[0]["prix_jour"]).ToString("0.00");
-                txtPuissance.Text = "";
+                
             }
         }
 
@@ -631,7 +635,6 @@ namespace venolocation.formee
 
             txtKilometrage.Clear();
             txtPrixJour.Clear();
-            txtPuissance.SelectedIndex = -1;
 
             dtDateDebut.Value = DateTime.Today;
             dtDateFin.Value = DateTime.Today.AddDays(1);
@@ -641,7 +644,7 @@ namespace venolocation.formee
 
             txtNombreJours.Text = "1";
 
-            numAvance.Value = 0;
+            numAvance.Text = "0";
             txtTtl.Text = "0,00";
             txtRestePayer.Text = "0,00";
 
@@ -651,6 +654,12 @@ namespace venolocation.formee
             lblContratNumero.Text = GenererNumeroContrat();
             lblDuree.Text = "1 jour";
             lblTotal.Text = "0,00 DH";
+            txtSecondNom.Clear();
+            txtSecondPrenom.Clear();
+            txtSecondCin.Clear();
+            txtSecondTelephone.Clear();
+            txtSecondPermis.Clear();
+            txtSecondAdresse.Clear();
         }
 
         private string GenererNumeroContrat()
@@ -983,6 +992,106 @@ namespace venolocation.formee
                 return dt.ToString("HH:mm");
 
             return timeValue;
+        }
+
+
+        //*********************************************************
+
+        private bool DeuxiemeConducteurRempli()
+        {
+            return
+                !string.IsNullOrWhiteSpace(txtSecondNom.Text) ||
+                !string.IsNullOrWhiteSpace(txtSecondPrenom.Text) ||
+                !string.IsNullOrWhiteSpace(txtSecondCin.Text) ||
+                !string.IsNullOrWhiteSpace(txtSecondTelephone.Text) ||
+                !string.IsNullOrWhiteSpace(txtSecondPermis.Text) ||
+                !string.IsNullOrWhiteSpace(txtSecondAdresse.Text);
+        }
+
+
+        private bool ValiderDeuxiemeConducteur()
+        {
+            if (!DeuxiemeConducteurRempli())
+                return true;
+
+            if (string.IsNullOrWhiteSpace(txtSecondNom.Text))
+            {
+                MessageBox.Show("Saisir le nom du 2ème conducteur.");
+                txtSecondNom.Focus();
+                return false;
+            }
+
+            if (string.IsNullOrWhiteSpace(txtSecondCin.Text))
+            {
+                MessageBox.Show("Saisir le CIN du 2ème conducteur.");
+                txtSecondCin.Focus();
+                return false;
+            }
+
+            if (string.IsNullOrWhiteSpace(txtSecondPermis.Text))
+            {
+                MessageBox.Show("Saisir le numéro de permis du 2ème conducteur.");
+                txtSecondPermis.Focus();
+                return false;
+            }
+
+            return true;
+        }
+
+        private void EnregistrerConducteursContrat(MySqlConnection cn, MySqlTransaction tr, int contratId, int clientId)
+        {
+            
+            string insertPrincipal = @"
+                    INSERT INTO contrat_conducteurs
+                    (contrat_id, type_conducteur, nom, prenom, cin, telephone, adresse, permis_num, permis_date, nom_utilisateur)
+                    SELECT
+                        @contrat_id,
+                        'principal',
+                        nom,
+                        prenom,
+                        cin,
+                        telephone,
+                        adresse,
+                        permis_num,
+                        permis_date,
+                        @nom_utilisateur
+                    FROM clients
+                    WHERE client_id = @client_id
+                    LIMIT 1;
+                ";
+
+            using (MySqlCommand cmd = new MySqlCommand(insertPrincipal, cn, tr))
+            {
+                cmd.Parameters.AddWithValue("@contrat_id", contratId);
+                cmd.Parameters.AddWithValue("@client_id", clientId);
+                cmd.Parameters.AddWithValue("@nom_utilisateur", Session.Username);
+                cmd.ExecuteNonQuery();
+            }
+
+            
+            if (!DeuxiemeConducteurRempli())
+                return;
+
+            string insertSecondaire = @"
+                    INSERT INTO contrat_conducteurs
+                    (contrat_id, type_conducteur, nom, prenom, cin, telephone, adresse, permis_num, nom_utilisateur)
+                    VALUES
+                    (@contrat_id, 'secondaire', @nom, @prenom, @cin, @telephone, @adresse, @permis_num, @nom_utilisateur);
+                ";
+
+            using (MySqlCommand cmd = new MySqlCommand(insertSecondaire, cn, tr))
+            {
+                cmd.Parameters.AddWithValue("@contrat_id", contratId);
+                cmd.Parameters.AddWithValue("@nom", txtSecondNom.Text.Trim());
+                cmd.Parameters.AddWithValue("@prenom", txtSecondPrenom.Text.Trim());
+                cmd.Parameters.AddWithValue("@cin", txtSecondCin.Text.Trim());
+                cmd.Parameters.AddWithValue("@telephone", txtSecondTelephone.Text.Trim());
+                cmd.Parameters.AddWithValue("@adresse", txtSecondAdresse.Text.Trim());
+                cmd.Parameters.AddWithValue("@permis_num", txtSecondPermis.Text.Trim());
+                cmd.Parameters.AddWithValue("@nom_utilisateur", Session.Username);
+
+                cmd.ExecuteNonQuery();
+            }
         }
 
     }

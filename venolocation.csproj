@@ -260,11 +260,23 @@
     <Compile Include="formee\Entretient.Designer.cs">
       <DependentUpon>Entretient.cs</DependentUpon>
     </Compile>
+    <Compile Include="formee\liste_contrat.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="formee\liste_contrat.Designer.cs">
+      <DependentUpon>liste_contrat.cs</DependentUpon>
+    </Compile>
     <Compile Include="formee\login.cs">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="formee\login.Designer.cs">
       <DependentUpon>login.cs</DependentUpon>
+    </Compile>
+    <Compile Include="formee\prolongation.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="formee\prolongation.Designer.cs">
+      <DependentUpon>prolongation.cs</DependentUpon>
     </Compile>
     <Compile Include="formee\reservation.cs">
       <SubType>Form</SubType>
@@ -382,8 +394,14 @@
     <EmbeddedResource Include="formee\Entretient.resx">
       <DependentUpon>Entretient.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="formee\liste_contrat.resx">
+      <DependentUpon>liste_contrat.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="formee\login.resx">
       <DependentUpon>login.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="formee\prolongation.resx">
+      <DependentUpon>prolongation.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="formee\reservation.resx">
       <DependentUpon>reservation.cs</DependentUpon>
