@@ -30,6 +30,9 @@
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(liste_contrat));
             this.pnlVoiture = new System.Windows.Forms.Panel();
+            this.txt_prix = new System.Windows.Forms.TextBox();
+            this.label2 = new System.Windows.Forms.Label();
+            this.txt_ancine_voiture = new System.Windows.Forms.TextBox();
             this.txt_contrat = new System.Windows.Forms.TextBox();
             this.cb_voiture = new System.Windows.Forms.ComboBox();
             this.txt_kilometrage_anciene = new System.Windows.Forms.TextBox();
@@ -49,13 +52,23 @@
             this.btnEnregistrer = new FontAwesome.Sharp.IconButton();
             this.btnannuller = new FontAwesome.Sharp.IconButton();
             this.tnImprimer = new FontAwesome.Sharp.IconButton();
-            this.txt_ancine_voiture = new System.Windows.Forms.TextBox();
+            this.pictureBoxEtatVoiture2 = new System.Windows.Forms.PictureBox();
+            this.pictureBoxEtatVoiture = new System.Windows.Forms.PictureBox();
+            this.pictureBoxLogo = new System.Windows.Forms.PictureBox();
             this.pnlVoiture.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBoxEtatVoiture2)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBoxEtatVoiture)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBoxLogo)).BeginInit();
             this.SuspendLayout();
             // 
             // pnlVoiture
             // 
             this.pnlVoiture.BackColor = System.Drawing.Color.White;
+            this.pnlVoiture.Controls.Add(this.pictureBoxEtatVoiture2);
+            this.pnlVoiture.Controls.Add(this.txt_prix);
+            this.pnlVoiture.Controls.Add(this.pictureBoxEtatVoiture);
+            this.pnlVoiture.Controls.Add(this.label2);
+            this.pnlVoiture.Controls.Add(this.pictureBoxLogo);
             this.pnlVoiture.Controls.Add(this.txt_ancine_voiture);
             this.pnlVoiture.Controls.Add(this.txt_contrat);
             this.pnlVoiture.Controls.Add(this.cb_voiture);
@@ -73,10 +86,40 @@
             this.pnlVoiture.Controls.Add(this.label7);
             this.pnlVoiture.Controls.Add(this.label6);
             this.pnlVoiture.Controls.Add(this.lblVoitureSection);
-            this.pnlVoiture.Location = new System.Drawing.Point(10, 12);
+            this.pnlVoiture.Location = new System.Drawing.Point(9, 12);
             this.pnlVoiture.Name = "pnlVoiture";
-            this.pnlVoiture.Size = new System.Drawing.Size(631, 599);
+            this.pnlVoiture.Size = new System.Drawing.Size(631, 659);
             this.pnlVoiture.TabIndex = 3;
+            this.pnlVoiture.Paint += new System.Windows.Forms.PaintEventHandler(this.pnlVoiture_Paint);
+            // 
+            // txt_prix
+            // 
+            this.txt_prix.Font = new System.Drawing.Font("Segoe UI", 12F);
+            this.txt_prix.Location = new System.Drawing.Point(244, 479);
+            this.txt_prix.Name = "txt_prix";
+            this.txt_prix.Size = new System.Drawing.Size(365, 34);
+            this.txt_prix.TabIndex = 28;
+            this.txt_prix.Text = "0";
+            // 
+            // label2
+            // 
+            this.label2.AutoSize = true;
+            this.label2.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Bold);
+            this.label2.ForeColor = System.Drawing.Color.MidnightBlue;
+            this.label2.Location = new System.Drawing.Point(22, 486);
+            this.label2.Name = "label2";
+            this.label2.Size = new System.Drawing.Size(88, 28);
+            this.label2.TabIndex = 27;
+            this.label2.Text = "prix sup";
+            // 
+            // txt_ancine_voiture
+            // 
+            this.txt_ancine_voiture.Enabled = false;
+            this.txt_ancine_voiture.Font = new System.Drawing.Font("Segoe UI", 12F);
+            this.txt_ancine_voiture.Location = new System.Drawing.Point(244, 120);
+            this.txt_ancine_voiture.Name = "txt_ancine_voiture";
+            this.txt_ancine_voiture.Size = new System.Drawing.Size(365, 34);
+            this.txt_ancine_voiture.TabIndex = 26;
             // 
             // txt_contrat
             // 
@@ -129,7 +172,7 @@
             this.txtRemarques.FocusedState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(94)))), ((int)(((byte)(148)))), ((int)(((byte)(255)))));
             this.txtRemarques.Font = new System.Drawing.Font("Segoe UI Semibold", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.txtRemarques.HoverState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(94)))), ((int)(((byte)(148)))), ((int)(((byte)(255)))));
-            this.txtRemarques.Location = new System.Drawing.Point(244, 469);
+            this.txtRemarques.Location = new System.Drawing.Point(230, 549);
             this.txtRemarques.Margin = new System.Windows.Forms.Padding(4, 6, 4, 6);
             this.txtRemarques.Multiline = true;
             this.txtRemarques.Name = "txtRemarques";
@@ -160,7 +203,7 @@
             // 
             this.txt_kilometrage.Enabled = false;
             this.txt_kilometrage.Font = new System.Drawing.Font("Segoe UI", 12F);
-            this.txt_kilometrage.Location = new System.Drawing.Point(244, 409);
+            this.txt_kilometrage.Location = new System.Drawing.Point(244, 413);
             this.txt_kilometrage.Name = "txt_kilometrage";
             this.txt_kilometrage.Size = new System.Drawing.Size(365, 34);
             this.txt_kilometrage.TabIndex = 16;
@@ -215,7 +258,7 @@
             this.label8.AutoSize = true;
             this.label8.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Bold);
             this.label8.ForeColor = System.Drawing.Color.MidnightBlue;
-            this.label8.Location = new System.Drawing.Point(22, 484);
+            this.label8.Location = new System.Drawing.Point(8, 564);
             this.label8.Name = "label8";
             this.label8.Size = new System.Drawing.Size(103, 28);
             this.label8.TabIndex = 5;
@@ -264,7 +307,7 @@
             this.btnEnregistrer.IconFont = FontAwesome.Sharp.IconFont.Auto;
             this.btnEnregistrer.IconSize = 38;
             this.btnEnregistrer.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btnEnregistrer.Location = new System.Drawing.Point(11, 631);
+            this.btnEnregistrer.Location = new System.Drawing.Point(9, 674);
             this.btnEnregistrer.Margin = new System.Windows.Forms.Padding(0);
             this.btnEnregistrer.Name = "btnEnregistrer";
             this.btnEnregistrer.Size = new System.Drawing.Size(177, 62);
@@ -283,13 +326,14 @@
             this.btnannuller.IconFont = FontAwesome.Sharp.IconFont.Auto;
             this.btnannuller.IconSize = 38;
             this.btnannuller.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btnannuller.Location = new System.Drawing.Point(457, 631);
+            this.btnannuller.Location = new System.Drawing.Point(455, 674);
             this.btnannuller.Margin = new System.Windows.Forms.Padding(0);
             this.btnannuller.Name = "btnannuller";
             this.btnannuller.Size = new System.Drawing.Size(177, 62);
             this.btnannuller.TabIndex = 9;
             this.btnannuller.Text = "Anuller";
             this.btnannuller.UseVisualStyleBackColor = false;
+            this.btnannuller.Click += new System.EventHandler(this.btnannuller_Click);
             // 
             // tnImprimer
             // 
@@ -301,28 +345,53 @@
             this.tnImprimer.IconFont = FontAwesome.Sharp.IconFont.Auto;
             this.tnImprimer.IconSize = 38;
             this.tnImprimer.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.tnImprimer.Location = new System.Drawing.Point(234, 631);
+            this.tnImprimer.Location = new System.Drawing.Point(232, 674);
             this.tnImprimer.Margin = new System.Windows.Forms.Padding(0);
             this.tnImprimer.Name = "tnImprimer";
             this.tnImprimer.Size = new System.Drawing.Size(177, 62);
             this.tnImprimer.TabIndex = 15;
             this.tnImprimer.Text = "Imprimer";
             this.tnImprimer.UseVisualStyleBackColor = false;
+            this.tnImprimer.Click += new System.EventHandler(this.tnImprimer_Click);
             // 
-            // txt_ancine_voiture
+            // pictureBoxEtatVoiture2
             // 
-            this.txt_ancine_voiture.Enabled = false;
-            this.txt_ancine_voiture.Font = new System.Drawing.Font("Segoe UI", 12F);
-            this.txt_ancine_voiture.Location = new System.Drawing.Point(244, 120);
-            this.txt_ancine_voiture.Name = "txt_ancine_voiture";
-            this.txt_ancine_voiture.Size = new System.Drawing.Size(365, 34);
-            this.txt_ancine_voiture.TabIndex = 26;
+            this.pictureBoxEtatVoiture2.Image = global::venolocation.Properties.Resources.images1;
+            this.pictureBoxEtatVoiture2.Location = new System.Drawing.Point(341, 24);
+            this.pictureBoxEtatVoiture2.Name = "pictureBoxEtatVoiture2";
+            this.pictureBoxEtatVoiture2.Size = new System.Drawing.Size(24, 21);
+            this.pictureBoxEtatVoiture2.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
+            this.pictureBoxEtatVoiture2.TabIndex = 18;
+            this.pictureBoxEtatVoiture2.TabStop = false;
+            this.pictureBoxEtatVoiture2.Visible = false;
+            // 
+            // pictureBoxEtatVoiture
+            // 
+            this.pictureBoxEtatVoiture.Image = global::venolocation.Properties.Resources.images2;
+            this.pictureBoxEtatVoiture.Location = new System.Drawing.Point(312, 20);
+            this.pictureBoxEtatVoiture.Name = "pictureBoxEtatVoiture";
+            this.pictureBoxEtatVoiture.Size = new System.Drawing.Size(23, 25);
+            this.pictureBoxEtatVoiture.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
+            this.pictureBoxEtatVoiture.TabIndex = 17;
+            this.pictureBoxEtatVoiture.TabStop = false;
+            this.pictureBoxEtatVoiture.Visible = false;
+            // 
+            // pictureBoxLogo
+            // 
+            this.pictureBoxLogo.Image = global::venolocation.Properties.Resources.certificate;
+            this.pictureBoxLogo.Location = new System.Drawing.Point(244, 20);
+            this.pictureBoxLogo.Name = "pictureBoxLogo";
+            this.pictureBoxLogo.Size = new System.Drawing.Size(30, 25);
+            this.pictureBoxLogo.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
+            this.pictureBoxLogo.TabIndex = 16;
+            this.pictureBoxLogo.TabStop = false;
+            this.pictureBoxLogo.Visible = false;
             // 
             // liste_contrat
             // 
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.None;
             this.BackColor = System.Drawing.SystemColors.ButtonHighlight;
-            this.ClientSize = new System.Drawing.Size(646, 692);
+            this.ClientSize = new System.Drawing.Size(654, 745);
             this.Controls.Add(this.tnImprimer);
             this.Controls.Add(this.btnEnregistrer);
             this.Controls.Add(this.btnannuller);
@@ -337,6 +406,9 @@
             this.Load += new System.EventHandler(this.liste_contrat_Load);
             this.pnlVoiture.ResumeLayout(false);
             this.pnlVoiture.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBoxEtatVoiture2)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBoxEtatVoiture)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBoxLogo)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -364,5 +436,10 @@
         private System.Windows.Forms.ComboBox cb_voiture;
         private System.Windows.Forms.TextBox txt_contrat;
         private System.Windows.Forms.TextBox txt_ancine_voiture;
+        private System.Windows.Forms.TextBox txt_prix;
+        private System.Windows.Forms.Label label2;
+        private System.Windows.Forms.PictureBox pictureBoxEtatVoiture2;
+        private System.Windows.Forms.PictureBox pictureBoxEtatVoiture;
+        private System.Windows.Forms.PictureBox pictureBoxLogo;
     }
 }

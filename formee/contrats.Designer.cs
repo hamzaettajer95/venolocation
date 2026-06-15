@@ -75,8 +75,6 @@
             this.lblPeriodeSection = new System.Windows.Forms.Label();
             this.pnlPaiement = new System.Windows.Forms.Panel();
             this.numAvance = new System.Windows.Forms.TextBox();
-            this.pictureBoxEtatVoiture2 = new System.Windows.Forms.PictureBox();
-            this.pictureBoxEtatVoiture = new System.Windows.Forms.PictureBox();
             this.btncalculer = new FontAwesome.Sharp.IconButton();
             this.pictureBoxLogo = new System.Windows.Forms.PictureBox();
             this.cbModePaiement = new System.Windows.Forms.ComboBox();
@@ -103,31 +101,34 @@
             this.lblFooterContrat = new System.Windows.Forms.Label();
             this.printDocument1 = new System.Drawing.Printing.PrintDocument();
             this.panel1 = new System.Windows.Forms.Panel();
-            this.txtSecondCin = new System.Windows.Forms.TextBox();
-            this.txtSecondNom = new System.Windows.Forms.TextBox();
+            this.txtAdresse2 = new System.Windows.Forms.TextBox();
+            this.txtPermis2 = new System.Windows.Forms.TextBox();
+            this.txtTelephone2 = new System.Windows.Forms.TextBox();
+            this.txtNom2 = new System.Windows.Forms.TextBox();
+            this.cbClient2 = new System.Windows.Forms.ComboBox();
             this.label32 = new System.Windows.Forms.Label();
-            this.txtSecondAdresse = new System.Windows.Forms.TextBox();
             this.label22 = new System.Windows.Forms.Label();
-            this.txtSecondPermis = new System.Windows.Forms.TextBox();
             this.label23 = new System.Windows.Forms.Label();
-            this.txtSecondTelephone = new System.Windows.Forms.TextBox();
             this.label24 = new System.Windows.Forms.Label();
-            this.txtSecondPrenom = new System.Windows.Forms.TextBox();
-            this.label25 = new System.Windows.Forms.Label();
             this.label26 = new System.Windows.Forms.Label();
             this.label27 = new System.Windows.Forms.Label();
+            this.check_active = new Guna.UI2.WinForms.Guna2CheckBox();
+            this.groupBox1 = new System.Windows.Forms.GroupBox();
+            this.pictureBoxEtatVoiture = new System.Windows.Forms.PictureBox();
+            this.pictureBoxEtatVoiture2 = new System.Windows.Forms.PictureBox();
             this.pnlHeader.SuspendLayout();
             this.pnlClient.SuspendLayout();
             this.pnlVoiture.SuspendLayout();
             this.pnlPeriode.SuspendLayout();
             this.pnlPaiement.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBoxEtatVoiture2)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBoxEtatVoiture)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBoxLogo)).BeginInit();
             this.pnlRemarques.SuspendLayout();
             this.pnlActions.SuspendLayout();
             this.pnlFooter.SuspendLayout();
             this.panel1.SuspendLayout();
+            this.groupBox1.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBoxEtatVoiture)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBoxEtatVoiture2)).BeginInit();
             this.SuspendLayout();
             // 
             // pnlHeader
@@ -653,28 +654,6 @@
             this.numAvance.Size = new System.Drawing.Size(196, 34);
             this.numAvance.TabIndex = 12;
             // 
-            // pictureBoxEtatVoiture2
-            // 
-            this.pictureBoxEtatVoiture2.Image = global::venolocation.Properties.Resources.images1;
-            this.pictureBoxEtatVoiture2.Location = new System.Drawing.Point(689, 12);
-            this.pictureBoxEtatVoiture2.Name = "pictureBoxEtatVoiture2";
-            this.pictureBoxEtatVoiture2.Size = new System.Drawing.Size(80, 57);
-            this.pictureBoxEtatVoiture2.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
-            this.pictureBoxEtatVoiture2.TabIndex = 11;
-            this.pictureBoxEtatVoiture2.TabStop = false;
-            this.pictureBoxEtatVoiture2.Visible = false;
-            // 
-            // pictureBoxEtatVoiture
-            // 
-            this.pictureBoxEtatVoiture.Image = global::venolocation.Properties.Resources.images2;
-            this.pictureBoxEtatVoiture.Location = new System.Drawing.Point(586, 12);
-            this.pictureBoxEtatVoiture.Name = "pictureBoxEtatVoiture";
-            this.pictureBoxEtatVoiture.Size = new System.Drawing.Size(80, 57);
-            this.pictureBoxEtatVoiture.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
-            this.pictureBoxEtatVoiture.TabIndex = 10;
-            this.pictureBoxEtatVoiture.TabStop = false;
-            this.pictureBoxEtatVoiture.Visible = false;
-            // 
             // btncalculer
             // 
             this.btncalculer.BackColor = System.Drawing.Color.Orange;
@@ -989,144 +968,116 @@
             // panel1
             // 
             this.panel1.BackColor = System.Drawing.Color.White;
-            this.panel1.Controls.Add(this.txtSecondCin);
-            this.panel1.Controls.Add(this.txtSecondNom);
-            this.panel1.Controls.Add(this.label32);
-            this.panel1.Controls.Add(this.txtSecondAdresse);
-            this.panel1.Controls.Add(this.label22);
-            this.panel1.Controls.Add(this.txtSecondPermis);
-            this.panel1.Controls.Add(this.label23);
-            this.panel1.Controls.Add(this.txtSecondTelephone);
-            this.panel1.Controls.Add(this.label24);
-            this.panel1.Controls.Add(this.txtSecondPrenom);
-            this.panel1.Controls.Add(this.label25);
-            this.panel1.Controls.Add(this.label26);
+            this.panel1.Controls.Add(this.groupBox1);
+            this.panel1.Controls.Add(this.check_active);
             this.panel1.Controls.Add(this.label27);
             this.panel1.Location = new System.Drawing.Point(542, 93);
             this.panel1.Name = "panel1";
             this.panel1.Size = new System.Drawing.Size(527, 352);
             this.panel1.TabIndex = 8;
             // 
-            // txtSecondCin
+            // txtAdresse2
             // 
-            this.txtSecondCin.Enabled = false;
-            this.txtSecondCin.Font = new System.Drawing.Font("Segoe UI", 12F);
-            this.txtSecondCin.Location = new System.Drawing.Point(166, 62);
-            this.txtSecondCin.Name = "txtSecondCin";
-            this.txtSecondCin.Size = new System.Drawing.Size(325, 34);
-            this.txtSecondCin.TabIndex = 13;
+            this.txtAdresse2.Enabled = false;
+            this.txtAdresse2.Font = new System.Drawing.Font("Segoe UI", 12F);
+            this.txtAdresse2.Location = new System.Drawing.Point(179, 252);
+            this.txtAdresse2.Multiline = true;
+            this.txtAdresse2.Name = "txtAdresse2";
+            this.txtAdresse2.Size = new System.Drawing.Size(325, 44);
+            this.txtAdresse2.TabIndex = 17;
             // 
-            // txtSecondNom
+            // txtPermis2
             // 
-            this.txtSecondNom.Enabled = false;
-            this.txtSecondNom.Font = new System.Drawing.Font("Segoe UI", 12F);
-            this.txtSecondNom.Location = new System.Drawing.Point(166, 108);
-            this.txtSecondNom.Name = "txtSecondNom";
-            this.txtSecondNom.Size = new System.Drawing.Size(325, 34);
-            this.txtSecondNom.TabIndex = 12;
+            this.txtPermis2.Enabled = false;
+            this.txtPermis2.Font = new System.Drawing.Font("Segoe UI", 12F);
+            this.txtPermis2.Location = new System.Drawing.Point(177, 195);
+            this.txtPermis2.Name = "txtPermis2";
+            this.txtPermis2.Size = new System.Drawing.Size(325, 34);
+            this.txtPermis2.TabIndex = 16;
+            // 
+            // txtTelephone2
+            // 
+            this.txtTelephone2.Enabled = false;
+            this.txtTelephone2.Font = new System.Drawing.Font("Segoe UI", 12F);
+            this.txtTelephone2.Location = new System.Drawing.Point(177, 138);
+            this.txtTelephone2.Name = "txtTelephone2";
+            this.txtTelephone2.Size = new System.Drawing.Size(325, 34);
+            this.txtTelephone2.TabIndex = 15;
+            // 
+            // txtNom2
+            // 
+            this.txtNom2.Enabled = false;
+            this.txtNom2.Font = new System.Drawing.Font("Segoe UI", 12F);
+            this.txtNom2.Location = new System.Drawing.Point(177, 81);
+            this.txtNom2.Name = "txtNom2";
+            this.txtNom2.Size = new System.Drawing.Size(325, 34);
+            this.txtNom2.TabIndex = 14;
+            // 
+            // cbClient2
+            // 
+            this.cbClient2.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.cbClient2.Font = new System.Drawing.Font("Segoe UI", 12F);
+            this.cbClient2.FormattingEnabled = true;
+            this.cbClient2.Location = new System.Drawing.Point(177, 17);
+            this.cbClient2.Name = "cbClient2";
+            this.cbClient2.Size = new System.Drawing.Size(325, 36);
+            this.cbClient2.TabIndex = 13;
+            this.cbClient2.SelectedIndexChanged += new System.EventHandler(this.cbClient2_SelectedIndexChanged);
             // 
             // label32
             // 
             this.label32.AutoSize = true;
             this.label32.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Bold);
             this.label32.ForeColor = System.Drawing.Color.MidnightBlue;
-            this.label32.Location = new System.Drawing.Point(18, 114);
+            this.label32.Location = new System.Drawing.Point(6, 87);
             this.label32.Name = "label32";
             this.label32.Size = new System.Drawing.Size(58, 28);
             this.label32.TabIndex = 11;
             this.label32.Text = "Nom";
-            // 
-            // txtSecondAdresse
-            // 
-            this.txtSecondAdresse.Enabled = false;
-            this.txtSecondAdresse.Font = new System.Drawing.Font("Segoe UI", 12F);
-            this.txtSecondAdresse.Location = new System.Drawing.Point(166, 292);
-            this.txtSecondAdresse.Multiline = true;
-            this.txtSecondAdresse.Name = "txtSecondAdresse";
-            this.txtSecondAdresse.Size = new System.Drawing.Size(325, 44);
-            this.txtSecondAdresse.TabIndex = 10;
             // 
             // label22
             // 
             this.label22.AutoSize = true;
             this.label22.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Bold);
             this.label22.ForeColor = System.Drawing.Color.MidnightBlue;
-            this.label22.Location = new System.Drawing.Point(18, 308);
+            this.label22.Location = new System.Drawing.Point(6, 257);
             this.label22.Name = "label22";
             this.label22.Size = new System.Drawing.Size(86, 28);
             this.label22.TabIndex = 9;
             this.label22.Text = "Adresse";
-            // 
-            // txtSecondPermis
-            // 
-            this.txtSecondPermis.Enabled = false;
-            this.txtSecondPermis.Font = new System.Drawing.Font("Segoe UI", 12F);
-            this.txtSecondPermis.Location = new System.Drawing.Point(166, 246);
-            this.txtSecondPermis.Name = "txtSecondPermis";
-            this.txtSecondPermis.Size = new System.Drawing.Size(325, 34);
-            this.txtSecondPermis.TabIndex = 8;
             // 
             // label23
             // 
             this.label23.AutoSize = true;
             this.label23.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Bold);
             this.label23.ForeColor = System.Drawing.Color.MidnightBlue;
-            this.label23.Location = new System.Drawing.Point(18, 249);
+            this.label23.Location = new System.Drawing.Point(6, 198);
             this.label23.Name = "label23";
             this.label23.Size = new System.Drawing.Size(75, 28);
             this.label23.TabIndex = 7;
             this.label23.Text = "Permis";
-            // 
-            // txtSecondTelephone
-            // 
-            this.txtSecondTelephone.Enabled = false;
-            this.txtSecondTelephone.Font = new System.Drawing.Font("Segoe UI", 12F);
-            this.txtSecondTelephone.Location = new System.Drawing.Point(166, 200);
-            this.txtSecondTelephone.Name = "txtSecondTelephone";
-            this.txtSecondTelephone.Size = new System.Drawing.Size(325, 34);
-            this.txtSecondTelephone.TabIndex = 6;
             // 
             // label24
             // 
             this.label24.AutoSize = true;
             this.label24.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Bold);
             this.label24.ForeColor = System.Drawing.Color.MidnightBlue;
-            this.label24.Location = new System.Drawing.Point(18, 206);
+            this.label24.Location = new System.Drawing.Point(6, 135);
             this.label24.Name = "label24";
             this.label24.Size = new System.Drawing.Size(109, 28);
             this.label24.TabIndex = 5;
             this.label24.Text = "Téléphone";
-            // 
-            // txtSecondPrenom
-            // 
-            this.txtSecondPrenom.Enabled = false;
-            this.txtSecondPrenom.Font = new System.Drawing.Font("Segoe UI", 12F);
-            this.txtSecondPrenom.Location = new System.Drawing.Point(166, 154);
-            this.txtSecondPrenom.Name = "txtSecondPrenom";
-            this.txtSecondPrenom.Size = new System.Drawing.Size(325, 34);
-            this.txtSecondPrenom.TabIndex = 4;
-            // 
-            // label25
-            // 
-            this.label25.AutoSize = true;
-            this.label25.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Bold);
-            this.label25.ForeColor = System.Drawing.Color.MidnightBlue;
-            this.label25.Location = new System.Drawing.Point(18, 160);
-            this.label25.Name = "label25";
-            this.label25.Size = new System.Drawing.Size(85, 28);
-            this.label25.TabIndex = 3;
-            this.label25.Text = "Prenom";
             // 
             // label26
             // 
             this.label26.AutoSize = true;
             this.label26.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Bold);
             this.label26.ForeColor = System.Drawing.Color.MidnightBlue;
-            this.label26.Location = new System.Drawing.Point(18, 68);
+            this.label26.Location = new System.Drawing.Point(6, 25);
             this.label26.Name = "label26";
-            this.label26.Size = new System.Drawing.Size(127, 28);
+            this.label26.Size = new System.Drawing.Size(121, 28);
             this.label26.TabIndex = 1;
-            this.label26.Text = " Conducteur";
+            this.label26.Text = "Conducteur";
             // 
             // label27
             // 
@@ -1138,6 +1089,65 @@
             this.label27.Size = new System.Drawing.Size(244, 37);
             this.label27.TabIndex = 0;
             this.label27.Text = "2ème Conducteur";
+            // 
+            // check_active
+            // 
+            this.check_active.AutoSize = true;
+            this.check_active.CheckedState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(94)))), ((int)(((byte)(148)))), ((int)(((byte)(255)))));
+            this.check_active.CheckedState.BorderRadius = 0;
+            this.check_active.CheckedState.BorderThickness = 0;
+            this.check_active.CheckedState.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(94)))), ((int)(((byte)(148)))), ((int)(((byte)(255)))));
+            this.check_active.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.check_active.Location = new System.Drawing.Point(399, 9);
+            this.check_active.Name = "check_active";
+            this.check_active.Size = new System.Drawing.Size(94, 32);
+            this.check_active.TabIndex = 18;
+            this.check_active.Text = "Activé";
+            this.check_active.UncheckedState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(125)))), ((int)(((byte)(137)))), ((int)(((byte)(149)))));
+            this.check_active.UncheckedState.BorderRadius = 0;
+            this.check_active.UncheckedState.BorderThickness = 0;
+            this.check_active.UncheckedState.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(125)))), ((int)(((byte)(137)))), ((int)(((byte)(149)))));
+            this.check_active.CheckedChanged += new System.EventHandler(this.check_active_CheckedChanged);
+            // 
+            // groupBox1
+            // 
+            this.groupBox1.Controls.Add(this.txtAdresse2);
+            this.groupBox1.Controls.Add(this.cbClient2);
+            this.groupBox1.Controls.Add(this.label32);
+            this.groupBox1.Controls.Add(this.txtNom2);
+            this.groupBox1.Controls.Add(this.label22);
+            this.groupBox1.Controls.Add(this.label23);
+            this.groupBox1.Controls.Add(this.txtPermis2);
+            this.groupBox1.Controls.Add(this.label24);
+            this.groupBox1.Controls.Add(this.txtTelephone2);
+            this.groupBox1.Controls.Add(this.label26);
+            this.groupBox1.Location = new System.Drawing.Point(3, 47);
+            this.groupBox1.Name = "groupBox1";
+            this.groupBox1.Size = new System.Drawing.Size(521, 299);
+            this.groupBox1.TabIndex = 19;
+            this.groupBox1.TabStop = false;
+            // 
+            // pictureBoxEtatVoiture
+            // 
+            this.pictureBoxEtatVoiture.Image = global::venolocation.Properties.Resources.images2;
+            this.pictureBoxEtatVoiture.Location = new System.Drawing.Point(586, 12);
+            this.pictureBoxEtatVoiture.Name = "pictureBoxEtatVoiture";
+            this.pictureBoxEtatVoiture.Size = new System.Drawing.Size(80, 57);
+            this.pictureBoxEtatVoiture.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
+            this.pictureBoxEtatVoiture.TabIndex = 10;
+            this.pictureBoxEtatVoiture.TabStop = false;
+            this.pictureBoxEtatVoiture.Visible = false;
+            // 
+            // pictureBoxEtatVoiture2
+            // 
+            this.pictureBoxEtatVoiture2.Image = global::venolocation.Properties.Resources.images1;
+            this.pictureBoxEtatVoiture2.Location = new System.Drawing.Point(689, 12);
+            this.pictureBoxEtatVoiture2.Name = "pictureBoxEtatVoiture2";
+            this.pictureBoxEtatVoiture2.Size = new System.Drawing.Size(80, 57);
+            this.pictureBoxEtatVoiture2.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
+            this.pictureBoxEtatVoiture2.TabIndex = 11;
+            this.pictureBoxEtatVoiture2.TabStop = false;
+            this.pictureBoxEtatVoiture2.Visible = false;
             // 
             // contrats
             // 
@@ -1172,8 +1182,6 @@
             this.pnlPeriode.PerformLayout();
             this.pnlPaiement.ResumeLayout(false);
             this.pnlPaiement.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBoxEtatVoiture2)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBoxEtatVoiture)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBoxLogo)).EndInit();
             this.pnlRemarques.ResumeLayout(false);
             this.pnlActions.ResumeLayout(false);
@@ -1181,6 +1189,10 @@
             this.pnlFooter.PerformLayout();
             this.panel1.ResumeLayout(false);
             this.panel1.PerformLayout();
+            this.groupBox1.ResumeLayout(false);
+            this.groupBox1.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBoxEtatVoiture)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBoxEtatVoiture2)).EndInit();
             this.ResumeLayout(false);
 
             }
@@ -1261,25 +1273,25 @@
         private System.Windows.Forms.Label label21;
         private System.Drawing.Printing.PrintDocument printDocument1;
         private System.Windows.Forms.PictureBox pictureBoxLogo;
-        private System.Windows.Forms.PictureBox pictureBoxEtatVoiture;
-        private System.Windows.Forms.PictureBox pictureBoxEtatVoiture2;
         private System.Windows.Forms.TextBox numAvance;
         private System.Windows.Forms.Panel panel1;
-        private System.Windows.Forms.TextBox txtSecondAdresse;
         private System.Windows.Forms.Label label22;
-        private System.Windows.Forms.TextBox txtSecondPermis;
         private System.Windows.Forms.Label label23;
-        private System.Windows.Forms.TextBox txtSecondTelephone;
         private System.Windows.Forms.Label label24;
-        private System.Windows.Forms.TextBox txtSecondPrenom;
-        private System.Windows.Forms.Label label25;
         private System.Windows.Forms.Label label26;
         private System.Windows.Forms.Label label27;
         private Guna.UI2.WinForms.Guna2TextBox txtRemarques;
-        private System.Windows.Forms.TextBox txtSecondNom;
         private System.Windows.Forms.Label label32;
-        private System.Windows.Forms.TextBox txtSecondCin;
         private System.Windows.Forms.Label label29;
         private System.Windows.Forms.Label label28;
+        private System.Windows.Forms.TextBox txtAdresse2;
+        private System.Windows.Forms.TextBox txtPermis2;
+        private System.Windows.Forms.TextBox txtTelephone2;
+        private System.Windows.Forms.TextBox txtNom2;
+        private System.Windows.Forms.ComboBox cbClient2;
+        private System.Windows.Forms.GroupBox groupBox1;
+        private Guna.UI2.WinForms.Guna2CheckBox check_active;
+        private System.Windows.Forms.PictureBox pictureBoxEtatVoiture2;
+        private System.Windows.Forms.PictureBox pictureBoxEtatVoiture;
     }
 }

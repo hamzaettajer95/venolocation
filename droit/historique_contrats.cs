@@ -405,7 +405,7 @@ namespace venolocation.droit
 
         private void btn_prolongation_Click(object sender, EventArgs e)
         {
-            prolongation po = new prolongation();
+            prolongation po = new prolongation(id_contrat_selectionne);
             po.ShowDialog();
         }
 

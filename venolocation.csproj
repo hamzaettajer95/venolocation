@@ -135,6 +135,7 @@
     <Compile Include="classee\AppMessages.cs" />
     <Compile Include="classee\AppStatus.cs" />
     <Compile Include="classee\App_Config.cs" />
+    <Compile Include="classee\ContratLocationPrinter.cs" />
     <Compile Include="classee\DatabaseTools.cs" />
     <Compile Include="classee\DataGridViewPrinter.cs" />
     <Compile Include="classee\DbConfig.cs" />
