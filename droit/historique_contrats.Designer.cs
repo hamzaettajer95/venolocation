@@ -46,6 +46,9 @@
             this.label2 = new System.Windows.Forms.Label();
             this.cb_client = new System.Windows.Forms.ComboBox();
             this.guna2GradientPanel1 = new Guna.UI2.WinForms.Guna2GradientPanel();
+            this.pictureBoxEtatVoiture2 = new System.Windows.Forms.PictureBox();
+            this.pictureBoxEtatVoiture = new System.Windows.Forms.PictureBox();
+            this.pictureBoxLogo = new System.Windows.Forms.PictureBox();
             this.iconPictureBox1 = new FontAwesome.Sharp.IconPictureBox();
             this.label1 = new System.Windows.Forms.Label();
             this.guna2CirclePictureBox1 = new Guna.UI2.WinForms.Guna2CirclePictureBox();
@@ -57,6 +60,9 @@
             ((System.ComponentModel.ISupportInitialize)(this.dgvHistory)).BeginInit();
             this.panel1.SuspendLayout();
             this.guna2GradientPanel1.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBoxEtatVoiture2)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBoxEtatVoiture)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBoxLogo)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.iconPictureBox1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.guna2CirclePictureBox1)).BeginInit();
             this.panel2.SuspendLayout();
@@ -284,6 +290,9 @@
             // guna2GradientPanel1
             // 
             this.guna2GradientPanel1.BorderRadius = 8;
+            this.guna2GradientPanel1.Controls.Add(this.pictureBoxEtatVoiture2);
+            this.guna2GradientPanel1.Controls.Add(this.pictureBoxEtatVoiture);
+            this.guna2GradientPanel1.Controls.Add(this.pictureBoxLogo);
             this.guna2GradientPanel1.Controls.Add(this.iconPictureBox1);
             this.guna2GradientPanel1.Controls.Add(this.label1);
             this.guna2GradientPanel1.Controls.Add(this.guna2CirclePictureBox1);
@@ -294,6 +303,39 @@
             this.guna2GradientPanel1.Name = "guna2GradientPanel1";
             this.guna2GradientPanel1.Size = new System.Drawing.Size(1443, 80);
             this.guna2GradientPanel1.TabIndex = 6;
+            // 
+            // pictureBoxEtatVoiture2
+            // 
+            this.pictureBoxEtatVoiture2.Image = global::venolocation.Properties.Resources.images1;
+            this.pictureBoxEtatVoiture2.Location = new System.Drawing.Point(758, 32);
+            this.pictureBoxEtatVoiture2.Name = "pictureBoxEtatVoiture2";
+            this.pictureBoxEtatVoiture2.Size = new System.Drawing.Size(24, 21);
+            this.pictureBoxEtatVoiture2.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
+            this.pictureBoxEtatVoiture2.TabIndex = 34;
+            this.pictureBoxEtatVoiture2.TabStop = false;
+            this.pictureBoxEtatVoiture2.Visible = false;
+            // 
+            // pictureBoxEtatVoiture
+            // 
+            this.pictureBoxEtatVoiture.Image = global::venolocation.Properties.Resources.images2;
+            this.pictureBoxEtatVoiture.Location = new System.Drawing.Point(729, 28);
+            this.pictureBoxEtatVoiture.Name = "pictureBoxEtatVoiture";
+            this.pictureBoxEtatVoiture.Size = new System.Drawing.Size(23, 25);
+            this.pictureBoxEtatVoiture.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
+            this.pictureBoxEtatVoiture.TabIndex = 33;
+            this.pictureBoxEtatVoiture.TabStop = false;
+            this.pictureBoxEtatVoiture.Visible = false;
+            // 
+            // pictureBoxLogo
+            // 
+            this.pictureBoxLogo.Image = global::venolocation.Properties.Resources.certificate;
+            this.pictureBoxLogo.Location = new System.Drawing.Point(661, 28);
+            this.pictureBoxLogo.Name = "pictureBoxLogo";
+            this.pictureBoxLogo.Size = new System.Drawing.Size(30, 25);
+            this.pictureBoxLogo.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
+            this.pictureBoxLogo.TabIndex = 32;
+            this.pictureBoxLogo.TabStop = false;
+            this.pictureBoxLogo.Visible = false;
             // 
             // iconPictureBox1
             // 
@@ -340,6 +382,7 @@
             this.panel2.Controls.Add(this.btn_change_voiture);
             this.panel2.Controls.Add(this.btnimprimer);
             this.panel2.Controls.Add(this.btnAnnuler);
+            this.panel2.Enabled = false;
             this.panel2.Location = new System.Drawing.Point(12, 748);
             this.panel2.Name = "panel2";
             this.panel2.Size = new System.Drawing.Size(1419, 72);
@@ -451,6 +494,9 @@
             this.panel1.PerformLayout();
             this.guna2GradientPanel1.ResumeLayout(false);
             this.guna2GradientPanel1.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBoxEtatVoiture2)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBoxEtatVoiture)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBoxLogo)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.iconPictureBox1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.guna2CirclePictureBox1)).EndInit();
             this.panel2.ResumeLayout(false);
@@ -485,5 +531,8 @@
         private System.Windows.Forms.CheckBox chkFiltrerDate;
         private Guna.UI2.WinForms.Guna2Button btn_prolongation;
         private Guna.UI2.WinForms.Guna2Button btn_change_voiture;
+        private System.Windows.Forms.PictureBox pictureBoxEtatVoiture2;
+        private System.Windows.Forms.PictureBox pictureBoxEtatVoiture;
+        private System.Windows.Forms.PictureBox pictureBoxLogo;
     }
 }

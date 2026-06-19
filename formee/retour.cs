@@ -329,7 +329,14 @@ namespace venolocation.formee
                                 cmd.Parameters.AddWithValue("@contrat_id", contratId);
                                 cmd.ExecuteNonQuery();
                             }
-
+                            //StatusHistoryService.AjouterContratHistory(
+                            //                                            cn,
+                            //                                            tr,
+                            //                                            contratId,
+                            //                                            AppStatus.ContratEnCours,
+                            //                                            AppStatus.ContratTermine,
+                            //                                            "Retour véhicule"
+                            //                                        );
                             tr.Commit();
 
                             LogHelper.AddLog("Retour voiture: " + cbVoiture.Text, Session.Username);
@@ -451,20 +458,27 @@ namespace venolocation.formee
 
                             if (montantpaye > 0)
                             {
-                                string insertrecette = @"
-                                    INSERT INTO recettes
-                                    (contrat_id, montant, type, date_recette, nom_utilisateur)
-                                    VALUES
-                                    (@contrat_id, @montant, @type, @date_recette, @nom_utilisateur);";
+                                montantpaye = 0;
 
-                                using (MySqlCommand cmd3 = new MySqlCommand(insertrecette, cn, tr))
+                                decimal.TryParse(
+                                    txtMontantpaye.Text.Replace(",", "."),
+                                    System.Globalization.NumberStyles.Any,
+                                    System.Globalization.CultureInfo.InvariantCulture,
+                                    out montantpaye
+                                );
+
+                                if (montantpaye > 0)
                                 {
-                                    cmd3.Parameters.AddWithValue("@contrat_id", contratId);
-                                    cmd3.Parameters.AddWithValue("@montant", montantpaye);
-                                    cmd3.Parameters.AddWithValue("@type", "Accident");
-                                    cmd3.Parameters.AddWithValue("@date_recette", DateTime.Now.Date);
-                                    cmd3.Parameters.AddWithValue("@nom_utilisateur", Session.Username);
-                                    cmd3.ExecuteNonQuery();
+                                    PaymentService.AjouterPaiementContrat(
+                                        cn,
+                                        tr,
+                                        contratId,
+                                        montantpaye,
+                                        "Autre",
+                                        "Cash",
+                                        "Accident",
+                                        Session.Username
+                                    );
                                 }
                             }
 

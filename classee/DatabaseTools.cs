@@ -133,58 +133,58 @@ namespace venolocation.classee
 
                 ExecuterArchive(insert, delete, annee);
             }
-        public static void RestaurerTousContratsDepuisOld()
-        {
-            string insert = @"
-                        INSERT INTO contrats
-                        (
-                            contrat_id, client_id, voiture_id, reservation_id,
-                            date_contrat, heure_debut, date_retour_prevu, heure_retour_prevu,
-                            kilometrage_sortie, kilometrage_retour, prix_jour, prix_heure,
-                            avance, total, status, nom_utilisateur, created_at
-                        )
-                        SELECT
-                            o.contrat_id, o.client_id, o.voiture_id, o.reservation_id,
-                            o.date_contrat, o.heure_debut, o.date_retour_prevu, o.heure_retour_prevu,
-                            o.kilometrage_sortie, o.kilometrage_retour, o.prix_jour, o.prix_heure,
-                            o.avance, o.total, o.status, o.nom_utilisateur, o.created_at
-                        FROM old_contrats o
-                        WHERE NOT EXISTS (
-                            SELECT 1
-                            FROM contrats c
-                            WHERE c.contrat_id = o.contrat_id
-                        );";
+        //public static void RestaurerTousContratsDepuisOld()
+        //{
+        //    string insert = @"
+        //                INSERT INTO contrats
+        //                (
+        //                    contrat_id, client_id, voiture_id, reservation_id,
+        //                    date_contrat, heure_debut, date_retour_prevu, heure_retour_prevu,
+        //                    kilometrage_sortie, kilometrage_retour, prix_jour, prix_heure,
+        //                    avance, total, status, nom_utilisateur, created_at
+        //                )
+        //                SELECT
+        //                    o.contrat_id, o.client_id, o.voiture_id, o.reservation_id,
+        //                    o.date_contrat, o.heure_debut, o.date_retour_prevu, o.heure_retour_prevu,
+        //                    o.kilometrage_sortie, o.kilometrage_retour, o.prix_jour, o.prix_heure,
+        //                    o.avance, o.total, o.status, o.nom_utilisateur, o.created_at
+        //                FROM old_contrats o
+        //                WHERE NOT EXISTS (
+        //                    SELECT 1
+        //                    FROM contrats c
+        //                    WHERE c.contrat_id = o.contrat_id
+        //                );";
 
-            string deleteOld = @" DELETE FROM old_contrats;";
+        //    string deleteOld = @" DELETE FROM old_contrats;";
 
-            using (MySqlConnection cn = Dbexec.GetConnection())
-            {
-                cn.Open();
+        //    using (MySqlConnection cn = Dbexec.GetConnection())
+        //    {
+        //        cn.Open();
 
-                using (MySqlTransaction tr = cn.BeginTransaction())
-                {
-                    try
-                    {
-                        using (MySqlCommand cmdInsert = new MySqlCommand(insert, cn, tr))
-                        {
-                            cmdInsert.ExecuteNonQuery();
-                        }
+        //        using (MySqlTransaction tr = cn.BeginTransaction())
+        //        {
+        //            try
+        //            {
+        //                using (MySqlCommand cmdInsert = new MySqlCommand(insert, cn, tr))
+        //                {
+        //                    cmdInsert.ExecuteNonQuery();
+        //                }
 
-                        using (MySqlCommand cmdDelete = new MySqlCommand(deleteOld, cn, tr))
-                        {
-                            cmdDelete.ExecuteNonQuery();
-                        }
+        //                using (MySqlCommand cmdDelete = new MySqlCommand(deleteOld, cn, tr))
+        //                {
+        //                    cmdDelete.ExecuteNonQuery();
+        //                }
 
-                        tr.Commit();
-                    }
-                    catch
-                    {
-                        tr.Rollback();
-                        throw;
-                    }
-                }
-            }
-        }
+        //                tr.Commit();
+        //            }
+        //            catch
+        //            {
+        //                tr.Rollback();
+        //                throw;
+        //            }
+        //        }
+        //    }
+        //}
 
         public static void ArchiverDepenses(int annee)
             {

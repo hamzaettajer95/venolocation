@@ -147,7 +147,7 @@ namespace venolocation.formee
 
                     string updateNewCar = @"
                                             UPDATE voitures
-                                            SET etat = 'En cours'
+                                            SET etat = 'En location'
                                             WHERE voiture_id = @newId";
 
                     MySqlCommand cmd4 = new MySqlCommand(updateNewCar, cn, tr);
@@ -159,22 +159,34 @@ namespace venolocation.formee
 
                     if (txt_prix.Text != "0" && !string.IsNullOrEmpty(txt_prix.Text))
                     {
-                        string addrecette = @"
-                                            INSERT INTO recettes (contrat_id, montant, type, date_recette, nom_utilisateur)
-                                            VALUES (@contrat_id, @montant, 'Changement voiture', NOW(), @nom_utilisateur);";
+                        decimal fraisChangement = 0;
 
-                        MySqlCommand cmd5 = new MySqlCommand(addrecette, cn, tr);
+                        decimal.TryParse(
+                            txt_prix.Text.Replace(",", "."),
+                            System.Globalization.NumberStyles.Any,
+                            System.Globalization.CultureInfo.InvariantCulture,
+                            out fraisChangement
+                        );
 
-                        cmd5.Parameters.AddWithValue("@contrat_id", txt_contrat.Text);
-                        cmd5.Parameters.AddWithValue("@montant", Convert.ToDecimal(txt_prix.Text));
-                        cmd5.Parameters.AddWithValue("@nom_utilisateur", Session.Username);
-
-                        cmd5.ExecuteNonQuery();
+                        if (fraisChangement > 0)
+                        {
+                            PaymentService.AjouterPaiementContrat(
+                                cn,
+                                tr,
+                                Convert.ToInt32(txt_contrat.Text),
+                                fraisChangement,
+                                "Frais de changement voiture",
+                                "Cash",
+                                "Changement voiture",
+                                Session.Username
+                            );
+                        }
 
                     }
-                    
-                        
 
+
+                    tnImprimer.Enabled = true;
+                    btnEnregistrer.Enabled = false;
                     tr.Commit();
                     LogHelper.AddLog("Changement voiture enregistré avec succès " + txt_contrat.Text.Trim(), Session.Username);
                     MessageBox.Show("Changement enregistré avec succès !");
@@ -258,6 +270,9 @@ namespace venolocation.formee
                 );
 
                 printer.ShowPreview();
+
+                btnEnregistrer.Enabled = false;
+                tnImprimer.Enabled = false;
             }
             catch (Exception ex)
             {

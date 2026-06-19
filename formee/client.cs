@@ -417,6 +417,7 @@ namespace venolocation.formee
         {
             txtRecherche.Clear();
             LoadClients();
+            ClearFields();
         }
 
         private void dgvClients_CellClick(object sender, DataGridViewCellEventArgs e)

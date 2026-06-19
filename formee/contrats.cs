@@ -76,15 +76,15 @@ namespace venolocation.formee
         {
             cbHeureDebut.Items.Clear();
             cbHeureRetour.Items.Clear();
-
+            
             for (int h = 0; h < 24; h++)
             {
                 cbHeureDebut.Items.Add(h.ToString("00") + ":00");
                 cbHeureRetour.Items.Add(h.ToString("00") + ":00");
             }
-
-            cbHeureDebut.SelectedIndex = -1;
-            cbHeureRetour.SelectedIndex = -1;
+            string heureActuelle = DateTime.Now.ToString("HH:00");
+            cbHeureDebut.Text= heureActuelle;
+            cbHeureRetour.Text = heureActuelle;
         }
 
 
@@ -305,6 +305,7 @@ namespace venolocation.formee
         private void btncalculer_Click_1(object sender, EventArgs e)
         {
             MettreAJourCalcul();
+            btnEnregistrer.Enabled = true;
         }
 
         private void btnannuller_Click(object sender, EventArgs e)
@@ -559,7 +560,7 @@ namespace venolocation.formee
                                     cmdRes.ExecuteNonQuery();
                                 }
                             }
-
+                            
                             tr.Commit();
                         }
                         catch
@@ -609,7 +610,8 @@ namespace venolocation.formee
                         printer.ShowPreview();
                     }
                 }
-
+                tnImprimer.Enabled = true;
+                btnEnregistrer.Enabled = false;
                 ChargerReservationsConfirmees();
                 ChargerVoituresDisponibles();
                 NouveauContrat();
@@ -640,6 +642,9 @@ namespace venolocation.formee
                 InitialiserHeures();
                 NouveauContrat();
                 groupBox1.Enabled = check_active.Checked;
+                string heureActuelle = DateTime.Now.ToString("HH:00");
+                cbHeureDebut.Text = heureActuelle;
+                cbHeureRetour.Text = heureActuelle;
             }
             catch (Exception ex)
             {
@@ -680,7 +685,7 @@ namespace venolocation.formee
             cbModePaiement.Items.Add("Espèce");
             cbModePaiement.Items.Add("Carte");
             cbModePaiement.Items.Add("Virement");
-            cbModePaiement.SelectedIndex = -1;
+            cbModePaiement.Text= "Espèce";
         }
 
         private void ChargerClients()
@@ -855,6 +860,11 @@ namespace venolocation.formee
             lblDuree.Text = "1 jour";
             lblTotal.Text = "0,00 DH";
 
+            string heureActuelle = DateTime.Now.ToString("HH:00");
+            cbHeureDebut.Text = heureActuelle;
+            cbHeureRetour.Text = heureActuelle;
+            cbModePaiement.Text = "Espèce";
+
         }
 
         private string GenererNumeroContrat()
@@ -957,6 +967,9 @@ namespace venolocation.formee
                 );
 
                 printer.ShowPreview();
+                NouveauContrat();
+                btnEnregistrer.Enabled = false;
+                tnImprimer.Enabled = false;
             }
             catch (Exception ex)
             {

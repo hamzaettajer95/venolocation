@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
 using System.Drawing;
+using System.Globalization;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -22,57 +23,6 @@ namespace venolocation.formee
         }
 
 
-        //public DataTable LoadContrats()
-        //{
-        //    DataTable table = new DataTable();
-
-        //    try
-        //    {
-        //        using (MySqlConnection cn = new MySqlConnection(DbConfig.GetConnectionString()))
-        //        {
-        //            cn.Open();
-
-        //            string sql = @"
-        //                        SELECT
-        //                            contrat_id,
-        //                            client_id,
-        //                            voiture_id,
-        //                            reservation_id,
-        //                            date_contrat,
-        //                            heure_debut,
-        //                            date_retour_prevu,
-        //                            heure_retour_prevu,
-        //                            kilometrage_sortie,
-        //                            kilometrage_retour,
-        //                            prix_jour,
-        //                            prix_heure,
-        //                            avance,
-        //                            total,
-        //                            status,
-        //                            has_changed,
-        //                            nom_utilisateur,
-        //                            created_at
-        //                        FROM contrats
-        //                            where contrat_id = @id";
-
-        //            using (MySqlCommand cmd = new MySqlCommand(sql, cn))
-        //            {
-        //                cmd.Parameters.AddWithValue("@id", this.idContrat);
-
-        //                using (MySqlDataAdapter da = new MySqlDataAdapter(cmd))
-        //                {
-        //                    da.Fill(table);
-        //                }
-        //            }
-        //        }
-        //    }
-        //    catch (Exception ex)
-        //    {
-        //        MessageBox.Show(ex.Message);
-        //    }
-
-        //    return table;
-        //}
 
 
         public DataTable LoadContrats()
@@ -126,19 +76,19 @@ namespace venolocation.formee
             return table;
         }
 
-        
+
         private void InitialiserHeures()
         {
-            
+
             cbHeureRetour.Items.Clear();
 
             for (int h = 0; h < 24; h++)
             {
-               
+
                 cbHeureRetour.Items.Add(h.ToString("00") + ":00");
             }
 
-           
+
             cbHeureRetour.SelectedIndex = 1;
         }
 
@@ -181,17 +131,17 @@ namespace venolocation.formee
 
             TimeSpan diff = fin - debut;
 
-            
+
             int jours = (int)Math.Floor(diff.TotalDays);
 
-           
+
             int heures = diff.Hours;
 
-           
+
             if (diff.Minutes > 0 || diff.Seconds > 0)
                 heures++;
 
-           
+
             if (jours < 0) jours = 0;
             if (heures < 0) heures = 0;
 
@@ -224,36 +174,37 @@ namespace venolocation.formee
         private void prolongation_Load(object sender, EventArgs e)
         {
             InitialiserHeures();
-            
+
+            cbModePaiement.Items.Clear();
+            cbModePaiement.Items.Add("Cash");
+            cbModePaiement.Items.Add("Virement");
+            cbModePaiement.Items.Add("Carte");
+            cbModePaiement.Items.Add("Chèque");
+            cbModePaiement.Items.Add("Autre");
+            cbModePaiement.SelectedIndex = 0;
+
             importer_donne();
 
             txtNombreJours.Text = CalculerNombreJours().ToString();
             txtTtl.Text = CalculerTotal().ToString("0.00");
         }
 
-       
+
         private void btncalculer_Click(object sender, EventArgs e)
         {
             importer_donne();
 
-            txtNombreJours.Text = CalculerNombreJours().ToString();
+            // txtNombreJours.Text = CalculerNombreJours().ToString();
             txtTtl.Text = CalculerTotal().ToString("0.00");
 
-            decimal avance = 0;
+            txtNombreJours.Text = CalculerNombreJours().ToString();
 
-            if (!decimal.TryParse(txt_Avance.Text, out avance))
-            {
-                MessageBox.Show("Entrer un montant valide pour l'avance");
-                txt_Avance.Focus();
-                return;
-            }
+            decimal totalProlongation = CalculerTotal();
+            txtTtl.Text = totalProlongation.ToString("0.00");
 
-            decimal reste = CalculerTotal() - avance;
-
-            if (reste < 0)
-                reste = 0;
-
-            txtRestePayer.Text = reste.ToString("0.00");
+            CalculerProlongation();
+            tnImprimer.Enabled = false;
+            btnEnregistrer.Enabled = true;
         }
 
         private void tnImprimer_Click(object sender, EventArgs e)
@@ -286,7 +237,7 @@ namespace venolocation.formee
                     return;
                 }
 
-                
+
 
                 ContratLocationPrinter printer = new ContratLocationPrinter(
                     data,
@@ -296,6 +247,9 @@ namespace venolocation.formee
                 );
 
                 printer.ShowPreview();
+
+                tnImprimer.Enabled = false;
+                btnEnregistrer.Enabled = false;
             }
             catch (Exception ex)
             {
@@ -370,6 +324,7 @@ namespace venolocation.formee
                             ch.date_changement,
                             ch.heure_changement,
                             ch.kilometrage_nouvelle,
+                            ch.remarque,
 
                             vn.marque AS new_marque,
                             vn.modele AS new_modele,
@@ -494,11 +449,11 @@ namespace venolocation.formee
 
                         DateDepart = dateDebut.ToString("dd/MM/yyyy"),
                         HeureDepart = FormatTime(GetString(dr, "heure_debut")),
-                        LieuDepart = "",
+                        LieuDepart = "Agence",
 
                         DateRetour = dateFin.ToString("dd/MM/yyyy"),
                         HeureRetour = FormatTime(GetString(dr, "heure_retour_prevu")),
-                        LieuRetour = "",
+                        LieuRetour = "Agence",
 
                         NombreJours = nombreJours.ToString(),
                         PrixJour = GetDecimal(dr, "prix_jour").ToString("0.00"),
@@ -510,19 +465,19 @@ namespace venolocation.formee
 
                         ProlongationDu = FormatDate(GetString(dr, "ancienne_date_fin")) + " " + FormatTime(GetString(dr, "ancienne_heure_fin")),
                         ProlongationAu = FormatDate(GetString(dr, "nouvelle_date_fin")) + " " + FormatTime(GetString(dr, "nouvelle_heure_fin")),
-                        ProlongationLieuDepart = "",
-                        ProlongationLieuRetour = "",
+                        ProlongationLieuDepart = "Agence",
+                        ProlongationLieuRetour = "Agence",
                         ProlongationFrais = GetDecimal(dr, "montant_supplementaire").ToString("0.00"),
 
                         ChangementMarque = (GetString(dr, "new_marque") + " " + GetString(dr, "new_modele")).Trim(),
                         ChangementMatricule = GetString(dr, "new_matricule"),
                         ChangementDate = FormatDate(GetString(dr, "date_changement")),
                         ChangementHeure = FormatTime(GetString(dr, "heure_changement")),
-                        ChangementLieu = "",
+                        ChangementLieu = "Agence",
                         ChangementKm = GetString(dr, "kilometrage_nouvelle"),
 
                         NiveauCarburant = GetString(dr, "carburant"),
-                        Observations = ""
+                        Observations = GetString(dr, "remarque")
                     };
                 }
             }
@@ -608,10 +563,627 @@ namespace venolocation.formee
 
             return timeValue;
         }
+        private decimal ParseDecimalSafe(string value)
+        {
+            if (string.IsNullOrWhiteSpace(value))
+                return 0;
 
+            value = value.Trim().Replace(" ", "").Replace(",", ".");
+
+            decimal result;
+            if (decimal.TryParse(
+                value,
+                NumberStyles.Any,
+                CultureInfo.InvariantCulture,
+                out result))
+            {
+                return result;
+            }
+
+            return 0;
+        }
+
+        private void EnregistrerProlongation()
+        {
+            int contratId;
+
+            if (!int.TryParse(txt_id_contrat.Text, out contratId) || contratId <= 0)
+            {
+                MessageBox.Show("Contrat invalide.");
+                return;
+            }
+
+            if (string.IsNullOrWhiteSpace(cbHeureRetour.Text))
+            {
+                MessageBox.Show("Choisissez l'heure de retour.");
+                cbHeureRetour.Focus();
+                return;
+            }
+
+            TimeSpan nouvelleHeureFin;
+
+            if (!TimeSpan.TryParse(cbHeureRetour.Text, out nouvelleHeureFin))
+            {
+                MessageBox.Show("Heure retour invalide.");
+                cbHeureRetour.Focus();
+                return;
+            }
+
+            DateTime nouvelleDateFin = dtDateFin.Value.Date;
+
+            decimal montantSupplementaire = ParseDecimalSafe(txtTtl.Text);
+            decimal montantPaye = ParseDecimalSafe(txt_Avance.Text);
+
+            if (montantSupplementaire < 0)
+                montantSupplementaire = 0;
+
+            if (montantPaye < 0)
+                montantPaye = 0;
+
+            if (montantPaye > montantSupplementaire)
+            {
+                MessageBox.Show("Le montant payé ne doit pas dépasser le montant supplémentaire.");
+                txt_Avance.Focus();
+                return;
+            }
+
+            string modePaiement = "Cash";
+
+            if (cbModePaiement.SelectedItem != null && !string.IsNullOrWhiteSpace(cbModePaiement.Text))
+                modePaiement = cbModePaiement.Text.Trim();
+
+            using (MySqlConnection cn = new MySqlConnection(DbConfig.GetConnectionString()))
+            {
+                cn.Open();
+
+                using (MySqlTransaction tr = cn.BeginTransaction())
+                {
+                    try
+                    {
+                        DateTime ancienneDateFin;
+                        TimeSpan ancienneHeureFin;
+                        decimal ancienTotal;
+                        string statusContrat;
+
+                        string selectContrat = @"
+                    SELECT 
+                        date_retour_prevu,
+                        heure_retour_prevu,
+                        total,
+                        status
+                    FROM contrats
+                    WHERE contrat_id = @contrat_id
+                    FOR UPDATE;";
+
+                        using (MySqlCommand cmd = new MySqlCommand(selectContrat, cn, tr))
+                        {
+                            cmd.Parameters.AddWithValue("@contrat_id", contratId);
+
+                            using (MySqlDataReader dr = cmd.ExecuteReader())
+                            {
+                                if (!dr.Read())
+                                {
+                                    MessageBox.Show("Contrat introuvable.");
+                                    tr.Rollback();
+                                    return;
+                                }
+
+                                ancienneDateFin = Convert.ToDateTime(dr["date_retour_prevu"]).Date;
+                                ancienneHeureFin = TimeSpan.Parse(dr["heure_retour_prevu"].ToString());
+                                ancienTotal = dr["total"] == DBNull.Value ? 0 : Convert.ToDecimal(dr["total"]);
+                                statusContrat = dr["status"] == DBNull.Value ? "" : dr["status"].ToString();
+                            }
+                        }
+
+                        if (statusContrat == AppStatus.ContratTermine || statusContrat == AppStatus.ContratAnnule)
+                        {
+                            MessageBox.Show("Impossible de prolonger un contrat terminé ou annulé.");
+                            tr.Rollback();
+                            return;
+                        }
+
+                        DateTime ancienneDateHeure = ancienneDateFin.Date.Add(ancienneHeureFin);
+                        DateTime nouvelleDateHeure = nouvelleDateFin.Date.Add(nouvelleHeureFin);
+
+                        if (nouvelleDateHeure <= ancienneDateHeure)
+                        {
+                            MessageBox.Show("La nouvelle date de retour doit être supérieure à l'ancienne date.");
+                            tr.Rollback();
+                            return;
+                        }
+
+                        decimal nouveauTotal = ancienTotal + montantSupplementaire;
+
+                        string insertProlongation = @"
+                    INSERT INTO contrat_prolongations
+                    (
+                        contrat_id,
+                        ancienne_date_fin,
+                        ancienne_heure_fin,
+                        nouvelle_date_fin,
+                        nouvelle_heure_fin,
+                        montant_supplementaire,
+                        remarque,
+                        nom_utilisateur,
+                        created_at
+                    )
+                    VALUES
+                    (
+                        @contrat_id,
+                        @ancienne_date_fin,
+                        @ancienne_heure_fin,
+                        @nouvelle_date_fin,
+                        @nouvelle_heure_fin,
+                        @montant_supplementaire,
+                        @remarque,
+                        @nom_utilisateur,
+                        NOW()
+                    );";
+
+                        using (MySqlCommand cmd = new MySqlCommand(insertProlongation, cn, tr))
+                        {
+                            cmd.Parameters.AddWithValue("@contrat_id", contratId);
+                            cmd.Parameters.AddWithValue("@ancienne_date_fin", ancienneDateFin);
+                            cmd.Parameters.AddWithValue("@ancienne_heure_fin", ancienneHeureFin);
+                            cmd.Parameters.AddWithValue("@nouvelle_date_fin", nouvelleDateFin);
+                            cmd.Parameters.AddWithValue("@nouvelle_heure_fin", nouvelleHeureFin);
+                            cmd.Parameters.AddWithValue("@montant_supplementaire", montantSupplementaire);
+                            cmd.Parameters.AddWithValue("@remarque", "Prolongation contrat");
+                            cmd.Parameters.AddWithValue("@nom_utilisateur", Session.Username);
+                            cmd.ExecuteNonQuery();
+                        }
+
+                        string updateContrat = @"
+                    UPDATE contrats
+                    SET 
+                        date_retour_prevu = @nouvelle_date_fin,
+                        heure_retour_prevu = @nouvelle_heure_fin,
+                        total = @nouveau_total
+                    WHERE contrat_id = @contrat_id;";
+
+                        using (MySqlCommand cmd = new MySqlCommand(updateContrat, cn, tr))
+                        {
+                            cmd.Parameters.AddWithValue("@nouvelle_date_fin", nouvelleDateFin);
+                            cmd.Parameters.AddWithValue("@nouvelle_heure_fin", nouvelleHeureFin);
+                            cmd.Parameters.AddWithValue("@nouveau_total", nouveauTotal);
+                            cmd.Parameters.AddWithValue("@contrat_id", contratId);
+                            cmd.ExecuteNonQuery();
+                        }
+
+                        if (montantPaye > 0)
+                        {
+                            string insertPayment = @"
+                        INSERT INTO payment_history
+                        (
+                            contrat_id,
+                            montant,
+                            mode_paiement,
+                            type_paiement,
+                            reference,
+                            created_by,
+                            created_at
+                        )
+                        VALUES
+                        (
+                            @contrat_id,
+                            @montant,
+                            @mode_paiement,
+                            'Autre',
+                            @reference,
+                            NULL,
+                            NOW()
+                        );";
+
+                            using (MySqlCommand cmd = new MySqlCommand(insertPayment, cn, tr))
+                            {
+                                cmd.Parameters.AddWithValue("@contrat_id", contratId);
+                                cmd.Parameters.AddWithValue("@montant", montantPaye);
+                                cmd.Parameters.AddWithValue("@mode_paiement", modePaiement);
+                                cmd.Parameters.AddWithValue("@reference", "Prolongation");
+                                cmd.ExecuteNonQuery();
+                            }
+
+                            string insertRecette = @"
+                        INSERT INTO recettes
+                        (
+                            contrat_id,
+                            montant,
+                            type,
+                            date_recette,
+                            nom_utilisateur,
+                            created_at
+                        )
+                        VALUES
+                        (
+                            @contrat_id,
+                            @montant,
+                            'Prolongation',
+                            NOW(),
+                            @nom_utilisateur,
+                            NOW()
+                        );";
+
+                            using (MySqlCommand cmd = new MySqlCommand(insertRecette, cn, tr))
+                            {
+                                cmd.Parameters.AddWithValue("@contrat_id", contratId);
+                                cmd.Parameters.AddWithValue("@montant", montantPaye);
+                                cmd.Parameters.AddWithValue("@nom_utilisateur", Session.Username);
+                                cmd.ExecuteNonQuery();
+                            }
+                        }
+
+                        tr.Commit();
+
+                        txtRestePayer.Text = (montantSupplementaire - montantPaye).ToString("0.00");
+
+                        MessageBox.Show("Prolongation enregistrée avec succès.");
+
+                        importer_donne();
+
+                        txtNombreJours.Text = CalculerNombreJours().ToString();
+                        txtTtl.Text = CalculerTotal().ToString("0.00");
+                    }
+                    catch (Exception ex)
+                    {
+                        tr.Rollback();
+
+                        dbErreur.AddLog(
+                            ex.Message,
+                            Session.Username,
+                            "prolongation",
+                            "EnregistrerProlongation"
+                        );
+
+                        MessageBox.Show("Erreur lors de l'enregistrement de la prolongation.");
+                    }
+                }
+            }
+        }
+        private void EnregistrerProlongation_1()
+        {
+            int contratId;
+
+            if (!int.TryParse(txt_id_contrat.Text, out contratId) || contratId <= 0)
+            {
+                MessageBox.Show("Contrat invalide.");
+                return;
+            }
+
+            if (string.IsNullOrWhiteSpace(cbHeureRetour.Text))
+            {
+                MessageBox.Show("Choisissez l'heure de retour.");
+                cbHeureRetour.Focus();
+                return;
+            }
+
+            TimeSpan nouvelleHeureFin;
+
+            if (!TimeSpan.TryParse(cbHeureRetour.Text, out nouvelleHeureFin))
+            {
+                MessageBox.Show("Heure retour invalide.");
+                cbHeureRetour.Focus();
+                return;
+            }
+
+            DateTime nouvelleDateFin = dtDateFin.Value.Date;
+
+            // txtTtl = ثمن الكراء ديال الأيام/الساعات الزايدين
+            // txtMontantSupp = مصاريف إضافية
+            // txt_Avance = شحال خلص دابا
+            decimal totalProlongation = ParseDecimalSafe(txtTtl.Text);
+            decimal montantSupp = ParseDecimalSafe(txtMontantSupp.Text);
+            decimal avance = ParseDecimalSafe(txt_Avance.Text);
+            
+
+
+            if (totalProlongation < 0)
+                totalProlongation = 0;
+
+            if (montantSupp < 0)
+                montantSupp = 0;
+
+            if (avance < 0)
+                avance = 0;
+
+            decimal totalAPayer = totalProlongation + montantSupp - avance;
+            
+            if (totalAPayer <= 0)
+            {
+                MessageBox.Show("Veuillez calculer le montant de la prolongation.");
+                return;
+            }
+
+            if (avance > totalAPayer)
+            {
+                MessageBox.Show("L'avance ne doit pas dépasser le total à payer.");
+                txt_Avance.Focus();
+                return;
+            }
+
+           
+
+            string modePaiement = "Cash";
+
+            if (cbModePaiement.SelectedItem != null && !string.IsNullOrWhiteSpace(cbModePaiement.Text))
+                modePaiement = cbModePaiement.Text.Trim();
+
+            using (MySqlConnection cn = new MySqlConnection(DbConfig.GetConnectionString()))
+            {
+                cn.Open();
+
+                using (MySqlTransaction tr = cn.BeginTransaction())
+                {
+                    try
+                    {
+                        DateTime ancienneDateFin;
+                        TimeSpan ancienneHeureFin;
+                        decimal ancienTotal;
+                        string statusContrat;
+
+                        string selectContrat = @"
+                                SELECT 
+                                    date_retour_prevu,
+                                    heure_retour_prevu,
+                                    total,
+                                    status
+                                FROM contrats
+                                WHERE contrat_id = @contrat_id
+                                FOR UPDATE;";
+
+                        using (MySqlCommand cmd = new MySqlCommand(selectContrat, cn, tr))
+                        {
+                            cmd.Parameters.AddWithValue("@contrat_id", contratId);
+
+                            using (MySqlDataReader dr = cmd.ExecuteReader())
+                            {
+                                if (!dr.Read())
+                                {
+                                    tr.Rollback();
+                                    MessageBox.Show("Contrat introuvable.");
+                                    return;
+                                }
+
+                                ancienneDateFin = Convert.ToDateTime(dr["date_retour_prevu"]).Date;
+
+                                ancienneHeureFin = TimeSpan.Parse(dr["heure_retour_prevu"].ToString());
+
+                                ancienTotal = dr["total"] == DBNull.Value
+                                    ? 0
+                                    : Convert.ToDecimal(dr["total"]);
+
+                                statusContrat = dr["status"] == DBNull.Value
+                                    ? ""
+                                    : dr["status"].ToString();
+                            }
+                        }
+
+                        if (statusContrat == AppStatus.ContratTermine || statusContrat == AppStatus.ContratAnnule)
+                        {
+                            tr.Rollback();
+                            MessageBox.Show("Impossible de prolonger un contrat terminé ou annulé.");
+                            return;
+                        }
+
+                        DateTime ancienneDateHeure = ancienneDateFin.Date.Add(ancienneHeureFin);
+                        DateTime nouvelleDateHeure = nouvelleDateFin.Date.Add(nouvelleHeureFin);
+
+                        if (nouvelleDateHeure <= ancienneDateHeure)
+                        {
+                            tr.Rollback();
+                            MessageBox.Show("La nouvelle date de retour doit être supérieure à l'ancienne date.");
+                            return;
+                        }
+
+                        // هنا total ديال contrat كيتزاد عليه:
+                        // ثمن prolongation + montant supp
+                        decimal nouveauTotalContrat = totalProlongation + montantSupp;
+
+                        string insertProlongation = @"
+                    INSERT INTO contrat_prolongations
+                    (
+                        contrat_id,
+                        ancienne_date_fin,
+                        ancienne_heure_fin,
+                        nouvelle_date_fin,
+                        nouvelle_heure_fin,
+                        montant_supplementaire,
+                        remarque,
+                        nom_utilisateur,
+                        created_at
+                    )
+                    VALUES
+                    (
+                        @contrat_id,
+                        @ancienne_date_fin,
+                        @ancienne_heure_fin,
+                        @nouvelle_date_fin,
+                        @nouvelle_heure_fin,
+                        @montant_supplementaire,
+                        @remarque,
+                        @nom_utilisateur,
+                        NOW()
+                    );";
+
+                        using (MySqlCommand cmd = new MySqlCommand(insertProlongation, cn, tr))
+                        {
+                            cmd.Parameters.AddWithValue("@contrat_id", contratId);
+                            cmd.Parameters.AddWithValue("@ancienne_date_fin", ancienneDateFin);
+                            cmd.Parameters.AddWithValue("@ancienne_heure_fin", ancienneHeureFin);
+                            cmd.Parameters.AddWithValue("@nouvelle_date_fin", nouvelleDateFin);
+                            cmd.Parameters.AddWithValue("@nouvelle_heure_fin", nouvelleHeureFin);
+                            
+                            cmd.Parameters.AddWithValue("@montant_supplementaire", montantSupp);
+
+                            cmd.Parameters.AddWithValue(
+                                "@remarque",
+                                "Prolongation: location=" + totalProlongation.ToString("0.00") +
+                                " / montant supp=" + montantSupp.ToString("0.00") +
+                                " / avance=" + avance.ToString("0.00") +
+                                " / reste a payer =" + totalAPayer.ToString("0.00")
+                            );
+
+                            cmd.Parameters.AddWithValue("@nom_utilisateur", Session.Username);
+                            cmd.ExecuteNonQuery();
+                        }
+
+                        string updateContrat = @"
+                                        UPDATE contrats
+                                        SET 
+                                            date_retour_prevu = @nouvelle_date_fin,
+                                            heure_retour_prevu = @nouvelle_heure_fin,
+                                            avance = avance + @avance,
+                                            total = total + @nouveau_total
+                                        WHERE contrat_id = @contrat_id;";
+
+                        using (MySqlCommand cmd = new MySqlCommand(updateContrat, cn, tr))
+                        {
+                            cmd.Parameters.AddWithValue("@nouvelle_date_fin", nouvelleDateFin);
+                            cmd.Parameters.AddWithValue("@nouvelle_heure_fin", nouvelleHeureFin);
+                            cmd.Parameters.AddWithValue("@avance", avance);
+                            cmd.Parameters.AddWithValue("@nouveau_total", nouveauTotalContrat);
+                            cmd.Parameters.AddWithValue("@contrat_id", contratId);
+                            cmd.ExecuteNonQuery();
+                        }
+
+                       
+                        if (avance > 0)
+                        {
+                            string insertPayment = @"
+                                        INSERT INTO payment_history
+                                        (
+                                            contrat_id,
+                                            montant,
+                                            mode_paiement,
+                                            type_paiement,
+                                            reference,
+                                            created_by,
+                                            created_at
+                                        )
+                                        VALUES
+                                        (
+                                            @contrat_id,
+                                            @montant,
+                                            @mode_paiement,
+                                            'Prolongation',
+                                            @reference,
+                                            @created_by,
+                                            NOW()
+                                        );";
+
+                            using (MySqlCommand cmd = new MySqlCommand(insertPayment, cn, tr))
+                            {
+                                cmd.Parameters.AddWithValue("@contrat_id", contratId);
+                                cmd.Parameters.AddWithValue("@montant", avance);
+                                cmd.Parameters.AddWithValue("@mode_paiement", modePaiement);
+                                cmd.Parameters.AddWithValue("@reference", "Avance prolongation");
+                                cmd.Parameters.AddWithValue("@created_by", Session.Username);
+                                cmd.ExecuteNonQuery();
+                            }
+
+
+
+
+                            string insertRecette = @"
+                                INSERT INTO recettes
+                                (
+                                    contrat_id,
+                                    montant,
+                                    type,
+                                    date_recette,
+                                    nom_utilisateur,
+                                    created_at
+                                )
+                                VALUES
+                                (
+                                    @contrat_id,
+                                    @montant,
+                                    'Avance prolongation',
+                                    NOW(),
+                                    @nom_utilisateur,
+                                    NOW()
+                                );";
+
+                            using (MySqlCommand cmd = new MySqlCommand(insertRecette, cn, tr))
+                            {
+                                cmd.Parameters.AddWithValue("@contrat_id", contratId);
+                                cmd.Parameters.AddWithValue("@montant", avance);
+                                cmd.Parameters.AddWithValue("@nom_utilisateur", Session.Username);
+                                cmd.ExecuteNonQuery();
+                            }
+
+
+
+                        }
+
+                        tr.Commit();
+
+                        //txtRestePayer.Text = resteAPayer.ToString("0.00");
+                        tnImprimer.Enabled = true;
+                        btnEnregistrer.Enabled = false;
+                        MessageBox.Show("Prolongation enregistrée avec succès.");
+
+                        importer_donne();
+                    }
+                    catch (Exception ex)
+                    {
+                        tr.Rollback();
+
+                        dbErreur.AddLog(
+                            ex.Message,
+                            Session.Username,
+                            "prolongation",
+                            "EnregistrerProlongation"
+                        );
+
+                        MessageBox.Show("Erreur lors de l'enregistrement de la prolongation.");
+                    }
+                }
+            }
+        }
         private void btnEnregistrer_Click(object sender, EventArgs e)
         {
+            EnregistrerProlongation_1();
+        }
 
+        private void CalculerProlongation()
+        {
+            decimal totalProlongation = ParseDecimalSafe(txtTtl.Text);
+            decimal montantSupp = ParseDecimalSafe(txtMontantSupp.Text);
+            decimal avance = ParseDecimalSafe(txt_Avance.Text);
+
+            if (totalProlongation < 0)
+                totalProlongation = 0;
+
+            if (montantSupp < 0)
+                montantSupp = 0;
+
+            if (avance < 0)
+                avance = 0;
+
+            decimal totalAPayer = totalProlongation + montantSupp;
+
+            if (avance > totalAPayer)
+            {
+                txtRestePayer.Text = "0.00";
+                return;
+            }
+
+            txtRestePayer.Text = (totalAPayer - avance).ToString("0.00");
+        }
+
+        private void txt_Avance_TextChanged(object sender, EventArgs e)
+        {
+            CalculerProlongation();
+        }
+
+        private void txtMontantSupp_TextChanged(object sender, EventArgs e)
+        {
+            CalculerProlongation();
+        }
+
+        private void txtTtl_TextChanged(object sender, EventArgs e)
+        {
+            CalculerProlongation();
         }
     }
 }
