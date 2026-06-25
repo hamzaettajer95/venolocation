@@ -249,7 +249,7 @@
             this.guna2TextBox2.Location = new System.Drawing.Point(218, 205);
             this.guna2TextBox2.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.guna2TextBox2.Name = "guna2TextBox2";
-            this.guna2TextBox2.PlaceholderText = "hamza00etajer@gmail.com";
+            this.guna2TextBox2.PlaceholderText = "hamza00ettajer@gmail.com";
             this.guna2TextBox2.ReadOnly = true;
             this.guna2TextBox2.SelectedText = "";
             this.guna2TextBox2.Size = new System.Drawing.Size(300, 46);

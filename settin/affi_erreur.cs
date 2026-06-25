@@ -35,6 +35,9 @@ namespace venolocation.settin
 
                     guna2DataGridView1.DataSource = dt;
                     GridStyleHelper_1.ApplyCompact(guna2DataGridView1);
+                    guna2DataGridView1.ClipboardCopyMode = DataGridViewClipboardCopyMode.EnableAlwaysIncludeHeaderText;
+                    guna2DataGridView1.SelectionMode = DataGridViewSelectionMode.CellSelect;
+                    guna2DataGridView1.MultiSelect = true;
                 }
             }
             catch (Exception ex)

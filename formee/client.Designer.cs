@@ -96,6 +96,7 @@ namespace venolocation.formee
             this.lblVilleClient = new System.Windows.Forms.Label();
             this.lblAdresseClient = new System.Windows.Forms.Label();
             this.txtAdresseClient = new System.Windows.Forms.TextBox();
+            this.button1 = new System.Windows.Forms.Button();
             this.gbListeClients.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgvClients)).BeginInit();
             this.gbActions.SuspendLayout();
@@ -168,6 +169,7 @@ namespace venolocation.formee
             // 
             // gbActions
             // 
+            this.gbActions.Controls.Add(this.button1);
             this.gbActions.Controls.Add(this.btnAjouter);
             this.gbActions.Controls.Add(this.btnModifier);
             this.gbActions.Controls.Add(this.btnSupprimer);
@@ -203,7 +205,7 @@ namespace venolocation.formee
             this.btnModifier.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Bold);
             this.btnModifier.ForeColor = System.Drawing.Color.White;
             this.btnModifier.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btnModifier.Location = new System.Drawing.Point(371, 42);
+            this.btnModifier.Location = new System.Drawing.Point(300, 42);
             this.btnModifier.Name = "btnModifier";
             this.btnModifier.Size = new System.Drawing.Size(195, 48);
             this.btnModifier.TabIndex = 1;
@@ -218,7 +220,7 @@ namespace venolocation.formee
             this.btnSupprimer.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnSupprimer.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Bold);
             this.btnSupprimer.ForeColor = System.Drawing.Color.White;
-            this.btnSupprimer.Location = new System.Drawing.Point(724, 42);
+            this.btnSupprimer.Location = new System.Drawing.Point(585, 42);
             this.btnSupprimer.Name = "btnSupprimer";
             this.btnSupprimer.Size = new System.Drawing.Size(195, 48);
             this.btnSupprimer.TabIndex = 2;
@@ -426,6 +428,22 @@ namespace venolocation.formee
             this.txtAdresseClient.Size = new System.Drawing.Size(395, 78);
             this.txtAdresseClient.TabIndex = 5;
             // 
+            // button1
+            // 
+            this.button1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(53)))), ((int)(((byte)(128)))), ((int)(((byte)(194)))));
+            this.button1.FlatAppearance.BorderSize = 0;
+            this.button1.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.button1.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Bold);
+            this.button1.ForeColor = System.Drawing.Color.White;
+            this.button1.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.button1.Location = new System.Drawing.Point(907, 42);
+            this.button1.Name = "button1";
+            this.button1.Size = new System.Drawing.Size(195, 48);
+            this.button1.TabIndex = 6;
+            this.button1.Text = "↻    Penalti";
+            this.button1.UseVisualStyleBackColor = false;
+            this.button1.Click += new System.EventHandler(this.button1_Click);
+            // 
             // client
             // 
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.None;
@@ -459,6 +477,7 @@ namespace venolocation.formee
         }
 
         private TextBox txtVilleClient;
+        private Button button1;
     }
 }
 

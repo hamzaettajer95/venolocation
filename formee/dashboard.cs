@@ -131,10 +131,10 @@ namespace venolocation.formee
             {
 
                 lblInternet.Text = "Version de l'application : " + App_Config.Instance.verssion;
-                
 
-                //mise_a_jour();
-                //test_serial();
+
+                mise_a_jour();
+                test_serial();
 
 
                 if (verifier_connection())
@@ -153,7 +153,7 @@ namespace venolocation.formee
                         ChargerToutesLesDonnees();
 
 
-                       // deconnecte();
+                        deconnecte();
 
                         panel1.Enabled = true;
 

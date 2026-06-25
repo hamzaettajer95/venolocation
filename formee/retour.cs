@@ -7,6 +7,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using System.Globalization;
 
 using MySqlConnector;
 
@@ -20,7 +21,9 @@ namespace venolocation.formee
         {
             InitializeComponent();
         }
-        
+
+        private const int KmAutoriseParJour = 300;
+        private const decimal PrixKmSupplementaire = 1m;
         private int contratId = -1;
         private int voitureId = -1;
         private int kilometrageSortie = 0;
@@ -69,7 +72,7 @@ namespace venolocation.formee
                                 WHERE c.status <> @status_termine
                                 ORDER BY v.matricule
                                 LIMIT 500;";
-                
+
                 MySqlParameter[] ps =
                 {
                     new MySqlParameter("@status_termine", AppStatus.ContratTermine)
@@ -106,7 +109,7 @@ namespace venolocation.formee
 
         private void btnRetourSimple_Click(object sender, EventArgs e)
         {
-           
+
         }
 
         private void ReinitialiserForm()
@@ -119,6 +122,7 @@ namespace venolocation.formee
             txtKilometrageRetour.Clear();
             txtDescriptionAccident.Clear();
             txtMontantReparation.Clear();
+            txtMontantpaye.Clear();
 
             btnRetourSimple.Enabled = false;
             btnAccident.Enabled = false;
@@ -127,10 +131,272 @@ namespace venolocation.formee
             cbVoiture.SelectedIndex = -1;
         }
 
+        private decimal AjouterKilometrageSupplementaireAutomatique(
+    MySqlConnection cn,
+    MySqlTransaction tr,
+    int contratId,
+    int kmRetour,
+    DateTime retourReel)
+        {
+            // باش ما يزيدش pénalité kilométrage بجوج مرات لنفس contrat
+            string checkSql = @"
+        SELECT COUNT(*)
+        FROM contrat_penalites
+        WHERE contrat_id = @contrat_id
+          AND type_penalite = 'Kilométrage';";
+
+            using (MySqlCommand checkCmd = new MySqlCommand(checkSql, cn, tr))
+            {
+                checkCmd.Parameters.AddWithValue("@contrat_id", contratId);
+
+                int dejaExiste = Convert.ToInt32(checkCmd.ExecuteScalar());
+
+                if (dejaExiste > 0)
+                    return 0m;
+            }
+
+            string sql = @"
+        SELECT date_contrat, heure_debut, kilometrage_sortie
+        FROM contrats
+        WHERE contrat_id = @contrat_id;";
+
+            DateTime dateDepart;
+            int kmSortie;
+
+            using (MySqlCommand cmd = new MySqlCommand(sql, cn, tr))
+            {
+                cmd.Parameters.AddWithValue("@contrat_id", contratId);
+
+                using (MySqlDataReader dr = cmd.ExecuteReader())
+                {
+                    if (!dr.Read())
+                        return 0m;
+
+                    if (dr["date_contrat"] == DBNull.Value || dr["heure_debut"] == DBNull.Value)
+                        return 0m;
+
+                    DateTime dateContrat = Convert.ToDateTime(dr["date_contrat"]);
+
+                    TimeSpan heureDebut;
+
+                    if (dr["heure_debut"] is TimeSpan)
+                        heureDebut = (TimeSpan)dr["heure_debut"];
+                    else
+                        heureDebut = TimeSpan.Parse(dr["heure_debut"].ToString());
+
+                    dateDepart = dateContrat.Date.Add(heureDebut);
+
+                    kmSortie = dr["kilometrage_sortie"] == DBNull.Value
+                        ? kilometrageSortie
+                        : Convert.ToInt32(dr["kilometrage_sortie"]);
+                }
+            }
+
+            int kmParcouru = kmRetour - kmSortie;
+
+            if (kmParcouru <= 0)
+                return 0m;
+
+            double totalDays = (retourReel - dateDepart).TotalDays;
+
+            int joursLocation = (int)Math.Ceiling(totalDays);
+
+            if (joursLocation < 1)
+                joursLocation = 1;
+
+            int kmAutoriseTotal = joursLocation * KmAutoriseParJour;
+
+            int kmSupplementaire = kmParcouru - kmAutoriseTotal;
+
+            if (kmSupplementaire <= 0)
+                return 0m;
+
+            decimal montantPenalite = kmSupplementaire * PrixKmSupplementaire;
+
+            string description =
+                "Kilométrage parcouru: " + kmParcouru + " km. " +
+                "Autorisé: " + kmAutoriseTotal + " km " +
+                "(" + KmAutoriseParJour + " km × " + joursLocation + " jour(s)). " +
+                "Supplément: " + kmSupplementaire + " km × " +
+                PrixKmSupplementaire.ToString("0.00") + " DH.";
+
+            AjouterPenalite(
+                cn,
+                tr,
+                contratId,
+                "Kilométrage",
+                montantPenalite,
+                0m,
+                description
+            );
+
+            return montantPenalite;
+        }
+        private decimal LireMontant(string texte)
+        {
+            if (string.IsNullOrWhiteSpace(texte))
+                return 0m;
+
+            texte = texte.Trim().Replace(" ", "").Replace(",", ".");
+
+            decimal montant;
+
+            if (!decimal.TryParse(
+                texte,
+                NumberStyles.Any,
+                CultureInfo.InvariantCulture,
+                out montant))
+            {
+                throw new Exception("Montant invalide : " + texte);
+            }
+
+            if (montant < 0)
+                throw new Exception("Le montant ne peut pas être négatif.");
+
+            return montant;
+        }
+
+        private void AjouterPenalite(
+            MySqlConnection cn,
+            MySqlTransaction tr,
+            int contratId,
+            string typePenalite,
+            decimal montant,
+            decimal montantPaye,
+            string description)
+        {
+            if (montant <= 0)
+                return;
+
+            if (montantPaye < 0)
+                montantPaye = 0;
+
+            if (montantPaye > montant)
+                montantPaye = montant;
+
+            string insertPenalite = @"
+        INSERT INTO contrat_penalites
+        (contrat_id, type_penalite, montant, montant_paye, description, nom_utilisateur)
+        VALUES
+        (@contrat_id, @type_penalite, @montant, @montant_paye, @description, @nom_utilisateur);";
+
+            using (MySqlCommand cmd = new MySqlCommand(insertPenalite, cn, tr))
+            {
+                cmd.Parameters.AddWithValue("@contrat_id", contratId);
+                cmd.Parameters.AddWithValue("@type_penalite", typePenalite);
+                cmd.Parameters.AddWithValue("@montant", montant);
+                cmd.Parameters.AddWithValue("@montant_paye", montantPaye);
+                cmd.Parameters.AddWithValue("@description",
+                    string.IsNullOrWhiteSpace(description) ? DBNull.Value : (object)description);
+                cmd.Parameters.AddWithValue("@nom_utilisateur", Session.Username);
+                cmd.ExecuteNonQuery();
+            }
+
+            if (montantPaye > 0)
+            {
+                PaymentService.AjouterPaiementContrat(
+                    cn,
+                    tr,
+                    contratId,
+                    montantPaye,
+                    "Pénalité",
+                    "Cash",
+                    typePenalite,
+                    Session.Username
+                );
+            }
+        }
+
+        private decimal AjouterRetardAutomatique(
+            MySqlConnection cn,
+            MySqlTransaction tr,
+            int contratId,
+            DateTime retourReel)
+        {
+            string checkSql = @"
+        SELECT COUNT(*)
+        FROM contrat_penalites
+        WHERE contrat_id = @contrat_id
+          AND type_penalite = 'Retard';";
+
+            using (MySqlCommand checkCmd = new MySqlCommand(checkSql, cn, tr))
+            {
+                checkCmd.Parameters.AddWithValue("@contrat_id", contratId);
+
+                int dejaExiste = Convert.ToInt32(checkCmd.ExecuteScalar());
+
+                if (dejaExiste > 0)
+                    return 0m;
+            }
+
+            string sql = @"
+        SELECT date_retour_prevu, heure_retour_prevu, prix_heure
+        FROM contrats
+        WHERE contrat_id = @contrat_id;";
+
+            DateTime retourPrevu;
+            decimal prixHeure = 0m;
+
+            using (MySqlCommand cmd = new MySqlCommand(sql, cn, tr))
+            {
+                cmd.Parameters.AddWithValue("@contrat_id", contratId);
+
+                using (MySqlDataReader dr = cmd.ExecuteReader())
+                {
+                    if (!dr.Read())
+                        return 0m;
+
+                    if (dr["date_retour_prevu"] == DBNull.Value || dr["heure_retour_prevu"] == DBNull.Value)
+                        return 0m;
+
+                    DateTime datePrevue = Convert.ToDateTime(dr["date_retour_prevu"]);
+
+                    TimeSpan heurePrevue;
+
+                    if (dr["heure_retour_prevu"] is TimeSpan)
+                        heurePrevue = (TimeSpan)dr["heure_retour_prevu"];
+                    else
+                        heurePrevue = TimeSpan.Parse(dr["heure_retour_prevu"].ToString());
+
+                    retourPrevu = datePrevue.Date.Add(heurePrevue);
+
+                    if (dr["prix_heure"] != DBNull.Value)
+                        prixHeure = Convert.ToDecimal(dr["prix_heure"]);
+                }
+            }
+
+            if (retourReel <= retourPrevu)
+                return 0m;
+
+            double totalHours = (retourReel - retourPrevu).TotalHours;
+            int heuresRetard = (int)Math.Ceiling(totalHours);
+
+            if (heuresRetard <= 0)
+                return 0m;
+
+            decimal montantRetard = heuresRetard * prixHeure;
+
+            string description =
+                "Retard de " + heuresRetard + " heure(s). " +
+                "Retour prévu: " + retourPrevu.ToString("dd/MM/yyyy HH:mm") +
+                " / Retour réel: " + retourReel.ToString("dd/MM/yyyy HH:mm");
+
+            AjouterPenalite(
+                cn,
+                tr,
+                contratId,
+                "Retard",
+                montantRetard,
+                0m,
+                description
+            );
+
+            return montantRetard;
+        }
         private void btnAccident_Click(object sender, EventArgs e)
         {
-            
-            
+
+
         }
 
         private void ChargerContratEnCours(int selectedVoitureId)
@@ -224,7 +490,7 @@ namespace venolocation.formee
                     "Erreur", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
-        
+
 
 
         private bool ValiderKilometrage(out int kmRetour)
@@ -296,6 +562,7 @@ namespace venolocation.formee
 
         private void btnRetourSimple_Click_1(object sender, EventArgs e)
         {
+
             if (!ValiderKilometrage(out int kmRetour))
                 return;
 
@@ -318,40 +585,66 @@ namespace venolocation.formee
                     {
                         try
                         {
+                            DateTime retourReel = DateTime.Now;
+
                             string updateContrat = @"
-                                    UPDATE contrats
-                                    SET kilometrage_retour = @kilometrage_retour
-                                    WHERE contrat_id = @contrat_id;";
+                        UPDATE contrats
+                        SET kilometrage_retour = @kilometrage_retour,
+                            date_retour_reelle = @date_retour_reelle,
+                            heure_retour_reelle = @heure_retour_reelle
+                        WHERE contrat_id = @contrat_id;";
 
                             using (MySqlCommand cmd = new MySqlCommand(updateContrat, cn, tr))
                             {
                                 cmd.Parameters.AddWithValue("@kilometrage_retour", kmRetour);
+                                cmd.Parameters.AddWithValue("@date_retour_reelle", retourReel.Date);
+                                cmd.Parameters.AddWithValue("@heure_retour_reelle", retourReel.TimeOfDay);
                                 cmd.Parameters.AddWithValue("@contrat_id", contratId);
                                 cmd.ExecuteNonQuery();
                             }
-                            //StatusHistoryService.AjouterContratHistory(
-                            //                                            cn,
-                            //                                            tr,
-                            //                                            contratId,
-                            //                                            AppStatus.ContratEnCours,
-                            //                                            AppStatus.ContratTermine,
-                            //                                            "Retour véhicule"
-                            //                                        );
+
+                            decimal montantRetard = AjouterRetardAutomatique(cn, tr, contratId, retourReel);
+
+                            decimal montantKmSupp = AjouterKilometrageSupplementaireAutomatique(
+                                cn,
+                                tr,
+                                contratId,
+                                kmRetour,
+                                retourReel
+                            );
+
                             tr.Commit();
 
                             LogHelper.AddLog("Retour voiture: " + cbVoiture.Text, Session.Username);
-                            MessageBox.Show("Retour simple enregistré avec succès.",
-                                "Succès", MessageBoxButtons.OK, MessageBoxIcon.Information);
+
+                            string message = "Retour simple enregistré avec succès.";
+
+                            if (montantRetard > 0)
+                                message += "\nRetard ajouté : " + montantRetard.ToString("0.00") + " DH";
+
+                            if (montantKmSupp > 0)
+                                message += "\nKilométrage supplémentaire : " + montantKmSupp.ToString("0.00") + " DH";
+
+                            MessageBox.Show(
+                                message,
+                                "Succès",
+                                MessageBoxButtons.OK,
+                                MessageBoxIcon.Information);
 
                             ReinitialiserForm();
                         }
                         catch (Exception ex)
                         {
                             tr.Rollback();
+
                             ErrorReporter.SendError(ex, "retour", "btnRetourSimple_Click_1_Transaction");
                             dbErreur.AddLog(ex.Message, Session.Username, "retour", "btnRetourSimple_Click_1_Transaction");
-                            MessageBox.Show("Erreur enregistrement retour : " + ex.Message,
-                                "Erreur", MessageBoxButtons.OK, MessageBoxIcon.Error);
+
+                            MessageBox.Show(
+                                "Erreur enregistrement retour : " + ex.Message,
+                                "Erreur",
+                                MessageBoxButtons.OK,
+                                MessageBoxIcon.Error);
                         }
                     }
                 }
@@ -360,15 +653,20 @@ namespace venolocation.formee
             {
                 ErrorReporter.SendError(ex, "retour", "btnRetourSimple_Click_1");
                 dbErreur.AddLog(ex.Message, Session.Username, "retour", "btnRetourSimple_Click_1");
-                MessageBox.Show("Erreur connexion : " + ex.Message,
-                    "Erreur", MessageBoxButtons.OK, MessageBoxIcon.Error);
+
+                MessageBox.Show(
+                    "Erreur connexion : " + ex.Message,
+                    "Erreur",
+                    MessageBoxButtons.OK,
+                    MessageBoxIcon.Error);
             }
+
 
         }
 
         private void btnAccident_Click_1(object sender, EventArgs e)
         {
-         
+
             if (!ValiderKilometrage(out int kmRetour))
                 return;
 
@@ -376,36 +674,45 @@ namespace venolocation.formee
 
             if (string.IsNullOrWhiteSpace(descriptionAccident))
             {
-                MessageBox.Show("Saisissez la description de l'accident.",
-                    "Attention", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                MessageBox.Show(
+                    "Saisissez la description de l'accident.",
+                    "Attention",
+                    MessageBoxButtons.OK,
+                    MessageBoxIcon.Warning);
+
                 txtDescriptionAccident.Focus();
                 return;
             }
 
-            decimal montantReparation = 0;
+            decimal montantReparation;
+            decimal montantpaye;
 
-            if (!string.IsNullOrWhiteSpace(txtMontantReparation.Text))
+            try
             {
-                if (!decimal.TryParse(txtMontantReparation.Text.Trim(), out montantReparation) || montantReparation < 0)
-                {
-                    MessageBox.Show("Montant réparation invalide.",
-                        "Attention", MessageBoxButtons.OK, MessageBoxIcon.Warning);
-                    txtMontantReparation.Focus();
-                    return;
-                }
+                montantReparation = LireMontant(txtMontantReparation.Text);
+                montantpaye = LireMontant(txtMontantpaye.Text);
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(
+                    ex.Message,
+                    "Montant invalide",
+                    MessageBoxButtons.OK,
+                    MessageBoxIcon.Warning);
+
+                return;
             }
 
-            decimal montantpaye = 0;
-
-            if (!string.IsNullOrWhiteSpace(txtMontantpaye.Text))
+            if (montantpaye > montantReparation)
             {
-                if (!decimal.TryParse(txtMontantpaye.Text.Trim(), out montantpaye) || montantpaye < 0)
-                {
-                    MessageBox.Show("Montant Paye invalide.",
-                        "Attention", MessageBoxButtons.OK, MessageBoxIcon.Warning);
-                    txtMontantpaye.Focus();
-                    return;
-                }
+                MessageBox.Show(
+                    "Montant payé ne peut pas être supérieur au montant réparation.",
+                    "Attention",
+                    MessageBoxButtons.OK,
+                    MessageBoxIcon.Warning);
+
+                txtMontantpaye.Focus();
+                return;
             }
 
             DialogResult rep = MessageBox.Show(
@@ -427,28 +734,34 @@ namespace venolocation.formee
                     {
                         try
                         {
+                            DateTime retourReel = DateTime.Now;
+
                             string updateContrat = @"
-                                    UPDATE contrats
-                                    SET kilometrage_retour = @kilometrage_retour
-                                    WHERE contrat_id = @contrat_id;";
+                        UPDATE contrats
+                        SET kilometrage_retour = @kilometrage_retour,
+                            date_retour_reelle = @date_retour_reelle,
+                            heure_retour_reelle = @heure_retour_reelle
+                        WHERE contrat_id = @contrat_id;";
 
                             using (MySqlCommand cmd1 = new MySqlCommand(updateContrat, cn, tr))
                             {
                                 cmd1.Parameters.AddWithValue("@kilometrage_retour", kmRetour);
+                                cmd1.Parameters.AddWithValue("@date_retour_reelle", retourReel.Date);
+                                cmd1.Parameters.AddWithValue("@heure_retour_reelle", retourReel.TimeOfDay);
                                 cmd1.Parameters.AddWithValue("@contrat_id", contratId);
                                 cmd1.ExecuteNonQuery();
                             }
 
                             string insertAccident = @"
-                                INSERT INTO accidents
-                                (contrat_id, date_accident, description, montant_reparation, montant_paye, nom_utilisateur)
-                                VALUES
-                                (@contrat_id, @date_accident, @description, @montant_reparation, @montant_paye, @nom_utilisateur);";
+                        INSERT INTO accidents
+                        (contrat_id, date_accident, description, montant_reparation, montant_paye, nom_utilisateur)
+                        VALUES
+                        (@contrat_id, @date_accident, @description, @montant_reparation, @montant_paye, @nom_utilisateur);";
 
                             using (MySqlCommand cmd2 = new MySqlCommand(insertAccident, cn, tr))
                             {
                                 cmd2.Parameters.AddWithValue("@contrat_id", contratId);
-                                cmd2.Parameters.AddWithValue("@date_accident", DateTime.Now.Date);
+                                cmd2.Parameters.AddWithValue("@date_accident", retourReel.Date);
                                 cmd2.Parameters.AddWithValue("@description", descriptionAccident);
                                 cmd2.Parameters.AddWithValue("@montant_reparation", montantReparation);
                                 cmd2.Parameters.AddWithValue("@montant_paye", montantpaye);
@@ -456,47 +769,67 @@ namespace venolocation.formee
                                 cmd2.ExecuteNonQuery();
                             }
 
-                            if (montantpaye > 0)
+                            decimal montantRetard = AjouterRetardAutomatique(cn, tr, contratId, retourReel);
+
+                            decimal montantKmSupp = AjouterKilometrageSupplementaireAutomatique(
+                                cn,
+                                tr,
+                                contratId,
+                                kmRetour,
+                                retourReel
+                            );
+
+                            if (montantReparation > 0)
                             {
-                                montantpaye = 0;
-
-                                decimal.TryParse(
-                                    txtMontantpaye.Text.Replace(",", "."),
-                                    System.Globalization.NumberStyles.Any,
-                                    System.Globalization.CultureInfo.InvariantCulture,
-                                    out montantpaye
+                                AjouterPenalite(
+                                    cn,
+                                    tr,
+                                    contratId,
+                                    "Dégât",
+                                    montantReparation,
+                                    montantpaye,
+                                    descriptionAccident
                                 );
-
-                                if (montantpaye > 0)
-                                {
-                                    PaymentService.AjouterPaiementContrat(
-                                        cn,
-                                        tr,
-                                        contratId,
-                                        montantpaye,
-                                        "Autre",
-                                        "Cash",
-                                        "Accident",
-                                        Session.Username
-                                    );
-                                }
                             }
 
                             tr.Commit();
 
                             LogHelper.AddLog("Retour avec accident voiture: " + cbVoiture.Text, Session.Username);
-                            MessageBox.Show("Retour avec accident enregistré avec succès.",
-                                "Succès", MessageBoxButtons.OK, MessageBoxIcon.Information);
+
+                            string message = "Retour avec accident enregistré avec succès.";
+
+                            if (montantRetard > 0)
+                                message += "\nRetard ajouté : " + montantRetard.ToString("0.00") + " DH";
+
+                            if (montantKmSupp > 0)
+                                message += "\nKilométrage supplémentaire : " + montantKmSupp.ToString("0.00") + " DH";
+
+                            if (montantReparation > 0)
+                                message += "\nPénalité dégât : " + montantReparation.ToString("0.00") + " DH";
+
+                            if (montantpaye > 0)
+                                message += "\nMontant payé : " + montantpaye.ToString("0.00") + " DH";
+
+                            MessageBox.Show(
+                                message,
+                                "Succès",
+                                MessageBoxButtons.OK,
+                                MessageBoxIcon.Information);
 
                             ReinitialiserForm();
                         }
                         catch (Exception ex)
                         {
                             tr.Rollback();
+
                             ErrorReporter.SendError(ex, "retour", "btnAccident_Click_1_Transaction");
                             dbErreur.AddLog(ex.Message, Session.Username, "retour", "btnAccident_Click_1_Transaction");
-                            MessageBox.Show("Erreur retour avec accident : " + ex.Message,
-                                "Erreur", MessageBoxButtons.OK, MessageBoxIcon.Error);
+
+                            MessageBox.Show(
+                                "Erreur retour avec accident : " + ex.Message,
+                                "Erreur",
+                                MessageBoxButtons.OK,
+                                MessageBoxIcon.Error);
                         }
                     }
                 }
@@ -505,10 +838,19 @@ namespace venolocation.formee
             {
                 ErrorReporter.SendError(ex, "retour", "btnAccident_Click_1");
                 dbErreur.AddLog(ex.Message, Session.Username, "retour", "btnAccident_Click_1");
-                MessageBox.Show("Erreur connexion : " + ex.Message,
-                    "Erreur", MessageBoxButtons.OK, MessageBoxIcon.Error);
+
+                MessageBox.Show(
+                    "Erreur connexion : " + ex.Message,
+                    "Erreur",
+                    MessageBoxButtons.OK,
+                    MessageBoxIcon.Error);
             }
+
         }
+
+
+
+
     }
-    
+
 }

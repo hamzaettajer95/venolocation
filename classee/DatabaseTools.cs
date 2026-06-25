@@ -607,7 +607,7 @@ namespace venolocation.classee
 
         public static void ResetDatabaseAndCreateAdmin()
         {
-            string connectionString = Dbexec.GetConnection().ToString();
+            string connectionString = Dbexec.GetConnection().ConnectionString;
 
             string file;
             
@@ -626,7 +626,6 @@ namespace venolocation.classee
                 "entretiens",
                 "erreur",
                 "logs",
-                "old_contrats",
                 "recettes",
                 "recettes_archive",
                 "reparations",
@@ -662,49 +661,36 @@ namespace venolocation.classee
 
                     using (MySqlCommand cmd = cn.CreateCommand())
                     {
-
-                        using (MySqlTransaction tr = cn.BeginTransaction())
+                        try
                         {
-                            try
+                            cmd.CommandText = "SET FOREIGN_KEY_CHECKS = 0;";
+                            cmd.ExecuteNonQuery();
+
+                            foreach (string table in tables)
                             {
-                                cmd.CommandText = "SET FOREIGN_KEY_CHECKS = 0;";
+                                cmd.CommandText = $"TRUNCATE TABLE `{table}`;";
                                 cmd.ExecuteNonQuery();
-
-
-                                foreach (string table in tables)
-                                {
-                                    cmd.CommandText = $"TRUNCATE TABLE `{table}`;";
-                                    cmd.ExecuteNonQuery();
-                                }
-
-
-                                cmd.CommandText = "SET FOREIGN_KEY_CHECKS = 1;";
-                                cmd.ExecuteNonQuery();
-
-
-                                cmd.CommandText = @"
-                                    INSERT INTO utilisateurs 
-                                    (nom, login, mot_de_passe, role, created_at)
-                                    VALUES 
-                                    (@nom, @login, @mot_de_passe, @role, NOW()); ";
-
-                                cmd.Parameters.Clear();
-                                cmd.Parameters.AddWithValue("@nom", "admin");
-                                cmd.Parameters.AddWithValue("@login", "admin");
-                                cmd.Parameters.AddWithValue("@mot_de_passe", "admin");
-                                cmd.Parameters.AddWithValue("@role", "Admin");
-
-                                cmd.ExecuteNonQuery();
-
-                                tr.Commit();
-                            }
-                            catch
-                            {
-                                tr.Rollback();
-                                throw;
                             }
                         }
-                        
+                        finally
+                        {
+                            cmd.CommandText = "SET FOREIGN_KEY_CHECKS = 1;";
+                            cmd.ExecuteNonQuery();
+                        }
+
+                        cmd.CommandText = @"
+                                INSERT INTO utilisateurs 
+                                (nom, login, mot_de_passe, role, created_at)
+                                VALUES 
+                                (@nom, @login, @mot_de_passe, @role, NOW());";
+
+                        cmd.Parameters.Clear();
+                        cmd.Parameters.AddWithValue("@nom", "admin");
+                        cmd.Parameters.AddWithValue("@login", "admin");
+                        cmd.Parameters.AddWithValue("@mot_de_passe", "admin");
+                        cmd.Parameters.AddWithValue("@role", "Admin");
+
+                        cmd.ExecuteNonQuery();
                     }
                 }
 
@@ -722,6 +708,14 @@ namespace venolocation.classee
                     "Erreur",
                     MessageBoxButtons.OK,
                     MessageBoxIcon.Error
+                );
+
+
+                dbErreur.AddLog(
+                    "Erreur reset database: " + ex.Message,
+                    Session.Username,
+                    "DatabaseTools",
+                    "ResetDatabaseAndCreateAdmin"
                 );
             }
         }

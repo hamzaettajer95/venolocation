@@ -159,7 +159,7 @@
             // 
             this.label3.AutoSize = true;
             this.label3.Font = new System.Drawing.Font("Segoe UI", 10.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label3.Location = new System.Drawing.Point(729, 279);
+            this.label3.Location = new System.Drawing.Point(687, 263);
             this.label3.Name = "label3";
             this.label3.Size = new System.Drawing.Size(205, 25);
             this.label3.TabIndex = 43;
@@ -287,7 +287,7 @@
             this.txtKilometrageRetour.Font = new System.Drawing.Font("Segoe UI Semibold", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.txtKilometrageRetour.ForeColor = System.Drawing.Color.Black;
             this.txtKilometrageRetour.HoverState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(94)))), ((int)(((byte)(148)))), ((int)(((byte)(255)))));
-            this.txtKilometrageRetour.Location = new System.Drawing.Point(957, 261);
+            this.txtKilometrageRetour.Location = new System.Drawing.Point(917, 254);
             this.txtKilometrageRetour.Margin = new System.Windows.Forms.Padding(4, 6, 4, 6);
             this.txtKilometrageRetour.Name = "txtKilometrageRetour";
             this.txtKilometrageRetour.PlaceholderText = "Kilometrage retourné";
@@ -310,7 +310,7 @@
             this.btnRetourSimple.Image = global::venolocation.Properties.Resources.insurance;
             this.btnRetourSimple.ImageAlign = System.Windows.Forms.HorizontalAlignment.Left;
             this.btnRetourSimple.ImageSize = new System.Drawing.Size(35, 35);
-            this.btnRetourSimple.Location = new System.Drawing.Point(878, 329);
+            this.btnRetourSimple.Location = new System.Drawing.Point(828, 360);
             this.btnRetourSimple.Name = "btnRetourSimple";
             this.btnRetourSimple.Size = new System.Drawing.Size(272, 60);
             this.btnRetourSimple.TabIndex = 49;

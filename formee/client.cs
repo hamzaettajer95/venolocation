@@ -1,16 +1,16 @@
-﻿using System;
+﻿using MySqlConnector;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
 using System.Drawing;
 using System.Linq;
+using System.Net;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
-using MySqlConnector;
-using System.Net;
-
 using venolocation.classee;
+using venolocation.droit;
 
 
 
@@ -511,6 +511,12 @@ namespace venolocation.formee
                 dbErreur.AddLog(ex.Message, Session.Username, "client", "btnSearchTop_Click");
                 MessageService.Error(AppMessages.UnexpectedError);
             }
+        }
+
+        private void button1_Click(object sender, EventArgs e)
+        {
+            penalites f = new penalites();
+            f.ShowDialog();
         }
     }
     
